@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package integration;
 
-option go_package = "github.com/SplitStackServer/splitstack/api/go/v5/integration";
+option go_package = "github.com/SplitStackServer/splitstack-grpc-api/integration";
 option java_package = "io.splitstack.integration";
 option java_multiple_files = true;
 option java_outer_classname = "CommonProto";

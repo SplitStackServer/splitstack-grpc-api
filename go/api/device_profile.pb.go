@@ -7,7 +7,7 @@
 package api
 
 import (
-	common "github.com/SplitStackServer/splitstack/api/go/v5/common"
+	common "github.com/SplitStackServer/splitstack-grpc-api/common"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -34,8 +34,6 @@ const (
 	CodecRuntime_BLUEPRINT CodecRuntime = 1
 	// JavaScript.
 	CodecRuntime_JS CodecRuntime = 2
-	// IO-Link IODD.
-	CodecRuntime_IO_LINK_IODD CodecRuntime = 3
 )
 
 // Enum value maps for CodecRuntime.
@@ -44,13 +42,11 @@ var (
 		0: "NONE",
 		1: "BLUEPRINT",
 		2: "JS",
-		3: "IO_LINK_IODD",
 	}
 	CodecRuntime_value = map[string]int32{
-		"NONE":         0,
-		"BLUEPRINT":    1,
-		"JS":           2,
-		"IO_LINK_IODD": 3,
+		"NONE":      0,
+		"BLUEPRINT": 1,
+		"JS":        2,
 	}
 )
 
@@ -1404,12 +1400,11 @@ const file_api_device_profile_proto_rawDesc = "" +
 	"\n" +
 	"pagination\x18\x01 \x01(\v2\x0f.api.PaginationR\n" +
 	"pagination\x122\n" +
-	"\x06result\x18\x02 \x03(\v2\x1a.api.DeviceProfileListItemR\x06result*A\n" +
+	"\x06result\x18\x02 \x03(\v2\x1a.api.DeviceProfileListItemR\x06result*/\n" +
 	"\fCodecRuntime\x12\b\n" +
 	"\x04NONE\x10\x00\x12\r\n" +
 	"\tBLUEPRINT\x10\x01\x12\x06\n" +
-	"\x02JS\x10\x02\x12\x10\n" +
-	"\fIO_LINK_IODD\x10\x03*P\n" +
+	"\x02JS\x10\x02*P\n" +
 	"\x0fMeasurementKind\x12\v\n" +
 	"\aUNKNOWN\x10\x00\x12\v\n" +
 	"\aCOUNTER\x10\x01\x12\f\n" +
@@ -1422,8 +1417,8 @@ const file_api_device_profile_proto_rawDesc = "" +
 	"\x10GetDeviceProfile\x12\x1c.api.GetDeviceProfileRequest\x1a\x1d.api.GetDeviceProfileResponse\"!\x82\xd3\xe4\x93\x02\x1b\x12\x19/api/device-profiles/{id}\x12~\n" +
 	"\x13UpdateDeviceProfile\x12\x1f.api.UpdateDeviceProfileRequest\x1a .api.UpdateDeviceProfileResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\x1a\x19/api/device-profiles/{id}\x12q\n" +
 	"\x13DeleteDeviceProfile\x12\x1f.api.DeleteDeviceProfileRequest\x1a\x16.google.protobuf.Empty\"!\x82\xd3\xe4\x93\x02\x1b*\x19/api/device-profiles/{id}\x12s\n" +
-	"\x12ListDeviceProfiles\x12\x1e.api.ListDeviceProfilesRequest\x1a\x1f.api.ListDeviceProfilesResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/api/device-profilesB\xb0\x01\n" +
-	"\x11io.splitstack.apiB\x12DeviceProfileProtoP\x01Z4github.com/SplitStackServer/splitstack/api/go/v5/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
+	"\x12ListDeviceProfiles\x12\x1e.api.ListDeviceProfilesRequest\x1a\x1f.api.ListDeviceProfilesResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/api/device-profilesB\xaf\x01\n" +
+	"\x11io.splitstack.apiB\x12DeviceProfileProtoP\x01Z3github.com/SplitStackServer/splitstack-grpc-api/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 
 var (
 	file_api_device_profile_proto_rawDescOnce sync.Once

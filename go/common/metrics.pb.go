@@ -283,8 +283,8 @@ const file_common_metrics_proto_rawDesc = "" +
 	"MetricKind\x12\v\n" +
 	"\aCOUNTER\x10\x00\x12\f\n" +
 	"\bABSOLUTE\x10\x01\x12\t\n" +
-	"\x05GAUGE\x10\x02B\xb6\x01\n" +
-	"\x11io.splitstack.apiB\fMetricsProtoP\x01Z7github.com/SplitStackServer/splitstack/api/go/v5/common\xaa\x02\x17SplitStackServer.Common\xca\x02\x17SplitStackServer\\Common\xe2\x02#GPBMetadata\\SplitStackServer\\Commonb\x06proto3"
+	"\x05GAUGE\x10\x02B\xb5\x01\n" +
+	"\x11io.splitstack.apiB\fMetricsProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/common\xaa\x02\x17SplitStackServer.Common\xca\x02\x17SplitStackServer\\Common\xe2\x02#GPBMetadata\\SplitStackServer\\Commonb\x06proto3"
 
 var (
 	file_common_metrics_proto_rawDescOnce sync.Once

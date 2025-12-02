@@ -503,8 +503,8 @@ const file_bs_rsp_proto_rawDesc = "" +
 	"\amessage\x18\x03 \x01(\tR\amessage\"=\n" +
 	"\rErrorResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x12\n" +
-	"\x04code\x18\x02 \x01(\rR\x04codeB\xc8\x01\n" +
-	"\x14io.splitstack.api.bsB\x10BasestationProtoP\x01Z3github.com/SplitStackServer/splitstack/api/go/v5/bs\xaa\x02\x1cSplitStackServer.Basestation\xca\x02\x1cSplitStackServer\\Basestation\xe2\x02(GPBMetadata\\SplitStackServer\\Basestationb\x06proto3"
+	"\x04code\x18\x02 \x01(\rR\x04codeB\xbf\x01\n" +
+	"\x14io.splitstack.api.bsB\bRspProtoP\x01Z2github.com/SplitStackServer/splitstack-grpc-api/bs\xaa\x02\x1cSplitStackServer.Basestation\xca\x02\x1cSplitStackServer\\Basestation\xe2\x02(GPBMetadata\\SplitStackServer\\Basestationb\x06proto3"
 
 var (
 	file_bs_rsp_proto_rawDescOnce sync.Once

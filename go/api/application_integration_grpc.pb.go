@@ -45,9 +45,13 @@ type ApplicationIntegrationServiceClient interface {
 	DeleteApplicationIntegration(ctx context.Context, in *DeleteApplicationIntegrationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Get the list of applications.
 	ListApplicationIntegrations(ctx context.Context, in *ListApplicationIntegrationsRequest, opts ...grpc.CallOption) (*ListApplicationIntegrationsResponse, error)
-	// Get the application integration token.
+	// Get the application integration token. It is used for authenticating when using the WebSocket integration.
+	//
+	// Note: WebSocket integration must be enabled in the server configuration.
 	GetApplicationIntegrationToken(ctx context.Context, in *GetApplicationIntegrationTokenRequest, opts ...grpc.CallOption) (*ApplicationIntegrationTokenResponse, error)
-	// Reset the application integration token.
+	// Reset the application integration token. It is used for authenticating when using the WebSocket integration.
+	//
+	// Note: WebSocket integration must be enabled in the server configuration.
 	ResetApplicationIntegrationToken(ctx context.Context, in *ResetApplicationIntegrationTokenRequest, opts ...grpc.CallOption) (*ApplicationIntegrationTokenResponse, error)
 }
 
@@ -145,9 +149,13 @@ type ApplicationIntegrationServiceServer interface {
 	DeleteApplicationIntegration(context.Context, *DeleteApplicationIntegrationRequest) (*emptypb.Empty, error)
 	// Get the list of applications.
 	ListApplicationIntegrations(context.Context, *ListApplicationIntegrationsRequest) (*ListApplicationIntegrationsResponse, error)
-	// Get the application integration token.
+	// Get the application integration token. It is used for authenticating when using the WebSocket integration.
+	//
+	// Note: WebSocket integration must be enabled in the server configuration.
 	GetApplicationIntegrationToken(context.Context, *GetApplicationIntegrationTokenRequest) (*ApplicationIntegrationTokenResponse, error)
-	// Reset the application integration token.
+	// Reset the application integration token. It is used for authenticating when using the WebSocket integration.
+	//
+	// Note: WebSocket integration must be enabled in the server configuration.
 	ResetApplicationIntegrationToken(context.Context, *ResetApplicationIntegrationTokenRequest) (*ApplicationIntegrationTokenResponse, error)
 	mustEmbedUnimplementedApplicationIntegrationServiceServer()
 }
