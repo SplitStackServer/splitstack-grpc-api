@@ -1,0 +1,194 @@
+syntax = "proto3";
+
+package stream;
+
+option go_package = "github.com/SplitStackServer/splitstack/api/go/v5/stream";
+option java_package = "io.splitstack.api.stream";
+option java_multiple_files = true;
+option java_outer_classname = "FrameProto";
+option csharp_namespace = "SplitStackServer.Stream";
+option php_namespace = "SplitStackServer\\Stream";
+option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Stream";
+
+
+import "google/protobuf/timestamp.proto";
+import "common/common.proto";
+import "bs/endnode.proto";
+import "bs/basestation.proto";
+import "bs/cmd.proto";
+import "bs/rsp.proto";
+
+
+message EndnodeDownlinkResultLog {
+    // Basestation EUI, hex string
+    string bs_eui = 1;
+    // Downlink result
+    bs.BasestationDownlinkResult dl_res = 2;
+
+}
+
+message EndnodeDownlinkRxStatusLog {
+    // Basestation EUI, hex string
+    string bs_eui = 1;
+    // Downlink RX Status
+    bs.BasestationDownlinkRxStatus dl_rx_stat = 2;
+}
+
+message EndnodeUplinkFrameLog {
+
+  // Message type.
+  common.EndnodeUplinkMessageType message_type = 1;
+
+  // Time.
+  google.protobuf.Timestamp time = 2;
+
+  // Uplink ID (UUID)
+  string uplink_id = 3;
+
+  // Message.
+  oneof message {
+    // Over the air attachment
+    bs.EndnodeAttMessage att = 4;
+    // Over the air detachment
+    bs.EndnodeDetMessage det = 5;
+    // Uplink payload
+    bs.EndnodeUlDataMessage ul_data = 6;
+    // Variable mac uplink payload
+    bs.EndnodeVariableMacUlDataMessage vm_ul_data = 7;
+    // Downlink result 
+    EndnodeDownlinkResultLog dl_res = 8;
+    // Downlink RX Status
+    EndnodeDownlinkRxStatusLog dl_rx_stat = 9;
+  }
+
+  // RX meta-data.
+  map<string, bs.EndnodeUplinkMetadata> metadata = 10;
+}
+
+
+message VariableMacUplinkFrameLog {
+
+  // Message type.
+  common.VariableMacType mac_name = 1;
+
+  uint32 mac_type = 2;
+
+  // Time.
+  google.protobuf.Timestamp time = 3;
+
+  // Uplink ID (UUID)
+  string uplink_id = 4;
+
+  // Variable Mac Uplink Message
+  bs.EndnodeVariableMacUlDataMessage message = 5;
+
+  // RX meta-data.
+  map<string, bs.EndnodeUplinkMetadata> metadata = 6;
+}
+
+
+message EndnodeDownlinkFrameLog {
+
+  // Basestation EUI, hex string
+  string bs_eui = 1;
+
+  // Message type.
+  common.EndnodeDownlinkMessageType message_type = 2;
+
+  // Time.
+  google.protobuf.Timestamp time = 3;
+
+  // Downlink ID (UUID)
+  string downlink_id = 4;
+
+  // Optional Uplink ID (UUID) for responses
+  optional string uplink_id = 5;
+
+  // Message.
+  oneof message {
+    // Enque downlink
+    bs.EnqueDownlink dl_data_que = 9;
+    // Revoke downlink
+    bs.RevokeDownlink dl_data_rev = 10;
+    // Downlink RX status query
+    bs.DownlinkRxStatusQuery dl_rx_stat_qry = 11;
+  }
+}
+
+message BasestationUplinkFrameLog {
+
+  // Basestation EUI, hex string
+  string bs_eui = 1;
+
+  // Message type.
+  common.BasestationUplinkMessageType message_type = 2;
+
+  // Time.
+  google.protobuf.Timestamp time = 3;
+
+  // Uplink ID (UUID)
+  string uplink_id = 4;
+
+  // Message.
+  oneof message {
+    // Connect
+    bs.BasestationConnection con = 5;
+    // Status
+    bs.BasestationStatus status = 6;
+    // VM Status
+    bs.BasestationVariableMacStatus vm_status = 7;
+    // Propagation ack
+    bs.BasestationPropagationAck prp_ack = 8;
+  }
+}
+
+message BasestationDownlinkFrameLog {
+
+  // Basestation EUI, hex string
+  string bs_eui = 1;
+
+  // Message type.
+  common.BasestationDownlinkMessageType message_type = 2;
+
+  // Time.
+  google.protobuf.Timestamp time = 3;
+
+  // Downlink ID (UUID)
+  string downlink_id = 4;
+
+  // Optional Uplink ID (UUID) for responses
+  optional string uplink_id = 5;
+
+  // Message.
+  oneof message {
+    // Propagate attach
+    bs.AttachPropagate att_prp = 6;
+    // Propagate detach
+    bs.DetachPropagate det_prp = 7;
+
+    // Status
+    bs.RequestStatus req_status = 9;
+    // VM Status
+    bs.RequestVariableMacStatus req_vm_status = 10;
+    // VM Activate
+    bs.EnableVariableMac vm_activate = 11;
+    // VM Deactivate
+    bs.DisableVariableMac vm_deactivate = 12;
+    // VM Batch
+    bs.BatchVariableMac vm_batch = 13;
+  }
+}
+
+
+message FrameLogItem {
+
+  string stream_id = 1;
+
+  oneof item {
+    EndnodeUplinkFrameLog ep_ul = 2;
+    EndnodeDownlinkFrameLog ep_dl = 3;
+    BasestationUplinkFrameLog bs_ul = 4;
+    BasestationDownlinkFrameLog bs_dl = 5;
+    VariableMacUplinkFrameLog vm_ul = 6;
+  }
+}

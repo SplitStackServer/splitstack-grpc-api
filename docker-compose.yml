@@ -1,0 +1,8 @@
+services:
+  splitstack-api-dart:
+    build:
+      context: .
+      dockerfile: Dockerfile-dart
+    command: bash -c "cd dart && make all"
+    volumes:
+      - ./:/splitstack/api

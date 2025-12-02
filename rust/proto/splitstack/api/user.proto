@@ -1,0 +1,217 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/SplitStackServer/splitstack/api/go/v5/api";
+option java_package = "io.splitstack.api";
+option java_multiple_files = true;
+option java_outer_classname = "UserProto";
+option csharp_namespace = "SplitStackServer.Api";
+option php_namespace = "SplitStackServer\\Api";
+option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Api";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "api/common.proto";
+
+// UserService is the service providing API methods for managing users.
+service UserService {
+    // Create a new user.
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
+        option(google.api.http) = {
+            post: "/api/users"
+            body: "*"
+        };
+    }
+
+    // Get the user for the given ID.
+    rpc GetUser(GetUserRequest) returns (GetUserResponse) {
+        option(google.api.http) = {
+            get: "/api/users/{id}"
+        };
+    }
+
+    // Update the given user.
+    rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
+        option(google.api.http) = {
+            put: "/api/users/{id}"
+            body: "*"
+        };
+    }
+
+    // Delete the user with the given ID.
+    rpc DeleteUser(DeleteUserRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            delete: "/api/users/{id}"
+        };
+    }
+
+    // Get the list of users.
+    rpc ListUsers(ListUsersRequest) returns (ListUsersResponse) {
+        option(google.api.http) = {
+            get: "/api/users"
+        };
+    }
+
+    // Update the password for the given user.
+    rpc UpdateUserPassword(UpdateUserPasswordRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            post: "/api/users/{id}/password"
+            body: "*"
+        };
+    }
+}
+
+message User {
+	// User ID (UUID).
+	// Will be set automatically on create.
+	string id = 1;
+
+	// Set to true to make the user a global administrator.
+	bool is_admin = 4;
+
+	// Set to false to disable the user.
+	bool is_active = 5;
+
+	// E-mail of the user.
+	string email = 6;
+
+	// Optional note to store with the user.
+	optional string note = 7;
+}
+
+message UserListItem {
+    // User ID (UUID).
+    string id = 1;
+
+	// Created at timestamp.
+	google.protobuf.Timestamp created_at = 2;
+
+	// Last update timestamp.
+	google.protobuf.Timestamp updated_at = 3;
+
+	// Email of the user.
+	string email = 4;
+
+	// Set to true to make the user a global administrator.
+	bool is_admin = 5;
+
+	// Set to false to disable the user.
+	bool is_active = 6;
+}
+
+message UserTenant {
+    // Tenant ID.
+    string tenant_id = 1;
+
+	// User is admin within the context of the tenant.
+    // There is no need to set the is_endnode_admin and is_basestation_admin flags.
+	bool is_admin = 2;
+
+    // User is able to modify endnode related resources (applications,
+    // device-profiles, devices).
+    bool is_endnode_admin = 3;
+
+    // User is able to modify basestations.
+    bool is_basestation_admin = 4;
+}
+
+message CreateUserRequest {
+	// E-mail of the user.
+	string email = 1;
+
+    // Password to set for the user.
+    string password = 2;
+
+	// Set to false to disable the user.
+	bool is_active = 3;
+
+	// Set to true to make the user a global administrator.
+	bool is_admin = 4;
+
+	// Optional note to store with the user.
+	optional string note = 5;
+
+    // Add the user to the following tenants.
+    repeated UserTenant tenants = 6;
+}
+
+message CreateUserResponse {
+    // User object.
+    User user = 1;
+
+	// Created at timestamp.
+	google.protobuf.Timestamp created_at = 2;
+}
+
+message GetUserRequest {
+    // User ID.
+    string id = 1;
+}
+
+message GetUserResponse {
+    // User object.
+    User user = 1;
+
+	// Created at timestamp.
+	google.protobuf.Timestamp created_at = 2;
+
+	// Last update timestamp.
+	google.protobuf.Timestamp updated_at = 3;
+}
+
+message UpdateUserRequest {
+    // User ID.
+    string id = 1;
+
+	// E-mail of the user.
+	optional string email = 2;
+
+	// Set to false to disable the user.
+	optional bool is_active = 4;
+
+	// Set to true to make the user a global administrator.
+	optional bool is_admin = 5;
+
+	// Optional note to store with the user.
+	optional string note = 6;
+}
+
+message UpdateUserResponse {
+    // User object.
+    User user = 1;
+
+	// Created at timestamp.
+	google.protobuf.Timestamp created_at = 2;
+
+	// Last update timestamp.
+	google.protobuf.Timestamp updated_at = 3;
+}
+
+
+message DeleteUserRequest {
+    // User ID.
+    string id = 1;
+}
+
+message ListUsersRequest {
+    // Pagination. Defaults to 100 objects at page index 0.
+    Paginator paginator = 1;
+}
+
+message ListUsersResponse {
+    // Pagination.
+    Pagination pagination = 1;
+
+    // Result-set.
+    repeated UserListItem result = 2;
+}
+
+message UpdateUserPasswordRequest {
+    // User ID.
+    string id = 1;
+
+    // Password to set.
+    string password = 2;
+}

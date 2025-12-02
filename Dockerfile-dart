@@ -1,0 +1,17 @@
+FROM dart:sdk
+
+ENV PROJECT_PATH=/splitstack/api
+RUN apt update && apt install -y make git bash unzip curl
+
+# install protoc
+RUN curl -LO "https://github.com/protocolbuffers/protobuf/releases/download/v33.0/protoc-33.0-linux-x86_64.zip"
+RUN unzip protoc-33.0-linux-x86_64.zip -d /usr/local && chmod +x /usr/local/bin/protoc
+RUN export PATH="$PATH:/usr/local/bin"
+RUN protoc --version
+
+# Install protoc plugin for Dart
+RUN dart pub global activate protoc_plugin
+RUN export PATH="$PATH:$HOME/.pub-cache/bin"
+
+RUN mkdir -p $PROJECT_PATH
+WORKDIR $PROJECT_PATH

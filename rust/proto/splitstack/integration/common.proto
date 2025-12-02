@@ -1,0 +1,126 @@
+syntax = "proto3";
+
+package integration;
+
+option go_package = "github.com/SplitStackServer/splitstack/api/go/v5/integration";
+option java_package = "io.splitstack.integration";
+option java_multiple_files = true;
+option java_outer_classname = "CommonProto";
+option csharp_namespace = "SplitStackServer.Integration";
+option php_namespace = "SplitStackServer\\Integration";
+option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Integration";
+
+import "common/common.proto";
+
+enum LogLevel {
+  // Info.
+  INFO = 0;
+
+  // Warning.
+  WARNING = 1;
+
+  // Error.
+  ERROR = 2;
+}
+
+enum LogCode {
+  // Unknown type.
+  UNKNOWN = 0;
+
+  // Error related to the downlink payload size.
+  // Usually seen when the payload exceeded the maximum allowed payload size.
+  DOWNLINK_PAYLOAD_SIZE = 1;
+
+  // Uplink codec error.
+  UPLINK_CODEC_ERROR = 2;
+
+  // Downlink codec error.
+  DOWNLINK_CODEC_ERROR = 3;
+
+  // Over the air (OTA) attach error.
+  OTA_ATTACH_ERROR = 4;
+
+  // Over the air (OTA) detach error.
+  OTA_DETACH_ERROR = 5;
+
+  // Uplink frame-counter was reset.
+  UPLINK_F_CNT_RESET = 6;
+
+  // Downlink basestation error.
+  BASESTATION_ERROR = 7;
+
+  // Downlink has expired.
+  DOWNLINK_EXPIRED = 8;
+
+  // Downlink was revoked.
+  DOWNLINK_REVOKED = 9;
+}
+
+
+
+// Device information.
+message DeviceInfo {
+  // Device ID (UUID).
+  string device_id = 1;
+
+  // Device name.
+  string device_name = 2;
+
+  // Device (EUI64).
+  string device_eui = 3;
+
+  // Device tags.
+  optional common.Tags device_tags = 4;
+
+  // Tenant ID (UUID).
+  string tenant_id = 5;
+
+    // Tenant name.
+  string tenant_name = 6;
+
+  // Application ID (UUID).
+  string application_id = 7;
+
+    // Application name.
+  string application_name = 8;
+
+  // Device-profile ID (UUID).
+  optional string device_profile_id = 9;
+
+  // Device-profile name.
+  optional string device_profile_name = 10;
+
+  // Device-profile tags.
+  optional common.Tags device_profile_tags = 11;
+
+  // Device class.
+  common.DeviceClass device_class = 12;
+}
+
+// Basestation information.
+message BasestationInfo {
+  // Basestation ID (UUID).
+  string basestation_id = 1;
+
+  // Basestation name.
+  string basestation_name = 2;
+
+  // Basestation EUI.
+  string basestation_eui = 3;
+
+  // Device tags.
+  optional common.Tags basestation_tags = 4;
+
+  // Tenant ID (UUID).
+  string tenant_id = 5;
+
+    // Tenant name.
+  string tenant_name = 6;
+
+  // Backend ID.
+  string backend_id = 7;
+
+    // Region.
+  string region = 8;
+
+}

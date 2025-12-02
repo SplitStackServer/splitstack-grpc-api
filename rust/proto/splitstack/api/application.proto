@@ -1,0 +1,208 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/SplitStackServer/splitstack/api/go/v5/api";
+option java_package = "io.splitstack.api";
+option java_multiple_files = true;
+option java_outer_classname = "ApplicationProto";
+option csharp_namespace = "SplitStackServer.Api";
+option php_namespace = "SplitStackServer\\Api";
+option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Api";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "api/common.proto";
+import "common/common.proto";
+
+
+// ApplicationService is the service providing API methods for managing applications.
+service ApplicationService {
+    // Create creates the given application.
+    rpc CreateApplication(CreateApplicationRequest) returns (CreateApplicationResponse) {
+        option (google.api.http) = {
+        post : "/api/applications"
+        body : "*"
+        };
+    }
+
+    // Get the application for the given ID.
+    rpc GetApplication(GetApplicationRequest) returns (GetApplicationResponse) {
+        option (google.api.http) = {
+        get : "/api/applications/{id}"
+        };
+    }
+
+    // Update updates the given application.
+    rpc UpdateApplication(UpdateApplicationRequest) returns (UpdateApplicationResponse) {
+        option (google.api.http) = {
+        put : "/api/applications/{id}"
+        body : "*"
+        };
+    }
+
+    // Delete the application for the given ID.
+    rpc DeleteApplication(DeleteApplicationRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+        delete : "/api/applications/{id}"
+        };
+    }
+
+    // Get the list of applications.
+    rpc ListApplications(ListApplicationsRequest) returns (ListApplicationsResponse) {
+        option (google.api.http) = {
+        get : "/api/applications"
+        };
+    }
+}
+
+
+
+message Application {
+    // Application ID (UUID).
+    string id = 1;
+
+    // Tenant ID (UUID).
+    string tenant_id = 2;
+
+    // Application name.
+    string name = 3;
+
+    // Application description.
+    optional string description = 4;
+
+    // Tags (user defined).
+    // These tags can be used to add additional information to the application.
+    // These tags are exposed in all the integration events of devices under
+    // this application.
+    optional common.Tags tags = 5;
+
+    // Enable variable MAC devices for the application.
+    bool variable_mac_enabled = 6;
+
+}
+
+message ApplicationListItem {
+    // Application ID (UUID).
+    string id = 1;
+
+    // Tenant ID (UUID).
+    string tenant_id = 2;
+
+    // Application name.
+    string name = 3;
+
+    // Application description.
+    optional string description = 4;
+
+    // Created at timestamp.
+    google.protobuf.Timestamp created_at = 5;
+
+    // Last update timestamp.
+    google.protobuf.Timestamp updated_at = 6;
+
+    // Enable variable MAC devices for the application.
+    bool variable_mac_enabled = 7;
+}
+
+message CreateApplicationRequest {
+    // Tenant ID (UUID).
+    string tenant_id = 1;
+
+    // Application name.
+    string name = 2;
+
+    // Application description.
+    optional string description = 3;
+
+    // Tags (user defined).
+    // These tags can be used to add additional information to the application.
+    // These tags are exposed in all the integration events of devices under
+    // this application.
+    optional common.Tags tags = 4;
+
+    // Enable variable MAC devices for the application.
+    bool variable_mac_enabled = 5;
+}
+
+message CreateApplicationResponse {
+    // Created Application object.
+    Application application = 1;
+
+    // Created at timestamp.
+    google.protobuf.Timestamp created_at = 2;
+}
+
+message GetApplicationRequest {
+    // Application ID (UUID).
+    string id = 1;
+}
+
+message GetApplicationResponse {
+    // Application object.
+    Application application = 1;
+
+    // Created at timestamp.
+    google.protobuf.Timestamp created_at = 2;
+
+    // Last update timestamp.
+    google.protobuf.Timestamp updated_at = 3;
+
+}
+
+message UpdateApplicationRequest {
+    // Application ID (UUID).
+    string id = 1;
+
+    // Application name.
+    optional string name = 2;
+
+    // Application description.
+    optional string description = 3;
+
+    // Tags (user defined).
+    // These tags can be used to add additional information to the application.
+    // These tags are exposed in all the integration events of devices under
+    // this application.
+    optional common.Tags tags = 4;
+
+    // Enable variable MAC devices for the application.
+    optional bool variable_mac_enabled = 5;
+}
+
+message UpdateApplicationResponse {
+    // Application object.
+    Application application = 1;
+
+    // Created at timestamp.
+    google.protobuf.Timestamp created_at = 2;
+
+    // Last update timestamp.
+    google.protobuf.Timestamp updated_at = 3;
+}
+
+message DeleteApplicationRequest {
+    // Application ID (UUID).
+    string id = 1;
+}
+
+message ListApplicationsRequest {
+    // Tenant ID (UUID) to filter applications on.
+    // To list all applications as a global admin user, this field can be left blank.
+    optional string tenant_id = 1;
+
+    // Pagination. Defaults to 100 objects at page index 0.
+    Paginator paginator = 2;
+
+    // If set, the given string will be used to search on name (optional).
+    optional string search_name = 3;
+}
+
+message ListApplicationsResponse {
+    // Pagination.
+    Pagination pagination = 1;
+
+    // Result-set.
+    repeated ApplicationListItem result = 2;
+}

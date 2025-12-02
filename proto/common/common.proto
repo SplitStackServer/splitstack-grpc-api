@@ -1,0 +1,216 @@
+syntax = "proto3";
+
+package common;
+
+option go_package = "github.com/SplitStackServer/splitstack/api/go/v5/common";
+option java_package = "io.splitstack.api";
+option java_multiple_files = true;
+option java_outer_classname = "CommonProto";
+option csharp_namespace = "SplitStackServer.Common";
+option php_namespace = "SplitStackServer\\Common";
+option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Common";
+
+
+
+
+message GeoLocation {
+    // Latitude in degrees. Zero value is considered to be unset.
+    double lat = 1;
+    // Longitude in degrees. Zero value is considered to be unset.
+    double lon = 2;
+    // Altitude in meters. Only evaluated if Latitude and Longitude are set.
+    double alt = 3;
+}
+
+enum Region {
+  // EU868
+  EU868 = 0;
+
+  // US915
+  US915 = 2;
+
+  // // CN779
+  // CN779 = 3;
+
+  // // EU433
+  // EU433 = 4;
+
+  // // AU915
+  // AU915 = 5;
+
+  // // CN470
+  // CN470 = 6;
+
+  // // AS923
+  // AS923 = 7;
+
+  // // AS923 with -1.80 MHz frequency offset
+  // AS923_2 = 12;
+
+  // // AS923 with -6.60 MHz frequency offset
+  // AS923_3 = 13;
+
+  // // (AS923 with -5.90 MHz frequency offset).
+  // AS923_4 = 14;
+
+  // // KR920
+  // KR920 = 8;
+
+  // // IN865
+  // IN865 = 9;
+
+  // // RU864
+  // RU864 = 10;
+}
+
+enum TsUnbMode{
+  EU0 = 0;
+  EU1 = 1;
+  EU2 = 2;
+  US0 = 3;
+}
+
+
+enum EndnodeUplinkMessageType {
+  // Over the air attachment.
+  ATTACHMENT = 0;
+
+  // Over the air detachment.
+  DETACHMENT = 1;
+
+  // Unconfirmed uplink.
+  UNCONFIRMED_UL_DATA = 2;
+
+  // Confirmed uplink.
+  CONFIRMED_UL_DATA = 3;
+
+  // Variable MAC uplink.
+  VARIABLE_MAC_UL_DATA = 4;
+
+  // Downlink command result
+  DOWNLINK_RESULT = 5;
+
+  // Result of a RX status query
+  RX_STATUS_QUERY_RESULT = 6;
+}
+
+enum EndnodeDownlinkMessageType {
+  // Over the air attachment.
+  ATTACHMENT_RESPONSE = 0;
+
+  // Over the air detachment.
+  DETACHMENT_RESPONSE = 1;
+
+  // Error response
+  ERROR_RESPONSE = 2;
+
+  // Enque downlink
+  ENQUE_DOWNLINK = 3;
+  // Revoke downlink
+  REVOKE_DOWNLINK = 4;
+  // Downlink RX status query
+  DOWNLINK_RX_STATUS_QUERY = 5;
+}
+
+
+enum BasestationUplinkMessageType {
+  // Basestation connection event.
+  CONNECT = 0;
+
+  // Basestation status.
+  STATUS = 1;
+
+  // Status of enabled variable mac types.
+  VARIABLE_MAC_STATUS = 2;
+
+  // Acknowledgement of a propagated attach/detach.
+  PROPAGATE_ACK = 3;
+}
+
+enum BasestationDownlinkMessageType {
+  ATTACH_PROPAGATE = 0;
+  DETACH_PROPAGATE = 1;
+  BATCH_PROPAGATE = 2;
+  REQUEST_STATUS = 3;
+  REQUEST_VM_STATUS = 4;
+  VARIABLE_MAC_ACTIVATE = 5;
+  VARIABLE_MAC_DEACTIVATE = 6;
+  VARIABLE_MAC_BATCH = 7;
+}
+
+
+enum BssciVersion {
+  BSSCI_1_0_0 = 0;
+}
+
+
+
+enum DeviceClass {
+  // Class-Z.
+  CLASS_Z = 0;
+
+  // Class-A.
+  CLASS_A = 1;
+
+  // Class-B.
+  CLASS_B = 2;
+
+  // Class-C.
+  CLASS_C = 3;
+}
+
+// TODO - match storage format
+enum VariableMacType {
+  // MAC/LINK Layer optimized for metering applications (deprecated)
+  WMBUS = 0;
+
+  // Wireless M-Bus frame with Frame Format B (FFB)
+  MBUS_FFB = 1;
+
+  // M-Bus frame that starts with a wireless M-Bus MAC according to OMS-S Volume 2, Annex Q
+  // 
+  // Open Metering System Specification (OMS-S), Volume 2, Annex Q, Issue 5.0.1, December 2023.
+  MBUS_MAC = 2;
+
+  /// Mioty® Alliance MAC/LINK layers
+  /// User specific MAC/LINK layer
+  MIOTY_ALLIANCE = 3;
+  CUSTOM = 4;
+
+  RESERVED = 5;
+}
+
+message MbusHeader {
+    // Serial number of the M-Bus device. 8 digit number from 0 to 99999999
+    string serialNo = 1;
+    // Generation number of the M-Bus device. 1 Byte number from 0 to 255
+    uint32 generation = 2;
+    // Medium code of the M-Bus device. 1 Byte number from 0 to 255
+    uint32 medium = 3;
+    // Manufacturer (MAN) of the M-Bus device. 3 character string.
+    string manufacturer = 4;
+}
+
+enum MacPayloadFormat {
+  // Indicates a no special format as MAC payload format
+  DEFAULT = 0;
+  // Indicates an M-Bus format as MAC payload format, starting with CI-field (see EN 13757-7)
+  MBUS = 1;
+  // Indicates M-Bus APL data as MAC payload format, starting with a data information block (DIB) (see EN 13757-3)
+  MBUS_APL = 2;
+  // Indicates an IO-Link application layer format as next layer
+  IO_LINK = 3;
+  //Indicates an M-Bus format as next layer, using adaptation Layer, starting with MBAL (see EN 13757-8)
+  MBUS_MBAL = 4;
+  // Indicates a manufacturer specific format not defined in the ETSI TS 103 357 specification
+  MANUFACTURER_SPECIFIC = 5;
+
+}
+
+message Tags {
+    // Tags (user defined).
+    // These tags can be used to add additional information to the application.
+    // These tags are exposed in all the integration events of devices under
+    // this application.
+    map<string, string> fields = 1;
+}

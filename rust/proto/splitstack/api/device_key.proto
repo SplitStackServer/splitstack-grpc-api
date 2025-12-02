@@ -1,0 +1,97 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/SplitStackServer/splitstack/api/go/v5/api";
+option java_package = "io.splitstack.api";
+option java_multiple_files = true;
+option java_outer_classname = "DeviceKeyProto";
+option csharp_namespace = "SplitStackServer.Api";
+option php_namespace = "SplitStackServer\\Api";
+option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Api";
+
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+// DeviceService is the service providing API methods for managing devices.
+service DeviceKeyService {
+  
+  // Create the given device-keys.
+  rpc CreateDeviceKey(CreateDeviceKeyRequest) returns (CreateDeviceKeyResponse) {
+    option (google.api.http) = {
+      post : "/api/device-keys/key"
+      body : "*"
+    };
+  }
+
+  // Get the device-keys for the given DevEUI.
+  rpc GetDeviceKey(GetDeviceKeyRequest) returns (GetDeviceKeyResponse) {
+    option (google.api.http) = {
+      get : "/api/device-keys/key/{eui}"
+    };
+  }
+
+  // Delete the given device-keys.
+  rpc DeleteDeviceKey(DeleteDeviceKeyRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete : "/api/device-keys/key/{eui}"
+      body : "*"
+    };
+  }
+
+}
+
+message DeviceKey {
+  // Device EUI (EUI64).
+  string eui = 1;
+
+  // Network Key (AES128).
+  string network_key = 2;
+
+  // Device is preattached and does not perform OTAA.
+  bool preattached = 3;
+}
+
+message CreateDeviceKeyRequest {
+  // Device EUI (EUI64).
+  string eui = 1;
+
+  // Network Key (AES128).
+  string network_key = 2;
+
+  // Device is preattached and does not perform OTAA.
+  bool preattached = 3;
+
+  // Short ID must be set for preattached devices.
+  // 
+  // Used to create a device session.
+  optional string short_id = 4;
+}
+
+message CreateDeviceKeyResponse {
+  // Device key object.
+  DeviceKey device_key = 1;
+
+  // Created at timestamp.
+  google.protobuf.Timestamp created_at = 2;
+}
+
+message GetDeviceKeyRequest {
+  // Device EUI (EUI64).
+  string eui = 1;
+}
+
+message GetDeviceKeyResponse {
+  // Device key object.
+  DeviceKey device_key = 1;
+
+  // Created at timestamp.
+  google.protobuf.Timestamp created_at = 2;
+}
+
+message DeleteDeviceKeyRequest {
+  // Device EUI (EUI64).
+  string eui = 1;
+}

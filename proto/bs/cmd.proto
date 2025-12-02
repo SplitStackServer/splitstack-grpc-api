@@ -1,0 +1,165 @@
+syntax = "proto3";
+
+package bs;
+
+option go_package = "github.com/SplitStackServer/splitstack/api/go/v5/bs";
+option java_package = "io.splitstack.api.bs";
+option java_multiple_files = true;
+option java_outer_classname = "CmdProto";
+option csharp_namespace = "SplitStackServer.Basestation";
+option php_namespace = "SplitStackServer\\Basestation";
+option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Basestation";
+
+import "google/protobuf/timestamp.proto";
+
+message ServerCommand {
+    // Basestation EUI, hex string
+    string bs_eui = 1;
+    // Command ID (UUID)
+    string command_id = 2;
+        // Message timestamp.
+    google.protobuf.Timestamp ts = 3;
+
+    oneof command {
+        // Enque downlink
+        EnqueDownlink dl_data_que = 4;
+        // Revoke downlink
+        RevokeDownlink dl_data_rev = 5;
+        // Downlink RX status query
+        DownlinkRxStatusQuery dl_rx_stat_qry = 6;
+        // Propagate attach
+        AttachPropagate att_prp = 7;
+        // Propagate detach
+        DetachPropagate det_prp = 8;
+        // // Batch propagate
+        // BatchPropagate batch_prp = 9;
+        // Status
+        RequestStatus req_status = 10;
+        // VM Activate
+        EnableVariableMac vm_activate = 11;
+        // VM Deactivate
+        DisableVariableMac vm_deactivate = 12;
+        // VM Batch Activate/Deactivate
+        BatchVariableMac vm_batch = 13;
+        // VM Status
+        RequestVariableMacStatus vm_status = 14;
+    };
+}
+
+// Downlink data queue
+message EnqueDownlink{
+    // Endnode EUI, hex string
+    string endnode_eui = 2;
+    // Assigned queue ID for reference
+    uint64 dl_que_id = 3;
+    // Priority, higher values are prioritized, optional, default 0
+    optional float priority = 4;
+    // MPF header byte, 1 byte
+    optional uint32 format = 5;
+    // Downlink payload.
+    oneof payload {
+        // Uplink acknowledgement
+        Acknowledgement ack = 6;
+        // Unencrypted payload
+        DownlinkData data = 7;
+        // Encrypted payload
+        DownlinkDataEncrypted data_enc = 8;
+    };
+    // True to request End Point response, optional
+    optional bool response_exp = 9;
+    // True to request priority End Point response, optional
+    optional bool response_prio = 10;
+    // True to request further End Point DL window, optional
+    optional bool req_dl_window = 11;
+    // True to send downlink only if End Point expects a response, optional
+    optional bool only_if_expected = 12;
+}
+
+// Uplink acknowledgement
+message Acknowledgement{}
+
+// Unencrypted payload
+message DownlinkData{
+    // User data
+    bytes data = 1;
+}
+
+// Encrypted payload
+message DownlinkDataEncrypted{
+    // Data for each of the m packet counters
+    repeated bytes data = 1;
+    // Endnode packet counter for which the respective data entry is valid
+    repeated uint32 packet_cnt = 2;
+}
+
+// Downlink data revoke
+message RevokeDownlink{
+    // Endnode EUI, hex string
+    string endnode_eui = 2;
+    // Assigned queue ID for reference
+    uint64 dl_que_id = 3;
+}
+
+// Downlink rx status query
+message DownlinkRxStatusQuery{
+    // Endnode EUI, hex string
+    string endnode_eui = 2;
+}
+
+message AttachPropagate{
+    // Endnode EUI, hex string
+    string endnode_eui = 2;
+    
+    // End Point short address
+    uint32 sh_addr = 3;
+
+    // 16 Byte End Point network session key
+    bytes nwk_session_key = 4;
+
+    // Packet counter.
+    int32 last_packet_cnt = 5;
+
+    // True if End Point is bidirectional
+    bool bidi = 6;
+
+    // True if End Point uses dual channel mode
+    bool dual_channel = 7;
+
+    // True if End Point uses DL repetition
+    bool repetition = 8;
+
+    // True if End Point uses wide carrier offset
+    bool wide_carr_off = 9;
+
+    // True if End Point uses long DL interblock distance
+    bool long_blk_dist = 10;
+}
+
+message DetachPropagate{
+    // Endnode EUI, hex string
+    string endnode_eui = 2;
+}
+
+
+
+message EnableVariableMac{
+    // MAC-Type that should be activated
+    uint32 mac_type = 1;
+}
+
+message DisableVariableMac{
+    // MAC-Type that should be deactivated
+    uint32 mac_type = 1;
+}
+
+
+message BatchVariableMac{
+    // MAC-Types that should be activated
+    repeated uint32 activate_vms = 1;
+    // MAC-Types that should be deactivated
+    repeated uint32 deactivate_vms = 2;
+}
+
+message RequestStatus{}
+
+message RequestVariableMacStatus{}
