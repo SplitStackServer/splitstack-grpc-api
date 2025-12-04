@@ -7,7 +7,7 @@
 package api
 
 import (
-	common "github.com/SplitStackServer/splitstack-grpc-api/common"
+	common "github.com/SplitStackServer/splitstack-grpc-api/go/common"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -1187,8 +1187,8 @@ const file_api_tenant_proto_rawDesc = "" +
 	"\x11EnableVariableMac\x12\x1d.api.EnableVariableMacRequest\x1a\x18.api.VariableMacResponse\"0\x82\xd3\xe4\x93\x02*:\x01*\"%/api/tenants/{id}/variable-mac/enable\x12\x81\x01\n" +
 	"\x12DisableVariableMac\x12\x1e.api.DisableVariableMacRequest\x1a\x18.api.VariableMacResponse\"1\x82\xd3\xe4\x93\x02+:\x01*\"&/api/tenants/{id}/variable-mac/disable\x12[\n" +
 	"\fDeleteTenant\x12\x18.api.DeleteTenantRequest\x1a\x16.google.protobuf.Empty\"\x19\x82\xd3\xe4\x93\x02\x13*\x11/api/tenants/{id}\x12V\n" +
-	"\vListTenants\x12\x17.api.ListTenantsRequest\x1a\x18.api.ListTenantsResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/api/tenantsB\xa8\x01\n" +
-	"\x11io.splitstack.apiB\vTenantProtoP\x01Z3github.com/SplitStackServer/splitstack-grpc-api/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
+	"\vListTenants\x12\x17.api.ListTenantsRequest\x1a\x18.api.ListTenantsResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/api/tenantsB\xab\x01\n" +
+	"\x11io.splitstack.apiB\vTenantProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/go/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 
 var (
 	file_api_tenant_proto_rawDescOnce sync.Once

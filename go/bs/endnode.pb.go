@@ -909,8 +909,8 @@ const file_bs_endnode_proto_rawDesc = "" +
 	"\x06NORMAL\x10\x00\x12\x0e\n" +
 	"\n" +
 	"REPETITION\x10\x01\x12\r\n" +
-	"\tLOW_DELAY\x10\x02B\xc3\x01\n" +
-	"\x14io.splitstack.api.bsB\fEndnodeProtoP\x01Z2github.com/SplitStackServer/splitstack-grpc-api/bs\xaa\x02\x1cSplitStackServer.Basestation\xca\x02\x1cSplitStackServer\\Basestation\xe2\x02(GPBMetadata\\SplitStackServer\\Basestationb\x06proto3"
+	"\tLOW_DELAY\x10\x02B\xc6\x01\n" +
+	"\x14io.splitstack.api.bsB\fEndnodeProtoP\x01Z5github.com/SplitStackServer/splitstack-grpc-api/go/bs\xaa\x02\x1cSplitStackServer.Basestation\xca\x02\x1cSplitStackServer\\Basestation\xe2\x02(GPBMetadata\\SplitStackServer\\Basestationb\x06proto3"
 
 var (
 	file_bs_endnode_proto_rawDescOnce sync.Once
