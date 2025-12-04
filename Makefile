@@ -1,9 +1,6 @@
 .PHONY: rust go dart all
 
-all: rust go
-
-rust:
-	cd rust && make
+all: go dart
 
 go:
 	cd go && make
