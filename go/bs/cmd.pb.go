@@ -7,13 +7,12 @@
 package bs
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -1149,8 +1148,8 @@ const file_bs_cmd_proto_rawDesc = "" +
 	"\factivate_vms\x18\x01 \x03(\rR\vactivateVms\x12%\n" +
 	"\x0edeactivate_vms\x18\x02 \x03(\rR\rdeactivateVms\"\x0f\n" +
 	"\rRequestStatus\"\x1a\n" +
-	"\x18RequestVariableMacStatusB\xc2\x01\n" +
-	"\x14io.splitstack.api.bsB\bCmdProtoP\x01Z5github.com/SplitStackServer/splitstack-grpc-api/bs\xaa\x02\x1cSplitStackServer.Basestation\xca\x02\x1cSplitStackServer\\Basestation\xe2\x02(GPBMetadata\\SplitStackServer\\Basestationb\x06proto3"
+	"\x18RequestVariableMacStatusB\xbf\x01\n" +
+	"\x14io.splitstack.api.bsB\bCmdProtoP\x01Z2github.com/SplitStackServer/splitstack-grpc-api/bs\xaa\x02\x1cSplitStackServer.Basestation\xca\x02\x1cSplitStackServer\\Basestation\xe2\x02(GPBMetadata\\SplitStackServer\\Basestationb\x06proto3"
 
 var (
 	file_bs_cmd_proto_rawDescOnce sync.Once

@@ -7,12 +7,11 @@
 package common
 
 import (
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
-
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -869,8 +868,8 @@ const file_common_common_proto_rawDesc = "" +
 	"\bMBUS_APL\x10\x02\x12\v\n" +
 	"\aIO_LINK\x10\x03\x12\r\n" +
 	"\tMBUS_MBAL\x10\x04\x12\x19\n" +
-	"\x15MANUFACTURER_SPECIFIC\x10\x05B\xb7\x01\n" +
-	"\x11io.splitstack.apiB\vCommonProtoP\x01Z9github.com/SplitStackServer/splitstack-grpc-api/common\xaa\x02\x17SplitStackServer.Common\xca\x02\x17SplitStackServer\\Common\xe2\x02#GPBMetadata\\SplitStackServer\\Commonb\x06proto3"
+	"\x15MANUFACTURER_SPECIFIC\x10\x05B\xb4\x01\n" +
+	"\x11io.splitstack.apiB\vCommonProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/common\xaa\x02\x17SplitStackServer.Common\xca\x02\x17SplitStackServer\\Common\xe2\x02#GPBMetadata\\SplitStackServer\\Commonb\x06proto3"
 
 var (
 	file_common_common_proto_rawDescOnce sync.Once

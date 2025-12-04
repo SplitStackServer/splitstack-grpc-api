@@ -7,12 +7,11 @@
 package api
 
 import (
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
-
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -243,8 +242,8 @@ const file_api_common_proto_rawDesc = "" +
 	"\x0fIntegrationKind\x12\r\n" +
 	"\tHTTP_PUSH\x10\x00\x12\r\n" +
 	"\tINFLUX_DB\x10\x01\x12\x10\n" +
-	"\fTHINGS_BOARD\x10\x02B\xab\x01\n" +
-	"\x11io.splitstack.apiB\vCommonProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
+	"\fTHINGS_BOARD\x10\x02B\xa8\x01\n" +
+	"\x11io.splitstack.apiB\vCommonProtoP\x01Z3github.com/SplitStackServer/splitstack-grpc-api/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 
 var (
 	file_api_common_proto_rawDescOnce sync.Once

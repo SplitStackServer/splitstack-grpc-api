@@ -7,15 +7,14 @@
 package api
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -856,8 +855,8 @@ const file_api_tenant_user_proto_rawDesc = "" +
 	"\rGetTenantUser\x12\x19.api.GetTenantUserRequest\x1a\x1a.api.GetTenantUserResponse\"0\x82\xd3\xe4\x93\x02*\x12(/api/tenants/{tenant_id}/users/{user_id}\x12\x84\x01\n" +
 	"\x10UpdateTenantUser\x12\x1c.api.UpdateTenantUserRequest\x1a\x1d.api.UpdateTenantUserResponse\"3\x82\xd3\xe4\x93\x02-:\x01*\x1a(/api/tenants/{tenant_id}/users/{user_id}\x12z\n" +
 	"\x10DeleteTenantUser\x12\x1c.api.DeleteTenantUserRequest\x1a\x16.google.protobuf.Empty\"0\x82\xd3\xe4\x93\x02**(/api/tenants/{tenant_id}/users/{user_id}\x12t\n" +
-	"\x0fListTenantUsers\x12\x1b.api.ListTenantUsersRequest\x1a\x1c.api.ListTenantUsersResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/tenants/{tenant_id}/usersB\xaf\x01\n" +
-	"\x11io.splitstack.apiB\x0fTenantUserProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
+	"\x0fListTenantUsers\x12\x1b.api.ListTenantUsersRequest\x1a\x1c.api.ListTenantUsersResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/tenants/{tenant_id}/usersB\xac\x01\n" +
+	"\x11io.splitstack.apiB\x0fTenantUserProtoP\x01Z3github.com/SplitStackServer/splitstack-grpc-api/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 
 var (
 	file_api_tenant_user_proto_rawDescOnce sync.Once

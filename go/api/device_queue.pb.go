@@ -7,10 +7,6 @@
 package api
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	_ "github.com/SplitStackServer/splitstack-grpc-api/common"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -18,6 +14,9 @@ import (
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	structpb "google.golang.org/protobuf/types/known/structpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -702,8 +701,8 @@ const file_api_device_queue_proto_rawDesc = "" +
 	"\x06Revoke\x12!.api.RevokeDeviceQueueItemRequest\x1a\".api.RevokeDeviceQueueItemResponse\"4\x82\xd3\xe4\x93\x02.:\x01*\")/api/devices/{device_id}/queue/{queue_id}\x12c\n" +
 	"\n" +
 	"ClearQueue\x12\x1c.api.ClearDeviceQueueRequest\x1a\x16.google.protobuf.Empty\"\x1f\x82\xd3\xe4\x93\x02\x19*\x17/api/devices/{id}/queue\x12n\n" +
-	"\bGetQueue\x12\x1f.api.GetDeviceQueueItemsRequest\x1a .api.GetDeviceQueueItemsResponse\"\x1f\x82\xd3\xe4\x93\x02\x19\x12\x17/api/devices/{id}/queueB\xb0\x01\n" +
-	"\x11io.splitstack.apiB\x10DeviceQueueProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
+	"\bGetQueue\x12\x1f.api.GetDeviceQueueItemsRequest\x1a .api.GetDeviceQueueItemsResponse\"\x1f\x82\xd3\xe4\x93\x02\x19\x12\x17/api/devices/{id}/queueB\xad\x01\n" +
+	"\x11io.splitstack.apiB\x10DeviceQueueProtoP\x01Z3github.com/SplitStackServer/splitstack-grpc-api/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 
 var (
 	file_api_device_queue_proto_rawDescOnce sync.Once

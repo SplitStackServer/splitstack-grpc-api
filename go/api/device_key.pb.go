@@ -7,15 +7,14 @@
 package api
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -394,8 +393,8 @@ const file_api_device_key_proto_rawDesc = "" +
 	"\x10DeviceKeyService\x12m\n" +
 	"\x0fCreateDeviceKey\x12\x1b.api.CreateDeviceKeyRequest\x1a\x1c.api.CreateDeviceKeyResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/api/device-keys/key\x12g\n" +
 	"\fGetDeviceKey\x12\x18.api.GetDeviceKeyRequest\x1a\x19.api.GetDeviceKeyResponse\"\"\x82\xd3\xe4\x93\x02\x1c\x12\x1a/api/device-keys/key/{eui}\x12m\n" +
-	"\x0fDeleteDeviceKey\x12\x1b.api.DeleteDeviceKeyRequest\x1a\x16.google.protobuf.Empty\"%\x82\xd3\xe4\x93\x02\x1f:\x01**\x1a/api/device-keys/key/{eui}B\xae\x01\n" +
-	"\x11io.splitstack.apiB\x0eDeviceKeyProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
+	"\x0fDeleteDeviceKey\x12\x1b.api.DeleteDeviceKeyRequest\x1a\x16.google.protobuf.Empty\"%\x82\xd3\xe4\x93\x02\x1f:\x01**\x1a/api/device-keys/key/{eui}B\xab\x01\n" +
+	"\x11io.splitstack.apiB\x0eDeviceKeyProtoP\x01Z3github.com/SplitStackServer/splitstack-grpc-api/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 
 var (
 	file_api_device_key_proto_rawDescOnce sync.Once
