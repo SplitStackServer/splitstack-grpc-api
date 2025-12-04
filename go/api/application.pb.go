@@ -7,7 +7,7 @@
 package api
 
 import (
-	common "github.com/SplitStackServer/splitstack-grpc-api/common"
+	common "github.com/SplitStackServer/splitstack-grpc-api/go/common"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -854,8 +854,8 @@ const file_api_application_proto_rawDesc = "" +
 	"\x0eGetApplication\x12\x1a.api.GetApplicationRequest\x1a\x1b.api.GetApplicationResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/api/applications/{id}\x12u\n" +
 	"\x11UpdateApplication\x12\x1d.api.UpdateApplicationRequest\x1a\x1e.api.UpdateApplicationResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\x1a\x16/api/applications/{id}\x12j\n" +
 	"\x11DeleteApplication\x12\x1d.api.DeleteApplicationRequest\x1a\x16.google.protobuf.Empty\"\x1e\x82\xd3\xe4\x93\x02\x18*\x16/api/applications/{id}\x12j\n" +
-	"\x10ListApplications\x12\x1c.api.ListApplicationsRequest\x1a\x1d.api.ListApplicationsResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/applicationsB\xad\x01\n" +
-	"\x11io.splitstack.apiB\x10ApplicationProtoP\x01Z3github.com/SplitStackServer/splitstack-grpc-api/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
+	"\x10ListApplications\x12\x1c.api.ListApplicationsRequest\x1a\x1d.api.ListApplicationsResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/applicationsB\xb0\x01\n" +
+	"\x11io.splitstack.apiB\x10ApplicationProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/go/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 
 var (
 	file_api_application_proto_rawDescOnce sync.Once

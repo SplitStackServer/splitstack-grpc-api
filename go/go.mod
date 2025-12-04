@@ -1,4 +1,4 @@
-module github.com/SplitStackServer/splitstack-grpc-api
+module github.com/SplitStackServer/splitstack-grpc-api/go/go
 
 go 1.25.1
 

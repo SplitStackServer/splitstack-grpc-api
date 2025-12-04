@@ -7,7 +7,7 @@
 package bs
 
 import (
-	common "github.com/SplitStackServer/splitstack-grpc-api/common"
+	common "github.com/SplitStackServer/splitstack-grpc-api/go/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -995,8 +995,8 @@ const file_bs_basestation_proto_rawDesc = "" +
 	"\x12DownlinkResultEnum\x12\b\n" +
 	"\x04SENT\x10\x00\x12\v\n" +
 	"\aEXPIRED\x10\x01\x12\v\n" +
-	"\aINVALID\x10\x02B\xc7\x01\n" +
-	"\x14io.splitstack.api.bsB\x10BasestationProtoP\x01Z2github.com/SplitStackServer/splitstack-grpc-api/bs\xaa\x02\x1cSplitStackServer.Basestation\xca\x02\x1cSplitStackServer\\Basestation\xe2\x02(GPBMetadata\\SplitStackServer\\Basestationb\x06proto3"
+	"\aINVALID\x10\x02B\xca\x01\n" +
+	"\x14io.splitstack.api.bsB\x10BasestationProtoP\x01Z5github.com/SplitStackServer/splitstack-grpc-api/go/bs\xaa\x02\x1cSplitStackServer.Basestation\xca\x02\x1cSplitStackServer\\Basestation\xe2\x02(GPBMetadata\\SplitStackServer\\Basestationb\x06proto3"
 
 var (
 	file_bs_basestation_proto_rawDescOnce sync.Once
