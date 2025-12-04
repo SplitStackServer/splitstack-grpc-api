@@ -7,11 +7,12 @@
 package bs
 
 import (
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
+
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -504,7 +505,7 @@ const file_bs_rsp_proto_rawDesc = "" +
 	"\rErrorResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x12\n" +
 	"\x04code\x18\x02 \x01(\rR\x04codeB\xc2\x01\n" +
-	"\x14io.splitstack.api.bsB\bRspProtoP\x01Z5github.com/SplitStackServer/splitstack-grpc-api/go/bs\xaa\x02\x1cSplitStackServer.Basestation\xca\x02\x1cSplitStackServer\\Basestation\xe2\x02(GPBMetadata\\SplitStackServer\\Basestationb\x06proto3"
+	"\x14io.splitstack.api.bsB\bRspProtoP\x01Z5github.com/SplitStackServer/splitstack-grpc-api/bs\xaa\x02\x1cSplitStackServer.Basestation\xca\x02\x1cSplitStackServer\\Basestation\xe2\x02(GPBMetadata\\SplitStackServer\\Basestationb\x06proto3"
 
 var (
 	file_bs_rsp_proto_rawDescOnce sync.Once

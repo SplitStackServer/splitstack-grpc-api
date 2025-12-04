@@ -7,15 +7,16 @@
 package api
 
 import (
-	common "github.com/SplitStackServer/splitstack-grpc-api/go/common"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
+
+	common "github.com/SplitStackServer/splitstack-grpc-api/common"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
 )
 
 const (
@@ -1496,7 +1497,7 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\x10ListBasestations\x12\x1c.api.ListBasestationsRequest\x1a\x1d.api.ListBasestationsResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/basestations\x12\xb7\x01\n" +
 	"$GenerateBasestationClientCertificate\x120.api.GenerateBasestationClientCertificateRequest\x1a1.api.GenerateBasestationClientCertificateResponse\"*\x82\xd3\xe4\x93\x02$\"\"/api/basestations/{id}/certificate\x12\x86\x01\n" +
 	"\x15GetBasestationMetrics\x12!.api.GetBasestationMetricsRequest\x1a\".api.GetBasestationMetricsResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/basestations/{id}/metricsB\xb0\x01\n" +
-	"\x11io.splitstack.apiB\x10BasestationProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/go/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
+	"\x11io.splitstack.apiB\x10BasestationProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 
 var (
 	file_api_basestation_proto_rawDescOnce sync.Once

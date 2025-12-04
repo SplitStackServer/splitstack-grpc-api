@@ -7,14 +7,15 @@
 package api
 
 import (
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
+
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
 )
 
 const (
@@ -1416,7 +1417,7 @@ const file_api_application_integration_proto_rawDesc = "" +
 	"\x1bListApplicationIntegrations\x12'.api.ListApplicationIntegrationsRequest\x1a(.api.ListApplicationIntegrationsResponse\"7\x82\xd3\xe4\x93\x021\x12//api/applications/{application_id}/integrations\x12\xb5\x01\n" +
 	"\x1eGetApplicationIntegrationToken\x12*.api.GetApplicationIntegrationTokenRequest\x1a(.api.ApplicationIntegrationTokenResponse\"=\x82\xd3\xe4\x93\x027\x125/api/applications/{application_id}/integrations/token\x12\xb9\x01\n" +
 	" ResetApplicationIntegrationToken\x12,.api.ResetApplicationIntegrationTokenRequest\x1a(.api.ApplicationIntegrationTokenResponse\"=\x82\xd3\xe4\x93\x027*5/api/applications/{application_id}/integrations/tokenB\xbb\x01\n" +
-	"\x11io.splitstack.apiB\x1bApplicationIntegrationProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/go/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
+	"\x11io.splitstack.apiB\x1bApplicationIntegrationProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 
 var (
 	file_api_application_integration_proto_rawDescOnce sync.Once

@@ -7,15 +7,16 @@
 package api
 
 import (
-	common "github.com/SplitStackServer/splitstack-grpc-api/go/common"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
+
+	common "github.com/SplitStackServer/splitstack-grpc-api/common"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
 )
 
 const (
@@ -1418,7 +1419,7 @@ const file_api_device_profile_proto_rawDesc = "" +
 	"\x13UpdateDeviceProfile\x12\x1f.api.UpdateDeviceProfileRequest\x1a .api.UpdateDeviceProfileResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\x1a\x19/api/device-profiles/{id}\x12q\n" +
 	"\x13DeleteDeviceProfile\x12\x1f.api.DeleteDeviceProfileRequest\x1a\x16.google.protobuf.Empty\"!\x82\xd3\xe4\x93\x02\x1b*\x19/api/device-profiles/{id}\x12s\n" +
 	"\x12ListDeviceProfiles\x12\x1e.api.ListDeviceProfilesRequest\x1a\x1f.api.ListDeviceProfilesResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/api/device-profilesB\xb2\x01\n" +
-	"\x11io.splitstack.apiB\x12DeviceProfileProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/go/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
+	"\x11io.splitstack.apiB\x12DeviceProfileProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 
 var (
 	file_api_device_profile_proto_rawDescOnce sync.Once

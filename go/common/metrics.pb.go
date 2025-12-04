@@ -7,12 +7,13 @@
 package common
 
 import (
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
+
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 )
 
 const (
@@ -284,7 +285,7 @@ const file_common_metrics_proto_rawDesc = "" +
 	"\aCOUNTER\x10\x00\x12\f\n" +
 	"\bABSOLUTE\x10\x01\x12\t\n" +
 	"\x05GAUGE\x10\x02B\xb8\x01\n" +
-	"\x11io.splitstack.apiB\fMetricsProtoP\x01Z9github.com/SplitStackServer/splitstack-grpc-api/go/common\xaa\x02\x17SplitStackServer.Common\xca\x02\x17SplitStackServer\\Common\xe2\x02#GPBMetadata\\SplitStackServer\\Commonb\x06proto3"
+	"\x11io.splitstack.apiB\fMetricsProtoP\x01Z9github.com/SplitStackServer/splitstack-grpc-api/common\xaa\x02\x17SplitStackServer.Common\xca\x02\x17SplitStackServer\\Common\xe2\x02#GPBMetadata\\SplitStackServer\\Commonb\x06proto3"
 
 var (
 	file_common_metrics_proto_rawDescOnce sync.Once

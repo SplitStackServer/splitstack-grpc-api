@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package api;
 
-option go_package = "github.com/SplitStackServer/splitstack-grpc-api/go/api";
+option go_package = "github.com/SplitStackServer/splitstack-grpc-api/api";
 option java_package = "io.splitstack.api";
 option java_multiple_files = true;
 option java_outer_classname = "TenantUserProto";
