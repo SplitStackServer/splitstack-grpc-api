@@ -5,7 +5,7 @@ package integration;
 option go_package = "github.com/SplitStackServer/splitstack-grpc-api/go/integration";
 option java_package = "io.splitstack.integration";
 option java_multiple_files = true;
-option java_outer_classname = "CommonProto";
+option java_outer_classname = "DownlinkCommandProto";
 option csharp_namespace = "SplitStackServer.Integration";
 option php_namespace = "SplitStackServer\\Integration";
 option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Integration";

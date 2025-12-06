@@ -150,7 +150,9 @@ type Basestation struct {
 	UseGpsLocation     bool                 `protobuf:"varint,7,opt,name=use_gps_location,json=useGpsLocation,proto3" json:"use_gps_location,omitempty"`
 	VariableMacSupport bool                 `protobuf:"varint,8,opt,name=variable_mac_support,json=variableMacSupport,proto3" json:"variable_mac_support,omitempty"`
 	// Tags.
-	Tags          *common.Tags `protobuf:"bytes,9,opt,name=tags,proto3,oneof" json:"tags,omitempty"`
+	Tags *common.Tags `protobuf:"bytes,9,opt,name=tags,proto3,oneof" json:"tags,omitempty"`
+	// Basestation state.
+	State         BasestationState `protobuf:"varint,10,opt,name=state,proto3,enum=api.BasestationState" json:"state,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -246,6 +248,13 @@ func (x *Basestation) GetTags() *common.Tags {
 		return x.Tags
 	}
 	return nil
+}
+
+func (x *Basestation) GetState() BasestationState {
+	if x != nil {
+		return x.State
+	}
+	return BasestationState_NEVER_SEEN
 }
 
 type BasestationListItem struct {
@@ -1350,7 +1359,7 @@ var File_api_basestation_proto protoreflect.FileDescriptor
 
 const file_api_basestation_proto_rawDesc = "" +
 	"\n" +
-	"\x15api/basestation.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x10api/common.proto\x1a\x13common/common.proto\x1a\x14common/metrics.proto\"\x91\x03\n" +
+	"\x15api/basestation.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x10api/common.proto\x1a\x13common/common.proto\x1a\x14common/metrics.proto\"\xbe\x03\n" +
 	"\vBasestation\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
 	"\x03eui\x18\x02 \x01(\tR\x03eui\x12\x12\n" +
@@ -1360,7 +1369,9 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\bmetadata\x18\x06 \x01(\v2\x18.api.BasestationMetadataH\x02R\bmetadata\x88\x01\x01\x12(\n" +
 	"\x10use_gps_location\x18\a \x01(\bR\x0euseGpsLocation\x120\n" +
 	"\x14variable_mac_support\x18\b \x01(\bR\x12variableMacSupport\x12%\n" +
-	"\x04tags\x18\t \x01(\v2\f.common.TagsH\x03R\x04tags\x88\x01\x01B\x0e\n" +
+	"\x04tags\x18\t \x01(\v2\f.common.TagsH\x03R\x04tags\x88\x01\x01\x12+\n" +
+	"\x05state\x18\n" +
+	" \x01(\x0e2\x15.api.BasestationStateR\x05stateB\x0e\n" +
 	"\f_descriptionB\v\n" +
 	"\t_locationB\v\n" +
 	"\t_metadataB\a\n" +
@@ -1549,58 +1560,59 @@ var file_api_basestation_proto_depIdxs = []int32{
 	18, // 0: api.Basestation.location:type_name -> common.GeoLocation
 	4,  // 1: api.Basestation.metadata:type_name -> api.BasestationMetadata
 	19, // 2: api.Basestation.tags:type_name -> common.Tags
-	18, // 3: api.BasestationListItem.location:type_name -> common.GeoLocation
-	4,  // 4: api.BasestationListItem.metadata:type_name -> api.BasestationMetadata
-	20, // 5: api.BasestationListItem.created_at:type_name -> google.protobuf.Timestamp
-	20, // 6: api.BasestationListItem.updated_at:type_name -> google.protobuf.Timestamp
-	20, // 7: api.BasestationListItem.last_seen_at:type_name -> google.protobuf.Timestamp
-	0,  // 8: api.BasestationListItem.state:type_name -> api.BasestationState
-	18, // 9: api.CreateBasestationRequest.location:type_name -> common.GeoLocation
-	19, // 10: api.CreateBasestationRequest.tags:type_name -> common.Tags
-	2,  // 11: api.CreateBasestationResponse.basestation:type_name -> api.Basestation
-	20, // 12: api.CreateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
-	2,  // 13: api.GetBasestationResponse.basestation:type_name -> api.Basestation
-	20, // 14: api.GetBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
-	20, // 15: api.GetBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	20, // 16: api.GetBasestationResponse.last_seen_at:type_name -> google.protobuf.Timestamp
-	18, // 17: api.UpdateBasestationRequest.location:type_name -> common.GeoLocation
-	19, // 18: api.UpdateBasestationRequest.tags:type_name -> common.Tags
-	2,  // 19: api.UpdateBasestationResponse.basestation:type_name -> api.Basestation
-	20, // 20: api.UpdateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
-	20, // 21: api.UpdateBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	21, // 22: api.ListBasestationsRequest.paginator:type_name -> api.Paginator
-	19, // 23: api.ListBasestationsRequest.tags:type_name -> common.Tags
-	1,  // 24: api.ListBasestationsRequest.order_by:type_name -> api.ListBasestationsRequest.OrderBy
-	22, // 25: api.ListBasestationsResponse.pagination:type_name -> api.Pagination
-	3,  // 26: api.ListBasestationsResponse.result:type_name -> api.BasestationListItem
-	20, // 27: api.GenerateBasestationClientCertificateResponse.expires_at:type_name -> google.protobuf.Timestamp
-	20, // 28: api.GetBasestationMetricsRequest.start:type_name -> google.protobuf.Timestamp
-	20, // 29: api.GetBasestationMetricsRequest.end:type_name -> google.protobuf.Timestamp
-	23, // 30: api.GetBasestationMetricsRequest.aggregation:type_name -> common.Aggregation
-	24, // 31: api.GetBasestationMetricsResponse.uptime:type_name -> common.Metric
-	24, // 32: api.GetBasestationMetricsResponse.cpu:type_name -> common.Metric
-	24, // 33: api.GetBasestationMetricsResponse.memory:type_name -> common.Metric
-	24, // 34: api.GetBasestationMetricsResponse.temp:type_name -> common.Metric
-	24, // 35: api.GetBasestationMetricsResponse.duty_cycle:type_name -> common.Metric
-	5,  // 36: api.BasestationService.CreateBasestation:input_type -> api.CreateBasestationRequest
-	7,  // 37: api.BasestationService.GetBasestation:input_type -> api.GetBasestationRequest
-	9,  // 38: api.BasestationService.UpdateBasestation:input_type -> api.UpdateBasestationRequest
-	11, // 39: api.BasestationService.DeleteBasestation:input_type -> api.DeleteBasestationRequest
-	12, // 40: api.BasestationService.ListBasestations:input_type -> api.ListBasestationsRequest
-	14, // 41: api.BasestationService.GenerateBasestationClientCertificate:input_type -> api.GenerateBasestationClientCertificateRequest
-	16, // 42: api.BasestationService.GetBasestationMetrics:input_type -> api.GetBasestationMetricsRequest
-	6,  // 43: api.BasestationService.CreateBasestation:output_type -> api.CreateBasestationResponse
-	8,  // 44: api.BasestationService.GetBasestation:output_type -> api.GetBasestationResponse
-	10, // 45: api.BasestationService.UpdateBasestation:output_type -> api.UpdateBasestationResponse
-	25, // 46: api.BasestationService.DeleteBasestation:output_type -> google.protobuf.Empty
-	13, // 47: api.BasestationService.ListBasestations:output_type -> api.ListBasestationsResponse
-	15, // 48: api.BasestationService.GenerateBasestationClientCertificate:output_type -> api.GenerateBasestationClientCertificateResponse
-	17, // 49: api.BasestationService.GetBasestationMetrics:output_type -> api.GetBasestationMetricsResponse
-	43, // [43:50] is the sub-list for method output_type
-	36, // [36:43] is the sub-list for method input_type
-	36, // [36:36] is the sub-list for extension type_name
-	36, // [36:36] is the sub-list for extension extendee
-	0,  // [0:36] is the sub-list for field type_name
+	0,  // 3: api.Basestation.state:type_name -> api.BasestationState
+	18, // 4: api.BasestationListItem.location:type_name -> common.GeoLocation
+	4,  // 5: api.BasestationListItem.metadata:type_name -> api.BasestationMetadata
+	20, // 6: api.BasestationListItem.created_at:type_name -> google.protobuf.Timestamp
+	20, // 7: api.BasestationListItem.updated_at:type_name -> google.protobuf.Timestamp
+	20, // 8: api.BasestationListItem.last_seen_at:type_name -> google.protobuf.Timestamp
+	0,  // 9: api.BasestationListItem.state:type_name -> api.BasestationState
+	18, // 10: api.CreateBasestationRequest.location:type_name -> common.GeoLocation
+	19, // 11: api.CreateBasestationRequest.tags:type_name -> common.Tags
+	2,  // 12: api.CreateBasestationResponse.basestation:type_name -> api.Basestation
+	20, // 13: api.CreateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
+	2,  // 14: api.GetBasestationResponse.basestation:type_name -> api.Basestation
+	20, // 15: api.GetBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
+	20, // 16: api.GetBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	20, // 17: api.GetBasestationResponse.last_seen_at:type_name -> google.protobuf.Timestamp
+	18, // 18: api.UpdateBasestationRequest.location:type_name -> common.GeoLocation
+	19, // 19: api.UpdateBasestationRequest.tags:type_name -> common.Tags
+	2,  // 20: api.UpdateBasestationResponse.basestation:type_name -> api.Basestation
+	20, // 21: api.UpdateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
+	20, // 22: api.UpdateBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	21, // 23: api.ListBasestationsRequest.paginator:type_name -> api.Paginator
+	19, // 24: api.ListBasestationsRequest.tags:type_name -> common.Tags
+	1,  // 25: api.ListBasestationsRequest.order_by:type_name -> api.ListBasestationsRequest.OrderBy
+	22, // 26: api.ListBasestationsResponse.pagination:type_name -> api.Pagination
+	3,  // 27: api.ListBasestationsResponse.result:type_name -> api.BasestationListItem
+	20, // 28: api.GenerateBasestationClientCertificateResponse.expires_at:type_name -> google.protobuf.Timestamp
+	20, // 29: api.GetBasestationMetricsRequest.start:type_name -> google.protobuf.Timestamp
+	20, // 30: api.GetBasestationMetricsRequest.end:type_name -> google.protobuf.Timestamp
+	23, // 31: api.GetBasestationMetricsRequest.aggregation:type_name -> common.Aggregation
+	24, // 32: api.GetBasestationMetricsResponse.uptime:type_name -> common.Metric
+	24, // 33: api.GetBasestationMetricsResponse.cpu:type_name -> common.Metric
+	24, // 34: api.GetBasestationMetricsResponse.memory:type_name -> common.Metric
+	24, // 35: api.GetBasestationMetricsResponse.temp:type_name -> common.Metric
+	24, // 36: api.GetBasestationMetricsResponse.duty_cycle:type_name -> common.Metric
+	5,  // 37: api.BasestationService.CreateBasestation:input_type -> api.CreateBasestationRequest
+	7,  // 38: api.BasestationService.GetBasestation:input_type -> api.GetBasestationRequest
+	9,  // 39: api.BasestationService.UpdateBasestation:input_type -> api.UpdateBasestationRequest
+	11, // 40: api.BasestationService.DeleteBasestation:input_type -> api.DeleteBasestationRequest
+	12, // 41: api.BasestationService.ListBasestations:input_type -> api.ListBasestationsRequest
+	14, // 42: api.BasestationService.GenerateBasestationClientCertificate:input_type -> api.GenerateBasestationClientCertificateRequest
+	16, // 43: api.BasestationService.GetBasestationMetrics:input_type -> api.GetBasestationMetricsRequest
+	6,  // 44: api.BasestationService.CreateBasestation:output_type -> api.CreateBasestationResponse
+	8,  // 45: api.BasestationService.GetBasestation:output_type -> api.GetBasestationResponse
+	10, // 46: api.BasestationService.UpdateBasestation:output_type -> api.UpdateBasestationResponse
+	25, // 47: api.BasestationService.DeleteBasestation:output_type -> google.protobuf.Empty
+	13, // 48: api.BasestationService.ListBasestations:output_type -> api.ListBasestationsResponse
+	15, // 49: api.BasestationService.GenerateBasestationClientCertificate:output_type -> api.GenerateBasestationClientCertificateResponse
+	17, // 50: api.BasestationService.GetBasestationMetrics:output_type -> api.GetBasestationMetricsResponse
+	44, // [44:51] is the sub-list for method output_type
+	37, // [37:44] is the sub-list for method input_type
+	37, // [37:37] is the sub-list for extension type_name
+	37, // [37:37] is the sub-list for extension extendee
+	0,  // [0:37] is the sub-list for field type_name
 }
 
 func init() { file_api_basestation_proto_init() }

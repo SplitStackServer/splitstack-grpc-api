@@ -5,7 +5,7 @@ package integration;
 option go_package = "github.com/SplitStackServer/splitstack-grpc-api/go/integration";
 option java_package = "io.splitstack.integration";
 option java_multiple_files = true;
-option java_outer_classname = "BasestationStatusEventProto";
+option java_outer_classname = "BasestationConnectionStateProto";
 option csharp_namespace = "SplitStackServer.Integration";
 option php_namespace = "SplitStackServer\\Integration";
 option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Integration";
@@ -16,19 +16,17 @@ import "google/protobuf/struct.proto";
 import "integration/common.proto";
 import "bs/basestation.proto";
 
-// BasestationStatusEvent is the message sent when a basestation status event has been received.
-message BasestationStatusEvent {
-  // Uplink ID (UUID).
-  string uplink_id = 1;
+// BasestationConnectionState is the message sent when a basestation connection state event has been received.
+message BasestationConnectionState {
 
   // Timestamp.
-  google.protobuf.Timestamp time = 2;
+  google.protobuf.Timestamp time = 1;
 
   // Basestation information.
-  BasestationInfo basestation_info = 3;
+  BasestationInfo basestation_info = 2;
 
-  // Message.
-  bs.BasestationStatus msg = 4;
+  // Online if the basestation is connected.
+  bool online = 3;
 
 }
 
