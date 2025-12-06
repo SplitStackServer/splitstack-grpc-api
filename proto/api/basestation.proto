@@ -112,6 +112,10 @@ message Basestation {
 
     // Tags.
     optional common.Tags tags = 9;
+
+    // Basestation state.
+    BasestationState state = 10;
+
 }
 
 message BasestationListItem {
