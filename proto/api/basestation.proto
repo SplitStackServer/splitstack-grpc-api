@@ -81,6 +81,10 @@ enum BasestationState {
 
     // Offline.
     OFFLINE = 2;
+
+    // Inactive.
+    INACTIVE = 3;
+
 }
 
 message Basestation {

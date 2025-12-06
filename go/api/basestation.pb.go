@@ -34,6 +34,8 @@ const (
 	BasestationState_ONLINE BasestationState = 1
 	// Offline.
 	BasestationState_OFFLINE BasestationState = 2
+	// Inactive.
+	BasestationState_INACTIVE BasestationState = 3
 )
 
 // Enum value maps for BasestationState.
@@ -42,11 +44,13 @@ var (
 		0: "NEVER_SEEN",
 		1: "ONLINE",
 		2: "OFFLINE",
+		3: "INACTIVE",
 	}
 	BasestationState_value = map[string]int32{
 		"NEVER_SEEN": 0,
 		"ONLINE":     1,
 		"OFFLINE":    2,
+		"INACTIVE":   3,
 	}
 )
 
@@ -1481,13 +1485,14 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\x06memory\x18\x03 \x01(\v2\x0e.common.MetricR\x06memory\x12\"\n" +
 	"\x04temp\x18\x04 \x01(\v2\x0e.common.MetricR\x04temp\x12-\n" +
 	"\n" +
-	"duty_cycle\x18\x05 \x01(\v2\x0e.common.MetricR\tdutyCycle*;\n" +
+	"duty_cycle\x18\x05 \x01(\v2\x0e.common.MetricR\tdutyCycle*I\n" +
 	"\x10BasestationState\x12\x0e\n" +
 	"\n" +
 	"NEVER_SEEN\x10\x00\x12\n" +
 	"\n" +
 	"\x06ONLINE\x10\x01\x12\v\n" +
-	"\aOFFLINE\x10\x022\x83\a\n" +
+	"\aOFFLINE\x10\x02\x12\f\n" +
+	"\bINACTIVE\x10\x032\x83\a\n" +
 	"\x12BasestationService\x12p\n" +
 	"\x11CreateBasestation\x12\x1d.api.CreateBasestationRequest\x1a\x1e.api.CreateBasestationResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/api/basestations\x12i\n" +
 	"\x0eGetBasestation\x12\x1a.api.GetBasestationRequest\x1a\x1b.api.GetBasestationResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/api/basestations/{id}\x12u\n" +
