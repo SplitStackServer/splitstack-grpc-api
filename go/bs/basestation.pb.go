@@ -519,7 +519,10 @@ type BasestationStatus struct {
 	// CPU utilization, normalized to 1.0 for all cores, optional
 	Cpu *float64 `protobuf:"fixed64,9,opt,name=cpu,proto3,oneof" json:"cpu,omitempty"`
 	// Memory utilization, normalized to 1.0, optional
-	Memory        *float64 `protobuf:"fixed64,10,opt,name=memory,proto3,oneof" json:"memory,omitempty"`
+	Memory *float64 `protobuf:"fixed64,10,opt,name=memory,proto3,oneof" json:"memory,omitempty"`
+	// Latency in ms. Time between sending a status request and receiving the response from the device, optional
+	// This is a round-trip time measurement and calculated on the server side.
+	Latency       *int64 `protobuf:"varint,11,opt,name=latency,proto3,oneof" json:"latency,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -613,6 +616,13 @@ func (x *BasestationStatus) GetCpu() float64 {
 func (x *BasestationStatus) GetMemory() float64 {
 	if x != nil && x.Memory != nil {
 		return *x.Memory
+	}
+	return 0
+}
+
+func (x *BasestationStatus) GetLatency() int64 {
+	if x != nil && x.Latency != nil {
+		return *x.Latency
 	}
 	return 0
 }
@@ -943,7 +953,7 @@ const file_bs_basestation_proto_rawDesc = "" +
 	"\x06_modelB\a\n" +
 	"\x05_nameB\r\n" +
 	"\v_sw_versionB\x0f\n" +
-	"\r_geo_location\"\xfd\x02\n" +
+	"\r_geo_location\"\xa8\x03\n" +
 	"\x11BasestationStatus\x12\x1f\n" +
 	"\vstatus_code\x18\x02 \x01(\rR\n" +
 	"statusCode\x12\x1d\n" +
@@ -957,12 +967,15 @@ const file_bs_basestation_proto_rawDesc = "" +
 	"\x04temp\x18\b \x01(\x01H\x02R\x04temp\x88\x01\x01\x12\x15\n" +
 	"\x03cpu\x18\t \x01(\x01H\x03R\x03cpu\x88\x01\x01\x12\x1b\n" +
 	"\x06memory\x18\n" +
-	" \x01(\x01H\x04R\x06memory\x88\x01\x01B\x0f\n" +
+	" \x01(\x01H\x04R\x06memory\x88\x01\x01\x12\x1d\n" +
+	"\alatency\x18\v \x01(\x03H\x05R\alatency\x88\x01\x01B\x0f\n" +
 	"\r_geo_locationB\t\n" +
 	"\a_uptimeB\a\n" +
 	"\x05_tempB\x06\n" +
 	"\x04_cpuB\t\n" +
-	"\a_memory\"\x81\x01\n" +
+	"\a_memoryB\n" +
+	"\n" +
+	"\b_latency\"\x81\x01\n" +
 	"\x1cBasestationVariableMacStatus\x12\x1b\n" +
 	"\tmac_types\x18\x01 \x03(\rR\bmacTypes\x12\x14\n" +
 	"\x05error\x18\x02 \x01(\bR\x05error\x12 \n" +
