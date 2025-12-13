@@ -91,6 +91,9 @@ message BasestationStatus {
     optional double cpu = 9;
     // Memory utilization, normalized to 1.0, optional
     optional double memory = 10;
+    // Latency in ms. Time between sending a status request and receiving the response from the device, optional
+    // This is a round-trip time measurement and calculated on the server side.
+    optional int64 latency = 11;
 }
 
 // The VM Status represents a list of the activated MAC-Types.
