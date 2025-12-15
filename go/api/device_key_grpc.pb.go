@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -22,7 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	DeviceKeyService_CreateDeviceKey_FullMethodName = "/api.DeviceKeyService/CreateDeviceKey"
 	DeviceKeyService_GetDeviceKey_FullMethodName    = "/api.DeviceKeyService/GetDeviceKey"
-	DeviceKeyService_DeleteDeviceKey_FullMethodName = "/api.DeviceKeyService/DeleteDeviceKey"
+	DeviceKeyService_UpdateDeviceKey_FullMethodName = "/api.DeviceKeyService/UpdateDeviceKey"
 )
 
 // DeviceKeyServiceClient is the client API for DeviceKeyService service.
@@ -35,8 +34,8 @@ type DeviceKeyServiceClient interface {
 	CreateDeviceKey(ctx context.Context, in *CreateDeviceKeyRequest, opts ...grpc.CallOption) (*CreateDeviceKeyResponse, error)
 	// Get the device-keys for the given DevEUI.
 	GetDeviceKey(ctx context.Context, in *GetDeviceKeyRequest, opts ...grpc.CallOption) (*GetDeviceKeyResponse, error)
-	// Delete the given device-keys.
-	DeleteDeviceKey(ctx context.Context, in *DeleteDeviceKeyRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Update the given device-keys.
+	UpdateDeviceKey(ctx context.Context, in *UpdateDeviceKeyRequest, opts ...grpc.CallOption) (*UpdateDeviceKeyResponse, error)
 }
 
 type deviceKeyServiceClient struct {
@@ -67,10 +66,10 @@ func (c *deviceKeyServiceClient) GetDeviceKey(ctx context.Context, in *GetDevice
 	return out, nil
 }
 
-func (c *deviceKeyServiceClient) DeleteDeviceKey(ctx context.Context, in *DeleteDeviceKeyRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *deviceKeyServiceClient) UpdateDeviceKey(ctx context.Context, in *UpdateDeviceKeyRequest, opts ...grpc.CallOption) (*UpdateDeviceKeyResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, DeviceKeyService_DeleteDeviceKey_FullMethodName, in, out, cOpts...)
+	out := new(UpdateDeviceKeyResponse)
+	err := c.cc.Invoke(ctx, DeviceKeyService_UpdateDeviceKey_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,8 +86,8 @@ type DeviceKeyServiceServer interface {
 	CreateDeviceKey(context.Context, *CreateDeviceKeyRequest) (*CreateDeviceKeyResponse, error)
 	// Get the device-keys for the given DevEUI.
 	GetDeviceKey(context.Context, *GetDeviceKeyRequest) (*GetDeviceKeyResponse, error)
-	// Delete the given device-keys.
-	DeleteDeviceKey(context.Context, *DeleteDeviceKeyRequest) (*emptypb.Empty, error)
+	// Update the given device-keys.
+	UpdateDeviceKey(context.Context, *UpdateDeviceKeyRequest) (*UpdateDeviceKeyResponse, error)
 	mustEmbedUnimplementedDeviceKeyServiceServer()
 }
 
@@ -105,8 +104,8 @@ func (UnimplementedDeviceKeyServiceServer) CreateDeviceKey(context.Context, *Cre
 func (UnimplementedDeviceKeyServiceServer) GetDeviceKey(context.Context, *GetDeviceKeyRequest) (*GetDeviceKeyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceKey not implemented")
 }
-func (UnimplementedDeviceKeyServiceServer) DeleteDeviceKey(context.Context, *DeleteDeviceKeyRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteDeviceKey not implemented")
+func (UnimplementedDeviceKeyServiceServer) UpdateDeviceKey(context.Context, *UpdateDeviceKeyRequest) (*UpdateDeviceKeyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateDeviceKey not implemented")
 }
 func (UnimplementedDeviceKeyServiceServer) mustEmbedUnimplementedDeviceKeyServiceServer() {}
 func (UnimplementedDeviceKeyServiceServer) testEmbeddedByValue()                          {}
@@ -165,20 +164,20 @@ func _DeviceKeyService_GetDeviceKey_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DeviceKeyService_DeleteDeviceKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteDeviceKeyRequest)
+func _DeviceKeyService_UpdateDeviceKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateDeviceKeyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DeviceKeyServiceServer).DeleteDeviceKey(ctx, in)
+		return srv.(DeviceKeyServiceServer).UpdateDeviceKey(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DeviceKeyService_DeleteDeviceKey_FullMethodName,
+		FullMethod: DeviceKeyService_UpdateDeviceKey_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceKeyServiceServer).DeleteDeviceKey(ctx, req.(*DeleteDeviceKeyRequest))
+		return srv.(DeviceKeyServiceServer).UpdateDeviceKey(ctx, req.(*UpdateDeviceKeyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -199,8 +198,8 @@ var DeviceKeyService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceKeyService_GetDeviceKey_Handler,
 		},
 		{
-			MethodName: "DeleteDeviceKey",
-			Handler:    _DeviceKeyService_DeleteDeviceKey_Handler,
+			MethodName: "UpdateDeviceKey",
+			Handler:    _DeviceKeyService_UpdateDeviceKey_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

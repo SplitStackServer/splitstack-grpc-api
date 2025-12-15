@@ -71,15 +71,6 @@ service DeviceService {
     };
   }
 
-  // GetLinkMetrics returns the device link metrics.
-  // This includes uplinks, downlinks, RSSI, SNR, etc...
-  rpc GetDeviceLinkMetrics(GetDeviceLinkMetricsRequest)
-      returns (GetDeviceLinkMetricsResponse) {
-    option (google.api.http) = {
-      get : "/api/devices/{id}/link-metrics"
-    };
-  }
-
 }
 
 message Device {
@@ -173,8 +164,8 @@ message CreateDeviceRequest {
   // Device-profile ID (UUID).
   optional string device_profile_id = 4;
 
-  // Name.
-  string name = 5;
+  // Name. Optional, defaults to the device EUI.
+  optional string name = 5;
 
   // Description.
   optional string description = 6;
@@ -343,36 +334,3 @@ message GetDeviceMetricsResponse {
 }
 
 
-message GetDeviceLinkMetricsRequest {
-  // Device ID (UUID).
-  string id = 1;
-
-  // Interval start timestamp.
-  google.protobuf.Timestamp start = 2;
-
-  // Interval end timestamp.
-  google.protobuf.Timestamp end = 3;
-
-  // Aggregation.
-  common.Aggregation aggregation = 4;
-}
-
-message GetDeviceLinkMetricsResponse {
-  // Packets received from the device.
-  common.Metric rx_packets = 1;
-
-  // RSSI (as reported by the gateway(s)).
-  common.Metric gw_rssi = 2;
-
-  // SNR (as reported by the gateway(s)).
-  common.Metric gw_snr = 3;
-
-  // Packets received by frequency.
-  common.Metric rx_packets_per_freq = 4;
-
-  // Packets received by DR.
-  common.Metric rx_packets_per_dr = 5;
-
-  // Errors.
-  common.Metric errors = 6;
-}
