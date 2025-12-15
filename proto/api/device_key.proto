@@ -33,10 +33,10 @@ service DeviceKeyService {
     };
   }
 
-  // Delete the given device-keys.
-  rpc DeleteDeviceKey(DeleteDeviceKeyRequest) returns (google.protobuf.Empty) {
+  // Update the given device-keys.
+  rpc UpdateDeviceKey(UpdateDeviceKeyRequest) returns (UpdateDeviceKeyResponse) {
     option (google.api.http) = {
-      delete : "/api/device-keys/key/{eui}"
+      put : "/api/device-keys/key/{eui}"
       body : "*"
     };
   }
@@ -50,8 +50,15 @@ message DeviceKey {
   // Network Key (AES128).
   string network_key = 2;
 
+  // Short ID must be set for preattached devices.
+  //
+  // Optional for OTAA devices as it can also be set during attachment.
+  // 
+  // This ID is used to identify the device in the network.
+  optional string short_id = 3;
+
   // Device is preattached and does not perform OTAA.
-  bool preattached = 3;
+  bool preattached = 4;
 }
 
 message CreateDeviceKeyRequest {
@@ -61,13 +68,15 @@ message CreateDeviceKeyRequest {
   // Network Key (AES128).
   string network_key = 2;
 
-  // Device is preattached and does not perform OTAA.
-  bool preattached = 3;
-
   // Short ID must be set for preattached devices.
+  //
+  // Optional for OTAA devices as it can also be set during attachment.
   // 
-  // Used to create a device session.
-  optional string short_id = 4;
+  // This ID is used to identify the device in the network.
+  optional string short_id = 3;
+
+  // Device is preattached and does not perform OTAA.
+  bool preattached = 4;
 }
 
 message CreateDeviceKeyResponse {
@@ -91,7 +100,32 @@ message GetDeviceKeyResponse {
   google.protobuf.Timestamp created_at = 2;
 }
 
-message DeleteDeviceKeyRequest {
-  // Device EUI (EUI64).
+
+
+message UpdateDeviceKeyRequest {
+  // Device EUI (EUI64). 
   string eui = 1;
+
+  // Network Key (AES128).
+  optional string network_key = 2;
+
+  // Short ID must be set for preattached devices.
+  //
+  // Optional for OTAA devices as it can also be set during attachment.
+  // 
+  // This ID is used to identify the device in the network.
+  optional string short_id = 3;
+}
+
+
+
+message UpdateDeviceKeyResponse {
+  // Device key object.
+  DeviceKey device_key = 1;
+
+	// Created at timestamp.
+	google.protobuf.Timestamp created_at = 2;
+
+	// Last update timestamp.
+	google.protobuf.Timestamp updated_at = 3;
 }
