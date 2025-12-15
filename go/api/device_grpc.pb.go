@@ -20,13 +20,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DeviceService_CreateDevice_FullMethodName         = "/api.DeviceService/CreateDevice"
-	DeviceService_GetDevice_FullMethodName            = "/api.DeviceService/GetDevice"
-	DeviceService_UpdateDevice_FullMethodName         = "/api.DeviceService/UpdateDevice"
-	DeviceService_DeleteDevice_FullMethodName         = "/api.DeviceService/DeleteDevice"
-	DeviceService_ListDevices_FullMethodName          = "/api.DeviceService/ListDevices"
-	DeviceService_GetDeviceMetrics_FullMethodName     = "/api.DeviceService/GetDeviceMetrics"
-	DeviceService_GetDeviceLinkMetrics_FullMethodName = "/api.DeviceService/GetDeviceLinkMetrics"
+	DeviceService_CreateDevice_FullMethodName     = "/api.DeviceService/CreateDevice"
+	DeviceService_GetDevice_FullMethodName        = "/api.DeviceService/GetDevice"
+	DeviceService_UpdateDevice_FullMethodName     = "/api.DeviceService/UpdateDevice"
+	DeviceService_DeleteDevice_FullMethodName     = "/api.DeviceService/DeleteDevice"
+	DeviceService_ListDevices_FullMethodName      = "/api.DeviceService/ListDevices"
+	DeviceService_GetDeviceMetrics_FullMethodName = "/api.DeviceService/GetDeviceMetrics"
 )
 
 // DeviceServiceClient is the client API for DeviceService service.
@@ -49,9 +48,6 @@ type DeviceServiceClient interface {
 	// Note that this requires a device-profile with codec and measurements
 	// configured.
 	GetDeviceMetrics(ctx context.Context, in *GetDeviceMetricsRequest, opts ...grpc.CallOption) (*GetDeviceMetricsResponse, error)
-	// GetLinkMetrics returns the device link metrics.
-	// This includes uplinks, downlinks, RSSI, SNR, etc...
-	GetDeviceLinkMetrics(ctx context.Context, in *GetDeviceLinkMetricsRequest, opts ...grpc.CallOption) (*GetDeviceLinkMetricsResponse, error)
 }
 
 type deviceServiceClient struct {
@@ -122,16 +118,6 @@ func (c *deviceServiceClient) GetDeviceMetrics(ctx context.Context, in *GetDevic
 	return out, nil
 }
 
-func (c *deviceServiceClient) GetDeviceLinkMetrics(ctx context.Context, in *GetDeviceLinkMetricsRequest, opts ...grpc.CallOption) (*GetDeviceLinkMetricsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetDeviceLinkMetricsResponse)
-	err := c.cc.Invoke(ctx, DeviceService_GetDeviceLinkMetrics_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // DeviceServiceServer is the server API for DeviceService service.
 // All implementations must embed UnimplementedDeviceServiceServer
 // for forward compatibility.
@@ -152,9 +138,6 @@ type DeviceServiceServer interface {
 	// Note that this requires a device-profile with codec and measurements
 	// configured.
 	GetDeviceMetrics(context.Context, *GetDeviceMetricsRequest) (*GetDeviceMetricsResponse, error)
-	// GetLinkMetrics returns the device link metrics.
-	// This includes uplinks, downlinks, RSSI, SNR, etc...
-	GetDeviceLinkMetrics(context.Context, *GetDeviceLinkMetricsRequest) (*GetDeviceLinkMetricsResponse, error)
 	mustEmbedUnimplementedDeviceServiceServer()
 }
 
@@ -182,9 +165,6 @@ func (UnimplementedDeviceServiceServer) ListDevices(context.Context, *ListDevice
 }
 func (UnimplementedDeviceServiceServer) GetDeviceMetrics(context.Context, *GetDeviceMetricsRequest) (*GetDeviceMetricsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceMetrics not implemented")
-}
-func (UnimplementedDeviceServiceServer) GetDeviceLinkMetrics(context.Context, *GetDeviceLinkMetricsRequest) (*GetDeviceLinkMetricsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceLinkMetrics not implemented")
 }
 func (UnimplementedDeviceServiceServer) mustEmbedUnimplementedDeviceServiceServer() {}
 func (UnimplementedDeviceServiceServer) testEmbeddedByValue()                       {}
@@ -315,24 +295,6 @@ func _DeviceService_GetDeviceMetrics_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DeviceService_GetDeviceLinkMetrics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetDeviceLinkMetricsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DeviceServiceServer).GetDeviceLinkMetrics(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DeviceService_GetDeviceLinkMetrics_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceServiceServer).GetDeviceLinkMetrics(ctx, req.(*GetDeviceLinkMetricsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // DeviceService_ServiceDesc is the grpc.ServiceDesc for DeviceService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -363,10 +325,6 @@ var DeviceService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDeviceMetrics",
 			Handler:    _DeviceService_GetDeviceMetrics_Handler,
-		},
-		{
-			MethodName: "GetDeviceLinkMetrics",
-			Handler:    _DeviceService_GetDeviceLinkMetrics_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

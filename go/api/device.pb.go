@@ -362,8 +362,8 @@ type CreateDeviceRequest struct {
 	ApplicationId string `protobuf:"bytes,3,opt,name=application_id,json=applicationId,proto3" json:"application_id,omitempty"`
 	// Device-profile ID (UUID).
 	DeviceProfileId *string `protobuf:"bytes,4,opt,name=device_profile_id,json=deviceProfileId,proto3,oneof" json:"device_profile_id,omitempty"`
-	// Name.
-	Name string `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
+	// Name. Optional, defaults to the device EUI.
+	Name *string `protobuf:"bytes,5,opt,name=name,proto3,oneof" json:"name,omitempty"`
 	// Description.
 	Description *string `protobuf:"bytes,6,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	// Location.
@@ -435,8 +435,8 @@ func (x *CreateDeviceRequest) GetDeviceProfileId() string {
 }
 
 func (x *CreateDeviceRequest) GetName() string {
-	if x != nil {
-		return x.Name
+	if x != nil && x.Name != nil {
+		return *x.Name
 	}
 	return ""
 }
@@ -1158,168 +1158,6 @@ func (x *GetDeviceMetricsResponse) GetMetrics() map[string]*common.Metric {
 	return nil
 }
 
-type GetDeviceLinkMetricsRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Device ID (UUID).
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// Interval start timestamp.
-	Start *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=start,proto3" json:"start,omitempty"`
-	// Interval end timestamp.
-	End *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=end,proto3" json:"end,omitempty"`
-	// Aggregation.
-	Aggregation   common.Aggregation `protobuf:"varint,4,opt,name=aggregation,proto3,enum=common.Aggregation" json:"aggregation,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetDeviceLinkMetricsRequest) Reset() {
-	*x = GetDeviceLinkMetricsRequest{}
-	mi := &file_api_device_proto_msgTypes[13]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetDeviceLinkMetricsRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetDeviceLinkMetricsRequest) ProtoMessage() {}
-
-func (x *GetDeviceLinkMetricsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_device_proto_msgTypes[13]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetDeviceLinkMetricsRequest.ProtoReflect.Descriptor instead.
-func (*GetDeviceLinkMetricsRequest) Descriptor() ([]byte, []int) {
-	return file_api_device_proto_rawDescGZIP(), []int{13}
-}
-
-func (x *GetDeviceLinkMetricsRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *GetDeviceLinkMetricsRequest) GetStart() *timestamppb.Timestamp {
-	if x != nil {
-		return x.Start
-	}
-	return nil
-}
-
-func (x *GetDeviceLinkMetricsRequest) GetEnd() *timestamppb.Timestamp {
-	if x != nil {
-		return x.End
-	}
-	return nil
-}
-
-func (x *GetDeviceLinkMetricsRequest) GetAggregation() common.Aggregation {
-	if x != nil {
-		return x.Aggregation
-	}
-	return common.Aggregation(0)
-}
-
-type GetDeviceLinkMetricsResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Packets received from the device.
-	RxPackets *common.Metric `protobuf:"bytes,1,opt,name=rx_packets,json=rxPackets,proto3" json:"rx_packets,omitempty"`
-	// RSSI (as reported by the gateway(s)).
-	GwRssi *common.Metric `protobuf:"bytes,2,opt,name=gw_rssi,json=gwRssi,proto3" json:"gw_rssi,omitempty"`
-	// SNR (as reported by the gateway(s)).
-	GwSnr *common.Metric `protobuf:"bytes,3,opt,name=gw_snr,json=gwSnr,proto3" json:"gw_snr,omitempty"`
-	// Packets received by frequency.
-	RxPacketsPerFreq *common.Metric `protobuf:"bytes,4,opt,name=rx_packets_per_freq,json=rxPacketsPerFreq,proto3" json:"rx_packets_per_freq,omitempty"`
-	// Packets received by DR.
-	RxPacketsPerDr *common.Metric `protobuf:"bytes,5,opt,name=rx_packets_per_dr,json=rxPacketsPerDr,proto3" json:"rx_packets_per_dr,omitempty"`
-	// Errors.
-	Errors        *common.Metric `protobuf:"bytes,6,opt,name=errors,proto3" json:"errors,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetDeviceLinkMetricsResponse) Reset() {
-	*x = GetDeviceLinkMetricsResponse{}
-	mi := &file_api_device_proto_msgTypes[14]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetDeviceLinkMetricsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetDeviceLinkMetricsResponse) ProtoMessage() {}
-
-func (x *GetDeviceLinkMetricsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_device_proto_msgTypes[14]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetDeviceLinkMetricsResponse.ProtoReflect.Descriptor instead.
-func (*GetDeviceLinkMetricsResponse) Descriptor() ([]byte, []int) {
-	return file_api_device_proto_rawDescGZIP(), []int{14}
-}
-
-func (x *GetDeviceLinkMetricsResponse) GetRxPackets() *common.Metric {
-	if x != nil {
-		return x.RxPackets
-	}
-	return nil
-}
-
-func (x *GetDeviceLinkMetricsResponse) GetGwRssi() *common.Metric {
-	if x != nil {
-		return x.GwRssi
-	}
-	return nil
-}
-
-func (x *GetDeviceLinkMetricsResponse) GetGwSnr() *common.Metric {
-	if x != nil {
-		return x.GwSnr
-	}
-	return nil
-}
-
-func (x *GetDeviceLinkMetricsResponse) GetRxPacketsPerFreq() *common.Metric {
-	if x != nil {
-		return x.RxPacketsPerFreq
-	}
-	return nil
-}
-
-func (x *GetDeviceLinkMetricsResponse) GetRxPacketsPerDr() *common.Metric {
-	if x != nil {
-		return x.RxPacketsPerDr
-	}
-	return nil
-}
-
-func (x *GetDeviceLinkMetricsResponse) GetErrors() *common.Metric {
-	if x != nil {
-		return x.Errors
-	}
-	return nil
-}
-
 var File_api_device_proto protoreflect.FileDescriptor
 
 const file_api_device_proto_rawDesc = "" +
@@ -1365,20 +1203,21 @@ const file_api_device_proto_rawDesc = "" +
 	"\f_descriptionB\x14\n" +
 	"\x12_device_profile_idB\x16\n" +
 	"\x14_device_profile_nameB\a\n" +
-	"\x05_tags\"\xb3\x03\n" +
+	"\x05_tags\"\xc1\x03\n" +
 	"\x13CreateDeviceRequest\x12\x10\n" +
 	"\x03eui\x18\x02 \x01(\tR\x03eui\x12%\n" +
 	"\x0eapplication_id\x18\x03 \x01(\tR\rapplicationId\x12/\n" +
-	"\x11device_profile_id\x18\x04 \x01(\tH\x00R\x0fdeviceProfileId\x88\x01\x01\x12\x12\n" +
-	"\x04name\x18\x05 \x01(\tR\x04name\x12%\n" +
-	"\vdescription\x18\x06 \x01(\tH\x01R\vdescription\x88\x01\x01\x124\n" +
-	"\blocation\x18\a \x01(\v2\x13.common.GeoLocationH\x02R\blocation\x88\x01\x01\x12\x1f\n" +
+	"\x11device_profile_id\x18\x04 \x01(\tH\x00R\x0fdeviceProfileId\x88\x01\x01\x12\x17\n" +
+	"\x04name\x18\x05 \x01(\tH\x01R\x04name\x88\x01\x01\x12%\n" +
+	"\vdescription\x18\x06 \x01(\tH\x02R\vdescription\x88\x01\x01\x124\n" +
+	"\blocation\x18\a \x01(\v2\x13.common.GeoLocationH\x03R\blocation\x88\x01\x01\x12\x1f\n" +
 	"\vis_disabled\x18\b \x01(\bR\n" +
 	"isDisabled\x12/\n" +
-	"\tvariables\x18\t \x01(\v2\f.common.TagsH\x03R\tvariables\x88\x01\x01\x12%\n" +
+	"\tvariables\x18\t \x01(\v2\f.common.TagsH\x04R\tvariables\x88\x01\x01\x12%\n" +
 	"\x04tags\x18\n" +
-	" \x01(\v2\f.common.TagsH\x04R\x04tags\x88\x01\x01B\x14\n" +
-	"\x12_device_profile_idB\x0e\n" +
+	" \x01(\v2\f.common.TagsH\x05R\x04tags\x88\x01\x01B\x14\n" +
+	"\x12_device_profile_idB\a\n" +
+	"\x05_nameB\x0e\n" +
 	"\f_descriptionB\v\n" +
 	"\t_locationB\f\n" +
 	"\n" +
@@ -1463,28 +1302,14 @@ const file_api_device_proto_rawDesc = "" +
 	"\ametrics\x18\x01 \x03(\v2*.api.GetDeviceMetricsResponse.MetricsEntryR\ametrics\x1aJ\n" +
 	"\fMetricsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12$\n" +
-	"\x05value\x18\x02 \x01(\v2\x0e.common.MetricR\x05value:\x028\x01\"\xc4\x01\n" +
-	"\x1bGetDeviceLinkMetricsRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x120\n" +
-	"\x05start\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x05start\x12,\n" +
-	"\x03end\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x03end\x125\n" +
-	"\vaggregation\x18\x04 \x01(\x0e2\x13.common.AggregationR\vaggregation\"\xbf\x02\n" +
-	"\x1cGetDeviceLinkMetricsResponse\x12-\n" +
-	"\n" +
-	"rx_packets\x18\x01 \x01(\v2\x0e.common.MetricR\trxPackets\x12'\n" +
-	"\agw_rssi\x18\x02 \x01(\v2\x0e.common.MetricR\x06gwRssi\x12%\n" +
-	"\x06gw_snr\x18\x03 \x01(\v2\x0e.common.MetricR\x05gwSnr\x12=\n" +
-	"\x13rx_packets_per_freq\x18\x04 \x01(\v2\x0e.common.MetricR\x10rxPacketsPerFreq\x129\n" +
-	"\x11rx_packets_per_dr\x18\x05 \x01(\v2\x0e.common.MetricR\x0erxPacketsPerDr\x12&\n" +
-	"\x06errors\x18\x06 \x01(\v2\x0e.common.MetricR\x06errors2\xd6\x05\n" +
+	"\x05value\x18\x02 \x01(\v2\x0e.common.MetricR\x05value:\x028\x012\xd0\x04\n" +
 	"\rDeviceService\x12\\\n" +
 	"\fCreateDevice\x12\x18.api.CreateDeviceRequest\x1a\x19.api.CreateDeviceResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/api/devices\x12U\n" +
 	"\tGetDevice\x12\x15.api.GetDeviceRequest\x1a\x16.api.GetDeviceResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/devices/{id}\x12a\n" +
 	"\fUpdateDevice\x12\x18.api.UpdateDeviceRequest\x1a\x19.api.UpdateDeviceResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\x1a\x11/api/devices/{id}\x12[\n" +
 	"\fDeleteDevice\x12\x18.api.DeleteDeviceRequest\x1a\x16.google.protobuf.Empty\"\x19\x82\xd3\xe4\x93\x02\x13*\x11/api/devices/{id}\x12V\n" +
 	"\vListDevices\x12\x17.api.ListDevicesRequest\x1a\x18.api.ListDevicesResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/api/devices\x12r\n" +
-	"\x10GetDeviceMetrics\x12\x1c.api.GetDeviceMetricsRequest\x1a\x1d.api.GetDeviceMetricsResponse\"!\x82\xd3\xe4\x93\x02\x1b\x12\x19/api/devices/{id}/metrics\x12\x83\x01\n" +
-	"\x14GetDeviceLinkMetrics\x12 .api.GetDeviceLinkMetricsRequest\x1a!.api.GetDeviceLinkMetricsResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/devices/{id}/link-metricsB\xab\x01\n" +
+	"\x10GetDeviceMetrics\x12\x1c.api.GetDeviceMetricsRequest\x1a\x1d.api.GetDeviceMetricsResponse\"!\x82\xd3\xe4\x93\x02\x1b\x12\x19/api/devices/{id}/metricsB\xab\x01\n" +
 	"\x11io.splitstack.apiB\vDeviceProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/go/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 
 var (
@@ -1500,95 +1325,82 @@ func file_api_device_proto_rawDescGZIP() []byte {
 }
 
 var file_api_device_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_api_device_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_api_device_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_api_device_proto_goTypes = []any{
-	(ListDevicesRequest_OrderBy)(0),      // 0: api.ListDevicesRequest.OrderBy
-	(*Device)(nil),                       // 1: api.Device
-	(*DeviceListItem)(nil),               // 2: api.DeviceListItem
-	(*CreateDeviceRequest)(nil),          // 3: api.CreateDeviceRequest
-	(*CreateDeviceResponse)(nil),         // 4: api.CreateDeviceResponse
-	(*GetDeviceRequest)(nil),             // 5: api.GetDeviceRequest
-	(*GetDeviceResponse)(nil),            // 6: api.GetDeviceResponse
-	(*UpdateDeviceRequest)(nil),          // 7: api.UpdateDeviceRequest
-	(*UpdateDeviceResponse)(nil),         // 8: api.UpdateDeviceResponse
-	(*DeleteDeviceRequest)(nil),          // 9: api.DeleteDeviceRequest
-	(*ListDevicesRequest)(nil),           // 10: api.ListDevicesRequest
-	(*ListDevicesResponse)(nil),          // 11: api.ListDevicesResponse
-	(*GetDeviceMetricsRequest)(nil),      // 12: api.GetDeviceMetricsRequest
-	(*GetDeviceMetricsResponse)(nil),     // 13: api.GetDeviceMetricsResponse
-	(*GetDeviceLinkMetricsRequest)(nil),  // 14: api.GetDeviceLinkMetricsRequest
-	(*GetDeviceLinkMetricsResponse)(nil), // 15: api.GetDeviceLinkMetricsResponse
-	nil,                                  // 16: api.GetDeviceMetricsResponse.MetricsEntry
-	(*common.GeoLocation)(nil),           // 17: common.GeoLocation
-	(*common.Tags)(nil),                  // 18: common.Tags
-	(*timestamppb.Timestamp)(nil),        // 19: google.protobuf.Timestamp
-	(*Paginator)(nil),                    // 20: api.Paginator
-	(*Pagination)(nil),                   // 21: api.Pagination
-	(common.Aggregation)(0),              // 22: common.Aggregation
-	(*common.Metric)(nil),                // 23: common.Metric
-	(*emptypb.Empty)(nil),                // 24: google.protobuf.Empty
+	(ListDevicesRequest_OrderBy)(0),  // 0: api.ListDevicesRequest.OrderBy
+	(*Device)(nil),                   // 1: api.Device
+	(*DeviceListItem)(nil),           // 2: api.DeviceListItem
+	(*CreateDeviceRequest)(nil),      // 3: api.CreateDeviceRequest
+	(*CreateDeviceResponse)(nil),     // 4: api.CreateDeviceResponse
+	(*GetDeviceRequest)(nil),         // 5: api.GetDeviceRequest
+	(*GetDeviceResponse)(nil),        // 6: api.GetDeviceResponse
+	(*UpdateDeviceRequest)(nil),      // 7: api.UpdateDeviceRequest
+	(*UpdateDeviceResponse)(nil),     // 8: api.UpdateDeviceResponse
+	(*DeleteDeviceRequest)(nil),      // 9: api.DeleteDeviceRequest
+	(*ListDevicesRequest)(nil),       // 10: api.ListDevicesRequest
+	(*ListDevicesResponse)(nil),      // 11: api.ListDevicesResponse
+	(*GetDeviceMetricsRequest)(nil),  // 12: api.GetDeviceMetricsRequest
+	(*GetDeviceMetricsResponse)(nil), // 13: api.GetDeviceMetricsResponse
+	nil,                              // 14: api.GetDeviceMetricsResponse.MetricsEntry
+	(*common.GeoLocation)(nil),       // 15: common.GeoLocation
+	(*common.Tags)(nil),              // 16: common.Tags
+	(*timestamppb.Timestamp)(nil),    // 17: google.protobuf.Timestamp
+	(*Paginator)(nil),                // 18: api.Paginator
+	(*Pagination)(nil),               // 19: api.Pagination
+	(common.Aggregation)(0),          // 20: common.Aggregation
+	(*common.Metric)(nil),            // 21: common.Metric
+	(*emptypb.Empty)(nil),            // 22: google.protobuf.Empty
 }
 var file_api_device_proto_depIdxs = []int32{
-	17, // 0: api.Device.location:type_name -> common.GeoLocation
-	18, // 1: api.Device.variables:type_name -> common.Tags
-	18, // 2: api.Device.tags:type_name -> common.Tags
-	19, // 3: api.DeviceListItem.created_at:type_name -> google.protobuf.Timestamp
-	19, // 4: api.DeviceListItem.updated_at:type_name -> google.protobuf.Timestamp
-	19, // 5: api.DeviceListItem.last_seen_at:type_name -> google.protobuf.Timestamp
-	18, // 6: api.DeviceListItem.tags:type_name -> common.Tags
-	17, // 7: api.CreateDeviceRequest.location:type_name -> common.GeoLocation
-	18, // 8: api.CreateDeviceRequest.variables:type_name -> common.Tags
-	18, // 9: api.CreateDeviceRequest.tags:type_name -> common.Tags
+	15, // 0: api.Device.location:type_name -> common.GeoLocation
+	16, // 1: api.Device.variables:type_name -> common.Tags
+	16, // 2: api.Device.tags:type_name -> common.Tags
+	17, // 3: api.DeviceListItem.created_at:type_name -> google.protobuf.Timestamp
+	17, // 4: api.DeviceListItem.updated_at:type_name -> google.protobuf.Timestamp
+	17, // 5: api.DeviceListItem.last_seen_at:type_name -> google.protobuf.Timestamp
+	16, // 6: api.DeviceListItem.tags:type_name -> common.Tags
+	15, // 7: api.CreateDeviceRequest.location:type_name -> common.GeoLocation
+	16, // 8: api.CreateDeviceRequest.variables:type_name -> common.Tags
+	16, // 9: api.CreateDeviceRequest.tags:type_name -> common.Tags
 	1,  // 10: api.CreateDeviceResponse.device:type_name -> api.Device
-	19, // 11: api.CreateDeviceResponse.created_at:type_name -> google.protobuf.Timestamp
+	17, // 11: api.CreateDeviceResponse.created_at:type_name -> google.protobuf.Timestamp
 	1,  // 12: api.GetDeviceResponse.device:type_name -> api.Device
-	19, // 13: api.GetDeviceResponse.created_at:type_name -> google.protobuf.Timestamp
-	19, // 14: api.GetDeviceResponse.updated_at:type_name -> google.protobuf.Timestamp
-	19, // 15: api.GetDeviceResponse.last_seen_at:type_name -> google.protobuf.Timestamp
-	17, // 16: api.UpdateDeviceRequest.location:type_name -> common.GeoLocation
-	18, // 17: api.UpdateDeviceRequest.variables:type_name -> common.Tags
-	18, // 18: api.UpdateDeviceRequest.tags:type_name -> common.Tags
+	17, // 13: api.GetDeviceResponse.created_at:type_name -> google.protobuf.Timestamp
+	17, // 14: api.GetDeviceResponse.updated_at:type_name -> google.protobuf.Timestamp
+	17, // 15: api.GetDeviceResponse.last_seen_at:type_name -> google.protobuf.Timestamp
+	15, // 16: api.UpdateDeviceRequest.location:type_name -> common.GeoLocation
+	16, // 17: api.UpdateDeviceRequest.variables:type_name -> common.Tags
+	16, // 18: api.UpdateDeviceRequest.tags:type_name -> common.Tags
 	1,  // 19: api.UpdateDeviceResponse.device:type_name -> api.Device
-	19, // 20: api.UpdateDeviceResponse.created_at:type_name -> google.protobuf.Timestamp
-	19, // 21: api.UpdateDeviceResponse.updated_at:type_name -> google.protobuf.Timestamp
-	20, // 22: api.ListDevicesRequest.paginator:type_name -> api.Paginator
-	18, // 23: api.ListDevicesRequest.tags:type_name -> common.Tags
+	17, // 20: api.UpdateDeviceResponse.created_at:type_name -> google.protobuf.Timestamp
+	17, // 21: api.UpdateDeviceResponse.updated_at:type_name -> google.protobuf.Timestamp
+	18, // 22: api.ListDevicesRequest.paginator:type_name -> api.Paginator
+	16, // 23: api.ListDevicesRequest.tags:type_name -> common.Tags
 	0,  // 24: api.ListDevicesRequest.order_by:type_name -> api.ListDevicesRequest.OrderBy
-	21, // 25: api.ListDevicesResponse.pagination:type_name -> api.Pagination
+	19, // 25: api.ListDevicesResponse.pagination:type_name -> api.Pagination
 	2,  // 26: api.ListDevicesResponse.result:type_name -> api.DeviceListItem
-	19, // 27: api.GetDeviceMetricsRequest.start:type_name -> google.protobuf.Timestamp
-	19, // 28: api.GetDeviceMetricsRequest.end:type_name -> google.protobuf.Timestamp
-	22, // 29: api.GetDeviceMetricsRequest.aggregation:type_name -> common.Aggregation
-	16, // 30: api.GetDeviceMetricsResponse.metrics:type_name -> api.GetDeviceMetricsResponse.MetricsEntry
-	19, // 31: api.GetDeviceLinkMetricsRequest.start:type_name -> google.protobuf.Timestamp
-	19, // 32: api.GetDeviceLinkMetricsRequest.end:type_name -> google.protobuf.Timestamp
-	22, // 33: api.GetDeviceLinkMetricsRequest.aggregation:type_name -> common.Aggregation
-	23, // 34: api.GetDeviceLinkMetricsResponse.rx_packets:type_name -> common.Metric
-	23, // 35: api.GetDeviceLinkMetricsResponse.gw_rssi:type_name -> common.Metric
-	23, // 36: api.GetDeviceLinkMetricsResponse.gw_snr:type_name -> common.Metric
-	23, // 37: api.GetDeviceLinkMetricsResponse.rx_packets_per_freq:type_name -> common.Metric
-	23, // 38: api.GetDeviceLinkMetricsResponse.rx_packets_per_dr:type_name -> common.Metric
-	23, // 39: api.GetDeviceLinkMetricsResponse.errors:type_name -> common.Metric
-	23, // 40: api.GetDeviceMetricsResponse.MetricsEntry.value:type_name -> common.Metric
-	3,  // 41: api.DeviceService.CreateDevice:input_type -> api.CreateDeviceRequest
-	5,  // 42: api.DeviceService.GetDevice:input_type -> api.GetDeviceRequest
-	7,  // 43: api.DeviceService.UpdateDevice:input_type -> api.UpdateDeviceRequest
-	9,  // 44: api.DeviceService.DeleteDevice:input_type -> api.DeleteDeviceRequest
-	10, // 45: api.DeviceService.ListDevices:input_type -> api.ListDevicesRequest
-	12, // 46: api.DeviceService.GetDeviceMetrics:input_type -> api.GetDeviceMetricsRequest
-	14, // 47: api.DeviceService.GetDeviceLinkMetrics:input_type -> api.GetDeviceLinkMetricsRequest
-	4,  // 48: api.DeviceService.CreateDevice:output_type -> api.CreateDeviceResponse
-	6,  // 49: api.DeviceService.GetDevice:output_type -> api.GetDeviceResponse
-	8,  // 50: api.DeviceService.UpdateDevice:output_type -> api.UpdateDeviceResponse
-	24, // 51: api.DeviceService.DeleteDevice:output_type -> google.protobuf.Empty
-	11, // 52: api.DeviceService.ListDevices:output_type -> api.ListDevicesResponse
-	13, // 53: api.DeviceService.GetDeviceMetrics:output_type -> api.GetDeviceMetricsResponse
-	15, // 54: api.DeviceService.GetDeviceLinkMetrics:output_type -> api.GetDeviceLinkMetricsResponse
-	48, // [48:55] is the sub-list for method output_type
-	41, // [41:48] is the sub-list for method input_type
-	41, // [41:41] is the sub-list for extension type_name
-	41, // [41:41] is the sub-list for extension extendee
-	0,  // [0:41] is the sub-list for field type_name
+	17, // 27: api.GetDeviceMetricsRequest.start:type_name -> google.protobuf.Timestamp
+	17, // 28: api.GetDeviceMetricsRequest.end:type_name -> google.protobuf.Timestamp
+	20, // 29: api.GetDeviceMetricsRequest.aggregation:type_name -> common.Aggregation
+	14, // 30: api.GetDeviceMetricsResponse.metrics:type_name -> api.GetDeviceMetricsResponse.MetricsEntry
+	21, // 31: api.GetDeviceMetricsResponse.MetricsEntry.value:type_name -> common.Metric
+	3,  // 32: api.DeviceService.CreateDevice:input_type -> api.CreateDeviceRequest
+	5,  // 33: api.DeviceService.GetDevice:input_type -> api.GetDeviceRequest
+	7,  // 34: api.DeviceService.UpdateDevice:input_type -> api.UpdateDeviceRequest
+	9,  // 35: api.DeviceService.DeleteDevice:input_type -> api.DeleteDeviceRequest
+	10, // 36: api.DeviceService.ListDevices:input_type -> api.ListDevicesRequest
+	12, // 37: api.DeviceService.GetDeviceMetrics:input_type -> api.GetDeviceMetricsRequest
+	4,  // 38: api.DeviceService.CreateDevice:output_type -> api.CreateDeviceResponse
+	6,  // 39: api.DeviceService.GetDevice:output_type -> api.GetDeviceResponse
+	8,  // 40: api.DeviceService.UpdateDevice:output_type -> api.UpdateDeviceResponse
+	22, // 41: api.DeviceService.DeleteDevice:output_type -> google.protobuf.Empty
+	11, // 42: api.DeviceService.ListDevices:output_type -> api.ListDevicesResponse
+	13, // 43: api.DeviceService.GetDeviceMetrics:output_type -> api.GetDeviceMetricsResponse
+	38, // [38:44] is the sub-list for method output_type
+	32, // [32:38] is the sub-list for method input_type
+	32, // [32:32] is the sub-list for extension type_name
+	32, // [32:32] is the sub-list for extension extendee
+	0,  // [0:32] is the sub-list for field type_name
 }
 
 func init() { file_api_device_proto_init() }
@@ -1608,7 +1420,7 @@ func file_api_device_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_device_proto_rawDesc), len(file_api_device_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   16,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

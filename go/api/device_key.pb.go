@@ -10,7 +10,7 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	_ "google.golang.org/protobuf/types/known/emptypb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
@@ -30,8 +30,14 @@ type DeviceKey struct {
 	Eui string `protobuf:"bytes,1,opt,name=eui,proto3" json:"eui,omitempty"`
 	// Network Key (AES128).
 	NetworkKey string `protobuf:"bytes,2,opt,name=network_key,json=networkKey,proto3" json:"network_key,omitempty"`
+	// Short ID must be set for preattached devices.
+	//
+	// Optional for OTAA devices as it can also be set during attachment.
+	//
+	// This ID is used to identify the device in the network.
+	ShortId *string `protobuf:"bytes,3,opt,name=short_id,json=shortId,proto3,oneof" json:"short_id,omitempty"`
 	// Device is preattached and does not perform OTAA.
-	Preattached   bool `protobuf:"varint,3,opt,name=preattached,proto3" json:"preattached,omitempty"`
+	Preattached   bool `protobuf:"varint,4,opt,name=preattached,proto3" json:"preattached,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -80,6 +86,13 @@ func (x *DeviceKey) GetNetworkKey() string {
 	return ""
 }
 
+func (x *DeviceKey) GetShortId() string {
+	if x != nil && x.ShortId != nil {
+		return *x.ShortId
+	}
+	return ""
+}
+
 func (x *DeviceKey) GetPreattached() bool {
 	if x != nil {
 		return x.Preattached
@@ -93,12 +106,14 @@ type CreateDeviceKeyRequest struct {
 	Eui string `protobuf:"bytes,1,opt,name=eui,proto3" json:"eui,omitempty"`
 	// Network Key (AES128).
 	NetworkKey string `protobuf:"bytes,2,opt,name=network_key,json=networkKey,proto3" json:"network_key,omitempty"`
-	// Device is preattached and does not perform OTAA.
-	Preattached bool `protobuf:"varint,3,opt,name=preattached,proto3" json:"preattached,omitempty"`
 	// Short ID must be set for preattached devices.
 	//
-	// Used to create a device session.
-	ShortId       *string `protobuf:"bytes,4,opt,name=short_id,json=shortId,proto3,oneof" json:"short_id,omitempty"`
+	// Optional for OTAA devices as it can also be set during attachment.
+	//
+	// This ID is used to identify the device in the network.
+	ShortId *string `protobuf:"bytes,3,opt,name=short_id,json=shortId,proto3,oneof" json:"short_id,omitempty"`
+	// Device is preattached and does not perform OTAA.
+	Preattached   bool `protobuf:"varint,4,opt,name=preattached,proto3" json:"preattached,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -147,18 +162,18 @@ func (x *CreateDeviceKeyRequest) GetNetworkKey() string {
 	return ""
 }
 
-func (x *CreateDeviceKeyRequest) GetPreattached() bool {
-	if x != nil {
-		return x.Preattached
-	}
-	return false
-}
-
 func (x *CreateDeviceKeyRequest) GetShortId() string {
 	if x != nil && x.ShortId != nil {
 		return *x.ShortId
 	}
 	return ""
+}
+
+func (x *CreateDeviceKeyRequest) GetPreattached() bool {
+	if x != nil {
+		return x.Preattached
+	}
+	return false
 }
 
 type CreateDeviceKeyResponse struct {
@@ -314,28 +329,36 @@ func (x *GetDeviceKeyResponse) GetCreatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-type DeleteDeviceKeyRequest struct {
+type UpdateDeviceKeyRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Device EUI (EUI64).
-	Eui           string `protobuf:"bytes,1,opt,name=eui,proto3" json:"eui,omitempty"`
+	Eui string `protobuf:"bytes,1,opt,name=eui,proto3" json:"eui,omitempty"`
+	// Network Key (AES128).
+	NetworkKey *string `protobuf:"bytes,2,opt,name=network_key,json=networkKey,proto3,oneof" json:"network_key,omitempty"`
+	// Short ID must be set for preattached devices.
+	//
+	// Optional for OTAA devices as it can also be set during attachment.
+	//
+	// This ID is used to identify the device in the network.
+	ShortId       *string `protobuf:"bytes,3,opt,name=short_id,json=shortId,proto3,oneof" json:"short_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *DeleteDeviceKeyRequest) Reset() {
-	*x = DeleteDeviceKeyRequest{}
+func (x *UpdateDeviceKeyRequest) Reset() {
+	*x = UpdateDeviceKeyRequest{}
 	mi := &file_api_device_key_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DeleteDeviceKeyRequest) String() string {
+func (x *UpdateDeviceKeyRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteDeviceKeyRequest) ProtoMessage() {}
+func (*UpdateDeviceKeyRequest) ProtoMessage() {}
 
-func (x *DeleteDeviceKeyRequest) ProtoReflect() protoreflect.Message {
+func (x *UpdateDeviceKeyRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_api_device_key_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -347,34 +370,113 @@ func (x *DeleteDeviceKeyRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteDeviceKeyRequest.ProtoReflect.Descriptor instead.
-func (*DeleteDeviceKeyRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdateDeviceKeyRequest.ProtoReflect.Descriptor instead.
+func (*UpdateDeviceKeyRequest) Descriptor() ([]byte, []int) {
 	return file_api_device_key_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *DeleteDeviceKeyRequest) GetEui() string {
+func (x *UpdateDeviceKeyRequest) GetEui() string {
 	if x != nil {
 		return x.Eui
 	}
 	return ""
 }
 
+func (x *UpdateDeviceKeyRequest) GetNetworkKey() string {
+	if x != nil && x.NetworkKey != nil {
+		return *x.NetworkKey
+	}
+	return ""
+}
+
+func (x *UpdateDeviceKeyRequest) GetShortId() string {
+	if x != nil && x.ShortId != nil {
+		return *x.ShortId
+	}
+	return ""
+}
+
+type UpdateDeviceKeyResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Device key object.
+	DeviceKey *DeviceKey `protobuf:"bytes,1,opt,name=device_key,json=deviceKey,proto3" json:"device_key,omitempty"`
+	// Created at timestamp.
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// Last update timestamp.
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateDeviceKeyResponse) Reset() {
+	*x = UpdateDeviceKeyResponse{}
+	mi := &file_api_device_key_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateDeviceKeyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateDeviceKeyResponse) ProtoMessage() {}
+
+func (x *UpdateDeviceKeyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_device_key_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateDeviceKeyResponse.ProtoReflect.Descriptor instead.
+func (*UpdateDeviceKeyResponse) Descriptor() ([]byte, []int) {
+	return file_api_device_key_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UpdateDeviceKeyResponse) GetDeviceKey() *DeviceKey {
+	if x != nil {
+		return x.DeviceKey
+	}
+	return nil
+}
+
+func (x *UpdateDeviceKeyResponse) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *UpdateDeviceKeyResponse) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
 var File_api_device_key_proto protoreflect.FileDescriptor
 
 const file_api_device_key_proto_rawDesc = "" +
 	"\n" +
-	"\x14api/device_key.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"`\n" +
+	"\x14api/device_key.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\x8d\x01\n" +
 	"\tDeviceKey\x12\x10\n" +
 	"\x03eui\x18\x01 \x01(\tR\x03eui\x12\x1f\n" +
 	"\vnetwork_key\x18\x02 \x01(\tR\n" +
-	"networkKey\x12 \n" +
-	"\vpreattached\x18\x03 \x01(\bR\vpreattached\"\x9a\x01\n" +
+	"networkKey\x12\x1e\n" +
+	"\bshort_id\x18\x03 \x01(\tH\x00R\ashortId\x88\x01\x01\x12 \n" +
+	"\vpreattached\x18\x04 \x01(\bR\vpreattachedB\v\n" +
+	"\t_short_id\"\x9a\x01\n" +
 	"\x16CreateDeviceKeyRequest\x12\x10\n" +
 	"\x03eui\x18\x01 \x01(\tR\x03eui\x12\x1f\n" +
 	"\vnetwork_key\x18\x02 \x01(\tR\n" +
-	"networkKey\x12 \n" +
-	"\vpreattached\x18\x03 \x01(\bR\vpreattached\x12\x1e\n" +
-	"\bshort_id\x18\x04 \x01(\tH\x00R\ashortId\x88\x01\x01B\v\n" +
+	"networkKey\x12\x1e\n" +
+	"\bshort_id\x18\x03 \x01(\tH\x00R\ashortId\x88\x01\x01\x12 \n" +
+	"\vpreattached\x18\x04 \x01(\bR\vpreattachedB\v\n" +
 	"\t_short_id\"\x83\x01\n" +
 	"\x17CreateDeviceKeyResponse\x12-\n" +
 	"\n" +
@@ -387,13 +489,25 @@ const file_api_device_key_proto_rawDesc = "" +
 	"\n" +
 	"device_key\x18\x01 \x01(\v2\x0e.api.DeviceKeyR\tdeviceKey\x129\n" +
 	"\n" +
-	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"*\n" +
-	"\x16DeleteDeviceKeyRequest\x12\x10\n" +
-	"\x03eui\x18\x01 \x01(\tR\x03eui2\xd9\x02\n" +
+	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\x8d\x01\n" +
+	"\x16UpdateDeviceKeyRequest\x12\x10\n" +
+	"\x03eui\x18\x01 \x01(\tR\x03eui\x12$\n" +
+	"\vnetwork_key\x18\x02 \x01(\tH\x00R\n" +
+	"networkKey\x88\x01\x01\x12\x1e\n" +
+	"\bshort_id\x18\x03 \x01(\tH\x01R\ashortId\x88\x01\x01B\x0e\n" +
+	"\f_network_keyB\v\n" +
+	"\t_short_id\"\xbe\x01\n" +
+	"\x17UpdateDeviceKeyResponse\x12-\n" +
+	"\n" +
+	"device_key\x18\x01 \x01(\v2\x0e.api.DeviceKeyR\tdeviceKey\x129\n" +
+	"\n" +
+	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
+	"\n" +
+	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt2\xdf\x02\n" +
 	"\x10DeviceKeyService\x12m\n" +
 	"\x0fCreateDeviceKey\x12\x1b.api.CreateDeviceKeyRequest\x1a\x1c.api.CreateDeviceKeyResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/api/device-keys/key\x12g\n" +
-	"\fGetDeviceKey\x12\x18.api.GetDeviceKeyRequest\x1a\x19.api.GetDeviceKeyResponse\"\"\x82\xd3\xe4\x93\x02\x1c\x12\x1a/api/device-keys/key/{eui}\x12m\n" +
-	"\x0fDeleteDeviceKey\x12\x1b.api.DeleteDeviceKeyRequest\x1a\x16.google.protobuf.Empty\"%\x82\xd3\xe4\x93\x02\x1f:\x01**\x1a/api/device-keys/key/{eui}B\xae\x01\n" +
+	"\fGetDeviceKey\x12\x18.api.GetDeviceKeyRequest\x1a\x19.api.GetDeviceKeyResponse\"\"\x82\xd3\xe4\x93\x02\x1c\x12\x1a/api/device-keys/key/{eui}\x12s\n" +
+	"\x0fUpdateDeviceKey\x12\x1b.api.UpdateDeviceKeyRequest\x1a\x1c.api.UpdateDeviceKeyResponse\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\x1a\x1a/api/device-keys/key/{eui}B\xae\x01\n" +
 	"\x11io.splitstack.apiB\x0eDeviceKeyProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/go/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 
 var (
@@ -408,33 +522,36 @@ func file_api_device_key_proto_rawDescGZIP() []byte {
 	return file_api_device_key_proto_rawDescData
 }
 
-var file_api_device_key_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_api_device_key_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_api_device_key_proto_goTypes = []any{
 	(*DeviceKey)(nil),               // 0: api.DeviceKey
 	(*CreateDeviceKeyRequest)(nil),  // 1: api.CreateDeviceKeyRequest
 	(*CreateDeviceKeyResponse)(nil), // 2: api.CreateDeviceKeyResponse
 	(*GetDeviceKeyRequest)(nil),     // 3: api.GetDeviceKeyRequest
 	(*GetDeviceKeyResponse)(nil),    // 4: api.GetDeviceKeyResponse
-	(*DeleteDeviceKeyRequest)(nil),  // 5: api.DeleteDeviceKeyRequest
-	(*timestamppb.Timestamp)(nil),   // 6: google.protobuf.Timestamp
-	(*emptypb.Empty)(nil),           // 7: google.protobuf.Empty
+	(*UpdateDeviceKeyRequest)(nil),  // 5: api.UpdateDeviceKeyRequest
+	(*UpdateDeviceKeyResponse)(nil), // 6: api.UpdateDeviceKeyResponse
+	(*timestamppb.Timestamp)(nil),   // 7: google.protobuf.Timestamp
 }
 var file_api_device_key_proto_depIdxs = []int32{
-	0, // 0: api.CreateDeviceKeyResponse.device_key:type_name -> api.DeviceKey
-	6, // 1: api.CreateDeviceKeyResponse.created_at:type_name -> google.protobuf.Timestamp
-	0, // 2: api.GetDeviceKeyResponse.device_key:type_name -> api.DeviceKey
-	6, // 3: api.GetDeviceKeyResponse.created_at:type_name -> google.protobuf.Timestamp
-	1, // 4: api.DeviceKeyService.CreateDeviceKey:input_type -> api.CreateDeviceKeyRequest
-	3, // 5: api.DeviceKeyService.GetDeviceKey:input_type -> api.GetDeviceKeyRequest
-	5, // 6: api.DeviceKeyService.DeleteDeviceKey:input_type -> api.DeleteDeviceKeyRequest
-	2, // 7: api.DeviceKeyService.CreateDeviceKey:output_type -> api.CreateDeviceKeyResponse
-	4, // 8: api.DeviceKeyService.GetDeviceKey:output_type -> api.GetDeviceKeyResponse
-	7, // 9: api.DeviceKeyService.DeleteDeviceKey:output_type -> google.protobuf.Empty
-	7, // [7:10] is the sub-list for method output_type
-	4, // [4:7] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	0,  // 0: api.CreateDeviceKeyResponse.device_key:type_name -> api.DeviceKey
+	7,  // 1: api.CreateDeviceKeyResponse.created_at:type_name -> google.protobuf.Timestamp
+	0,  // 2: api.GetDeviceKeyResponse.device_key:type_name -> api.DeviceKey
+	7,  // 3: api.GetDeviceKeyResponse.created_at:type_name -> google.protobuf.Timestamp
+	0,  // 4: api.UpdateDeviceKeyResponse.device_key:type_name -> api.DeviceKey
+	7,  // 5: api.UpdateDeviceKeyResponse.created_at:type_name -> google.protobuf.Timestamp
+	7,  // 6: api.UpdateDeviceKeyResponse.updated_at:type_name -> google.protobuf.Timestamp
+	1,  // 7: api.DeviceKeyService.CreateDeviceKey:input_type -> api.CreateDeviceKeyRequest
+	3,  // 8: api.DeviceKeyService.GetDeviceKey:input_type -> api.GetDeviceKeyRequest
+	5,  // 9: api.DeviceKeyService.UpdateDeviceKey:input_type -> api.UpdateDeviceKeyRequest
+	2,  // 10: api.DeviceKeyService.CreateDeviceKey:output_type -> api.CreateDeviceKeyResponse
+	4,  // 11: api.DeviceKeyService.GetDeviceKey:output_type -> api.GetDeviceKeyResponse
+	6,  // 12: api.DeviceKeyService.UpdateDeviceKey:output_type -> api.UpdateDeviceKeyResponse
+	10, // [10:13] is the sub-list for method output_type
+	7,  // [7:10] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_api_device_key_proto_init() }
@@ -442,14 +559,16 @@ func file_api_device_key_proto_init() {
 	if File_api_device_key_proto != nil {
 		return
 	}
+	file_api_device_key_proto_msgTypes[0].OneofWrappers = []any{}
 	file_api_device_key_proto_msgTypes[1].OneofWrappers = []any{}
+	file_api_device_key_proto_msgTypes[5].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_device_key_proto_rawDesc), len(file_api_device_key_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
