@@ -95,9 +95,6 @@ message Device {
   // Location.
   optional common.GeoLocation location = 7;
 
-  // Device is disabled.
-  bool is_disabled = 8;
-
   // Variables (user defined).
   // These variables can be used together with integrations to store tokens /
   // secrets that must be configured per device. These variables are not
@@ -173,9 +170,6 @@ message CreateDeviceRequest {
   // Location.
   optional common.GeoLocation location = 7;
 
-  // Device is disabled.
-  bool is_disabled = 8;
-
   // Variables (user defined).
   // These variables can be used together with integrations to store tokens /
   // secrets that must be configured per device. These variables are not
@@ -233,9 +227,6 @@ message UpdateDeviceRequest {
 
   // Location.
   optional common.GeoLocation location = 7;
-
-  // Device is disabled.
-  optional bool is_disabled = 8;
 
   // Variables (user defined).
   // These variables can be used together with integrations to store tokens /

@@ -93,8 +93,6 @@ type Device struct {
 	Description *string `protobuf:"bytes,6,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	// Location.
 	Location *common.GeoLocation `protobuf:"bytes,7,opt,name=location,proto3,oneof" json:"location,omitempty"`
-	// Device is disabled.
-	IsDisabled bool `protobuf:"varint,8,opt,name=is_disabled,json=isDisabled,proto3" json:"is_disabled,omitempty"`
 	// Variables (user defined).
 	// These variables can be used together with integrations to store tokens /
 	// secrets that must be configured per device. These variables are not
@@ -185,13 +183,6 @@ func (x *Device) GetLocation() *common.GeoLocation {
 		return x.Location
 	}
 	return nil
-}
-
-func (x *Device) GetIsDisabled() bool {
-	if x != nil {
-		return x.IsDisabled
-	}
-	return false
 }
 
 func (x *Device) GetVariables() *common.Tags {
@@ -368,8 +359,6 @@ type CreateDeviceRequest struct {
 	Description *string `protobuf:"bytes,6,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	// Location.
 	Location *common.GeoLocation `protobuf:"bytes,7,opt,name=location,proto3,oneof" json:"location,omitempty"`
-	// Device is disabled.
-	IsDisabled bool `protobuf:"varint,8,opt,name=is_disabled,json=isDisabled,proto3" json:"is_disabled,omitempty"`
 	// Variables (user defined).
 	// These variables can be used together with integrations to store tokens /
 	// secrets that must be configured per device. These variables are not
@@ -453,13 +442,6 @@ func (x *CreateDeviceRequest) GetLocation() *common.GeoLocation {
 		return x.Location
 	}
 	return nil
-}
-
-func (x *CreateDeviceRequest) GetIsDisabled() bool {
-	if x != nil {
-		return x.IsDisabled
-	}
-	return false
 }
 
 func (x *CreateDeviceRequest) GetVariables() *common.Tags {
@@ -661,8 +643,6 @@ type UpdateDeviceRequest struct {
 	Description *string `protobuf:"bytes,6,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	// Location.
 	Location *common.GeoLocation `protobuf:"bytes,7,opt,name=location,proto3,oneof" json:"location,omitempty"`
-	// Device is disabled.
-	IsDisabled *bool `protobuf:"varint,8,opt,name=is_disabled,json=isDisabled,proto3,oneof" json:"is_disabled,omitempty"`
 	// Variables (user defined).
 	// These variables can be used together with integrations to store tokens /
 	// secrets that must be configured per device. These variables are not
@@ -746,13 +726,6 @@ func (x *UpdateDeviceRequest) GetLocation() *common.GeoLocation {
 		return x.Location
 	}
 	return nil
-}
-
-func (x *UpdateDeviceRequest) GetIsDisabled() bool {
-	if x != nil && x.IsDisabled != nil {
-		return *x.IsDisabled
-	}
-	return false
 }
 
 func (x *UpdateDeviceRequest) GetVariables() *common.Tags {
@@ -1162,7 +1135,7 @@ var File_api_device_proto protoreflect.FileDescriptor
 
 const file_api_device_proto_rawDesc = "" +
 	"\n" +
-	"\x10api/device.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x10api/common.proto\x1a\x13common/common.proto\x1a\x14common/metrics.proto\"\xb6\x03\n" +
+	"\x10api/device.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x10api/common.proto\x1a\x13common/common.proto\x1a\x14common/metrics.proto\"\x95\x03\n" +
 	"\x06Device\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
 	"\x03eui\x18\x02 \x01(\tR\x03eui\x12%\n" +
@@ -1170,9 +1143,7 @@ const file_api_device_proto_rawDesc = "" +
 	"\x11device_profile_id\x18\x04 \x01(\tH\x00R\x0fdeviceProfileId\x88\x01\x01\x12\x12\n" +
 	"\x04name\x18\x05 \x01(\tR\x04name\x12%\n" +
 	"\vdescription\x18\x06 \x01(\tH\x01R\vdescription\x88\x01\x01\x124\n" +
-	"\blocation\x18\a \x01(\v2\x13.common.GeoLocationH\x02R\blocation\x88\x01\x01\x12\x1f\n" +
-	"\vis_disabled\x18\b \x01(\bR\n" +
-	"isDisabled\x12/\n" +
+	"\blocation\x18\a \x01(\v2\x13.common.GeoLocationH\x02R\blocation\x88\x01\x01\x12/\n" +
 	"\tvariables\x18\t \x01(\v2\f.common.TagsH\x03R\tvariables\x88\x01\x01\x12%\n" +
 	"\x04tags\x18\n" +
 	" \x01(\v2\f.common.TagsH\x04R\x04tags\x88\x01\x01B\x14\n" +
@@ -1203,16 +1174,14 @@ const file_api_device_proto_rawDesc = "" +
 	"\f_descriptionB\x14\n" +
 	"\x12_device_profile_idB\x16\n" +
 	"\x14_device_profile_nameB\a\n" +
-	"\x05_tags\"\xc1\x03\n" +
+	"\x05_tags\"\xa0\x03\n" +
 	"\x13CreateDeviceRequest\x12\x10\n" +
 	"\x03eui\x18\x02 \x01(\tR\x03eui\x12%\n" +
 	"\x0eapplication_id\x18\x03 \x01(\tR\rapplicationId\x12/\n" +
 	"\x11device_profile_id\x18\x04 \x01(\tH\x00R\x0fdeviceProfileId\x88\x01\x01\x12\x17\n" +
 	"\x04name\x18\x05 \x01(\tH\x01R\x04name\x88\x01\x01\x12%\n" +
 	"\vdescription\x18\x06 \x01(\tH\x02R\vdescription\x88\x01\x01\x124\n" +
-	"\blocation\x18\a \x01(\v2\x13.common.GeoLocationH\x03R\blocation\x88\x01\x01\x12\x1f\n" +
-	"\vis_disabled\x18\b \x01(\bR\n" +
-	"isDisabled\x12/\n" +
+	"\blocation\x18\a \x01(\v2\x13.common.GeoLocationH\x03R\blocation\x88\x01\x01\x12/\n" +
 	"\tvariables\x18\t \x01(\v2\f.common.TagsH\x04R\tvariables\x88\x01\x01\x12%\n" +
 	"\x04tags\x18\n" +
 	" \x01(\v2\f.common.TagsH\x05R\x04tags\x88\x01\x01B\x14\n" +
@@ -1236,25 +1205,22 @@ const file_api_device_proto_rawDesc = "" +
 	"\n" +
 	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12<\n" +
 	"\flast_seen_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"lastSeenAt\"\xec\x03\n" +
+	"lastSeenAt\"\xb6\x03\n" +
 	"\x13UpdateDeviceRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12*\n" +
 	"\x0eapplication_id\x18\x03 \x01(\tH\x00R\rapplicationId\x88\x01\x01\x12/\n" +
 	"\x11device_profile_id\x18\x04 \x01(\tH\x01R\x0fdeviceProfileId\x88\x01\x01\x12\x17\n" +
 	"\x04name\x18\x05 \x01(\tH\x02R\x04name\x88\x01\x01\x12%\n" +
 	"\vdescription\x18\x06 \x01(\tH\x03R\vdescription\x88\x01\x01\x124\n" +
-	"\blocation\x18\a \x01(\v2\x13.common.GeoLocationH\x04R\blocation\x88\x01\x01\x12$\n" +
-	"\vis_disabled\x18\b \x01(\bH\x05R\n" +
-	"isDisabled\x88\x01\x01\x12/\n" +
-	"\tvariables\x18\t \x01(\v2\f.common.TagsH\x06R\tvariables\x88\x01\x01\x12%\n" +
+	"\blocation\x18\a \x01(\v2\x13.common.GeoLocationH\x04R\blocation\x88\x01\x01\x12/\n" +
+	"\tvariables\x18\t \x01(\v2\f.common.TagsH\x05R\tvariables\x88\x01\x01\x12%\n" +
 	"\x04tags\x18\n" +
-	" \x01(\v2\f.common.TagsH\aR\x04tags\x88\x01\x01B\x11\n" +
+	" \x01(\v2\f.common.TagsH\x06R\x04tags\x88\x01\x01B\x11\n" +
 	"\x0f_application_idB\x14\n" +
 	"\x12_device_profile_idB\a\n" +
 	"\x05_nameB\x0e\n" +
 	"\f_descriptionB\v\n" +
-	"\t_locationB\x0e\n" +
-	"\f_is_disabledB\f\n" +
+	"\t_locationB\f\n" +
 	"\n" +
 	"_variablesB\a\n" +
 	"\x05_tags\"\xb1\x01\n" +
