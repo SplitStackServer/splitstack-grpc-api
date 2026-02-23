@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+package bs;
+
+option go_package = "github.com/SplitStackServer/splitstack-grpc-api/go/bs";
+option java_package = "io.splitstack.api.bs";
+option java_multiple_files = true;
+option java_outer_classname = "CertificateProto";
+option csharp_namespace = "SplitStackServer.Basestation";
+option php_namespace = "SplitStackServer\\Basestation";
+option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Basestation";
+
+import "google/protobuf/timestamp.proto";
+
+// Full snapshot of all revoked certificates
+// Published to: cert/status/revocations (retained)
+message CertificateRevocationList {
+    // Version number (increments on each update)
+    int64 version = 1;
+    
+    // Timestamp when this list was generated
+    google.protobuf.Timestamp updated_at = 2;
+    
+    // List of revoked certificate serials (hex strings like "1A:2B:3C:...")
+    repeated string revoked_serials = 3;
+    
+    // Optional: Revocation details
+    map<string, RevocationDetail> details = 4;
+}
+
+message RevocationDetail {
+    // Reason for revocation
+    enum RevocationReason {
+        UNSPECIFIED = 0;
+        KEY_COMPROMISE = 1;
+        CA_COMPROMISE = 2;
+        AFFILIATION_CHANGED = 3;
+        SUPERSEDED = 4;
+        CESSATION_OF_OPERATION = 5;
+        CERTIFICATE_HOLD = 6;
+        REMOVE_FROM_CRL = 8;  // Un-revocation
+        PRIVILEGE_WITHDRAWN = 9;
+    }
+    
+    RevocationReason reason = 1;
+    
+    // When was this certificate revoked
+    google.protobuf.Timestamp revoked_at = 2;
+    
+    // Human-readable comment (e.g., "Security incident #2024-031")
+    string comment = 3;
+}
+
+// Incremental revocation update (single certificate)
+// Published to: cert/status/update
+message CertificateRevocationUpdate {
+    // Certificate serial (hex string)
+    string serial = 1;
+    
+    // Action
+    enum Action {
+        REVOKE = 0;
+        UNREVOKE = 1;  // Remove from revocation list
+    }
+    Action action = 2;
+    
+    // Revocation details
+    RevocationDetail detail = 3;
+    
+    // Timestamp of this update
+    google.protobuf.Timestamp updated_at = 4;
+}
+
+// Certificate to EUI64 binding mappings
+// Published to: cert/bindings (retained)
+message CertificateBindingList {
+    // Version number
+    int64 version = 1;
+    
+    // Timestamp when this list was generated
+    google.protobuf.Timestamp updated_at = 2;
+    
+    // Mappings: certificate serial → gateway EUI64
+    // Serial is hex string like "1A:2B:3C:..."
+    // EUI64 is hex string like "0102030405060708"
+    map<string, string> bindings = 3;
+}
+
+// Incremental binding update
+// Published to: cert/bindings/update
+message CertificateBindingUpdate {
+    // Certificate serial (hex string)
+    string serial = 1;
+    
+    // Gateway EUI64 (hex string, empty to remove binding)
+    string eui64 = 2;
+    
+    // Timestamp of this update
+    google.protobuf.Timestamp updated_at = 3;
+}

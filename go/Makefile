@@ -22,7 +22,7 @@ api:
 	protoc ${PROTOC_ARGS} api/device_profile.proto
 	protoc ${PROTOC_ARGS} api/device_queue.proto
 	protoc ${PROTOC_ARGS} api/device.proto
-	protoc ${PROTOC_ARGS} api/login.proto
+	protoc ${PROTOC_ARGS} api/auth.proto
 	protoc ${PROTOC_ARGS} api/tenant_user.proto
 	protoc ${PROTOC_ARGS} api/tenant.proto
 	protoc ${PROTOC_ARGS} api/user.proto

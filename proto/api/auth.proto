@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/SplitStackServer/splitstack-grpc-api/go/api";
+option java_package = "io.splitstack.api";
+option java_multiple_files = true;
+option java_outer_classname = "AuthProto";
+option csharp_namespace = "SplitStackServer.Api";
+option php_namespace = "SplitStackServer\\Api";
+option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Api";
+
+import "google/api/annotations.proto";
+
+// AuthService is the service providing API endpoints for internal usage.
+service AuthService {
+  // Log in a user
+  rpc Login(LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post : "/api/auth/login"
+      body : "*"
+    };
+  }
+
+  // OpenId Connect login
+  rpc OpenIdConnectLogin(OpenIdConnectRequest) returns (OpenIdConnectResponse) {
+    option (google.api.http) = {
+      post : "/api/auth/oidc"
+      body : "*"
+    };
+  }
+
+  // OAuth2 login
+  rpc OAuth2Login(OAuth2Request) returns (OAuth2Response) {
+    option (google.api.http) = {
+      post : "/api/auth/oauth2"
+      body : "*"
+    };
+  }
+}
+
+message LoginRequest {
+  // Email of the user.
+  string email = 1;
+
+  // Password of the user.
+  string password = 2;
+}
+
+message LoginResponse {
+  // The JWT token to use for authentication.
+  string jwt = 1;
+}
+
+
+message OpenIdConnectRequest {
+  // OpenId Connect callback code.
+  string code = 1;
+
+  // OpenId Connect callback state.
+  string state = 2;
+}
+
+message OpenIdConnectResponse {
+  // Token to use for authentication.
+  string token = 1;
+}
+
+
+message OAuth2Request {
+  // OAuth2 callback code.
+  string code = 1;
+
+  // OAuth2 callback state.
+  string state = 2;
+}
+
+message OAuth2Response {
+  // Token to use for authentication.
+  string token = 1;
+}
