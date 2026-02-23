@@ -1,0 +1,11 @@
+name: splitstack_grpc_generated
+description: Generated gRPC code from splitstack-grpc-api
+version: 1.1.0
+publish_to: 'none'
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  protobuf: ^5.0.0
+  grpc: ^4.3.1
