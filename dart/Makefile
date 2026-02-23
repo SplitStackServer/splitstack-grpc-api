@@ -1,6 +1,6 @@
 .PHONY: common bs api all google
 
-PROTOC_ARGS := --proto_path=../proto --dart_out=grpc:generated 
+PROTOC_ARGS := --proto_path=../proto --dart_out=grpc:generated/lib 
 FILES := $(shell cd /usr/local/include && find google/protobuf -iname "*.proto")
 
 all: common bs api google

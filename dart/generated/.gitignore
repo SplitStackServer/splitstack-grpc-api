@@ -29,8 +29,3 @@ migrate_working_dir/
 .flutter-plugins-dependencies
 /build/
 /coverage/
-
-# Vendor dependencies (tracked via submodule)
-# Submodule contents are ignored, but the wrapper pubspec.yaml is committed
-/vendor/
-!/vendor/splitstack-grpc-api/dart/generated/pubspec.yaml
