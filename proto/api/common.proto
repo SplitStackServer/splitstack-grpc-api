@@ -37,5 +37,16 @@ enum IntegrationKind {
 
 message VariableMacList {
 	// List of variable MACs
-	repeated uint32 vm = 1;
+	repeated VariableMac vm = 1;
+}
+
+// These are the Variable Mac types that are supported by the API.
+enum VariableMac {
+  // Type 1: Wireless M-Bus frame with Frame Format B (FFB)
+  MBUS_FFB = 0;
+  // Type 2: M-Bus frame that starts with a wireless M-Bus MAC according to OMS-S Volume 2, Annex Q
+  // 
+  // Open Metering System Specification (OMS-S), Volume 2, Annex Q, Issue 5.0.1, December 2023.
+  MBUS_MAC = 2;
+
 }
