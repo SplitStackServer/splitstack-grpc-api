@@ -1,9 +1,9 @@
-.PHONY: common bs api all google
+.PHONY: all common bs api stream google
 
 PROTOC_ARGS := --proto_path=../proto --dart_out=grpc:generated/lib 
 FILES := $(shell cd /usr/local/include && find google/protobuf -iname "*.proto")
 
-all: common bs api google
+all: common bs api stream google
 
 common:
 	protoc ${PROTOC_ARGS} common/common.proto
@@ -29,6 +29,10 @@ api:
 	protoc ${PROTOC_ARGS} api/user.proto
 	protoc ${PROTOC_ARGS} api/application_integration.proto
 	protoc ${PROTOC_ARGS} api/stats.proto
+
+
+stream:
+	protoc ${PROTOC_ARGS} stream/frame.proto
 
 google:
 	protoc ${PROTOC_ARGS} google/api/http.proto
