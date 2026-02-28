@@ -214,7 +214,7 @@ message ListApplicationsResponse {
     repeated ApplicationListItem result = 2;
 }
 
-message GetTenantDetailsRequest {
+message GetApplicationDetailsRequest {
   // Application ID.
   string id = 1;
 }

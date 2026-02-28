@@ -311,8 +311,6 @@ message ListDevicesResponse {
     repeated DeviceListItem result = 2;
 }
 
-
-
 message GetDeviceMetricsRequest {
   // Device ID (UUID).
   string id = 1;
@@ -331,4 +329,7 @@ message GetDeviceMetricsResponse {
   map<string, common.Metric> metrics = 1;
 }
 
-
+message StreamDeviceFramesRequest {
+  // Device ID (UUID).
+  string id = 1;
+}
