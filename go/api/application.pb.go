@@ -773,6 +773,118 @@ func (x *ListApplicationsResponse) GetResult() []*ApplicationListItem {
 	return nil
 }
 
+type GetApplicationDetailsRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Application ID.
+	Id            string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetApplicationDetailsRequest) Reset() {
+	*x = GetApplicationDetailsRequest{}
+	mi := &file_api_application_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetApplicationDetailsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetApplicationDetailsRequest) ProtoMessage() {}
+
+func (x *GetApplicationDetailsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_application_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetApplicationDetailsRequest.ProtoReflect.Descriptor instead.
+func (*GetApplicationDetailsRequest) Descriptor() ([]byte, []int) {
+	return file_api_application_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *GetApplicationDetailsRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type GetApplicationDetailsResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Application ID.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// Device counts for the application.
+	//
+	// Only available for global admin, tenant admin or endnode admin users or API keys.
+	DeviceCount *DeviceCount `protobuf:"bytes,2,opt,name=device_count,json=deviceCount,proto3" json:"device_count,omitempty"`
+	// Application integration counts for the application.
+	//
+	// Only available for global admin, tenant admin or endnode admin users or API keys.
+	IntegrationCount *ApplicationIntegrationCount `protobuf:"bytes,3,opt,name=integration_count,json=integrationCount,proto3" json:"integration_count,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *GetApplicationDetailsResponse) Reset() {
+	*x = GetApplicationDetailsResponse{}
+	mi := &file_api_application_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetApplicationDetailsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetApplicationDetailsResponse) ProtoMessage() {}
+
+func (x *GetApplicationDetailsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_application_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetApplicationDetailsResponse.ProtoReflect.Descriptor instead.
+func (*GetApplicationDetailsResponse) Descriptor() ([]byte, []int) {
+	return file_api_application_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *GetApplicationDetailsResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *GetApplicationDetailsResponse) GetDeviceCount() *DeviceCount {
+	if x != nil {
+		return x.DeviceCount
+	}
+	return nil
+}
+
+func (x *GetApplicationDetailsResponse) GetIntegrationCount() *ApplicationIntegrationCount {
+	if x != nil {
+		return x.IntegrationCount
+	}
+	return nil
+}
+
 var File_api_application_proto protoreflect.FileDescriptor
 
 const file_api_application_proto_rawDesc = "" +
@@ -848,10 +960,17 @@ const file_api_application_proto_rawDesc = "" +
 	"\n" +
 	"pagination\x18\x01 \x01(\v2\x0f.api.PaginationR\n" +
 	"pagination\x120\n" +
-	"\x06result\x18\x02 \x03(\v2\x18.api.ApplicationListItemR\x06result2\xc0\x04\n" +
+	"\x06result\x18\x02 \x03(\v2\x18.api.ApplicationListItemR\x06result\".\n" +
+	"\x1cGetApplicationDetailsRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\xb3\x01\n" +
+	"\x1dGetApplicationDetailsResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x123\n" +
+	"\fdevice_count\x18\x02 \x01(\v2\x10.api.DeviceCountR\vdeviceCount\x12M\n" +
+	"\x11integration_count\x18\x03 \x01(\v2 .api.ApplicationIntegrationCountR\x10integrationCount2\xc9\x05\n" +
 	"\x12ApplicationService\x12p\n" +
 	"\x11CreateApplication\x12\x1d.api.CreateApplicationRequest\x1a\x1e.api.CreateApplicationResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/api/applications\x12i\n" +
-	"\x0eGetApplication\x12\x1a.api.GetApplicationRequest\x1a\x1b.api.GetApplicationResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/api/applications/{id}\x12u\n" +
+	"\x0eGetApplication\x12\x1a.api.GetApplicationRequest\x1a\x1b.api.GetApplicationResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/api/applications/{id}\x12\x86\x01\n" +
+	"\x15GetApplicationDetails\x12!.api.GetApplicationDetailsRequest\x1a\".api.GetApplicationDetailsResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/applications/{id}/details\x12u\n" +
 	"\x11UpdateApplication\x12\x1d.api.UpdateApplicationRequest\x1a\x1e.api.UpdateApplicationResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\x1a\x16/api/applications/{id}\x12j\n" +
 	"\x11DeleteApplication\x12\x1d.api.DeleteApplicationRequest\x1a\x16.google.protobuf.Empty\"\x1e\x82\xd3\xe4\x93\x02\x18*\x16/api/applications/{id}\x12j\n" +
 	"\x10ListApplications\x12\x1c.api.ListApplicationsRequest\x1a\x1d.api.ListApplicationsResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/applicationsB\xb0\x01\n" +
@@ -869,57 +988,65 @@ func file_api_application_proto_rawDescGZIP() []byte {
 	return file_api_application_proto_rawDescData
 }
 
-var file_api_application_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_api_application_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_api_application_proto_goTypes = []any{
-	(*Application)(nil),               // 0: api.Application
-	(*ApplicationListItem)(nil),       // 1: api.ApplicationListItem
-	(*CreateApplicationRequest)(nil),  // 2: api.CreateApplicationRequest
-	(*CreateApplicationResponse)(nil), // 3: api.CreateApplicationResponse
-	(*GetApplicationRequest)(nil),     // 4: api.GetApplicationRequest
-	(*GetApplicationResponse)(nil),    // 5: api.GetApplicationResponse
-	(*UpdateApplicationRequest)(nil),  // 6: api.UpdateApplicationRequest
-	(*UpdateApplicationResponse)(nil), // 7: api.UpdateApplicationResponse
-	(*DeleteApplicationRequest)(nil),  // 8: api.DeleteApplicationRequest
-	(*ListApplicationsRequest)(nil),   // 9: api.ListApplicationsRequest
-	(*ListApplicationsResponse)(nil),  // 10: api.ListApplicationsResponse
-	(*common.Tags)(nil),               // 11: common.Tags
-	(*timestamppb.Timestamp)(nil),     // 12: google.protobuf.Timestamp
-	(*Paginator)(nil),                 // 13: api.Paginator
-	(*Pagination)(nil),                // 14: api.Pagination
-	(*emptypb.Empty)(nil),             // 15: google.protobuf.Empty
+	(*Application)(nil),                   // 0: api.Application
+	(*ApplicationListItem)(nil),           // 1: api.ApplicationListItem
+	(*CreateApplicationRequest)(nil),      // 2: api.CreateApplicationRequest
+	(*CreateApplicationResponse)(nil),     // 3: api.CreateApplicationResponse
+	(*GetApplicationRequest)(nil),         // 4: api.GetApplicationRequest
+	(*GetApplicationResponse)(nil),        // 5: api.GetApplicationResponse
+	(*UpdateApplicationRequest)(nil),      // 6: api.UpdateApplicationRequest
+	(*UpdateApplicationResponse)(nil),     // 7: api.UpdateApplicationResponse
+	(*DeleteApplicationRequest)(nil),      // 8: api.DeleteApplicationRequest
+	(*ListApplicationsRequest)(nil),       // 9: api.ListApplicationsRequest
+	(*ListApplicationsResponse)(nil),      // 10: api.ListApplicationsResponse
+	(*GetApplicationDetailsRequest)(nil),  // 11: api.GetApplicationDetailsRequest
+	(*GetApplicationDetailsResponse)(nil), // 12: api.GetApplicationDetailsResponse
+	(*common.Tags)(nil),                   // 13: common.Tags
+	(*timestamppb.Timestamp)(nil),         // 14: google.protobuf.Timestamp
+	(*Paginator)(nil),                     // 15: api.Paginator
+	(*Pagination)(nil),                    // 16: api.Pagination
+	(*DeviceCount)(nil),                   // 17: api.DeviceCount
+	(*ApplicationIntegrationCount)(nil),   // 18: api.ApplicationIntegrationCount
+	(*emptypb.Empty)(nil),                 // 19: google.protobuf.Empty
 }
 var file_api_application_proto_depIdxs = []int32{
-	11, // 0: api.Application.tags:type_name -> common.Tags
-	12, // 1: api.ApplicationListItem.created_at:type_name -> google.protobuf.Timestamp
-	12, // 2: api.ApplicationListItem.updated_at:type_name -> google.protobuf.Timestamp
-	11, // 3: api.CreateApplicationRequest.tags:type_name -> common.Tags
+	13, // 0: api.Application.tags:type_name -> common.Tags
+	14, // 1: api.ApplicationListItem.created_at:type_name -> google.protobuf.Timestamp
+	14, // 2: api.ApplicationListItem.updated_at:type_name -> google.protobuf.Timestamp
+	13, // 3: api.CreateApplicationRequest.tags:type_name -> common.Tags
 	0,  // 4: api.CreateApplicationResponse.application:type_name -> api.Application
-	12, // 5: api.CreateApplicationResponse.created_at:type_name -> google.protobuf.Timestamp
+	14, // 5: api.CreateApplicationResponse.created_at:type_name -> google.protobuf.Timestamp
 	0,  // 6: api.GetApplicationResponse.application:type_name -> api.Application
-	12, // 7: api.GetApplicationResponse.created_at:type_name -> google.protobuf.Timestamp
-	12, // 8: api.GetApplicationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	11, // 9: api.UpdateApplicationRequest.tags:type_name -> common.Tags
+	14, // 7: api.GetApplicationResponse.created_at:type_name -> google.protobuf.Timestamp
+	14, // 8: api.GetApplicationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	13, // 9: api.UpdateApplicationRequest.tags:type_name -> common.Tags
 	0,  // 10: api.UpdateApplicationResponse.application:type_name -> api.Application
-	12, // 11: api.UpdateApplicationResponse.created_at:type_name -> google.protobuf.Timestamp
-	12, // 12: api.UpdateApplicationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	13, // 13: api.ListApplicationsRequest.paginator:type_name -> api.Paginator
-	14, // 14: api.ListApplicationsResponse.pagination:type_name -> api.Pagination
+	14, // 11: api.UpdateApplicationResponse.created_at:type_name -> google.protobuf.Timestamp
+	14, // 12: api.UpdateApplicationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	15, // 13: api.ListApplicationsRequest.paginator:type_name -> api.Paginator
+	16, // 14: api.ListApplicationsResponse.pagination:type_name -> api.Pagination
 	1,  // 15: api.ListApplicationsResponse.result:type_name -> api.ApplicationListItem
-	2,  // 16: api.ApplicationService.CreateApplication:input_type -> api.CreateApplicationRequest
-	4,  // 17: api.ApplicationService.GetApplication:input_type -> api.GetApplicationRequest
-	6,  // 18: api.ApplicationService.UpdateApplication:input_type -> api.UpdateApplicationRequest
-	8,  // 19: api.ApplicationService.DeleteApplication:input_type -> api.DeleteApplicationRequest
-	9,  // 20: api.ApplicationService.ListApplications:input_type -> api.ListApplicationsRequest
-	3,  // 21: api.ApplicationService.CreateApplication:output_type -> api.CreateApplicationResponse
-	5,  // 22: api.ApplicationService.GetApplication:output_type -> api.GetApplicationResponse
-	7,  // 23: api.ApplicationService.UpdateApplication:output_type -> api.UpdateApplicationResponse
-	15, // 24: api.ApplicationService.DeleteApplication:output_type -> google.protobuf.Empty
-	10, // 25: api.ApplicationService.ListApplications:output_type -> api.ListApplicationsResponse
-	21, // [21:26] is the sub-list for method output_type
-	16, // [16:21] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	17, // 16: api.GetApplicationDetailsResponse.device_count:type_name -> api.DeviceCount
+	18, // 17: api.GetApplicationDetailsResponse.integration_count:type_name -> api.ApplicationIntegrationCount
+	2,  // 18: api.ApplicationService.CreateApplication:input_type -> api.CreateApplicationRequest
+	4,  // 19: api.ApplicationService.GetApplication:input_type -> api.GetApplicationRequest
+	11, // 20: api.ApplicationService.GetApplicationDetails:input_type -> api.GetApplicationDetailsRequest
+	6,  // 21: api.ApplicationService.UpdateApplication:input_type -> api.UpdateApplicationRequest
+	8,  // 22: api.ApplicationService.DeleteApplication:input_type -> api.DeleteApplicationRequest
+	9,  // 23: api.ApplicationService.ListApplications:input_type -> api.ListApplicationsRequest
+	3,  // 24: api.ApplicationService.CreateApplication:output_type -> api.CreateApplicationResponse
+	5,  // 25: api.ApplicationService.GetApplication:output_type -> api.GetApplicationResponse
+	12, // 26: api.ApplicationService.GetApplicationDetails:output_type -> api.GetApplicationDetailsResponse
+	7,  // 27: api.ApplicationService.UpdateApplication:output_type -> api.UpdateApplicationResponse
+	19, // 28: api.ApplicationService.DeleteApplication:output_type -> google.protobuf.Empty
+	10, // 29: api.ApplicationService.ListApplications:output_type -> api.ListApplicationsResponse
+	24, // [24:30] is the sub-list for method output_type
+	18, // [18:24] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_api_application_proto_init() }
@@ -939,7 +1066,7 @@ func file_api_application_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_application_proto_rawDesc), len(file_api_application_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

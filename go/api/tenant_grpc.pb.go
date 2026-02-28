@@ -20,13 +20,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TenantService_CreateTenant_FullMethodName       = "/api.TenantService/CreateTenant"
-	TenantService_GetTenant_FullMethodName          = "/api.TenantService/GetTenant"
-	TenantService_UpdateTenant_FullMethodName       = "/api.TenantService/UpdateTenant"
-	TenantService_EnableVariableMac_FullMethodName  = "/api.TenantService/EnableVariableMac"
-	TenantService_DisableVariableMac_FullMethodName = "/api.TenantService/DisableVariableMac"
-	TenantService_DeleteTenant_FullMethodName       = "/api.TenantService/DeleteTenant"
-	TenantService_ListTenants_FullMethodName        = "/api.TenantService/ListTenants"
+	TenantService_CreateTenant_FullMethodName     = "/api.TenantService/CreateTenant"
+	TenantService_GetTenant_FullMethodName        = "/api.TenantService/GetTenant"
+	TenantService_GetTenantDetails_FullMethodName = "/api.TenantService/GetTenantDetails"
+	TenantService_UpdateTenant_FullMethodName     = "/api.TenantService/UpdateTenant"
+	TenantService_DeleteTenant_FullMethodName     = "/api.TenantService/DeleteTenant"
+	TenantService_ListTenants_FullMethodName      = "/api.TenantService/ListTenants"
 )
 
 // TenantServiceClient is the client API for TenantService service.
@@ -39,12 +38,10 @@ type TenantServiceClient interface {
 	CreateTenant(ctx context.Context, in *CreateTenantRequest, opts ...grpc.CallOption) (*CreateTenantResponse, error)
 	// Get the tenant for the given ID.
 	GetTenant(ctx context.Context, in *GetTenantRequest, opts ...grpc.CallOption) (*GetTenantResponse, error)
+	// Get the tenant details for the given ID.
+	GetTenantDetails(ctx context.Context, in *GetTenantDetailsRequest, opts ...grpc.CallOption) (*GetTenantDetailsResponse, error)
 	// Update the given tenant.
 	UpdateTenant(ctx context.Context, in *UpdateTenantRequest, opts ...grpc.CallOption) (*UpdateTenantResponse, error)
-	// Enable the given variable MAC for the tenant.
-	EnableVariableMac(ctx context.Context, in *EnableVariableMacRequest, opts ...grpc.CallOption) (*VariableMacResponse, error)
-	// Disable the given variable MAC for the tenant.
-	DisableVariableMac(ctx context.Context, in *DisableVariableMacRequest, opts ...grpc.CallOption) (*VariableMacResponse, error)
 	// Delete the tenant with the given ID.
 	DeleteTenant(ctx context.Context, in *DeleteTenantRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Get the list of tenants.
@@ -79,30 +76,20 @@ func (c *tenantServiceClient) GetTenant(ctx context.Context, in *GetTenantReques
 	return out, nil
 }
 
+func (c *tenantServiceClient) GetTenantDetails(ctx context.Context, in *GetTenantDetailsRequest, opts ...grpc.CallOption) (*GetTenantDetailsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTenantDetailsResponse)
+	err := c.cc.Invoke(ctx, TenantService_GetTenantDetails_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *tenantServiceClient) UpdateTenant(ctx context.Context, in *UpdateTenantRequest, opts ...grpc.CallOption) (*UpdateTenantResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateTenantResponse)
 	err := c.cc.Invoke(ctx, TenantService_UpdateTenant_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *tenantServiceClient) EnableVariableMac(ctx context.Context, in *EnableVariableMacRequest, opts ...grpc.CallOption) (*VariableMacResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(VariableMacResponse)
-	err := c.cc.Invoke(ctx, TenantService_EnableVariableMac_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *tenantServiceClient) DisableVariableMac(ctx context.Context, in *DisableVariableMacRequest, opts ...grpc.CallOption) (*VariableMacResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(VariableMacResponse)
-	err := c.cc.Invoke(ctx, TenantService_DisableVariableMac_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -139,12 +126,10 @@ type TenantServiceServer interface {
 	CreateTenant(context.Context, *CreateTenantRequest) (*CreateTenantResponse, error)
 	// Get the tenant for the given ID.
 	GetTenant(context.Context, *GetTenantRequest) (*GetTenantResponse, error)
+	// Get the tenant details for the given ID.
+	GetTenantDetails(context.Context, *GetTenantDetailsRequest) (*GetTenantDetailsResponse, error)
 	// Update the given tenant.
 	UpdateTenant(context.Context, *UpdateTenantRequest) (*UpdateTenantResponse, error)
-	// Enable the given variable MAC for the tenant.
-	EnableVariableMac(context.Context, *EnableVariableMacRequest) (*VariableMacResponse, error)
-	// Disable the given variable MAC for the tenant.
-	DisableVariableMac(context.Context, *DisableVariableMacRequest) (*VariableMacResponse, error)
 	// Delete the tenant with the given ID.
 	DeleteTenant(context.Context, *DeleteTenantRequest) (*emptypb.Empty, error)
 	// Get the list of tenants.
@@ -165,14 +150,11 @@ func (UnimplementedTenantServiceServer) CreateTenant(context.Context, *CreateTen
 func (UnimplementedTenantServiceServer) GetTenant(context.Context, *GetTenantRequest) (*GetTenantResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTenant not implemented")
 }
+func (UnimplementedTenantServiceServer) GetTenantDetails(context.Context, *GetTenantDetailsRequest) (*GetTenantDetailsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTenantDetails not implemented")
+}
 func (UnimplementedTenantServiceServer) UpdateTenant(context.Context, *UpdateTenantRequest) (*UpdateTenantResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTenant not implemented")
-}
-func (UnimplementedTenantServiceServer) EnableVariableMac(context.Context, *EnableVariableMacRequest) (*VariableMacResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method EnableVariableMac not implemented")
-}
-func (UnimplementedTenantServiceServer) DisableVariableMac(context.Context, *DisableVariableMacRequest) (*VariableMacResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DisableVariableMac not implemented")
 }
 func (UnimplementedTenantServiceServer) DeleteTenant(context.Context, *DeleteTenantRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTenant not implemented")
@@ -237,6 +219,24 @@ func _TenantService_GetTenant_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TenantService_GetTenantDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTenantDetailsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TenantServiceServer).GetTenantDetails(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TenantService_GetTenantDetails_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TenantServiceServer).GetTenantDetails(ctx, req.(*GetTenantDetailsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TenantService_UpdateTenant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateTenantRequest)
 	if err := dec(in); err != nil {
@@ -251,42 +251,6 @@ func _TenantService_UpdateTenant_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TenantServiceServer).UpdateTenant(ctx, req.(*UpdateTenantRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TenantService_EnableVariableMac_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EnableVariableMacRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TenantServiceServer).EnableVariableMac(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TenantService_EnableVariableMac_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TenantServiceServer).EnableVariableMac(ctx, req.(*EnableVariableMacRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TenantService_DisableVariableMac_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DisableVariableMacRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TenantServiceServer).DisableVariableMac(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TenantService_DisableVariableMac_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TenantServiceServer).DisableVariableMac(ctx, req.(*DisableVariableMacRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -343,16 +307,12 @@ var TenantService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TenantService_GetTenant_Handler,
 		},
 		{
+			MethodName: "GetTenantDetails",
+			Handler:    _TenantService_GetTenantDetails_Handler,
+		},
+		{
 			MethodName: "UpdateTenant",
 			Handler:    _TenantService_UpdateTenant_Handler,
-		},
-		{
-			MethodName: "EnableVariableMac",
-			Handler:    _TenantService_EnableVariableMac_Handler,
-		},
-		{
-			MethodName: "DisableVariableMac",
-			Handler:    _TenantService_DisableVariableMac_Handler,
 		},
 		{
 			MethodName: "DeleteTenant",

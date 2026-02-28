@@ -20,11 +20,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TenantUserService_AddTenantUser_FullMethodName    = "/api.TenantUserService/AddTenantUser"
-	TenantUserService_GetTenantUser_FullMethodName    = "/api.TenantUserService/GetTenantUser"
-	TenantUserService_UpdateTenantUser_FullMethodName = "/api.TenantUserService/UpdateTenantUser"
-	TenantUserService_DeleteTenantUser_FullMethodName = "/api.TenantUserService/DeleteTenantUser"
-	TenantUserService_ListTenantUsers_FullMethodName  = "/api.TenantUserService/ListTenantUsers"
+	TenantUserService_AddTenantUser_FullMethodName      = "/api.TenantUserService/AddTenantUser"
+	TenantUserService_GetTenantUser_FullMethodName      = "/api.TenantUserService/GetTenantUser"
+	TenantUserService_GetTenantUserCount_FullMethodName = "/api.TenantUserService/GetTenantUserCount"
+	TenantUserService_UpdateTenantUser_FullMethodName   = "/api.TenantUserService/UpdateTenantUser"
+	TenantUserService_DeleteTenantUser_FullMethodName   = "/api.TenantUserService/DeleteTenantUser"
+	TenantUserService_ListTenantUsers_FullMethodName    = "/api.TenantUserService/ListTenantUsers"
 )
 
 // TenantUserServiceClient is the client API for TenantUserService service.
@@ -36,8 +37,10 @@ type TenantUserServiceClient interface {
 	// Add an user to the tenant.
 	// Note: the user must already exist.
 	AddTenantUser(ctx context.Context, in *AddTenantUserRequest, opts ...grpc.CallOption) (*AddTenantUserResponse, error)
-	// Get the the tenant user for the given tenant and user IDs.
+	// Get the tenant user for the given tenant and user IDs.
 	GetTenantUser(ctx context.Context, in *GetTenantUserRequest, opts ...grpc.CallOption) (*GetTenantUserResponse, error)
+	// Get the count of tenant users for the given tenant ID.
+	GetTenantUserCount(ctx context.Context, in *GetTenantUserCountRequest, opts ...grpc.CallOption) (*GetTenantUserCountResponse, error)
 	// Update the given tenant user.
 	UpdateTenantUser(ctx context.Context, in *UpdateTenantUserRequest, opts ...grpc.CallOption) (*UpdateTenantUserResponse, error)
 	// Delete the given tenant user.
@@ -68,6 +71,16 @@ func (c *tenantUserServiceClient) GetTenantUser(ctx context.Context, in *GetTena
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetTenantUserResponse)
 	err := c.cc.Invoke(ctx, TenantUserService_GetTenantUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tenantUserServiceClient) GetTenantUserCount(ctx context.Context, in *GetTenantUserCountRequest, opts ...grpc.CallOption) (*GetTenantUserCountResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTenantUserCountResponse)
+	err := c.cc.Invoke(ctx, TenantUserService_GetTenantUserCount_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -113,8 +126,10 @@ type TenantUserServiceServer interface {
 	// Add an user to the tenant.
 	// Note: the user must already exist.
 	AddTenantUser(context.Context, *AddTenantUserRequest) (*AddTenantUserResponse, error)
-	// Get the the tenant user for the given tenant and user IDs.
+	// Get the tenant user for the given tenant and user IDs.
 	GetTenantUser(context.Context, *GetTenantUserRequest) (*GetTenantUserResponse, error)
+	// Get the count of tenant users for the given tenant ID.
+	GetTenantUserCount(context.Context, *GetTenantUserCountRequest) (*GetTenantUserCountResponse, error)
 	// Update the given tenant user.
 	UpdateTenantUser(context.Context, *UpdateTenantUserRequest) (*UpdateTenantUserResponse, error)
 	// Delete the given tenant user.
@@ -136,6 +151,9 @@ func (UnimplementedTenantUserServiceServer) AddTenantUser(context.Context, *AddT
 }
 func (UnimplementedTenantUserServiceServer) GetTenantUser(context.Context, *GetTenantUserRequest) (*GetTenantUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTenantUser not implemented")
+}
+func (UnimplementedTenantUserServiceServer) GetTenantUserCount(context.Context, *GetTenantUserCountRequest) (*GetTenantUserCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTenantUserCount not implemented")
 }
 func (UnimplementedTenantUserServiceServer) UpdateTenantUser(context.Context, *UpdateTenantUserRequest) (*UpdateTenantUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTenantUser not implemented")
@@ -199,6 +217,24 @@ func _TenantUserService_GetTenantUser_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TenantUserServiceServer).GetTenantUser(ctx, req.(*GetTenantUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TenantUserService_GetTenantUserCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTenantUserCountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TenantUserServiceServer).GetTenantUserCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TenantUserService_GetTenantUserCount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TenantUserServiceServer).GetTenantUserCount(ctx, req.(*GetTenantUserCountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -271,6 +307,10 @@ var TenantUserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTenantUser",
 			Handler:    _TenantUserService_GetTenantUser_Handler,
+		},
+		{
+			MethodName: "GetTenantUserCount",
+			Handler:    _TenantUserService_GetTenantUserCount_Handler,
 		},
 		{
 			MethodName: "UpdateTenantUser",

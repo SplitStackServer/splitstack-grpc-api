@@ -1,8 +1,8 @@
-.PHONY: common bs api
+.PHONY: all common bs api stream
 
 PROTOC_ARGS := -I=../proto --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative
 
-all: common bs api
+all: common bs api stream
 
 common:
 	protoc ${PROTOC_ARGS} common/common.proto
@@ -27,3 +27,7 @@ api:
 	protoc ${PROTOC_ARGS} api/tenant.proto
 	protoc ${PROTOC_ARGS} api/user.proto
 	protoc ${PROTOC_ARGS} api/application_integration.proto
+	protoc ${PROTOC_ARGS} api/stats.proto
+
+stream:
+	protoc ${PROTOC_ARGS} stream/frame.proto

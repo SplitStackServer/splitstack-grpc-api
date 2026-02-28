@@ -27,12 +27,21 @@ service TenantUserService {
     };
   }
 
-  // Get the the tenant user for the given tenant and user IDs.
+  // Get the tenant user for the given tenant and user IDs.
   rpc GetTenantUser(GetTenantUserRequest) returns (GetTenantUserResponse) {
     option (google.api.http) = {
       get : "/api/tenants/{tenant_id}/users/{user_id}"
     };
   }
+
+  // Get the count of tenant users for the given tenant ID.
+  rpc GetTenantUserCount(GetTenantUserCountRequest) returns (GetTenantUserCountResponse) {
+    option (google.api.http) = {
+      get : "/api/tenants/{tenant_id}/users/count"
+    };
+  }
+
+
 
   // Update the given tenant user.
   rpc UpdateTenantUser(UpdateTenantUserRequest) returns (UpdateTenantUserResponse) {
@@ -140,6 +149,8 @@ message GetTenantUserRequest {
   string user_id = 2;
 }
 
+
+
 message GetTenantUserResponse {
   // Tenant user object.
   TenantUser tenant_user = 1;
@@ -150,6 +161,22 @@ message GetTenantUserResponse {
   // Last update timestamp.
   google.protobuf.Timestamp updated_at = 3;
 }
+
+message GetTenantUserCountRequest {
+  // Tenant ID (UUID).
+  string tenant_id = 1;
+}
+
+message GetTenantUserCountResponse {
+  // Tenant ID (UUID).
+  string tenant_id = 1;
+
+  // User counts for the tenant. 
+  //
+  // Only available for global admin or tenant admin users or  API keys. 
+  TenantUserCount tenant_user_count = 2;
+}
+
 
 message UpdateTenantUserRequest {
   // Tenant ID (UUID).

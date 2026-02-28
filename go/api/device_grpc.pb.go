@@ -8,6 +8,7 @@ package api
 
 import (
 	context "context"
+	stream "github.com/SplitStackServer/splitstack-grpc-api/go/stream"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,12 +21,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DeviceService_CreateDevice_FullMethodName     = "/api.DeviceService/CreateDevice"
-	DeviceService_GetDevice_FullMethodName        = "/api.DeviceService/GetDevice"
-	DeviceService_UpdateDevice_FullMethodName     = "/api.DeviceService/UpdateDevice"
-	DeviceService_DeleteDevice_FullMethodName     = "/api.DeviceService/DeleteDevice"
-	DeviceService_ListDevices_FullMethodName      = "/api.DeviceService/ListDevices"
-	DeviceService_GetDeviceMetrics_FullMethodName = "/api.DeviceService/GetDeviceMetrics"
+	DeviceService_CreateDevice_FullMethodName       = "/api.DeviceService/CreateDevice"
+	DeviceService_GetDevice_FullMethodName          = "/api.DeviceService/GetDevice"
+	DeviceService_UpdateDevice_FullMethodName       = "/api.DeviceService/UpdateDevice"
+	DeviceService_DeleteDevice_FullMethodName       = "/api.DeviceService/DeleteDevice"
+	DeviceService_ListDevices_FullMethodName        = "/api.DeviceService/ListDevices"
+	DeviceService_GetDeviceMetrics_FullMethodName   = "/api.DeviceService/GetDeviceMetrics"
+	DeviceService_StreamDeviceFrames_FullMethodName = "/api.DeviceService/StreamDeviceFrames"
 )
 
 // DeviceServiceClient is the client API for DeviceService service.
@@ -48,6 +50,8 @@ type DeviceServiceClient interface {
 	// Note that this requires a device-profile with codec and measurements
 	// configured.
 	GetDeviceMetrics(ctx context.Context, in *GetDeviceMetricsRequest, opts ...grpc.CallOption) (*GetDeviceMetricsResponse, error)
+	// Returns a stream of frames for the given device ID.
+	StreamDeviceFrames(ctx context.Context, in *StreamDeviceFramesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[stream.FrameLogItem], error)
 }
 
 type deviceServiceClient struct {
@@ -118,6 +122,25 @@ func (c *deviceServiceClient) GetDeviceMetrics(ctx context.Context, in *GetDevic
 	return out, nil
 }
 
+func (c *deviceServiceClient) StreamDeviceFrames(ctx context.Context, in *StreamDeviceFramesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[stream.FrameLogItem], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &DeviceService_ServiceDesc.Streams[0], DeviceService_StreamDeviceFrames_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[StreamDeviceFramesRequest, stream.FrameLogItem]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type DeviceService_StreamDeviceFramesClient = grpc.ServerStreamingClient[stream.FrameLogItem]
+
 // DeviceServiceServer is the server API for DeviceService service.
 // All implementations must embed UnimplementedDeviceServiceServer
 // for forward compatibility.
@@ -138,6 +161,8 @@ type DeviceServiceServer interface {
 	// Note that this requires a device-profile with codec and measurements
 	// configured.
 	GetDeviceMetrics(context.Context, *GetDeviceMetricsRequest) (*GetDeviceMetricsResponse, error)
+	// Returns a stream of frames for the given device ID.
+	StreamDeviceFrames(*StreamDeviceFramesRequest, grpc.ServerStreamingServer[stream.FrameLogItem]) error
 	mustEmbedUnimplementedDeviceServiceServer()
 }
 
@@ -165,6 +190,9 @@ func (UnimplementedDeviceServiceServer) ListDevices(context.Context, *ListDevice
 }
 func (UnimplementedDeviceServiceServer) GetDeviceMetrics(context.Context, *GetDeviceMetricsRequest) (*GetDeviceMetricsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceMetrics not implemented")
+}
+func (UnimplementedDeviceServiceServer) StreamDeviceFrames(*StreamDeviceFramesRequest, grpc.ServerStreamingServer[stream.FrameLogItem]) error {
+	return status.Errorf(codes.Unimplemented, "method StreamDeviceFrames not implemented")
 }
 func (UnimplementedDeviceServiceServer) mustEmbedUnimplementedDeviceServiceServer() {}
 func (UnimplementedDeviceServiceServer) testEmbeddedByValue()                       {}
@@ -295,6 +323,17 @@ func _DeviceService_GetDeviceMetrics_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceService_StreamDeviceFrames_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(StreamDeviceFramesRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(DeviceServiceServer).StreamDeviceFrames(m, &grpc.GenericServerStream[StreamDeviceFramesRequest, stream.FrameLogItem]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type DeviceService_StreamDeviceFramesServer = grpc.ServerStreamingServer[stream.FrameLogItem]
+
 // DeviceService_ServiceDesc is the grpc.ServiceDesc for DeviceService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -327,6 +366,12 @@ var DeviceService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DeviceService_GetDeviceMetrics_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "StreamDeviceFrames",
+			Handler:       _DeviceService_StreamDeviceFrames_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "api/device.proto",
 }
