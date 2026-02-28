@@ -171,18 +171,10 @@ message GetTenantUserCountResponse {
   // Tenant ID (UUID).
   string tenant_id = 1;
 
-  // Count of tenant users. 
-  // Note: this includes all tenant users, regardless of their privileges.
-  uint64 user_count = 2;
-
-  // Count of tenant users with admin privileges.
-  uint64 admin_count = 3;
-
-  // Count of tenant users with end-node admin privileges.
-  uint64 endnode_admin_count = 4;
-
-  // Count of tenant users with basestation admin privileges.
-  uint64 basestation_admin_count = 5;
+  // User counts for the tenant. 
+  //
+  // Only available for global admin or tenant admin users or  API keys. 
+  TenantUserCount tenant_user_count = 2;
 }
 
 
