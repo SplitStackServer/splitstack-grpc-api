@@ -8,6 +8,7 @@ package api
 
 import (
 	common "github.com/SplitStackServer/splitstack-grpc-api/go/common"
+	stream "github.com/SplitStackServer/splitstack-grpc-api/go/stream"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -1285,7 +1286,11 @@ type GetBasestationMetricsResponse struct {
 	// System temperature in degree Celsius.
 	Temp *common.Metric `protobuf:"bytes,4,opt,name=temp,proto3" json:"temp,omitempty"`
 	// Fraction of TX time, sliding window over one hour
-	DutyCycle     *common.Metric `protobuf:"bytes,5,opt,name=duty_cycle,json=dutyCycle,proto3" json:"duty_cycle,omitempty"`
+	DutyCycle *common.Metric `protobuf:"bytes,5,opt,name=duty_cycle,json=dutyCycle,proto3" json:"duty_cycle,omitempty"`
+	// Number of received messages.
+	RxCount *common.Metric `protobuf:"bytes,6,opt,name=rx_count,json=rxCount,proto3" json:"rx_count,omitempty"`
+	// Number of received variable mac messages.
+	RxVmCount     *common.Metric `protobuf:"bytes,7,opt,name=rx_vm_count,json=rxVmCount,proto3" json:"rx_vm_count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1355,11 +1360,70 @@ func (x *GetBasestationMetricsResponse) GetDutyCycle() *common.Metric {
 	return nil
 }
 
+func (x *GetBasestationMetricsResponse) GetRxCount() *common.Metric {
+	if x != nil {
+		return x.RxCount
+	}
+	return nil
+}
+
+func (x *GetBasestationMetricsResponse) GetRxVmCount() *common.Metric {
+	if x != nil {
+		return x.RxVmCount
+	}
+	return nil
+}
+
+type StreamBasestationFramesRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Basestation ID (UUID).
+	Id            string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StreamBasestationFramesRequest) Reset() {
+	*x = StreamBasestationFramesRequest{}
+	mi := &file_api_basestation_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StreamBasestationFramesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StreamBasestationFramesRequest) ProtoMessage() {}
+
+func (x *StreamBasestationFramesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_basestation_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StreamBasestationFramesRequest.ProtoReflect.Descriptor instead.
+func (*StreamBasestationFramesRequest) Descriptor() ([]byte, []int) {
+	return file_api_basestation_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *StreamBasestationFramesRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
 var File_api_basestation_proto protoreflect.FileDescriptor
 
 const file_api_basestation_proto_rawDesc = "" +
 	"\n" +
-	"\x15api/basestation.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x10api/common.proto\x1a\x13common/common.proto\x1a\x14common/metrics.proto\"\xbe\x03\n" +
+	"\x15api/basestation.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x10api/common.proto\x1a\x13common/common.proto\x1a\x14common/metrics.proto\x1a\x12stream/frame.proto\"\xbe\x03\n" +
 	"\vBasestation\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
 	"\x03eui\x18\x02 \x01(\tR\x03eui\x12\x12\n" +
@@ -1489,21 +1553,25 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x120\n" +
 	"\x05start\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x05start\x12,\n" +
 	"\x03end\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x03end\x125\n" +
-	"\vaggregation\x18\x04 \x01(\x0e2\x13.common.AggregationR\vaggregation\"\xe4\x01\n" +
+	"\vaggregation\x18\x04 \x01(\x0e2\x13.common.AggregationR\vaggregation\"\xbf\x02\n" +
 	"\x1dGetBasestationMetricsResponse\x12&\n" +
 	"\x06uptime\x18\x01 \x01(\v2\x0e.common.MetricR\x06uptime\x12 \n" +
 	"\x03cpu\x18\x02 \x01(\v2\x0e.common.MetricR\x03cpu\x12&\n" +
 	"\x06memory\x18\x03 \x01(\v2\x0e.common.MetricR\x06memory\x12\"\n" +
 	"\x04temp\x18\x04 \x01(\v2\x0e.common.MetricR\x04temp\x12-\n" +
 	"\n" +
-	"duty_cycle\x18\x05 \x01(\v2\x0e.common.MetricR\tdutyCycle*I\n" +
+	"duty_cycle\x18\x05 \x01(\v2\x0e.common.MetricR\tdutyCycle\x12)\n" +
+	"\brx_count\x18\x06 \x01(\v2\x0e.common.MetricR\arxCount\x12.\n" +
+	"\vrx_vm_count\x18\a \x01(\v2\x0e.common.MetricR\trxVmCount\"0\n" +
+	"\x1eStreamBasestationFramesRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id*I\n" +
 	"\x10BasestationState\x12\x0e\n" +
 	"\n" +
 	"NEVER_SEEN\x10\x00\x12\n" +
 	"\n" +
 	"\x06ONLINE\x10\x01\x12\v\n" +
 	"\aOFFLINE\x10\x02\x12\f\n" +
-	"\bINACTIVE\x10\x032\x83\a\n" +
+	"\bINACTIVE\x10\x032\x82\b\n" +
 	"\x12BasestationService\x12p\n" +
 	"\x11CreateBasestation\x12\x1d.api.CreateBasestationRequest\x1a\x1e.api.CreateBasestationResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/api/basestations\x12i\n" +
 	"\x0eGetBasestation\x12\x1a.api.GetBasestationRequest\x1a\x1b.api.GetBasestationResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/api/basestations/{id}\x12u\n" +
@@ -1511,7 +1579,8 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\x11DeleteBasestation\x12\x1d.api.DeleteBasestationRequest\x1a\x16.google.protobuf.Empty\"\x1e\x82\xd3\xe4\x93\x02\x18*\x16/api/basestations/{id}\x12j\n" +
 	"\x10ListBasestations\x12\x1c.api.ListBasestationsRequest\x1a\x1d.api.ListBasestationsResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/basestations\x12\xb7\x01\n" +
 	"$GenerateBasestationClientCertificate\x120.api.GenerateBasestationClientCertificateRequest\x1a1.api.GenerateBasestationClientCertificateResponse\"*\x82\xd3\xe4\x93\x02$\"\"/api/basestations/{id}/certificate\x12\x86\x01\n" +
-	"\x15GetBasestationMetrics\x12!.api.GetBasestationMetricsRequest\x1a\".api.GetBasestationMetricsResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/basestations/{id}/metricsB\xb0\x01\n" +
+	"\x15GetBasestationMetrics\x12!.api.GetBasestationMetricsRequest\x1a\".api.GetBasestationMetricsResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/basestations/{id}/metrics\x12}\n" +
+	"\x17StreamBasestationFrames\x12#.api.StreamBasestationFramesRequest\x1a\x14.stream.FrameLogItem\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/basestations/{id}/frames0\x01B\xb0\x01\n" +
 	"\x11io.splitstack.apiB\x10BasestationProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/go/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 
 var (
@@ -1527,7 +1596,7 @@ func file_api_basestation_proto_rawDescGZIP() []byte {
 }
 
 var file_api_basestation_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_api_basestation_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_api_basestation_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_api_basestation_proto_goTypes = []any{
 	(BasestationState)(0),                                // 0: api.BasestationState
 	(ListBasestationsRequest_OrderBy)(0),                 // 1: api.ListBasestationsRequest.OrderBy
@@ -1547,72 +1616,78 @@ var file_api_basestation_proto_goTypes = []any{
 	(*GenerateBasestationClientCertificateResponse)(nil), // 15: api.GenerateBasestationClientCertificateResponse
 	(*GetBasestationMetricsRequest)(nil),                 // 16: api.GetBasestationMetricsRequest
 	(*GetBasestationMetricsResponse)(nil),                // 17: api.GetBasestationMetricsResponse
-	(*common.GeoLocation)(nil),                           // 18: common.GeoLocation
-	(*common.Tags)(nil),                                  // 19: common.Tags
-	(*timestamppb.Timestamp)(nil),                        // 20: google.protobuf.Timestamp
-	(*Paginator)(nil),                                    // 21: api.Paginator
-	(*Pagination)(nil),                                   // 22: api.Pagination
-	(common.Aggregation)(0),                              // 23: common.Aggregation
-	(*common.Metric)(nil),                                // 24: common.Metric
-	(*emptypb.Empty)(nil),                                // 25: google.protobuf.Empty
+	(*StreamBasestationFramesRequest)(nil),               // 18: api.StreamBasestationFramesRequest
+	(*common.GeoLocation)(nil),                           // 19: common.GeoLocation
+	(*common.Tags)(nil),                                  // 20: common.Tags
+	(*timestamppb.Timestamp)(nil),                        // 21: google.protobuf.Timestamp
+	(*Paginator)(nil),                                    // 22: api.Paginator
+	(*Pagination)(nil),                                   // 23: api.Pagination
+	(common.Aggregation)(0),                              // 24: common.Aggregation
+	(*common.Metric)(nil),                                // 25: common.Metric
+	(*emptypb.Empty)(nil),                                // 26: google.protobuf.Empty
+	(*stream.FrameLogItem)(nil),                          // 27: stream.FrameLogItem
 }
 var file_api_basestation_proto_depIdxs = []int32{
-	18, // 0: api.Basestation.location:type_name -> common.GeoLocation
+	19, // 0: api.Basestation.location:type_name -> common.GeoLocation
 	4,  // 1: api.Basestation.metadata:type_name -> api.BasestationMetadata
-	19, // 2: api.Basestation.tags:type_name -> common.Tags
+	20, // 2: api.Basestation.tags:type_name -> common.Tags
 	0,  // 3: api.Basestation.state:type_name -> api.BasestationState
-	18, // 4: api.BasestationListItem.location:type_name -> common.GeoLocation
+	19, // 4: api.BasestationListItem.location:type_name -> common.GeoLocation
 	4,  // 5: api.BasestationListItem.metadata:type_name -> api.BasestationMetadata
-	20, // 6: api.BasestationListItem.created_at:type_name -> google.protobuf.Timestamp
-	20, // 7: api.BasestationListItem.updated_at:type_name -> google.protobuf.Timestamp
-	20, // 8: api.BasestationListItem.last_seen_at:type_name -> google.protobuf.Timestamp
+	21, // 6: api.BasestationListItem.created_at:type_name -> google.protobuf.Timestamp
+	21, // 7: api.BasestationListItem.updated_at:type_name -> google.protobuf.Timestamp
+	21, // 8: api.BasestationListItem.last_seen_at:type_name -> google.protobuf.Timestamp
 	0,  // 9: api.BasestationListItem.state:type_name -> api.BasestationState
-	18, // 10: api.CreateBasestationRequest.location:type_name -> common.GeoLocation
-	19, // 11: api.CreateBasestationRequest.tags:type_name -> common.Tags
+	19, // 10: api.CreateBasestationRequest.location:type_name -> common.GeoLocation
+	20, // 11: api.CreateBasestationRequest.tags:type_name -> common.Tags
 	2,  // 12: api.CreateBasestationResponse.basestation:type_name -> api.Basestation
-	20, // 13: api.CreateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
+	21, // 13: api.CreateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
 	2,  // 14: api.GetBasestationResponse.basestation:type_name -> api.Basestation
-	20, // 15: api.GetBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
-	20, // 16: api.GetBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	20, // 17: api.GetBasestationResponse.last_seen_at:type_name -> google.protobuf.Timestamp
-	18, // 18: api.UpdateBasestationRequest.location:type_name -> common.GeoLocation
-	19, // 19: api.UpdateBasestationRequest.tags:type_name -> common.Tags
+	21, // 15: api.GetBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
+	21, // 16: api.GetBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	21, // 17: api.GetBasestationResponse.last_seen_at:type_name -> google.protobuf.Timestamp
+	19, // 18: api.UpdateBasestationRequest.location:type_name -> common.GeoLocation
+	20, // 19: api.UpdateBasestationRequest.tags:type_name -> common.Tags
 	2,  // 20: api.UpdateBasestationResponse.basestation:type_name -> api.Basestation
-	20, // 21: api.UpdateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
-	20, // 22: api.UpdateBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	21, // 23: api.ListBasestationsRequest.paginator:type_name -> api.Paginator
-	19, // 24: api.ListBasestationsRequest.tags:type_name -> common.Tags
+	21, // 21: api.UpdateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
+	21, // 22: api.UpdateBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	22, // 23: api.ListBasestationsRequest.paginator:type_name -> api.Paginator
+	20, // 24: api.ListBasestationsRequest.tags:type_name -> common.Tags
 	1,  // 25: api.ListBasestationsRequest.order_by:type_name -> api.ListBasestationsRequest.OrderBy
-	22, // 26: api.ListBasestationsResponse.pagination:type_name -> api.Pagination
+	23, // 26: api.ListBasestationsResponse.pagination:type_name -> api.Pagination
 	3,  // 27: api.ListBasestationsResponse.result:type_name -> api.BasestationListItem
-	20, // 28: api.GenerateBasestationClientCertificateResponse.expires_at:type_name -> google.protobuf.Timestamp
-	20, // 29: api.GetBasestationMetricsRequest.start:type_name -> google.protobuf.Timestamp
-	20, // 30: api.GetBasestationMetricsRequest.end:type_name -> google.protobuf.Timestamp
-	23, // 31: api.GetBasestationMetricsRequest.aggregation:type_name -> common.Aggregation
-	24, // 32: api.GetBasestationMetricsResponse.uptime:type_name -> common.Metric
-	24, // 33: api.GetBasestationMetricsResponse.cpu:type_name -> common.Metric
-	24, // 34: api.GetBasestationMetricsResponse.memory:type_name -> common.Metric
-	24, // 35: api.GetBasestationMetricsResponse.temp:type_name -> common.Metric
-	24, // 36: api.GetBasestationMetricsResponse.duty_cycle:type_name -> common.Metric
-	5,  // 37: api.BasestationService.CreateBasestation:input_type -> api.CreateBasestationRequest
-	7,  // 38: api.BasestationService.GetBasestation:input_type -> api.GetBasestationRequest
-	9,  // 39: api.BasestationService.UpdateBasestation:input_type -> api.UpdateBasestationRequest
-	11, // 40: api.BasestationService.DeleteBasestation:input_type -> api.DeleteBasestationRequest
-	12, // 41: api.BasestationService.ListBasestations:input_type -> api.ListBasestationsRequest
-	14, // 42: api.BasestationService.GenerateBasestationClientCertificate:input_type -> api.GenerateBasestationClientCertificateRequest
-	16, // 43: api.BasestationService.GetBasestationMetrics:input_type -> api.GetBasestationMetricsRequest
-	6,  // 44: api.BasestationService.CreateBasestation:output_type -> api.CreateBasestationResponse
-	8,  // 45: api.BasestationService.GetBasestation:output_type -> api.GetBasestationResponse
-	10, // 46: api.BasestationService.UpdateBasestation:output_type -> api.UpdateBasestationResponse
-	25, // 47: api.BasestationService.DeleteBasestation:output_type -> google.protobuf.Empty
-	13, // 48: api.BasestationService.ListBasestations:output_type -> api.ListBasestationsResponse
-	15, // 49: api.BasestationService.GenerateBasestationClientCertificate:output_type -> api.GenerateBasestationClientCertificateResponse
-	17, // 50: api.BasestationService.GetBasestationMetrics:output_type -> api.GetBasestationMetricsResponse
-	44, // [44:51] is the sub-list for method output_type
-	37, // [37:44] is the sub-list for method input_type
-	37, // [37:37] is the sub-list for extension type_name
-	37, // [37:37] is the sub-list for extension extendee
-	0,  // [0:37] is the sub-list for field type_name
+	21, // 28: api.GenerateBasestationClientCertificateResponse.expires_at:type_name -> google.protobuf.Timestamp
+	21, // 29: api.GetBasestationMetricsRequest.start:type_name -> google.protobuf.Timestamp
+	21, // 30: api.GetBasestationMetricsRequest.end:type_name -> google.protobuf.Timestamp
+	24, // 31: api.GetBasestationMetricsRequest.aggregation:type_name -> common.Aggregation
+	25, // 32: api.GetBasestationMetricsResponse.uptime:type_name -> common.Metric
+	25, // 33: api.GetBasestationMetricsResponse.cpu:type_name -> common.Metric
+	25, // 34: api.GetBasestationMetricsResponse.memory:type_name -> common.Metric
+	25, // 35: api.GetBasestationMetricsResponse.temp:type_name -> common.Metric
+	25, // 36: api.GetBasestationMetricsResponse.duty_cycle:type_name -> common.Metric
+	25, // 37: api.GetBasestationMetricsResponse.rx_count:type_name -> common.Metric
+	25, // 38: api.GetBasestationMetricsResponse.rx_vm_count:type_name -> common.Metric
+	5,  // 39: api.BasestationService.CreateBasestation:input_type -> api.CreateBasestationRequest
+	7,  // 40: api.BasestationService.GetBasestation:input_type -> api.GetBasestationRequest
+	9,  // 41: api.BasestationService.UpdateBasestation:input_type -> api.UpdateBasestationRequest
+	11, // 42: api.BasestationService.DeleteBasestation:input_type -> api.DeleteBasestationRequest
+	12, // 43: api.BasestationService.ListBasestations:input_type -> api.ListBasestationsRequest
+	14, // 44: api.BasestationService.GenerateBasestationClientCertificate:input_type -> api.GenerateBasestationClientCertificateRequest
+	16, // 45: api.BasestationService.GetBasestationMetrics:input_type -> api.GetBasestationMetricsRequest
+	18, // 46: api.BasestationService.StreamBasestationFrames:input_type -> api.StreamBasestationFramesRequest
+	6,  // 47: api.BasestationService.CreateBasestation:output_type -> api.CreateBasestationResponse
+	8,  // 48: api.BasestationService.GetBasestation:output_type -> api.GetBasestationResponse
+	10, // 49: api.BasestationService.UpdateBasestation:output_type -> api.UpdateBasestationResponse
+	26, // 50: api.BasestationService.DeleteBasestation:output_type -> google.protobuf.Empty
+	13, // 51: api.BasestationService.ListBasestations:output_type -> api.ListBasestationsResponse
+	15, // 52: api.BasestationService.GenerateBasestationClientCertificate:output_type -> api.GenerateBasestationClientCertificateResponse
+	17, // 53: api.BasestationService.GetBasestationMetrics:output_type -> api.GetBasestationMetricsResponse
+	27, // 54: api.BasestationService.StreamBasestationFrames:output_type -> stream.FrameLogItem
+	47, // [47:55] is the sub-list for method output_type
+	39, // [39:47] is the sub-list for method input_type
+	39, // [39:39] is the sub-list for extension type_name
+	39, // [39:39] is the sub-list for extension extendee
+	0,  // [0:39] is the sub-list for field type_name
 }
 
 func init() { file_api_basestation_proto_init() }
@@ -1634,7 +1709,7 @@ func file_api_basestation_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_basestation_proto_rawDesc), len(file_api_basestation_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   16,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

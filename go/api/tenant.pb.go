@@ -586,10 +586,12 @@ type UpdateTenantRequest struct {
 	// Private devices.
 	// If enabled, then devices will not be shared with other tenants and will not be attached to their basestations.
 	PrivateDevices *bool `protobuf:"varint,8,opt,name=private_devices,json=privateDevices,proto3,oneof" json:"private_devices,omitempty"`
+	// List of variable MACs to be enabled for the tenant.
+	VariableMacEnabled *VariableMacList `protobuf:"bytes,9,opt,name=variable_mac_enabled,json=variableMacEnabled,proto3,oneof" json:"variable_mac_enabled,omitempty"`
 	// Tags (user defined).
 	// These tags can be used to add additional information to the tenant. These
 	// tags are NOT exposed in the integration events.
-	Tags          *common.Tags `protobuf:"bytes,9,opt,name=tags,proto3,oneof" json:"tags,omitempty"`
+	Tags          *common.Tags `protobuf:"bytes,10,opt,name=tags,proto3,oneof" json:"tags,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -680,6 +682,13 @@ func (x *UpdateTenantRequest) GetPrivateDevices() bool {
 	return false
 }
 
+func (x *UpdateTenantRequest) GetVariableMacEnabled() *VariableMacList {
+	if x != nil {
+		return x.VariableMacEnabled
+	}
+	return nil
+}
+
 func (x *UpdateTenantRequest) GetTags() *common.Tags {
 	if x != nil {
 		return x.Tags
@@ -750,168 +759,6 @@ func (x *UpdateTenantResponse) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-type EnableVariableMacRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Tenant ID (UUID).
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// Variable MAC to enable for the tenant. See ETSI TS 103 357-2 Table 4-57
-	Vm            uint32 `protobuf:"varint,2,opt,name=vm,proto3" json:"vm,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EnableVariableMacRequest) Reset() {
-	*x = EnableVariableMacRequest{}
-	mi := &file_api_tenant_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EnableVariableMacRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EnableVariableMacRequest) ProtoMessage() {}
-
-func (x *EnableVariableMacRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_tenant_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EnableVariableMacRequest.ProtoReflect.Descriptor instead.
-func (*EnableVariableMacRequest) Descriptor() ([]byte, []int) {
-	return file_api_tenant_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *EnableVariableMacRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *EnableVariableMacRequest) GetVm() uint32 {
-	if x != nil {
-		return x.Vm
-	}
-	return 0
-}
-
-type DisableVariableMacRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Tenant ID (UUID).
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// Variable MAC to disable for the tenant. See ETSI TS 103 357-2 Table 4-57
-	Vm            uint32 `protobuf:"varint,2,opt,name=vm,proto3" json:"vm,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DisableVariableMacRequest) Reset() {
-	*x = DisableVariableMacRequest{}
-	mi := &file_api_tenant_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DisableVariableMacRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DisableVariableMacRequest) ProtoMessage() {}
-
-func (x *DisableVariableMacRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_tenant_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DisableVariableMacRequest.ProtoReflect.Descriptor instead.
-func (*DisableVariableMacRequest) Descriptor() ([]byte, []int) {
-	return file_api_tenant_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *DisableVariableMacRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *DisableVariableMacRequest) GetVm() uint32 {
-	if x != nil {
-		return x.Vm
-	}
-	return 0
-}
-
-type VariableMacResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Tenant ID (UUID).
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// List of variable MACs enabled for the tenant.
-	Vm            *VariableMacList `protobuf:"bytes,2,opt,name=vm,proto3" json:"vm,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *VariableMacResponse) Reset() {
-	*x = VariableMacResponse{}
-	mi := &file_api_tenant_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *VariableMacResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*VariableMacResponse) ProtoMessage() {}
-
-func (x *VariableMacResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_tenant_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use VariableMacResponse.ProtoReflect.Descriptor instead.
-func (*VariableMacResponse) Descriptor() ([]byte, []int) {
-	return file_api_tenant_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *VariableMacResponse) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *VariableMacResponse) GetVm() *VariableMacList {
-	if x != nil {
-		return x.Vm
-	}
-	return nil
-}
-
 type DeleteTenantRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Tenant ID.
@@ -922,7 +769,7 @@ type DeleteTenantRequest struct {
 
 func (x *DeleteTenantRequest) Reset() {
 	*x = DeleteTenantRequest{}
-	mi := &file_api_tenant_proto_msgTypes[11]
+	mi := &file_api_tenant_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -934,7 +781,7 @@ func (x *DeleteTenantRequest) String() string {
 func (*DeleteTenantRequest) ProtoMessage() {}
 
 func (x *DeleteTenantRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_tenant_proto_msgTypes[11]
+	mi := &file_api_tenant_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -947,7 +794,7 @@ func (x *DeleteTenantRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteTenantRequest.ProtoReflect.Descriptor instead.
 func (*DeleteTenantRequest) Descriptor() ([]byte, []int) {
-	return file_api_tenant_proto_rawDescGZIP(), []int{11}
+	return file_api_tenant_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *DeleteTenantRequest) GetId() string {
@@ -972,7 +819,7 @@ type ListTenantsRequest struct {
 
 func (x *ListTenantsRequest) Reset() {
 	*x = ListTenantsRequest{}
-	mi := &file_api_tenant_proto_msgTypes[12]
+	mi := &file_api_tenant_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -984,7 +831,7 @@ func (x *ListTenantsRequest) String() string {
 func (*ListTenantsRequest) ProtoMessage() {}
 
 func (x *ListTenantsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_tenant_proto_msgTypes[12]
+	mi := &file_api_tenant_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -997,7 +844,7 @@ func (x *ListTenantsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTenantsRequest.ProtoReflect.Descriptor instead.
 func (*ListTenantsRequest) Descriptor() ([]byte, []int) {
-	return file_api_tenant_proto_rawDescGZIP(), []int{12}
+	return file_api_tenant_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ListTenantsRequest) GetPaginator() *Paginator {
@@ -1033,7 +880,7 @@ type ListTenantsResponse struct {
 
 func (x *ListTenantsResponse) Reset() {
 	*x = ListTenantsResponse{}
-	mi := &file_api_tenant_proto_msgTypes[13]
+	mi := &file_api_tenant_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1045,7 +892,7 @@ func (x *ListTenantsResponse) String() string {
 func (*ListTenantsResponse) ProtoMessage() {}
 
 func (x *ListTenantsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_tenant_proto_msgTypes[13]
+	mi := &file_api_tenant_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1058,7 +905,7 @@ func (x *ListTenantsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTenantsResponse.ProtoReflect.Descriptor instead.
 func (*ListTenantsResponse) Descriptor() ([]byte, []int) {
-	return file_api_tenant_proto_rawDescGZIP(), []int{13}
+	return file_api_tenant_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ListTenantsResponse) GetPagination() *Pagination {
@@ -1071,6 +918,151 @@ func (x *ListTenantsResponse) GetPagination() *Pagination {
 func (x *ListTenantsResponse) GetResult() []*TenantListItem {
 	if x != nil {
 		return x.Result
+	}
+	return nil
+}
+
+type GetTenantDetailsRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Tenant ID.
+	Id            string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTenantDetailsRequest) Reset() {
+	*x = GetTenantDetailsRequest{}
+	mi := &file_api_tenant_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetTenantDetailsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTenantDetailsRequest) ProtoMessage() {}
+
+func (x *GetTenantDetailsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_tenant_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTenantDetailsRequest.ProtoReflect.Descriptor instead.
+func (*GetTenantDetailsRequest) Descriptor() ([]byte, []int) {
+	return file_api_tenant_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *GetTenantDetailsRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type GetTenantDetailsResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Tenant ID.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// User counts for the tenant.
+	//
+	// Only available for global admin or tenant admin users or  API keys.
+	TenantUserCount *TenantUserCount `protobuf:"bytes,2,opt,name=tenant_user_count,json=tenantUserCount,proto3" json:"tenant_user_count,omitempty"`
+	// Basestation counts for the tenant.
+	//
+	// Only available for global admin, tenant admin or basestation admin users or API keys.
+	BasestationCount *BasestationCount `protobuf:"bytes,3,opt,name=basestation_count,json=basestationCount,proto3" json:"basestation_count,omitempty"`
+	// Device profile counts for the tenant.
+	//
+	// Only available for global admin, tenant admin or endnode admin users or API keys.
+	DeviceProfileCount *DeviceProfileCount `protobuf:"bytes,4,opt,name=device_profile_count,json=deviceProfileCount,proto3" json:"device_profile_count,omitempty"`
+	// Application counts for the tenant.
+	//
+	// Only available for global admin, tenant admin or endnode admin users or API keys.
+	ApplicationCount *ApplicationCount `protobuf:"bytes,5,opt,name=application_count,json=applicationCount,proto3" json:"application_count,omitempty"`
+	// Device counts for the tenant.
+	//
+	// Only available for global admin, tenant admin or endnode admin users or API keys.
+	DeviceCount   *DeviceCount `protobuf:"bytes,6,opt,name=device_count,json=deviceCount,proto3" json:"device_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTenantDetailsResponse) Reset() {
+	*x = GetTenantDetailsResponse{}
+	mi := &file_api_tenant_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetTenantDetailsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTenantDetailsResponse) ProtoMessage() {}
+
+func (x *GetTenantDetailsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_tenant_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTenantDetailsResponse.ProtoReflect.Descriptor instead.
+func (*GetTenantDetailsResponse) Descriptor() ([]byte, []int) {
+	return file_api_tenant_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *GetTenantDetailsResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *GetTenantDetailsResponse) GetTenantUserCount() *TenantUserCount {
+	if x != nil {
+		return x.TenantUserCount
+	}
+	return nil
+}
+
+func (x *GetTenantDetailsResponse) GetBasestationCount() *BasestationCount {
+	if x != nil {
+		return x.BasestationCount
+	}
+	return nil
+}
+
+func (x *GetTenantDetailsResponse) GetDeviceProfileCount() *DeviceProfileCount {
+	if x != nil {
+		return x.DeviceProfileCount
+	}
+	return nil
+}
+
+func (x *GetTenantDetailsResponse) GetApplicationCount() *ApplicationCount {
+	if x != nil {
+		return x.ApplicationCount
+	}
+	return nil
+}
+
+func (x *GetTenantDetailsResponse) GetDeviceCount() *DeviceCount {
+	if x != nil {
+		return x.DeviceCount
 	}
 	return nil
 }
@@ -1131,7 +1123,7 @@ const file_api_tenant_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xab\x04\n" +
+	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\x91\x05\n" +
 	"\x13UpdateTenantRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x12%\n" +
@@ -1140,31 +1132,25 @@ const file_api_tenant_proto_rawDesc = "" +
 	"\x15max_basestation_count\x18\x05 \x01(\rH\x03R\x13maxBasestationCount\x88\x01\x01\x12-\n" +
 	"\x10max_device_count\x18\x06 \x01(\rH\x04R\x0emaxDeviceCount\x88\x01\x01\x126\n" +
 	"\x14private_basestations\x18\a \x01(\bH\x05R\x13privateBasestations\x88\x01\x01\x12,\n" +
-	"\x0fprivate_devices\x18\b \x01(\bH\x06R\x0eprivateDevices\x88\x01\x01\x12%\n" +
-	"\x04tags\x18\t \x01(\v2\f.common.TagsH\aR\x04tags\x88\x01\x01B\a\n" +
+	"\x0fprivate_devices\x18\b \x01(\bH\x06R\x0eprivateDevices\x88\x01\x01\x12K\n" +
+	"\x14variable_mac_enabled\x18\t \x01(\v2\x14.api.VariableMacListH\aR\x12variableMacEnabled\x88\x01\x01\x12%\n" +
+	"\x04tags\x18\n" +
+	" \x01(\v2\f.common.TagsH\bR\x04tags\x88\x01\x01B\a\n" +
 	"\x05_nameB\x0e\n" +
 	"\f_descriptionB\x18\n" +
 	"\x16_can_have_basestationsB\x18\n" +
 	"\x16_max_basestation_countB\x13\n" +
 	"\x11_max_device_countB\x17\n" +
 	"\x15_private_basestationsB\x12\n" +
-	"\x10_private_devicesB\a\n" +
+	"\x10_private_devicesB\x17\n" +
+	"\x15_variable_mac_enabledB\a\n" +
 	"\x05_tags\"\xb1\x01\n" +
 	"\x14UpdateTenantResponse\x12#\n" +
 	"\x06tenant\x18\x01 \x01(\v2\v.api.TenantR\x06tenant\x129\n" +
 	"\n" +
 	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\":\n" +
-	"\x18EnableVariableMacRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x0e\n" +
-	"\x02vm\x18\x02 \x01(\rR\x02vm\";\n" +
-	"\x19DisableVariableMacRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x0e\n" +
-	"\x02vm\x18\x02 \x01(\rR\x02vm\"K\n" +
-	"\x13VariableMacResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12$\n" +
-	"\x02vm\x18\x02 \x01(\v2\x14.api.VariableMacListR\x02vm\"%\n" +
+	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"%\n" +
 	"\x13DeleteTenantRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\xa2\x01\n" +
 	"\x12ListTenantsRequest\x12,\n" +
@@ -1179,13 +1165,21 @@ const file_api_tenant_proto_rawDesc = "" +
 	"\n" +
 	"pagination\x18\x01 \x01(\v2\x0f.api.PaginationR\n" +
 	"pagination\x12+\n" +
-	"\x06result\x18\x02 \x03(\v2\x13.api.TenantListItemR\x06result2\xe0\x05\n" +
+	"\x06result\x18\x02 \x03(\v2\x13.api.TenantListItemR\x06result\")\n" +
+	"\x17GetTenantDetailsRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\xf4\x02\n" +
+	"\x18GetTenantDetailsResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12@\n" +
+	"\x11tenant_user_count\x18\x02 \x01(\v2\x14.api.TenantUserCountR\x0ftenantUserCount\x12B\n" +
+	"\x11basestation_count\x18\x03 \x01(\v2\x15.api.BasestationCountR\x10basestationCount\x12I\n" +
+	"\x14device_profile_count\x18\x04 \x01(\v2\x17.api.DeviceProfileCountR\x12deviceProfileCount\x12B\n" +
+	"\x11application_count\x18\x05 \x01(\v2\x15.api.ApplicationCountR\x10applicationCount\x123\n" +
+	"\fdevice_count\x18\x06 \x01(\v2\x10.api.DeviceCountR\vdeviceCount2\xd0\x04\n" +
 	"\rTenantService\x12\\\n" +
 	"\fCreateTenant\x12\x18.api.CreateTenantRequest\x1a\x19.api.CreateTenantResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/api/tenants\x12U\n" +
-	"\tGetTenant\x12\x15.api.GetTenantRequest\x1a\x16.api.GetTenantResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/tenants/{id}\x12a\n" +
-	"\fUpdateTenant\x12\x18.api.UpdateTenantRequest\x1a\x19.api.UpdateTenantResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\x1a\x11/api/tenants/{id}\x12~\n" +
-	"\x11EnableVariableMac\x12\x1d.api.EnableVariableMacRequest\x1a\x18.api.VariableMacResponse\"0\x82\xd3\xe4\x93\x02*:\x01*\"%/api/tenants/{id}/variable-mac/enable\x12\x81\x01\n" +
-	"\x12DisableVariableMac\x12\x1e.api.DisableVariableMacRequest\x1a\x18.api.VariableMacResponse\"1\x82\xd3\xe4\x93\x02+:\x01*\"&/api/tenants/{id}/variable-mac/disable\x12[\n" +
+	"\tGetTenant\x12\x15.api.GetTenantRequest\x1a\x16.api.GetTenantResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/tenants/{id}\x12r\n" +
+	"\x10GetTenantDetails\x12\x1c.api.GetTenantDetailsRequest\x1a\x1d.api.GetTenantDetailsResponse\"!\x82\xd3\xe4\x93\x02\x1b\x12\x19/api/tenants/{id}/details\x12a\n" +
+	"\fUpdateTenant\x12\x18.api.UpdateTenantRequest\x1a\x19.api.UpdateTenantResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\x1a\x11/api/tenants/{id}\x12[\n" +
 	"\fDeleteTenant\x12\x18.api.DeleteTenantRequest\x1a\x16.google.protobuf.Empty\"\x19\x82\xd3\xe4\x93\x02\x13*\x11/api/tenants/{id}\x12V\n" +
 	"\vListTenants\x12\x17.api.ListTenantsRequest\x1a\x18.api.ListTenantsResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/api/tenantsB\xab\x01\n" +
 	"\x11io.splitstack.apiB\vTenantProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/go/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
@@ -1202,68 +1196,75 @@ func file_api_tenant_proto_rawDescGZIP() []byte {
 	return file_api_tenant_proto_rawDescData
 }
 
-var file_api_tenant_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_api_tenant_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_api_tenant_proto_goTypes = []any{
-	(*Tenant)(nil),                    // 0: api.Tenant
-	(*TenantListItem)(nil),            // 1: api.TenantListItem
-	(*CreateTenantRequest)(nil),       // 2: api.CreateTenantRequest
-	(*CreateTenantResponse)(nil),      // 3: api.CreateTenantResponse
-	(*GetTenantRequest)(nil),          // 4: api.GetTenantRequest
-	(*GetTenantResponse)(nil),         // 5: api.GetTenantResponse
-	(*UpdateTenantRequest)(nil),       // 6: api.UpdateTenantRequest
-	(*UpdateTenantResponse)(nil),      // 7: api.UpdateTenantResponse
-	(*EnableVariableMacRequest)(nil),  // 8: api.EnableVariableMacRequest
-	(*DisableVariableMacRequest)(nil), // 9: api.DisableVariableMacRequest
-	(*VariableMacResponse)(nil),       // 10: api.VariableMacResponse
-	(*DeleteTenantRequest)(nil),       // 11: api.DeleteTenantRequest
-	(*ListTenantsRequest)(nil),        // 12: api.ListTenantsRequest
-	(*ListTenantsResponse)(nil),       // 13: api.ListTenantsResponse
-	(*VariableMacList)(nil),           // 14: api.VariableMacList
-	(*common.Tags)(nil),               // 15: common.Tags
-	(*timestamppb.Timestamp)(nil),     // 16: google.protobuf.Timestamp
-	(*Paginator)(nil),                 // 17: api.Paginator
-	(*Pagination)(nil),                // 18: api.Pagination
-	(*emptypb.Empty)(nil),             // 19: google.protobuf.Empty
+	(*Tenant)(nil),                   // 0: api.Tenant
+	(*TenantListItem)(nil),           // 1: api.TenantListItem
+	(*CreateTenantRequest)(nil),      // 2: api.CreateTenantRequest
+	(*CreateTenantResponse)(nil),     // 3: api.CreateTenantResponse
+	(*GetTenantRequest)(nil),         // 4: api.GetTenantRequest
+	(*GetTenantResponse)(nil),        // 5: api.GetTenantResponse
+	(*UpdateTenantRequest)(nil),      // 6: api.UpdateTenantRequest
+	(*UpdateTenantResponse)(nil),     // 7: api.UpdateTenantResponse
+	(*DeleteTenantRequest)(nil),      // 8: api.DeleteTenantRequest
+	(*ListTenantsRequest)(nil),       // 9: api.ListTenantsRequest
+	(*ListTenantsResponse)(nil),      // 10: api.ListTenantsResponse
+	(*GetTenantDetailsRequest)(nil),  // 11: api.GetTenantDetailsRequest
+	(*GetTenantDetailsResponse)(nil), // 12: api.GetTenantDetailsResponse
+	(*VariableMacList)(nil),          // 13: api.VariableMacList
+	(*common.Tags)(nil),              // 14: common.Tags
+	(*timestamppb.Timestamp)(nil),    // 15: google.protobuf.Timestamp
+	(*Paginator)(nil),                // 16: api.Paginator
+	(*Pagination)(nil),               // 17: api.Pagination
+	(*TenantUserCount)(nil),          // 18: api.TenantUserCount
+	(*BasestationCount)(nil),         // 19: api.BasestationCount
+	(*DeviceProfileCount)(nil),       // 20: api.DeviceProfileCount
+	(*ApplicationCount)(nil),         // 21: api.ApplicationCount
+	(*DeviceCount)(nil),              // 22: api.DeviceCount
+	(*emptypb.Empty)(nil),            // 23: google.protobuf.Empty
 }
 var file_api_tenant_proto_depIdxs = []int32{
-	14, // 0: api.Tenant.variable_mac_enabled:type_name -> api.VariableMacList
-	15, // 1: api.Tenant.tags:type_name -> common.Tags
-	16, // 2: api.TenantListItem.created_at:type_name -> google.protobuf.Timestamp
-	16, // 3: api.TenantListItem.updated_at:type_name -> google.protobuf.Timestamp
-	14, // 4: api.CreateTenantRequest.variable_mac_enabled:type_name -> api.VariableMacList
-	15, // 5: api.CreateTenantRequest.tags:type_name -> common.Tags
+	13, // 0: api.Tenant.variable_mac_enabled:type_name -> api.VariableMacList
+	14, // 1: api.Tenant.tags:type_name -> common.Tags
+	15, // 2: api.TenantListItem.created_at:type_name -> google.protobuf.Timestamp
+	15, // 3: api.TenantListItem.updated_at:type_name -> google.protobuf.Timestamp
+	13, // 4: api.CreateTenantRequest.variable_mac_enabled:type_name -> api.VariableMacList
+	14, // 5: api.CreateTenantRequest.tags:type_name -> common.Tags
 	0,  // 6: api.CreateTenantResponse.tenant:type_name -> api.Tenant
-	16, // 7: api.CreateTenantResponse.created_at:type_name -> google.protobuf.Timestamp
+	15, // 7: api.CreateTenantResponse.created_at:type_name -> google.protobuf.Timestamp
 	0,  // 8: api.GetTenantResponse.tenant:type_name -> api.Tenant
-	16, // 9: api.GetTenantResponse.created_at:type_name -> google.protobuf.Timestamp
-	16, // 10: api.GetTenantResponse.updated_at:type_name -> google.protobuf.Timestamp
-	15, // 11: api.UpdateTenantRequest.tags:type_name -> common.Tags
-	0,  // 12: api.UpdateTenantResponse.tenant:type_name -> api.Tenant
-	16, // 13: api.UpdateTenantResponse.created_at:type_name -> google.protobuf.Timestamp
-	16, // 14: api.UpdateTenantResponse.updated_at:type_name -> google.protobuf.Timestamp
-	14, // 15: api.VariableMacResponse.vm:type_name -> api.VariableMacList
-	17, // 16: api.ListTenantsRequest.paginator:type_name -> api.Paginator
-	18, // 17: api.ListTenantsResponse.pagination:type_name -> api.Pagination
+	15, // 9: api.GetTenantResponse.created_at:type_name -> google.protobuf.Timestamp
+	15, // 10: api.GetTenantResponse.updated_at:type_name -> google.protobuf.Timestamp
+	13, // 11: api.UpdateTenantRequest.variable_mac_enabled:type_name -> api.VariableMacList
+	14, // 12: api.UpdateTenantRequest.tags:type_name -> common.Tags
+	0,  // 13: api.UpdateTenantResponse.tenant:type_name -> api.Tenant
+	15, // 14: api.UpdateTenantResponse.created_at:type_name -> google.protobuf.Timestamp
+	15, // 15: api.UpdateTenantResponse.updated_at:type_name -> google.protobuf.Timestamp
+	16, // 16: api.ListTenantsRequest.paginator:type_name -> api.Paginator
+	17, // 17: api.ListTenantsResponse.pagination:type_name -> api.Pagination
 	1,  // 18: api.ListTenantsResponse.result:type_name -> api.TenantListItem
-	2,  // 19: api.TenantService.CreateTenant:input_type -> api.CreateTenantRequest
-	4,  // 20: api.TenantService.GetTenant:input_type -> api.GetTenantRequest
-	6,  // 21: api.TenantService.UpdateTenant:input_type -> api.UpdateTenantRequest
-	8,  // 22: api.TenantService.EnableVariableMac:input_type -> api.EnableVariableMacRequest
-	9,  // 23: api.TenantService.DisableVariableMac:input_type -> api.DisableVariableMacRequest
-	11, // 24: api.TenantService.DeleteTenant:input_type -> api.DeleteTenantRequest
-	12, // 25: api.TenantService.ListTenants:input_type -> api.ListTenantsRequest
-	3,  // 26: api.TenantService.CreateTenant:output_type -> api.CreateTenantResponse
-	5,  // 27: api.TenantService.GetTenant:output_type -> api.GetTenantResponse
-	7,  // 28: api.TenantService.UpdateTenant:output_type -> api.UpdateTenantResponse
-	10, // 29: api.TenantService.EnableVariableMac:output_type -> api.VariableMacResponse
-	10, // 30: api.TenantService.DisableVariableMac:output_type -> api.VariableMacResponse
-	19, // 31: api.TenantService.DeleteTenant:output_type -> google.protobuf.Empty
-	13, // 32: api.TenantService.ListTenants:output_type -> api.ListTenantsResponse
-	26, // [26:33] is the sub-list for method output_type
-	19, // [19:26] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	18, // 19: api.GetTenantDetailsResponse.tenant_user_count:type_name -> api.TenantUserCount
+	19, // 20: api.GetTenantDetailsResponse.basestation_count:type_name -> api.BasestationCount
+	20, // 21: api.GetTenantDetailsResponse.device_profile_count:type_name -> api.DeviceProfileCount
+	21, // 22: api.GetTenantDetailsResponse.application_count:type_name -> api.ApplicationCount
+	22, // 23: api.GetTenantDetailsResponse.device_count:type_name -> api.DeviceCount
+	2,  // 24: api.TenantService.CreateTenant:input_type -> api.CreateTenantRequest
+	4,  // 25: api.TenantService.GetTenant:input_type -> api.GetTenantRequest
+	11, // 26: api.TenantService.GetTenantDetails:input_type -> api.GetTenantDetailsRequest
+	6,  // 27: api.TenantService.UpdateTenant:input_type -> api.UpdateTenantRequest
+	8,  // 28: api.TenantService.DeleteTenant:input_type -> api.DeleteTenantRequest
+	9,  // 29: api.TenantService.ListTenants:input_type -> api.ListTenantsRequest
+	3,  // 30: api.TenantService.CreateTenant:output_type -> api.CreateTenantResponse
+	5,  // 31: api.TenantService.GetTenant:output_type -> api.GetTenantResponse
+	12, // 32: api.TenantService.GetTenantDetails:output_type -> api.GetTenantDetailsResponse
+	7,  // 33: api.TenantService.UpdateTenant:output_type -> api.UpdateTenantResponse
+	23, // 34: api.TenantService.DeleteTenant:output_type -> google.protobuf.Empty
+	10, // 35: api.TenantService.ListTenants:output_type -> api.ListTenantsResponse
+	30, // [30:36] is the sub-list for method output_type
+	24, // [24:30] is the sub-list for method input_type
+	24, // [24:24] is the sub-list for extension type_name
+	24, // [24:24] is the sub-list for extension extendee
+	0,  // [0:24] is the sub-list for field type_name
 }
 
 func init() { file_api_tenant_proto_init() }
@@ -1275,14 +1276,14 @@ func file_api_tenant_proto_init() {
 	file_api_tenant_proto_msgTypes[0].OneofWrappers = []any{}
 	file_api_tenant_proto_msgTypes[2].OneofWrappers = []any{}
 	file_api_tenant_proto_msgTypes[6].OneofWrappers = []any{}
-	file_api_tenant_proto_msgTypes[12].OneofWrappers = []any{}
+	file_api_tenant_proto_msgTypes[9].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_tenant_proto_rawDesc), len(file_api_tenant_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   14,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

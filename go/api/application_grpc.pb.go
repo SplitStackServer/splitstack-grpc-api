@@ -20,11 +20,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ApplicationService_CreateApplication_FullMethodName = "/api.ApplicationService/CreateApplication"
-	ApplicationService_GetApplication_FullMethodName    = "/api.ApplicationService/GetApplication"
-	ApplicationService_UpdateApplication_FullMethodName = "/api.ApplicationService/UpdateApplication"
-	ApplicationService_DeleteApplication_FullMethodName = "/api.ApplicationService/DeleteApplication"
-	ApplicationService_ListApplications_FullMethodName  = "/api.ApplicationService/ListApplications"
+	ApplicationService_CreateApplication_FullMethodName     = "/api.ApplicationService/CreateApplication"
+	ApplicationService_GetApplication_FullMethodName        = "/api.ApplicationService/GetApplication"
+	ApplicationService_GetApplicationDetails_FullMethodName = "/api.ApplicationService/GetApplicationDetails"
+	ApplicationService_UpdateApplication_FullMethodName     = "/api.ApplicationService/UpdateApplication"
+	ApplicationService_DeleteApplication_FullMethodName     = "/api.ApplicationService/DeleteApplication"
+	ApplicationService_ListApplications_FullMethodName      = "/api.ApplicationService/ListApplications"
 )
 
 // ApplicationServiceClient is the client API for ApplicationService service.
@@ -37,6 +38,8 @@ type ApplicationServiceClient interface {
 	CreateApplication(ctx context.Context, in *CreateApplicationRequest, opts ...grpc.CallOption) (*CreateApplicationResponse, error)
 	// Get the application for the given ID.
 	GetApplication(ctx context.Context, in *GetApplicationRequest, opts ...grpc.CallOption) (*GetApplicationResponse, error)
+	// Get the application details for the given ID.
+	GetApplicationDetails(ctx context.Context, in *GetApplicationDetailsRequest, opts ...grpc.CallOption) (*GetApplicationDetailsResponse, error)
 	// Update updates the given application.
 	UpdateApplication(ctx context.Context, in *UpdateApplicationRequest, opts ...grpc.CallOption) (*UpdateApplicationResponse, error)
 	// Delete the application for the given ID.
@@ -67,6 +70,16 @@ func (c *applicationServiceClient) GetApplication(ctx context.Context, in *GetAp
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetApplicationResponse)
 	err := c.cc.Invoke(ctx, ApplicationService_GetApplication_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *applicationServiceClient) GetApplicationDetails(ctx context.Context, in *GetApplicationDetailsRequest, opts ...grpc.CallOption) (*GetApplicationDetailsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetApplicationDetailsResponse)
+	err := c.cc.Invoke(ctx, ApplicationService_GetApplicationDetails_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -113,6 +126,8 @@ type ApplicationServiceServer interface {
 	CreateApplication(context.Context, *CreateApplicationRequest) (*CreateApplicationResponse, error)
 	// Get the application for the given ID.
 	GetApplication(context.Context, *GetApplicationRequest) (*GetApplicationResponse, error)
+	// Get the application details for the given ID.
+	GetApplicationDetails(context.Context, *GetApplicationDetailsRequest) (*GetApplicationDetailsResponse, error)
 	// Update updates the given application.
 	UpdateApplication(context.Context, *UpdateApplicationRequest) (*UpdateApplicationResponse, error)
 	// Delete the application for the given ID.
@@ -134,6 +149,9 @@ func (UnimplementedApplicationServiceServer) CreateApplication(context.Context, 
 }
 func (UnimplementedApplicationServiceServer) GetApplication(context.Context, *GetApplicationRequest) (*GetApplicationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetApplication not implemented")
+}
+func (UnimplementedApplicationServiceServer) GetApplicationDetails(context.Context, *GetApplicationDetailsRequest) (*GetApplicationDetailsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetApplicationDetails not implemented")
 }
 func (UnimplementedApplicationServiceServer) UpdateApplication(context.Context, *UpdateApplicationRequest) (*UpdateApplicationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateApplication not implemented")
@@ -197,6 +215,24 @@ func _ApplicationService_GetApplication_Handler(srv interface{}, ctx context.Con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ApplicationServiceServer).GetApplication(ctx, req.(*GetApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApplicationService_GetApplicationDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetApplicationDetailsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApplicationServiceServer).GetApplicationDetails(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApplicationService_GetApplicationDetails_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApplicationServiceServer).GetApplicationDetails(ctx, req.(*GetApplicationDetailsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -269,6 +305,10 @@ var ApplicationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetApplication",
 			Handler:    _ApplicationService_GetApplication_Handler,
+		},
+		{
+			MethodName: "GetApplicationDetails",
+			Handler:    _ApplicationService_GetApplicationDetails_Handler,
 		},
 		{
 			MethodName: "UpdateApplication",

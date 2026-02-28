@@ -698,3 +698,16 @@ final $typed_data.Uint8List getDeviceMetricsResponseDescriptor = $convert.base64
     'ZpY2VNZXRyaWNzUmVzcG9uc2UuTWV0cmljc0VudHJ5UgdtZXRyaWNzGkoKDE1ldHJpY3NFbnRy'
     'eRIQCgNrZXkYASABKAlSA2tleRIkCgV2YWx1ZRgCIAEoCzIOLmNvbW1vbi5NZXRyaWNSBXZhbH'
     'VlOgI4AQ==');
+
+@$core.Deprecated('Use streamDeviceFramesRequestDescriptor instead')
+const StreamDeviceFramesRequest$json = {
+  '1': 'StreamDeviceFramesRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+  ],
+};
+
+/// Descriptor for `StreamDeviceFramesRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List streamDeviceFramesRequestDescriptor =
+    $convert.base64Decode(
+        'ChlTdHJlYW1EZXZpY2VGcmFtZXNSZXF1ZXN0Eg4KAmlkGAEgASgJUgJpZA==');

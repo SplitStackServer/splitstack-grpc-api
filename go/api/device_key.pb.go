@@ -10,7 +10,6 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "google.golang.org/protobuf/types/known/emptypb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
@@ -463,7 +462,7 @@ var File_api_device_key_proto protoreflect.FileDescriptor
 
 const file_api_device_key_proto_rawDesc = "" +
 	"\n" +
-	"\x14api/device_key.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\x8d\x01\n" +
+	"\x14api/device_key.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x8d\x01\n" +
 	"\tDeviceKey\x12\x10\n" +
 	"\x03eui\x18\x01 \x01(\tR\x03eui\x12\x1f\n" +
 	"\vnetwork_key\x18\x02 \x01(\tR\n" +

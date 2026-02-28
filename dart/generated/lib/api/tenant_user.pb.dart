@@ -628,6 +628,137 @@ class GetTenantUserResponse extends $pb.GeneratedMessage {
   $2.Timestamp ensureUpdatedAt() => $_ensure(2);
 }
 
+class GetTenantUserCountRequest extends $pb.GeneratedMessage {
+  factory GetTenantUserCountRequest({
+    $core.String? tenantId,
+  }) {
+    final result = create();
+    if (tenantId != null) result.tenantId = tenantId;
+    return result;
+  }
+
+  GetTenantUserCountRequest._();
+
+  factory GetTenantUserCountRequest.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory GetTenantUserCountRequest.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'GetTenantUserCountRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'tenantId')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetTenantUserCountRequest clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetTenantUserCountRequest copyWith(
+          void Function(GetTenantUserCountRequest) updates) =>
+      super.copyWith((message) => updates(message as GetTenantUserCountRequest))
+          as GetTenantUserCountRequest;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetTenantUserCountRequest create() => GetTenantUserCountRequest._();
+  @$core.override
+  GetTenantUserCountRequest createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static GetTenantUserCountRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GetTenantUserCountRequest>(create);
+  static GetTenantUserCountRequest? _defaultInstance;
+
+  /// Tenant ID (UUID).
+  @$pb.TagNumber(1)
+  $core.String get tenantId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set tenantId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasTenantId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTenantId() => $_clearField(1);
+}
+
+class GetTenantUserCountResponse extends $pb.GeneratedMessage {
+  factory GetTenantUserCountResponse({
+    $core.String? tenantId,
+    $3.TenantUserCount? tenantUserCount,
+  }) {
+    final result = create();
+    if (tenantId != null) result.tenantId = tenantId;
+    if (tenantUserCount != null) result.tenantUserCount = tenantUserCount;
+    return result;
+  }
+
+  GetTenantUserCountResponse._();
+
+  factory GetTenantUserCountResponse.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory GetTenantUserCountResponse.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'GetTenantUserCountResponse',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'tenantId')
+    ..aOM<$3.TenantUserCount>(2, _omitFieldNames ? '' : 'tenantUserCount',
+        subBuilder: $3.TenantUserCount.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetTenantUserCountResponse clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetTenantUserCountResponse copyWith(
+          void Function(GetTenantUserCountResponse) updates) =>
+      super.copyWith(
+              (message) => updates(message as GetTenantUserCountResponse))
+          as GetTenantUserCountResponse;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetTenantUserCountResponse create() => GetTenantUserCountResponse._();
+  @$core.override
+  GetTenantUserCountResponse createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static GetTenantUserCountResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GetTenantUserCountResponse>(create);
+  static GetTenantUserCountResponse? _defaultInstance;
+
+  /// Tenant ID (UUID).
+  @$pb.TagNumber(1)
+  $core.String get tenantId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set tenantId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasTenantId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTenantId() => $_clearField(1);
+
+  /// User counts for the tenant.
+  ///
+  /// Only available for global admin or tenant admin users or  API keys.
+  @$pb.TagNumber(2)
+  $3.TenantUserCount get tenantUserCount => $_getN(1);
+  @$pb.TagNumber(2)
+  set tenantUserCount($3.TenantUserCount value) => $_setField(2, value);
+  @$pb.TagNumber(2)
+  $core.bool hasTenantUserCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTenantUserCount() => $_clearField(2);
+  @$pb.TagNumber(2)
+  $3.TenantUserCount ensureTenantUserCount() => $_ensure(1);
+}
+
 class UpdateTenantUserRequest extends $pb.GeneratedMessage {
   factory UpdateTenantUserRequest({
     $core.String? tenantId,

@@ -50,28 +50,20 @@ class TenantServiceClient extends $grpc.Client {
     return $createUnaryCall(_$getTenant, request, options: options);
   }
 
+  /// Get the tenant details for the given ID.
+  $grpc.ResponseFuture<$0.GetTenantDetailsResponse> getTenantDetails(
+    $0.GetTenantDetailsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$getTenantDetails, request, options: options);
+  }
+
   /// Update the given tenant.
   $grpc.ResponseFuture<$0.UpdateTenantResponse> updateTenant(
     $0.UpdateTenantRequest request, {
     $grpc.CallOptions? options,
   }) {
     return $createUnaryCall(_$updateTenant, request, options: options);
-  }
-
-  /// Enable the given variable MAC for the tenant.
-  $grpc.ResponseFuture<$0.VariableMacResponse> enableVariableMac(
-    $0.EnableVariableMacRequest request, {
-    $grpc.CallOptions? options,
-  }) {
-    return $createUnaryCall(_$enableVariableMac, request, options: options);
-  }
-
-  /// Disable the given variable MAC for the tenant.
-  $grpc.ResponseFuture<$0.VariableMacResponse> disableVariableMac(
-    $0.DisableVariableMacRequest request, {
-    $grpc.CallOptions? options,
-  }) {
-    return $createUnaryCall(_$disableVariableMac, request, options: options);
   }
 
   /// Delete the tenant with the given ID.
@@ -102,21 +94,16 @@ class TenantServiceClient extends $grpc.Client {
           '/api.TenantService/GetTenant',
           ($0.GetTenantRequest value) => value.writeToBuffer(),
           $0.GetTenantResponse.fromBuffer);
+  static final _$getTenantDetails = $grpc.ClientMethod<
+          $0.GetTenantDetailsRequest, $0.GetTenantDetailsResponse>(
+      '/api.TenantService/GetTenantDetails',
+      ($0.GetTenantDetailsRequest value) => value.writeToBuffer(),
+      $0.GetTenantDetailsResponse.fromBuffer);
   static final _$updateTenant =
       $grpc.ClientMethod<$0.UpdateTenantRequest, $0.UpdateTenantResponse>(
           '/api.TenantService/UpdateTenant',
           ($0.UpdateTenantRequest value) => value.writeToBuffer(),
           $0.UpdateTenantResponse.fromBuffer);
-  static final _$enableVariableMac =
-      $grpc.ClientMethod<$0.EnableVariableMacRequest, $0.VariableMacResponse>(
-          '/api.TenantService/EnableVariableMac',
-          ($0.EnableVariableMacRequest value) => value.writeToBuffer(),
-          $0.VariableMacResponse.fromBuffer);
-  static final _$disableVariableMac =
-      $grpc.ClientMethod<$0.DisableVariableMacRequest, $0.VariableMacResponse>(
-          '/api.TenantService/DisableVariableMac',
-          ($0.DisableVariableMacRequest value) => value.writeToBuffer(),
-          $0.VariableMacResponse.fromBuffer);
   static final _$deleteTenant =
       $grpc.ClientMethod<$0.DeleteTenantRequest, $1.Empty>(
           '/api.TenantService/DeleteTenant',
@@ -150,6 +137,15 @@ abstract class TenantServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.GetTenantRequest.fromBuffer(value),
         ($0.GetTenantResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.GetTenantDetailsRequest,
+            $0.GetTenantDetailsResponse>(
+        'GetTenantDetails',
+        getTenantDetails_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.GetTenantDetailsRequest.fromBuffer(value),
+        ($0.GetTenantDetailsResponse value) => value.writeToBuffer()));
     $addMethod(
         $grpc.ServiceMethod<$0.UpdateTenantRequest, $0.UpdateTenantResponse>(
             'UpdateTenant',
@@ -159,24 +155,6 @@ abstract class TenantServiceBase extends $grpc.Service {
             ($core.List<$core.int> value) =>
                 $0.UpdateTenantRequest.fromBuffer(value),
             ($0.UpdateTenantResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.EnableVariableMacRequest,
-            $0.VariableMacResponse>(
-        'EnableVariableMac',
-        enableVariableMac_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) =>
-            $0.EnableVariableMacRequest.fromBuffer(value),
-        ($0.VariableMacResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.DisableVariableMacRequest,
-            $0.VariableMacResponse>(
-        'DisableVariableMac',
-        disableVariableMac_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) =>
-            $0.DisableVariableMacRequest.fromBuffer(value),
-        ($0.VariableMacResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.DeleteTenantRequest, $1.Empty>(
         'DeleteTenant',
         deleteTenant_Pre,
@@ -213,6 +191,15 @@ abstract class TenantServiceBase extends $grpc.Service {
   $async.Future<$0.GetTenantResponse> getTenant(
       $grpc.ServiceCall call, $0.GetTenantRequest request);
 
+  $async.Future<$0.GetTenantDetailsResponse> getTenantDetails_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.GetTenantDetailsRequest> $request) async {
+    return getTenantDetails($call, await $request);
+  }
+
+  $async.Future<$0.GetTenantDetailsResponse> getTenantDetails(
+      $grpc.ServiceCall call, $0.GetTenantDetailsRequest request);
+
   $async.Future<$0.UpdateTenantResponse> updateTenant_Pre(
       $grpc.ServiceCall $call,
       $async.Future<$0.UpdateTenantRequest> $request) async {
@@ -221,24 +208,6 @@ abstract class TenantServiceBase extends $grpc.Service {
 
   $async.Future<$0.UpdateTenantResponse> updateTenant(
       $grpc.ServiceCall call, $0.UpdateTenantRequest request);
-
-  $async.Future<$0.VariableMacResponse> enableVariableMac_Pre(
-      $grpc.ServiceCall $call,
-      $async.Future<$0.EnableVariableMacRequest> $request) async {
-    return enableVariableMac($call, await $request);
-  }
-
-  $async.Future<$0.VariableMacResponse> enableVariableMac(
-      $grpc.ServiceCall call, $0.EnableVariableMacRequest request);
-
-  $async.Future<$0.VariableMacResponse> disableVariableMac_Pre(
-      $grpc.ServiceCall $call,
-      $async.Future<$0.DisableVariableMacRequest> $request) async {
-    return disableVariableMac($call, await $request);
-  }
-
-  $async.Future<$0.VariableMacResponse> disableVariableMac(
-      $grpc.ServiceCall call, $0.DisableVariableMacRequest request);
 
   $async.Future<$1.Empty> deleteTenant_Pre($grpc.ServiceCall $call,
       $async.Future<$0.DeleteTenantRequest> $request) async {

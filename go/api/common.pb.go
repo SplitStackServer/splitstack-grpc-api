@@ -70,6 +70,57 @@ func (IntegrationKind) EnumDescriptor() ([]byte, []int) {
 	return file_api_common_proto_rawDescGZIP(), []int{0}
 }
 
+// These are the Variable Mac types that are supported by the API.
+type VariableMac int32
+
+const (
+	// Type 1: Wireless M-Bus frame with Frame Format B (FFB)
+	VariableMac_MBUS_FFB VariableMac = 0
+	// Type 2: M-Bus frame that starts with a wireless M-Bus MAC according to OMS-S Volume 2, Annex Q
+	//
+	// Open Metering System Specification (OMS-S), Volume 2, Annex Q, Issue 5.0.1, December 2023.
+	VariableMac_MBUS_MAC VariableMac = 2
+)
+
+// Enum value maps for VariableMac.
+var (
+	VariableMac_name = map[int32]string{
+		0: "MBUS_FFB",
+		2: "MBUS_MAC",
+	}
+	VariableMac_value = map[string]int32{
+		"MBUS_FFB": 0,
+		"MBUS_MAC": 2,
+	}
+)
+
+func (x VariableMac) Enum() *VariableMac {
+	p := new(VariableMac)
+	*p = x
+	return p
+}
+
+func (x VariableMac) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (VariableMac) Descriptor() protoreflect.EnumDescriptor {
+	return file_api_common_proto_enumTypes[1].Descriptor()
+}
+
+func (VariableMac) Type() protoreflect.EnumType {
+	return &file_api_common_proto_enumTypes[1]
+}
+
+func (x VariableMac) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use VariableMac.Descriptor instead.
+func (VariableMac) EnumDescriptor() ([]byte, []int) {
+	return file_api_common_proto_rawDescGZIP(), []int{1}
+}
+
 // Paginate requests for multiple objects.
 type Paginator struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -183,7 +234,7 @@ func (x *Pagination) GetNumItems() uint64 {
 type VariableMacList struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// List of variable MACs
-	Vm            []uint32 `protobuf:"varint,1,rep,packed,name=vm,proto3" json:"vm,omitempty"`
+	Vm            []VariableMac `protobuf:"varint,1,rep,packed,name=vm,proto3,enum=api.VariableMac" json:"vm,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -218,9 +269,393 @@ func (*VariableMacList) Descriptor() ([]byte, []int) {
 	return file_api_common_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *VariableMacList) GetVm() []uint32 {
+func (x *VariableMacList) GetVm() []VariableMac {
 	if x != nil {
 		return x.Vm
+	}
+	return nil
+}
+
+// Counts of users, grouped by their privileges.
+type TenantUserCount struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Count of active tenant users.
+	// Note: this includes all tenant users, regardless of their privileges.
+	ActiveCount uint64 `protobuf:"varint,1,opt,name=active_count,json=activeCount,proto3" json:"active_count,omitempty"`
+	// Count of inactive tenant users.
+	// Note: this includes all tenant users, regardless of their privileges.
+	InactiveCount uint64 `protobuf:"varint,2,opt,name=inactive_count,json=inactiveCount,proto3" json:"inactive_count,omitempty"`
+	// Count of tenant users with admin privileges.
+	AdminCount uint64 `protobuf:"varint,3,opt,name=admin_count,json=adminCount,proto3" json:"admin_count,omitempty"`
+	// Count of tenant users with end-node admin privileges.
+	EndnodeAdminCount uint64 `protobuf:"varint,4,opt,name=endnode_admin_count,json=endnodeAdminCount,proto3" json:"endnode_admin_count,omitempty"`
+	// Count of tenant users with basestation admin privileges.
+	BasestationAdminCount uint64 `protobuf:"varint,5,opt,name=basestation_admin_count,json=basestationAdminCount,proto3" json:"basestation_admin_count,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
+}
+
+func (x *TenantUserCount) Reset() {
+	*x = TenantUserCount{}
+	mi := &file_api_common_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TenantUserCount) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TenantUserCount) ProtoMessage() {}
+
+func (x *TenantUserCount) ProtoReflect() protoreflect.Message {
+	mi := &file_api_common_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TenantUserCount.ProtoReflect.Descriptor instead.
+func (*TenantUserCount) Descriptor() ([]byte, []int) {
+	return file_api_common_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *TenantUserCount) GetActiveCount() uint64 {
+	if x != nil {
+		return x.ActiveCount
+	}
+	return 0
+}
+
+func (x *TenantUserCount) GetInactiveCount() uint64 {
+	if x != nil {
+		return x.InactiveCount
+	}
+	return 0
+}
+
+func (x *TenantUserCount) GetAdminCount() uint64 {
+	if x != nil {
+		return x.AdminCount
+	}
+	return 0
+}
+
+func (x *TenantUserCount) GetEndnodeAdminCount() uint64 {
+	if x != nil {
+		return x.EndnodeAdminCount
+	}
+	return 0
+}
+
+func (x *TenantUserCount) GetBasestationAdminCount() uint64 {
+	if x != nil {
+		return x.BasestationAdminCount
+	}
+	return 0
+}
+
+// Counts of basestations, grouped by their state.
+type BasestationCount struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Online basestation count.
+	OnlineCount uint64 `protobuf:"varint,1,opt,name=online_count,json=onlineCount,proto3" json:"online_count,omitempty"`
+	// Offline basestation count.
+	OfflineCount uint64 `protobuf:"varint,2,opt,name=offline_count,json=offlineCount,proto3" json:"offline_count,omitempty"`
+	// Inactive basestation count.
+	InactiveCount uint64 `protobuf:"varint,3,opt,name=inactive_count,json=inactiveCount,proto3" json:"inactive_count,omitempty"`
+	// Never seen basestation count.
+	NeverSeenCount uint64 `protobuf:"varint,4,opt,name=never_seen_count,json=neverSeenCount,proto3" json:"never_seen_count,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *BasestationCount) Reset() {
+	*x = BasestationCount{}
+	mi := &file_api_common_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BasestationCount) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BasestationCount) ProtoMessage() {}
+
+func (x *BasestationCount) ProtoReflect() protoreflect.Message {
+	mi := &file_api_common_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BasestationCount.ProtoReflect.Descriptor instead.
+func (*BasestationCount) Descriptor() ([]byte, []int) {
+	return file_api_common_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *BasestationCount) GetOnlineCount() uint64 {
+	if x != nil {
+		return x.OnlineCount
+	}
+	return 0
+}
+
+func (x *BasestationCount) GetOfflineCount() uint64 {
+	if x != nil {
+		return x.OfflineCount
+	}
+	return 0
+}
+
+func (x *BasestationCount) GetInactiveCount() uint64 {
+	if x != nil {
+		return x.InactiveCount
+	}
+	return 0
+}
+
+func (x *BasestationCount) GetNeverSeenCount() uint64 {
+	if x != nil {
+		return x.NeverSeenCount
+	}
+	return 0
+}
+
+// Counts of device profiles.
+type DeviceProfileCount struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// count.
+	Count         uint64 `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeviceProfileCount) Reset() {
+	*x = DeviceProfileCount{}
+	mi := &file_api_common_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeviceProfileCount) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeviceProfileCount) ProtoMessage() {}
+
+func (x *DeviceProfileCount) ProtoReflect() protoreflect.Message {
+	mi := &file_api_common_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeviceProfileCount.ProtoReflect.Descriptor instead.
+func (*DeviceProfileCount) Descriptor() ([]byte, []int) {
+	return file_api_common_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *DeviceProfileCount) GetCount() uint64 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+// Counts of devices, grouped by their state.
+type DeviceCount struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Active device count.
+	ActiveCount uint64 `protobuf:"varint,1,opt,name=active_count,json=activeCount,proto3" json:"active_count,omitempty"`
+	// Inactive device count.
+	InactiveCount uint64 `protobuf:"varint,2,opt,name=inactive_count,json=inactiveCount,proto3" json:"inactive_count,omitempty"`
+	// Never seen device count.
+	NeverSeenCount uint64 `protobuf:"varint,3,opt,name=never_seen_count,json=neverSeenCount,proto3" json:"never_seen_count,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *DeviceCount) Reset() {
+	*x = DeviceCount{}
+	mi := &file_api_common_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeviceCount) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeviceCount) ProtoMessage() {}
+
+func (x *DeviceCount) ProtoReflect() protoreflect.Message {
+	mi := &file_api_common_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeviceCount.ProtoReflect.Descriptor instead.
+func (*DeviceCount) Descriptor() ([]byte, []int) {
+	return file_api_common_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *DeviceCount) GetActiveCount() uint64 {
+	if x != nil {
+		return x.ActiveCount
+	}
+	return 0
+}
+
+func (x *DeviceCount) GetInactiveCount() uint64 {
+	if x != nil {
+		return x.InactiveCount
+	}
+	return 0
+}
+
+func (x *DeviceCount) GetNeverSeenCount() uint64 {
+	if x != nil {
+		return x.NeverSeenCount
+	}
+	return 0
+}
+
+// Counts of applications of a tenant.
+type ApplicationCount struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Active application count.
+	Count uint64 `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	// Count of applications with variable MACs enabled.
+	VmCount       uint64 `protobuf:"varint,2,opt,name=vm_count,json=vmCount,proto3" json:"vm_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ApplicationCount) Reset() {
+	*x = ApplicationCount{}
+	mi := &file_api_common_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ApplicationCount) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ApplicationCount) ProtoMessage() {}
+
+func (x *ApplicationCount) ProtoReflect() protoreflect.Message {
+	mi := &file_api_common_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ApplicationCount.ProtoReflect.Descriptor instead.
+func (*ApplicationCount) Descriptor() ([]byte, []int) {
+	return file_api_common_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ApplicationCount) GetCount() uint64 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+func (x *ApplicationCount) GetVmCount() uint64 {
+	if x != nil {
+		return x.VmCount
+	}
+	return 0
+}
+
+type ApplicationIntegrationCount struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Active device count.
+	ActiveCount uint64 `protobuf:"varint,1,opt,name=active_count,json=activeCount,proto3" json:"active_count,omitempty"`
+	// Inactive device count.
+	InactiveCount    uint64            `protobuf:"varint,2,opt,name=inactive_count,json=inactiveCount,proto3" json:"inactive_count,omitempty"`
+	IntegrationKinds []IntegrationKind `protobuf:"varint,3,rep,packed,name=integration_kinds,json=integrationKinds,proto3,enum=api.IntegrationKind" json:"integration_kinds,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *ApplicationIntegrationCount) Reset() {
+	*x = ApplicationIntegrationCount{}
+	mi := &file_api_common_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ApplicationIntegrationCount) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ApplicationIntegrationCount) ProtoMessage() {}
+
+func (x *ApplicationIntegrationCount) ProtoReflect() protoreflect.Message {
+	mi := &file_api_common_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ApplicationIntegrationCount.ProtoReflect.Descriptor instead.
+func (*ApplicationIntegrationCount) Descriptor() ([]byte, []int) {
+	return file_api_common_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ApplicationIntegrationCount) GetActiveCount() uint64 {
+	if x != nil {
+		return x.ActiveCount
+	}
+	return 0
+}
+
+func (x *ApplicationIntegrationCount) GetInactiveCount() uint64 {
+	if x != nil {
+		return x.InactiveCount
+	}
+	return 0
+}
+
+func (x *ApplicationIntegrationCount) GetIntegrationKinds() []IntegrationKind {
+	if x != nil {
+		return x.IntegrationKinds
 	}
 	return nil
 }
@@ -236,13 +671,41 @@ const file_api_common_proto_rawDesc = "" +
 	"\n" +
 	"Pagination\x12\x1b\n" +
 	"\tnum_pages\x18\x01 \x01(\x04R\bnumPages\x12\x1b\n" +
-	"\tnum_items\x18\x02 \x01(\x04R\bnumItems\"!\n" +
-	"\x0fVariableMacList\x12\x0e\n" +
-	"\x02vm\x18\x01 \x03(\rR\x02vm*A\n" +
+	"\tnum_items\x18\x02 \x01(\x04R\bnumItems\"3\n" +
+	"\x0fVariableMacList\x12 \n" +
+	"\x02vm\x18\x01 \x03(\x0e2\x10.api.VariableMacR\x02vm\"\xe4\x01\n" +
+	"\x0fTenantUserCount\x12!\n" +
+	"\factive_count\x18\x01 \x01(\x04R\vactiveCount\x12%\n" +
+	"\x0einactive_count\x18\x02 \x01(\x04R\rinactiveCount\x12\x1f\n" +
+	"\vadmin_count\x18\x03 \x01(\x04R\n" +
+	"adminCount\x12.\n" +
+	"\x13endnode_admin_count\x18\x04 \x01(\x04R\x11endnodeAdminCount\x126\n" +
+	"\x17basestation_admin_count\x18\x05 \x01(\x04R\x15basestationAdminCount\"\xab\x01\n" +
+	"\x10BasestationCount\x12!\n" +
+	"\fonline_count\x18\x01 \x01(\x04R\vonlineCount\x12#\n" +
+	"\roffline_count\x18\x02 \x01(\x04R\fofflineCount\x12%\n" +
+	"\x0einactive_count\x18\x03 \x01(\x04R\rinactiveCount\x12(\n" +
+	"\x10never_seen_count\x18\x04 \x01(\x04R\x0eneverSeenCount\"*\n" +
+	"\x12DeviceProfileCount\x12\x14\n" +
+	"\x05count\x18\x01 \x01(\x04R\x05count\"\x81\x01\n" +
+	"\vDeviceCount\x12!\n" +
+	"\factive_count\x18\x01 \x01(\x04R\vactiveCount\x12%\n" +
+	"\x0einactive_count\x18\x02 \x01(\x04R\rinactiveCount\x12(\n" +
+	"\x10never_seen_count\x18\x03 \x01(\x04R\x0eneverSeenCount\"C\n" +
+	"\x10ApplicationCount\x12\x14\n" +
+	"\x05count\x18\x01 \x01(\x04R\x05count\x12\x19\n" +
+	"\bvm_count\x18\x02 \x01(\x04R\avmCount\"\xaa\x01\n" +
+	"\x1bApplicationIntegrationCount\x12!\n" +
+	"\factive_count\x18\x01 \x01(\x04R\vactiveCount\x12%\n" +
+	"\x0einactive_count\x18\x02 \x01(\x04R\rinactiveCount\x12A\n" +
+	"\x11integration_kinds\x18\x03 \x03(\x0e2\x14.api.IntegrationKindR\x10integrationKinds*A\n" +
 	"\x0fIntegrationKind\x12\r\n" +
 	"\tHTTP_PUSH\x10\x00\x12\r\n" +
 	"\tINFLUX_DB\x10\x01\x12\x10\n" +
-	"\fTHINGS_BOARD\x10\x02B\xab\x01\n" +
+	"\fTHINGS_BOARD\x10\x02*)\n" +
+	"\vVariableMac\x12\f\n" +
+	"\bMBUS_FFB\x10\x00\x12\f\n" +
+	"\bMBUS_MAC\x10\x02B\xab\x01\n" +
 	"\x11io.splitstack.apiB\vCommonProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/go/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 
 var (
@@ -257,20 +720,29 @@ func file_api_common_proto_rawDescGZIP() []byte {
 	return file_api_common_proto_rawDescData
 }
 
-var file_api_common_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_api_common_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_api_common_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_api_common_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_api_common_proto_goTypes = []any{
-	(IntegrationKind)(0),    // 0: api.IntegrationKind
-	(*Paginator)(nil),       // 1: api.Paginator
-	(*Pagination)(nil),      // 2: api.Pagination
-	(*VariableMacList)(nil), // 3: api.VariableMacList
+	(IntegrationKind)(0),                // 0: api.IntegrationKind
+	(VariableMac)(0),                    // 1: api.VariableMac
+	(*Paginator)(nil),                   // 2: api.Paginator
+	(*Pagination)(nil),                  // 3: api.Pagination
+	(*VariableMacList)(nil),             // 4: api.VariableMacList
+	(*TenantUserCount)(nil),             // 5: api.TenantUserCount
+	(*BasestationCount)(nil),            // 6: api.BasestationCount
+	(*DeviceProfileCount)(nil),          // 7: api.DeviceProfileCount
+	(*DeviceCount)(nil),                 // 8: api.DeviceCount
+	(*ApplicationCount)(nil),            // 9: api.ApplicationCount
+	(*ApplicationIntegrationCount)(nil), // 10: api.ApplicationIntegrationCount
 }
 var file_api_common_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: api.VariableMacList.vm:type_name -> api.VariableMac
+	0, // 1: api.ApplicationIntegrationCount.integration_kinds:type_name -> api.IntegrationKind
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_api_common_proto_init() }
@@ -283,8 +755,8 @@ func file_api_common_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_common_proto_rawDesc), len(file_api_common_proto_rawDesc)),
-			NumEnums:      1,
-			NumMessages:   3,
+			NumEnums:      2,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

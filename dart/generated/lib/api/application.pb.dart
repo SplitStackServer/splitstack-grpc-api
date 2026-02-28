@@ -1037,6 +1037,160 @@ class ListApplicationsResponse extends $pb.GeneratedMessage {
   $pb.PbList<ApplicationListItem> get result => $_getList(1);
 }
 
+class GetApplicationDetailsRequest extends $pb.GeneratedMessage {
+  factory GetApplicationDetailsRequest({
+    $core.String? id,
+  }) {
+    final result = create();
+    if (id != null) result.id = id;
+    return result;
+  }
+
+  GetApplicationDetailsRequest._();
+
+  factory GetApplicationDetailsRequest.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory GetApplicationDetailsRequest.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'GetApplicationDetailsRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetApplicationDetailsRequest clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetApplicationDetailsRequest copyWith(
+          void Function(GetApplicationDetailsRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as GetApplicationDetailsRequest))
+          as GetApplicationDetailsRequest;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetApplicationDetailsRequest create() =>
+      GetApplicationDetailsRequest._();
+  @$core.override
+  GetApplicationDetailsRequest createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static GetApplicationDetailsRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GetApplicationDetailsRequest>(create);
+  static GetApplicationDetailsRequest? _defaultInstance;
+
+  /// Application ID.
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set id($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => $_clearField(1);
+}
+
+class GetApplicationDetailsResponse extends $pb.GeneratedMessage {
+  factory GetApplicationDetailsResponse({
+    $core.String? id,
+    $4.DeviceCount? deviceCount,
+    $4.ApplicationIntegrationCount? integrationCount,
+  }) {
+    final result = create();
+    if (id != null) result.id = id;
+    if (deviceCount != null) result.deviceCount = deviceCount;
+    if (integrationCount != null) result.integrationCount = integrationCount;
+    return result;
+  }
+
+  GetApplicationDetailsResponse._();
+
+  factory GetApplicationDetailsResponse.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory GetApplicationDetailsResponse.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'GetApplicationDetailsResponse',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..aOM<$4.DeviceCount>(2, _omitFieldNames ? '' : 'deviceCount',
+        subBuilder: $4.DeviceCount.create)
+    ..aOM<$4.ApplicationIntegrationCount>(
+        3, _omitFieldNames ? '' : 'integrationCount',
+        subBuilder: $4.ApplicationIntegrationCount.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetApplicationDetailsResponse clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetApplicationDetailsResponse copyWith(
+          void Function(GetApplicationDetailsResponse) updates) =>
+      super.copyWith(
+              (message) => updates(message as GetApplicationDetailsResponse))
+          as GetApplicationDetailsResponse;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetApplicationDetailsResponse create() =>
+      GetApplicationDetailsResponse._();
+  @$core.override
+  GetApplicationDetailsResponse createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static GetApplicationDetailsResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GetApplicationDetailsResponse>(create);
+  static GetApplicationDetailsResponse? _defaultInstance;
+
+  /// Application ID.
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set id($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => $_clearField(1);
+
+  /// Device counts for the application.
+  ///
+  /// Only available for global admin, tenant admin or endnode admin users or API keys.
+  @$pb.TagNumber(2)
+  $4.DeviceCount get deviceCount => $_getN(1);
+  @$pb.TagNumber(2)
+  set deviceCount($4.DeviceCount value) => $_setField(2, value);
+  @$pb.TagNumber(2)
+  $core.bool hasDeviceCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearDeviceCount() => $_clearField(2);
+  @$pb.TagNumber(2)
+  $4.DeviceCount ensureDeviceCount() => $_ensure(1);
+
+  /// Application integration counts for the application.
+  ///
+  /// Only available for global admin, tenant admin or endnode admin users or API keys.
+  @$pb.TagNumber(3)
+  $4.ApplicationIntegrationCount get integrationCount => $_getN(2);
+  @$pb.TagNumber(3)
+  set integrationCount($4.ApplicationIntegrationCount value) =>
+      $_setField(3, value);
+  @$pb.TagNumber(3)
+  $core.bool hasIntegrationCount() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearIntegrationCount() => $_clearField(3);
+  @$pb.TagNumber(3)
+  $4.ApplicationIntegrationCount ensureIntegrationCount() => $_ensure(2);
+}
+
 const $core.bool _omitFieldNames =
     $core.bool.fromEnvironment('protobuf.omit_field_names');
 const $core.bool _omitMessageNames =
