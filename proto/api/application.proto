@@ -34,6 +34,13 @@ service ApplicationService {
         };
     }
 
+    // Get the application details for the given ID.
+    rpc GetApplicationDetails(GetApplicationDetailsRequest) returns (GetApplicationDetailsResponse) {
+        option (google.api.http) = {
+        get : "/api/applications/{id}/details"
+        };
+    }
+
     // Update updates the given application.
     rpc UpdateApplication(UpdateApplicationRequest) returns (UpdateApplicationResponse) {
         option (google.api.http) = {
@@ -205,4 +212,24 @@ message ListApplicationsResponse {
 
     // Result-set.
     repeated ApplicationListItem result = 2;
+}
+
+message GetTenantDetailsRequest {
+  // Application ID.
+  string id = 1;
+}
+
+message GetApplicationDetailsResponse {
+  // Application ID.
+  string id = 1;
+
+  // Device counts for the application.
+  //
+  // Only available for global admin, tenant admin or endnode admin users or API keys.
+  DeviceCount device_count = 2;
+
+  // Application integration counts for the application.
+  // 
+  // Only available for global admin, tenant admin or endnode admin users or API keys.
+  ApplicationIntegrationCount integration_count = 3;
 }

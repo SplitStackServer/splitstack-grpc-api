@@ -344,6 +344,12 @@ message GetBasestationMetricsResponse {
 
     // Fraction of TX time, sliding window over one hour
     common.Metric duty_cycle = 5;
+
+    // Number of received messages.
+    common.Metric rx_count = 6;
+
+    // Number of received variable mac messages.
+    common.Metric rx_vm_count = 7;
 }
 
 

@@ -33,7 +33,7 @@ service TenantService {
     };
   }
 
-  // Get the tenant for the given ID.
+  // Get the tenant details for the given ID.
   rpc GetTenantDetails(GetTenantDetailsRequest) returns (GetTenantDetailsResponse) {
     option (google.api.http) = {
       get : "/api/tenants/{id}/details"

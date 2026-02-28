@@ -5,7 +5,7 @@ package api;
 option go_package = "github.com/SplitStackServer/splitstack-grpc-api/go/api";
 option java_package = "io.splitstack.api";
 option java_multiple_files = true;
-option java_outer_classname = "DashboardProto";
+option java_outer_classname = "StatsProto";
 option csharp_namespace = "SplitStackServer.Api";
 option php_namespace = "SplitStackServer\\Api";
 option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Api";
@@ -13,12 +13,18 @@ option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Api";
 import "google/api/annotations.proto";
 import "api/common.proto";
 
-// DashboardService provides API methods for retrieving system-wide statistics.
-service DashboardService {
+// StatsService provides API methods for retrieving system-wide statistics.
+service StatsService {
   // Get global system statistics (total users, tenants, devices, basestations).
   rpc GetGlobalStats(GetGlobalStatsRequest) returns (GetGlobalStatsResponse) {
     option (google.api.http) = {
       get : "/api/stats/global"
+    };
+  }
+
+  rpc GetVersion(GetVersionRequest) returns (GetVersionResponse) {
+    option (google.api.http) = {
+      get : "/api/stats/version"
     };
   }
 }
@@ -40,4 +46,15 @@ message GetGlobalStatsResponse {
 
   // Global application counts.
   ApplicationCount application_count = 5;
+}
+
+message GetVersionRequest {}
+
+message GetVersionResponse {
+  // The version of the SplitStack server.
+  string version = 1;
+  // The build date of the SplitStack server.
+  string build_date = 2;
+  // The git commit hash of the SplitStack server.
+  string git_commit = 3;
 }

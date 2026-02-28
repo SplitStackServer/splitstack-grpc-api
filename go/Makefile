@@ -27,3 +27,4 @@ api:
 	protoc ${PROTOC_ARGS} api/tenant.proto
 	protoc ${PROTOC_ARGS} api/user.proto
 	protoc ${PROTOC_ARGS} api/application_integration.proto
+	protoc ${PROTOC_ARGS} api/stats.proto

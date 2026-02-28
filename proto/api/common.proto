@@ -113,3 +113,13 @@ message ApplicationCount {
   // Count of applications with variable MACs enabled.
   uint64 vm_count = 2;
 }
+
+message ApplicationIntegrationCount {
+  // Active device count.
+  uint64 active_count = 1;
+
+  // Inactive device count.
+  uint64 inactive_count = 2;
+
+  repeated IntegrationKind integration_kinds = 3;
+}
