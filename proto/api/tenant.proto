@@ -297,7 +297,6 @@ message GetTenantDetailsResponse {
   // Only available for global admin, tenant admin or endnode admin users or API keys.
   ApplicationCount application_count = 5;
 
-
   // Device counts for the tenant.
   //
   // Only available for global admin, tenant admin or endnode admin users or API keys.

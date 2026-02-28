@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/SplitStackServer/splitstack-grpc-api/go/api";
+option java_package = "io.splitstack.api";
+option java_multiple_files = true;
+option java_outer_classname = "DashboardProto";
+option csharp_namespace = "SplitStackServer.Api";
+option php_namespace = "SplitStackServer\\Api";
+option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Api";
+
+import "google/api/annotations.proto";
+import "api/common.proto";
+
+// DashboardService provides API methods for retrieving system-wide statistics.
+service DashboardService {
+  // Get global system statistics (total users, tenants, devices, basestations).
+  rpc GetGlobalStats(GetGlobalStatsRequest) returns (GetGlobalStatsResponse) {
+    option (google.api.http) = {
+      get : "/api/stats/global"
+    };
+  }
+}
+
+message GetGlobalStatsRequest {}
+
+message GetGlobalStatsResponse {
+  // Total number of users in the system.
+  uint64 total_users = 1;
+
+  // Total number of tenants in the system.
+  uint64 total_tenants = 2;
+
+  // Global device counts.
+  DeviceCount device_count = 6;
+
+  // Global basestation counts.
+  BasestationCount basestation_count = 4;
+
+  // Global application counts.
+  ApplicationCount application_count = 5;
+}
