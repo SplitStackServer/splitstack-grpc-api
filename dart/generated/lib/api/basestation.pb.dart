@@ -14,12 +14,12 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 import 'package:protobuf/well_known_types/google/protobuf/timestamp.pb.dart'
-    as $3;
+    as $4;
 
-import '../common/common.pb.dart' as $2;
-import '../common/metrics.pb.dart' as $5;
+import '../common/common.pb.dart' as $3;
+import '../common/metrics.pb.dart' as $6;
 import 'basestation.pbenum.dart';
-import 'common.pb.dart' as $4;
+import 'common.pb.dart' as $5;
 
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
@@ -31,11 +31,11 @@ class Basestation extends $pb.GeneratedMessage {
     $core.String? eui,
     $core.String? name,
     $core.String? description,
-    $2.GeoLocation? location,
+    $3.GeoLocation? location,
     BasestationMetadata? metadata,
     $core.bool? useGpsLocation,
     $core.bool? variableMacSupport,
-    $2.Tags? tags,
+    $3.Tags? tags,
     BasestationState? state,
   }) {
     final result = create();
@@ -70,13 +70,13 @@ class Basestation extends $pb.GeneratedMessage {
     ..aOS(2, _omitFieldNames ? '' : 'eui')
     ..aOS(3, _omitFieldNames ? '' : 'name')
     ..aOS(4, _omitFieldNames ? '' : 'description')
-    ..aOM<$2.GeoLocation>(5, _omitFieldNames ? '' : 'location',
-        subBuilder: $2.GeoLocation.create)
+    ..aOM<$3.GeoLocation>(5, _omitFieldNames ? '' : 'location',
+        subBuilder: $3.GeoLocation.create)
     ..aOM<BasestationMetadata>(6, _omitFieldNames ? '' : 'metadata',
         subBuilder: BasestationMetadata.create)
     ..aOB(7, _omitFieldNames ? '' : 'useGpsLocation')
     ..aOB(8, _omitFieldNames ? '' : 'variableMacSupport')
-    ..aOM<$2.Tags>(9, _omitFieldNames ? '' : 'tags', subBuilder: $2.Tags.create)
+    ..aOM<$3.Tags>(9, _omitFieldNames ? '' : 'tags', subBuilder: $3.Tags.create)
     ..aE<BasestationState>(10, _omitFieldNames ? '' : 'state',
         enumValues: BasestationState.values)
     ..hasRequiredFields = false;
@@ -142,15 +142,15 @@ class Basestation extends $pb.GeneratedMessage {
 
   /// Basestation location.
   @$pb.TagNumber(5)
-  $2.GeoLocation get location => $_getN(4);
+  $3.GeoLocation get location => $_getN(4);
   @$pb.TagNumber(5)
-  set location($2.GeoLocation value) => $_setField(5, value);
+  set location($3.GeoLocation value) => $_setField(5, value);
   @$pb.TagNumber(5)
   $core.bool hasLocation() => $_has(4);
   @$pb.TagNumber(5)
   void clearLocation() => $_clearField(5);
   @$pb.TagNumber(5)
-  $2.GeoLocation ensureLocation() => $_ensure(4);
+  $3.GeoLocation ensureLocation() => $_ensure(4);
 
   /// Basestation metadata (set on connection).
   @$pb.TagNumber(6)
@@ -184,15 +184,15 @@ class Basestation extends $pb.GeneratedMessage {
 
   /// Tags.
   @$pb.TagNumber(9)
-  $2.Tags get tags => $_getN(8);
+  $3.Tags get tags => $_getN(8);
   @$pb.TagNumber(9)
-  set tags($2.Tags value) => $_setField(9, value);
+  set tags($3.Tags value) => $_setField(9, value);
   @$pb.TagNumber(9)
   $core.bool hasTags() => $_has(8);
   @$pb.TagNumber(9)
   void clearTags() => $_clearField(9);
   @$pb.TagNumber(9)
-  $2.Tags ensureTags() => $_ensure(8);
+  $3.Tags ensureTags() => $_ensure(8);
 
   /// Basestation state.
   @$pb.TagNumber(10)
@@ -212,11 +212,11 @@ class BasestationListItem extends $pb.GeneratedMessage {
     $core.String? eui,
     $core.String? name,
     $core.String? description,
-    $2.GeoLocation? location,
+    $3.GeoLocation? location,
     BasestationMetadata? metadata,
-    $3.Timestamp? createdAt,
-    $3.Timestamp? updatedAt,
-    $3.Timestamp? lastSeenAt,
+    $4.Timestamp? createdAt,
+    $4.Timestamp? updatedAt,
+    $4.Timestamp? lastSeenAt,
     $core.bool? variableMacSupport,
     BasestationState? state,
   }) {
@@ -255,16 +255,16 @@ class BasestationListItem extends $pb.GeneratedMessage {
     ..aOS(3, _omitFieldNames ? '' : 'eui')
     ..aOS(4, _omitFieldNames ? '' : 'name')
     ..aOS(5, _omitFieldNames ? '' : 'description')
-    ..aOM<$2.GeoLocation>(6, _omitFieldNames ? '' : 'location',
-        subBuilder: $2.GeoLocation.create)
+    ..aOM<$3.GeoLocation>(6, _omitFieldNames ? '' : 'location',
+        subBuilder: $3.GeoLocation.create)
     ..aOM<BasestationMetadata>(7, _omitFieldNames ? '' : 'metadata',
         subBuilder: BasestationMetadata.create)
-    ..aOM<$3.Timestamp>(8, _omitFieldNames ? '' : 'createdAt',
-        subBuilder: $3.Timestamp.create)
-    ..aOM<$3.Timestamp>(9, _omitFieldNames ? '' : 'updatedAt',
-        subBuilder: $3.Timestamp.create)
-    ..aOM<$3.Timestamp>(10, _omitFieldNames ? '' : 'lastSeenAt',
-        subBuilder: $3.Timestamp.create)
+    ..aOM<$4.Timestamp>(8, _omitFieldNames ? '' : 'createdAt',
+        subBuilder: $4.Timestamp.create)
+    ..aOM<$4.Timestamp>(9, _omitFieldNames ? '' : 'updatedAt',
+        subBuilder: $4.Timestamp.create)
+    ..aOM<$4.Timestamp>(10, _omitFieldNames ? '' : 'lastSeenAt',
+        subBuilder: $4.Timestamp.create)
     ..aOB(11, _omitFieldNames ? '' : 'variableMacSupport')
     ..aE<BasestationState>(12, _omitFieldNames ? '' : 'state',
         enumValues: BasestationState.values)
@@ -341,15 +341,15 @@ class BasestationListItem extends $pb.GeneratedMessage {
 
   /// Location.
   @$pb.TagNumber(6)
-  $2.GeoLocation get location => $_getN(5);
+  $3.GeoLocation get location => $_getN(5);
   @$pb.TagNumber(6)
-  set location($2.GeoLocation value) => $_setField(6, value);
+  set location($3.GeoLocation value) => $_setField(6, value);
   @$pb.TagNumber(6)
   $core.bool hasLocation() => $_has(5);
   @$pb.TagNumber(6)
   void clearLocation() => $_clearField(6);
   @$pb.TagNumber(6)
-  $2.GeoLocation ensureLocation() => $_ensure(5);
+  $3.GeoLocation ensureLocation() => $_ensure(5);
 
   /// Basestation metadata (set on connection).
   @$pb.TagNumber(7)
@@ -365,39 +365,39 @@ class BasestationListItem extends $pb.GeneratedMessage {
 
   /// Created at timestamp.
   @$pb.TagNumber(8)
-  $3.Timestamp get createdAt => $_getN(7);
+  $4.Timestamp get createdAt => $_getN(7);
   @$pb.TagNumber(8)
-  set createdAt($3.Timestamp value) => $_setField(8, value);
+  set createdAt($4.Timestamp value) => $_setField(8, value);
   @$pb.TagNumber(8)
   $core.bool hasCreatedAt() => $_has(7);
   @$pb.TagNumber(8)
   void clearCreatedAt() => $_clearField(8);
   @$pb.TagNumber(8)
-  $3.Timestamp ensureCreatedAt() => $_ensure(7);
+  $4.Timestamp ensureCreatedAt() => $_ensure(7);
 
   /// Last update timestamp.
   @$pb.TagNumber(9)
-  $3.Timestamp get updatedAt => $_getN(8);
+  $4.Timestamp get updatedAt => $_getN(8);
   @$pb.TagNumber(9)
-  set updatedAt($3.Timestamp value) => $_setField(9, value);
+  set updatedAt($4.Timestamp value) => $_setField(9, value);
   @$pb.TagNumber(9)
   $core.bool hasUpdatedAt() => $_has(8);
   @$pb.TagNumber(9)
   void clearUpdatedAt() => $_clearField(9);
   @$pb.TagNumber(9)
-  $3.Timestamp ensureUpdatedAt() => $_ensure(8);
+  $4.Timestamp ensureUpdatedAt() => $_ensure(8);
 
   /// Last seen at timestamp.
   @$pb.TagNumber(10)
-  $3.Timestamp get lastSeenAt => $_getN(9);
+  $4.Timestamp get lastSeenAt => $_getN(9);
   @$pb.TagNumber(10)
-  set lastSeenAt($3.Timestamp value) => $_setField(10, value);
+  set lastSeenAt($4.Timestamp value) => $_setField(10, value);
   @$pb.TagNumber(10)
   $core.bool hasLastSeenAt() => $_has(9);
   @$pb.TagNumber(10)
   void clearLastSeenAt() => $_clearField(10);
   @$pb.TagNumber(10)
-  $3.Timestamp ensureLastSeenAt() => $_ensure(9);
+  $4.Timestamp ensureLastSeenAt() => $_ensure(9);
 
   @$pb.TagNumber(11)
   $core.bool get variableMacSupport => $_getBF(10);
@@ -519,9 +519,9 @@ class CreateBasestationRequest extends $pb.GeneratedMessage {
     $core.String? eui,
     $core.String? name,
     $core.String? description,
-    $2.GeoLocation? location,
+    $3.GeoLocation? location,
     $core.bool? useGpsLocation,
-    $2.Tags? tags,
+    $3.Tags? tags,
   }) {
     final result = create();
     if (tenantId != null) result.tenantId = tenantId;
@@ -551,10 +551,10 @@ class CreateBasestationRequest extends $pb.GeneratedMessage {
     ..aOS(2, _omitFieldNames ? '' : 'eui')
     ..aOS(3, _omitFieldNames ? '' : 'name')
     ..aOS(4, _omitFieldNames ? '' : 'description')
-    ..aOM<$2.GeoLocation>(5, _omitFieldNames ? '' : 'location',
-        subBuilder: $2.GeoLocation.create)
+    ..aOM<$3.GeoLocation>(5, _omitFieldNames ? '' : 'location',
+        subBuilder: $3.GeoLocation.create)
     ..aOB(6, _omitFieldNames ? '' : 'useGpsLocation')
-    ..aOM<$2.Tags>(8, _omitFieldNames ? '' : 'tags', subBuilder: $2.Tags.create)
+    ..aOM<$3.Tags>(8, _omitFieldNames ? '' : 'tags', subBuilder: $3.Tags.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -619,15 +619,15 @@ class CreateBasestationRequest extends $pb.GeneratedMessage {
 
   /// Location.
   @$pb.TagNumber(5)
-  $2.GeoLocation get location => $_getN(4);
+  $3.GeoLocation get location => $_getN(4);
   @$pb.TagNumber(5)
-  set location($2.GeoLocation value) => $_setField(5, value);
+  set location($3.GeoLocation value) => $_setField(5, value);
   @$pb.TagNumber(5)
   $core.bool hasLocation() => $_has(4);
   @$pb.TagNumber(5)
   void clearLocation() => $_clearField(5);
   @$pb.TagNumber(5)
-  $2.GeoLocation ensureLocation() => $_ensure(4);
+  $3.GeoLocation ensureLocation() => $_ensure(4);
 
   /// Use location data provided by the basestation.
   @$pb.TagNumber(6)
@@ -641,21 +641,21 @@ class CreateBasestationRequest extends $pb.GeneratedMessage {
 
   /// Tags.
   @$pb.TagNumber(8)
-  $2.Tags get tags => $_getN(6);
+  $3.Tags get tags => $_getN(6);
   @$pb.TagNumber(8)
-  set tags($2.Tags value) => $_setField(8, value);
+  set tags($3.Tags value) => $_setField(8, value);
   @$pb.TagNumber(8)
   $core.bool hasTags() => $_has(6);
   @$pb.TagNumber(8)
   void clearTags() => $_clearField(8);
   @$pb.TagNumber(8)
-  $2.Tags ensureTags() => $_ensure(6);
+  $3.Tags ensureTags() => $_ensure(6);
 }
 
 class CreateBasestationResponse extends $pb.GeneratedMessage {
   factory CreateBasestationResponse({
     Basestation? basestation,
-    $3.Timestamp? createdAt,
+    $4.Timestamp? createdAt,
   }) {
     final result = create();
     if (basestation != null) result.basestation = basestation;
@@ -678,8 +678,8 @@ class CreateBasestationResponse extends $pb.GeneratedMessage {
       createEmptyInstance: create)
     ..aOM<Basestation>(1, _omitFieldNames ? '' : 'basestation',
         subBuilder: Basestation.create)
-    ..aOM<$3.Timestamp>(2, _omitFieldNames ? '' : 'createdAt',
-        subBuilder: $3.Timestamp.create)
+    ..aOM<$4.Timestamp>(2, _omitFieldNames ? '' : 'createdAt',
+        subBuilder: $4.Timestamp.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -716,15 +716,15 @@ class CreateBasestationResponse extends $pb.GeneratedMessage {
 
   /// Created at timestamp.
   @$pb.TagNumber(2)
-  $3.Timestamp get createdAt => $_getN(1);
+  $4.Timestamp get createdAt => $_getN(1);
   @$pb.TagNumber(2)
-  set createdAt($3.Timestamp value) => $_setField(2, value);
+  set createdAt($4.Timestamp value) => $_setField(2, value);
   @$pb.TagNumber(2)
   $core.bool hasCreatedAt() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreatedAt() => $_clearField(2);
   @$pb.TagNumber(2)
-  $3.Timestamp ensureCreatedAt() => $_ensure(1);
+  $4.Timestamp ensureCreatedAt() => $_ensure(1);
 }
 
 class GetBasestationRequest extends $pb.GeneratedMessage {
@@ -786,9 +786,9 @@ class GetBasestationRequest extends $pb.GeneratedMessage {
 class GetBasestationResponse extends $pb.GeneratedMessage {
   factory GetBasestationResponse({
     Basestation? basestation,
-    $3.Timestamp? createdAt,
-    $3.Timestamp? updatedAt,
-    $3.Timestamp? lastSeenAt,
+    $4.Timestamp? createdAt,
+    $4.Timestamp? updatedAt,
+    $4.Timestamp? lastSeenAt,
   }) {
     final result = create();
     if (basestation != null) result.basestation = basestation;
@@ -813,12 +813,12 @@ class GetBasestationResponse extends $pb.GeneratedMessage {
       createEmptyInstance: create)
     ..aOM<Basestation>(1, _omitFieldNames ? '' : 'basestation',
         subBuilder: Basestation.create)
-    ..aOM<$3.Timestamp>(2, _omitFieldNames ? '' : 'createdAt',
-        subBuilder: $3.Timestamp.create)
-    ..aOM<$3.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt',
-        subBuilder: $3.Timestamp.create)
-    ..aOM<$3.Timestamp>(4, _omitFieldNames ? '' : 'lastSeenAt',
-        subBuilder: $3.Timestamp.create)
+    ..aOM<$4.Timestamp>(2, _omitFieldNames ? '' : 'createdAt',
+        subBuilder: $4.Timestamp.create)
+    ..aOM<$4.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt',
+        subBuilder: $4.Timestamp.create)
+    ..aOM<$4.Timestamp>(4, _omitFieldNames ? '' : 'lastSeenAt',
+        subBuilder: $4.Timestamp.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -855,39 +855,39 @@ class GetBasestationResponse extends $pb.GeneratedMessage {
 
   /// Created at timestamp.
   @$pb.TagNumber(2)
-  $3.Timestamp get createdAt => $_getN(1);
+  $4.Timestamp get createdAt => $_getN(1);
   @$pb.TagNumber(2)
-  set createdAt($3.Timestamp value) => $_setField(2, value);
+  set createdAt($4.Timestamp value) => $_setField(2, value);
   @$pb.TagNumber(2)
   $core.bool hasCreatedAt() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreatedAt() => $_clearField(2);
   @$pb.TagNumber(2)
-  $3.Timestamp ensureCreatedAt() => $_ensure(1);
+  $4.Timestamp ensureCreatedAt() => $_ensure(1);
 
   /// Last update timestamp.
   @$pb.TagNumber(3)
-  $3.Timestamp get updatedAt => $_getN(2);
+  $4.Timestamp get updatedAt => $_getN(2);
   @$pb.TagNumber(3)
-  set updatedAt($3.Timestamp value) => $_setField(3, value);
+  set updatedAt($4.Timestamp value) => $_setField(3, value);
   @$pb.TagNumber(3)
   $core.bool hasUpdatedAt() => $_has(2);
   @$pb.TagNumber(3)
   void clearUpdatedAt() => $_clearField(3);
   @$pb.TagNumber(3)
-  $3.Timestamp ensureUpdatedAt() => $_ensure(2);
+  $4.Timestamp ensureUpdatedAt() => $_ensure(2);
 
   /// Last seen at timestamp.
   @$pb.TagNumber(4)
-  $3.Timestamp get lastSeenAt => $_getN(3);
+  $4.Timestamp get lastSeenAt => $_getN(3);
   @$pb.TagNumber(4)
-  set lastSeenAt($3.Timestamp value) => $_setField(4, value);
+  set lastSeenAt($4.Timestamp value) => $_setField(4, value);
   @$pb.TagNumber(4)
   $core.bool hasLastSeenAt() => $_has(3);
   @$pb.TagNumber(4)
   void clearLastSeenAt() => $_clearField(4);
   @$pb.TagNumber(4)
-  $3.Timestamp ensureLastSeenAt() => $_ensure(3);
+  $4.Timestamp ensureLastSeenAt() => $_ensure(3);
 }
 
 class UpdateBasestationRequest extends $pb.GeneratedMessage {
@@ -895,9 +895,9 @@ class UpdateBasestationRequest extends $pb.GeneratedMessage {
     $core.String? id,
     $core.String? name,
     $core.String? description,
-    $2.GeoLocation? location,
+    $3.GeoLocation? location,
     $core.bool? useGpsLocation,
-    $2.Tags? tags,
+    $3.Tags? tags,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -925,10 +925,10 @@ class UpdateBasestationRequest extends $pb.GeneratedMessage {
     ..aOS(1, _omitFieldNames ? '' : 'id')
     ..aOS(3, _omitFieldNames ? '' : 'name')
     ..aOS(4, _omitFieldNames ? '' : 'description')
-    ..aOM<$2.GeoLocation>(5, _omitFieldNames ? '' : 'location',
-        subBuilder: $2.GeoLocation.create)
+    ..aOM<$3.GeoLocation>(5, _omitFieldNames ? '' : 'location',
+        subBuilder: $3.GeoLocation.create)
     ..aOB(6, _omitFieldNames ? '' : 'useGpsLocation')
-    ..aOM<$2.Tags>(8, _omitFieldNames ? '' : 'tags', subBuilder: $2.Tags.create)
+    ..aOM<$3.Tags>(8, _omitFieldNames ? '' : 'tags', subBuilder: $3.Tags.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -983,15 +983,15 @@ class UpdateBasestationRequest extends $pb.GeneratedMessage {
 
   /// Location.
   @$pb.TagNumber(5)
-  $2.GeoLocation get location => $_getN(3);
+  $3.GeoLocation get location => $_getN(3);
   @$pb.TagNumber(5)
-  set location($2.GeoLocation value) => $_setField(5, value);
+  set location($3.GeoLocation value) => $_setField(5, value);
   @$pb.TagNumber(5)
   $core.bool hasLocation() => $_has(3);
   @$pb.TagNumber(5)
   void clearLocation() => $_clearField(5);
   @$pb.TagNumber(5)
-  $2.GeoLocation ensureLocation() => $_ensure(3);
+  $3.GeoLocation ensureLocation() => $_ensure(3);
 
   /// Use location data provided by the basestation.
   @$pb.TagNumber(6)
@@ -1005,22 +1005,22 @@ class UpdateBasestationRequest extends $pb.GeneratedMessage {
 
   /// Tags.
   @$pb.TagNumber(8)
-  $2.Tags get tags => $_getN(5);
+  $3.Tags get tags => $_getN(5);
   @$pb.TagNumber(8)
-  set tags($2.Tags value) => $_setField(8, value);
+  set tags($3.Tags value) => $_setField(8, value);
   @$pb.TagNumber(8)
   $core.bool hasTags() => $_has(5);
   @$pb.TagNumber(8)
   void clearTags() => $_clearField(8);
   @$pb.TagNumber(8)
-  $2.Tags ensureTags() => $_ensure(5);
+  $3.Tags ensureTags() => $_ensure(5);
 }
 
 class UpdateBasestationResponse extends $pb.GeneratedMessage {
   factory UpdateBasestationResponse({
     Basestation? basestation,
-    $3.Timestamp? createdAt,
-    $3.Timestamp? updatedAt,
+    $4.Timestamp? createdAt,
+    $4.Timestamp? updatedAt,
   }) {
     final result = create();
     if (basestation != null) result.basestation = basestation;
@@ -1044,10 +1044,10 @@ class UpdateBasestationResponse extends $pb.GeneratedMessage {
       createEmptyInstance: create)
     ..aOM<Basestation>(1, _omitFieldNames ? '' : 'basestation',
         subBuilder: Basestation.create)
-    ..aOM<$3.Timestamp>(2, _omitFieldNames ? '' : 'createdAt',
-        subBuilder: $3.Timestamp.create)
-    ..aOM<$3.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt',
-        subBuilder: $3.Timestamp.create)
+    ..aOM<$4.Timestamp>(2, _omitFieldNames ? '' : 'createdAt',
+        subBuilder: $4.Timestamp.create)
+    ..aOM<$4.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt',
+        subBuilder: $4.Timestamp.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1084,27 +1084,27 @@ class UpdateBasestationResponse extends $pb.GeneratedMessage {
 
   /// Created at timestamp.
   @$pb.TagNumber(2)
-  $3.Timestamp get createdAt => $_getN(1);
+  $4.Timestamp get createdAt => $_getN(1);
   @$pb.TagNumber(2)
-  set createdAt($3.Timestamp value) => $_setField(2, value);
+  set createdAt($4.Timestamp value) => $_setField(2, value);
   @$pb.TagNumber(2)
   $core.bool hasCreatedAt() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreatedAt() => $_clearField(2);
   @$pb.TagNumber(2)
-  $3.Timestamp ensureCreatedAt() => $_ensure(1);
+  $4.Timestamp ensureCreatedAt() => $_ensure(1);
 
   /// Last update timestamp.
   @$pb.TagNumber(3)
-  $3.Timestamp get updatedAt => $_getN(2);
+  $4.Timestamp get updatedAt => $_getN(2);
   @$pb.TagNumber(3)
-  set updatedAt($3.Timestamp value) => $_setField(3, value);
+  set updatedAt($4.Timestamp value) => $_setField(3, value);
   @$pb.TagNumber(3)
   $core.bool hasUpdatedAt() => $_has(2);
   @$pb.TagNumber(3)
   void clearUpdatedAt() => $_clearField(3);
   @$pb.TagNumber(3)
-  $3.Timestamp ensureUpdatedAt() => $_ensure(2);
+  $4.Timestamp ensureUpdatedAt() => $_ensure(2);
 }
 
 class DeleteBasestationRequest extends $pb.GeneratedMessage {
@@ -1166,9 +1166,9 @@ class DeleteBasestationRequest extends $pb.GeneratedMessage {
 class ListBasestationsRequest extends $pb.GeneratedMessage {
   factory ListBasestationsRequest({
     $core.String? tenantId,
-    $4.Paginator? paginator,
+    $5.Paginator? paginator,
     $core.String? searchName,
-    $2.Tags? tags,
+    $3.Tags? tags,
     ListBasestationsRequest_OrderBy? orderBy,
     $core.bool? orderByDesc,
   }) {
@@ -1196,10 +1196,10 @@ class ListBasestationsRequest extends $pb.GeneratedMessage {
       package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'tenantId')
-    ..aOM<$4.Paginator>(2, _omitFieldNames ? '' : 'paginator',
-        subBuilder: $4.Paginator.create)
+    ..aOM<$5.Paginator>(2, _omitFieldNames ? '' : 'paginator',
+        subBuilder: $5.Paginator.create)
     ..aOS(3, _omitFieldNames ? '' : 'searchName')
-    ..aOM<$2.Tags>(4, _omitFieldNames ? '' : 'tags', subBuilder: $2.Tags.create)
+    ..aOM<$3.Tags>(4, _omitFieldNames ? '' : 'tags', subBuilder: $3.Tags.create)
     ..aE<ListBasestationsRequest_OrderBy>(6, _omitFieldNames ? '' : 'orderBy',
         enumValues: ListBasestationsRequest_OrderBy.values)
     ..aOB(7, _omitFieldNames ? '' : 'orderByDesc')
@@ -1238,15 +1238,15 @@ class ListBasestationsRequest extends $pb.GeneratedMessage {
 
   /// Pagination. Defaults to 100 objects at page index 0.
   @$pb.TagNumber(2)
-  $4.Paginator get paginator => $_getN(1);
+  $5.Paginator get paginator => $_getN(1);
   @$pb.TagNumber(2)
-  set paginator($4.Paginator value) => $_setField(2, value);
+  set paginator($5.Paginator value) => $_setField(2, value);
   @$pb.TagNumber(2)
   $core.bool hasPaginator() => $_has(1);
   @$pb.TagNumber(2)
   void clearPaginator() => $_clearField(2);
   @$pb.TagNumber(2)
-  $4.Paginator ensurePaginator() => $_ensure(1);
+  $5.Paginator ensurePaginator() => $_ensure(1);
 
   /// If set, the given string will be used to search on name (optional).
   @$pb.TagNumber(3)
@@ -1260,15 +1260,15 @@ class ListBasestationsRequest extends $pb.GeneratedMessage {
 
   /// Tags to filter devices on.
   @$pb.TagNumber(4)
-  $2.Tags get tags => $_getN(3);
+  $3.Tags get tags => $_getN(3);
   @$pb.TagNumber(4)
-  set tags($2.Tags value) => $_setField(4, value);
+  set tags($3.Tags value) => $_setField(4, value);
   @$pb.TagNumber(4)
   $core.bool hasTags() => $_has(3);
   @$pb.TagNumber(4)
   void clearTags() => $_clearField(4);
   @$pb.TagNumber(4)
-  $2.Tags ensureTags() => $_ensure(3);
+  $3.Tags ensureTags() => $_ensure(3);
 
   /// If set, the given value will be used to sort by (optional).
   @$pb.TagNumber(6)
@@ -1293,7 +1293,7 @@ class ListBasestationsRequest extends $pb.GeneratedMessage {
 
 class ListBasestationsResponse extends $pb.GeneratedMessage {
   factory ListBasestationsResponse({
-    $4.Pagination? pagination,
+    $5.Pagination? pagination,
     $core.Iterable<BasestationListItem>? result,
   }) {
     final result$ = create();
@@ -1315,8 +1315,8 @@ class ListBasestationsResponse extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'ListBasestationsResponse',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
       createEmptyInstance: create)
-    ..aOM<$4.Pagination>(1, _omitFieldNames ? '' : 'pagination',
-        subBuilder: $4.Pagination.create)
+    ..aOM<$5.Pagination>(1, _omitFieldNames ? '' : 'pagination',
+        subBuilder: $5.Pagination.create)
     ..pPM<BasestationListItem>(2, _omitFieldNames ? '' : 'result',
         subBuilder: BasestationListItem.create)
     ..hasRequiredFields = false;
@@ -1343,15 +1343,15 @@ class ListBasestationsResponse extends $pb.GeneratedMessage {
 
   /// Pagination.
   @$pb.TagNumber(1)
-  $4.Pagination get pagination => $_getN(0);
+  $5.Pagination get pagination => $_getN(0);
   @$pb.TagNumber(1)
-  set pagination($4.Pagination value) => $_setField(1, value);
+  set pagination($5.Pagination value) => $_setField(1, value);
   @$pb.TagNumber(1)
   $core.bool hasPagination() => $_has(0);
   @$pb.TagNumber(1)
   void clearPagination() => $_clearField(1);
   @$pb.TagNumber(1)
-  $4.Pagination ensurePagination() => $_ensure(0);
+  $5.Pagination ensurePagination() => $_ensure(0);
 
   /// Result-set.
   @$pb.TagNumber(2)
@@ -1425,7 +1425,7 @@ class GenerateBasestationClientCertificateResponse
     $core.String? tlsCert,
     $core.String? tlsKey,
     $core.String? caCert,
-    $3.Timestamp? expiresAt,
+    $4.Timestamp? expiresAt,
   }) {
     final result = create();
     if (tlsCert != null) result.tlsCert = tlsCert;
@@ -1453,8 +1453,8 @@ class GenerateBasestationClientCertificateResponse
     ..aOS(1, _omitFieldNames ? '' : 'tlsCert')
     ..aOS(2, _omitFieldNames ? '' : 'tlsKey')
     ..aOS(3, _omitFieldNames ? '' : 'caCert')
-    ..aOM<$3.Timestamp>(4, _omitFieldNames ? '' : 'expiresAt',
-        subBuilder: $3.Timestamp.create)
+    ..aOM<$4.Timestamp>(4, _omitFieldNames ? '' : 'expiresAt',
+        subBuilder: $4.Timestamp.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1514,23 +1514,23 @@ class GenerateBasestationClientCertificateResponse
 
   /// Expires at defines the expiration date of the certificate.
   @$pb.TagNumber(4)
-  $3.Timestamp get expiresAt => $_getN(3);
+  $4.Timestamp get expiresAt => $_getN(3);
   @$pb.TagNumber(4)
-  set expiresAt($3.Timestamp value) => $_setField(4, value);
+  set expiresAt($4.Timestamp value) => $_setField(4, value);
   @$pb.TagNumber(4)
   $core.bool hasExpiresAt() => $_has(3);
   @$pb.TagNumber(4)
   void clearExpiresAt() => $_clearField(4);
   @$pb.TagNumber(4)
-  $3.Timestamp ensureExpiresAt() => $_ensure(3);
+  $4.Timestamp ensureExpiresAt() => $_ensure(3);
 }
 
 class GetBasestationMetricsRequest extends $pb.GeneratedMessage {
   factory GetBasestationMetricsRequest({
     $core.String? id,
-    $3.Timestamp? start,
-    $3.Timestamp? end,
-    $5.Aggregation? aggregation,
+    $4.Timestamp? start,
+    $4.Timestamp? end,
+    $6.Aggregation? aggregation,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -1554,12 +1554,12 @@ class GetBasestationMetricsRequest extends $pb.GeneratedMessage {
       package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'id')
-    ..aOM<$3.Timestamp>(2, _omitFieldNames ? '' : 'start',
-        subBuilder: $3.Timestamp.create)
-    ..aOM<$3.Timestamp>(3, _omitFieldNames ? '' : 'end',
-        subBuilder: $3.Timestamp.create)
-    ..aE<$5.Aggregation>(4, _omitFieldNames ? '' : 'aggregation',
-        enumValues: $5.Aggregation.values)
+    ..aOM<$4.Timestamp>(2, _omitFieldNames ? '' : 'start',
+        subBuilder: $4.Timestamp.create)
+    ..aOM<$4.Timestamp>(3, _omitFieldNames ? '' : 'end',
+        subBuilder: $4.Timestamp.create)
+    ..aE<$6.Aggregation>(4, _omitFieldNames ? '' : 'aggregation',
+        enumValues: $6.Aggregation.values)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1596,33 +1596,33 @@ class GetBasestationMetricsRequest extends $pb.GeneratedMessage {
 
   /// Interval start timestamp.
   @$pb.TagNumber(2)
-  $3.Timestamp get start => $_getN(1);
+  $4.Timestamp get start => $_getN(1);
   @$pb.TagNumber(2)
-  set start($3.Timestamp value) => $_setField(2, value);
+  set start($4.Timestamp value) => $_setField(2, value);
   @$pb.TagNumber(2)
   $core.bool hasStart() => $_has(1);
   @$pb.TagNumber(2)
   void clearStart() => $_clearField(2);
   @$pb.TagNumber(2)
-  $3.Timestamp ensureStart() => $_ensure(1);
+  $4.Timestamp ensureStart() => $_ensure(1);
 
   /// Interval end timestamp.
   @$pb.TagNumber(3)
-  $3.Timestamp get end => $_getN(2);
+  $4.Timestamp get end => $_getN(2);
   @$pb.TagNumber(3)
-  set end($3.Timestamp value) => $_setField(3, value);
+  set end($4.Timestamp value) => $_setField(3, value);
   @$pb.TagNumber(3)
   $core.bool hasEnd() => $_has(2);
   @$pb.TagNumber(3)
   void clearEnd() => $_clearField(3);
   @$pb.TagNumber(3)
-  $3.Timestamp ensureEnd() => $_ensure(2);
+  $4.Timestamp ensureEnd() => $_ensure(2);
 
   /// Aggregation.
   @$pb.TagNumber(4)
-  $5.Aggregation get aggregation => $_getN(3);
+  $6.Aggregation get aggregation => $_getN(3);
   @$pb.TagNumber(4)
-  set aggregation($5.Aggregation value) => $_setField(4, value);
+  set aggregation($6.Aggregation value) => $_setField(4, value);
   @$pb.TagNumber(4)
   $core.bool hasAggregation() => $_has(3);
   @$pb.TagNumber(4)
@@ -1631,11 +1631,13 @@ class GetBasestationMetricsRequest extends $pb.GeneratedMessage {
 
 class GetBasestationMetricsResponse extends $pb.GeneratedMessage {
   factory GetBasestationMetricsResponse({
-    $5.Metric? uptime,
-    $5.Metric? cpu,
-    $5.Metric? memory,
-    $5.Metric? temp,
-    $5.Metric? dutyCycle,
+    $6.Metric? uptime,
+    $6.Metric? cpu,
+    $6.Metric? memory,
+    $6.Metric? temp,
+    $6.Metric? dutyCycle,
+    $6.Metric? rxCount,
+    $6.Metric? rxVmCount,
   }) {
     final result = create();
     if (uptime != null) result.uptime = uptime;
@@ -1643,6 +1645,8 @@ class GetBasestationMetricsResponse extends $pb.GeneratedMessage {
     if (memory != null) result.memory = memory;
     if (temp != null) result.temp = temp;
     if (dutyCycle != null) result.dutyCycle = dutyCycle;
+    if (rxCount != null) result.rxCount = rxCount;
+    if (rxVmCount != null) result.rxVmCount = rxVmCount;
     return result;
   }
 
@@ -1659,16 +1663,20 @@ class GetBasestationMetricsResponse extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'GetBasestationMetricsResponse',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
       createEmptyInstance: create)
-    ..aOM<$5.Metric>(1, _omitFieldNames ? '' : 'uptime',
-        subBuilder: $5.Metric.create)
-    ..aOM<$5.Metric>(2, _omitFieldNames ? '' : 'cpu',
-        subBuilder: $5.Metric.create)
-    ..aOM<$5.Metric>(3, _omitFieldNames ? '' : 'memory',
-        subBuilder: $5.Metric.create)
-    ..aOM<$5.Metric>(4, _omitFieldNames ? '' : 'temp',
-        subBuilder: $5.Metric.create)
-    ..aOM<$5.Metric>(5, _omitFieldNames ? '' : 'dutyCycle',
-        subBuilder: $5.Metric.create)
+    ..aOM<$6.Metric>(1, _omitFieldNames ? '' : 'uptime',
+        subBuilder: $6.Metric.create)
+    ..aOM<$6.Metric>(2, _omitFieldNames ? '' : 'cpu',
+        subBuilder: $6.Metric.create)
+    ..aOM<$6.Metric>(3, _omitFieldNames ? '' : 'memory',
+        subBuilder: $6.Metric.create)
+    ..aOM<$6.Metric>(4, _omitFieldNames ? '' : 'temp',
+        subBuilder: $6.Metric.create)
+    ..aOM<$6.Metric>(5, _omitFieldNames ? '' : 'dutyCycle',
+        subBuilder: $6.Metric.create)
+    ..aOM<$6.Metric>(6, _omitFieldNames ? '' : 'rxCount',
+        subBuilder: $6.Metric.create)
+    ..aOM<$6.Metric>(7, _omitFieldNames ? '' : 'rxVmCount',
+        subBuilder: $6.Metric.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1695,63 +1703,145 @@ class GetBasestationMetricsResponse extends $pb.GeneratedMessage {
 
   /// Basestation update in seconds.
   @$pb.TagNumber(1)
-  $5.Metric get uptime => $_getN(0);
+  $6.Metric get uptime => $_getN(0);
   @$pb.TagNumber(1)
-  set uptime($5.Metric value) => $_setField(1, value);
+  set uptime($6.Metric value) => $_setField(1, value);
   @$pb.TagNumber(1)
   $core.bool hasUptime() => $_has(0);
   @$pb.TagNumber(1)
   void clearUptime() => $_clearField(1);
   @$pb.TagNumber(1)
-  $5.Metric ensureUptime() => $_ensure(0);
+  $6.Metric ensureUptime() => $_ensure(0);
 
   /// CPU utilization, normalized to 1.0 for all cores.
   @$pb.TagNumber(2)
-  $5.Metric get cpu => $_getN(1);
+  $6.Metric get cpu => $_getN(1);
   @$pb.TagNumber(2)
-  set cpu($5.Metric value) => $_setField(2, value);
+  set cpu($6.Metric value) => $_setField(2, value);
   @$pb.TagNumber(2)
   $core.bool hasCpu() => $_has(1);
   @$pb.TagNumber(2)
   void clearCpu() => $_clearField(2);
   @$pb.TagNumber(2)
-  $5.Metric ensureCpu() => $_ensure(1);
+  $6.Metric ensureCpu() => $_ensure(1);
 
   /// Memory utilization, normalized to 1.0.
   @$pb.TagNumber(3)
-  $5.Metric get memory => $_getN(2);
+  $6.Metric get memory => $_getN(2);
   @$pb.TagNumber(3)
-  set memory($5.Metric value) => $_setField(3, value);
+  set memory($6.Metric value) => $_setField(3, value);
   @$pb.TagNumber(3)
   $core.bool hasMemory() => $_has(2);
   @$pb.TagNumber(3)
   void clearMemory() => $_clearField(3);
   @$pb.TagNumber(3)
-  $5.Metric ensureMemory() => $_ensure(2);
+  $6.Metric ensureMemory() => $_ensure(2);
 
   /// System temperature in degree Celsius.
   @$pb.TagNumber(4)
-  $5.Metric get temp => $_getN(3);
+  $6.Metric get temp => $_getN(3);
   @$pb.TagNumber(4)
-  set temp($5.Metric value) => $_setField(4, value);
+  set temp($6.Metric value) => $_setField(4, value);
   @$pb.TagNumber(4)
   $core.bool hasTemp() => $_has(3);
   @$pb.TagNumber(4)
   void clearTemp() => $_clearField(4);
   @$pb.TagNumber(4)
-  $5.Metric ensureTemp() => $_ensure(3);
+  $6.Metric ensureTemp() => $_ensure(3);
 
   /// Fraction of TX time, sliding window over one hour
   @$pb.TagNumber(5)
-  $5.Metric get dutyCycle => $_getN(4);
+  $6.Metric get dutyCycle => $_getN(4);
   @$pb.TagNumber(5)
-  set dutyCycle($5.Metric value) => $_setField(5, value);
+  set dutyCycle($6.Metric value) => $_setField(5, value);
   @$pb.TagNumber(5)
   $core.bool hasDutyCycle() => $_has(4);
   @$pb.TagNumber(5)
   void clearDutyCycle() => $_clearField(5);
   @$pb.TagNumber(5)
-  $5.Metric ensureDutyCycle() => $_ensure(4);
+  $6.Metric ensureDutyCycle() => $_ensure(4);
+
+  /// Number of received messages.
+  @$pb.TagNumber(6)
+  $6.Metric get rxCount => $_getN(5);
+  @$pb.TagNumber(6)
+  set rxCount($6.Metric value) => $_setField(6, value);
+  @$pb.TagNumber(6)
+  $core.bool hasRxCount() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearRxCount() => $_clearField(6);
+  @$pb.TagNumber(6)
+  $6.Metric ensureRxCount() => $_ensure(5);
+
+  /// Number of received variable mac messages.
+  @$pb.TagNumber(7)
+  $6.Metric get rxVmCount => $_getN(6);
+  @$pb.TagNumber(7)
+  set rxVmCount($6.Metric value) => $_setField(7, value);
+  @$pb.TagNumber(7)
+  $core.bool hasRxVmCount() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearRxVmCount() => $_clearField(7);
+  @$pb.TagNumber(7)
+  $6.Metric ensureRxVmCount() => $_ensure(6);
+}
+
+class StreamBasestationFramesRequest extends $pb.GeneratedMessage {
+  factory StreamBasestationFramesRequest({
+    $core.String? id,
+  }) {
+    final result = create();
+    if (id != null) result.id = id;
+    return result;
+  }
+
+  StreamBasestationFramesRequest._();
+
+  factory StreamBasestationFramesRequest.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory StreamBasestationFramesRequest.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'StreamBasestationFramesRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  StreamBasestationFramesRequest clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  StreamBasestationFramesRequest copyWith(
+          void Function(StreamBasestationFramesRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as StreamBasestationFramesRequest))
+          as StreamBasestationFramesRequest;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static StreamBasestationFramesRequest create() =>
+      StreamBasestationFramesRequest._();
+  @$core.override
+  StreamBasestationFramesRequest createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static StreamBasestationFramesRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<StreamBasestationFramesRequest>(create);
+  static StreamBasestationFramesRequest? _defaultInstance;
+
+  /// Basestation ID (UUID).
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set id($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => $_clearField(1);
 }
 
 const $core.bool _omitFieldNames =

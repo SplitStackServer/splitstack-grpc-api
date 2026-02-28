@@ -731,6 +731,22 @@ const GetBasestationMetricsResponse$json = {
       '6': '.common.Metric',
       '10': 'dutyCycle'
     },
+    {
+      '1': 'rx_count',
+      '3': 6,
+      '4': 1,
+      '5': 11,
+      '6': '.common.Metric',
+      '10': 'rxCount'
+    },
+    {
+      '1': 'rx_vm_count',
+      '3': 7,
+      '4': 1,
+      '5': 11,
+      '6': '.common.Metric',
+      '10': 'rxVmCount'
+    },
   ],
 };
 
@@ -740,4 +756,18 @@ final $typed_data.Uint8List getBasestationMetricsResponseDescriptor = $convert.b
     '4uTWV0cmljUgZ1cHRpbWUSIAoDY3B1GAIgASgLMg4uY29tbW9uLk1ldHJpY1IDY3B1EiYKBm1l'
     'bW9yeRgDIAEoCzIOLmNvbW1vbi5NZXRyaWNSBm1lbW9yeRIiCgR0ZW1wGAQgASgLMg4uY29tbW'
     '9uLk1ldHJpY1IEdGVtcBItCgpkdXR5X2N5Y2xlGAUgASgLMg4uY29tbW9uLk1ldHJpY1IJZHV0'
-    'eUN5Y2xl');
+    'eUN5Y2xlEikKCHJ4X2NvdW50GAYgASgLMg4uY29tbW9uLk1ldHJpY1IHcnhDb3VudBIuCgtyeF'
+    '92bV9jb3VudBgHIAEoCzIOLmNvbW1vbi5NZXRyaWNSCXJ4Vm1Db3VudA==');
+
+@$core.Deprecated('Use streamBasestationFramesRequestDescriptor instead')
+const StreamBasestationFramesRequest$json = {
+  '1': 'StreamBasestationFramesRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+  ],
+};
+
+/// Descriptor for `StreamBasestationFramesRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List streamBasestationFramesRequestDescriptor =
+    $convert.base64Decode(
+        'Ch5TdHJlYW1CYXNlc3RhdGlvbkZyYW1lc1JlcXVlc3QSDgoCaWQYASABKAlSAmlk');

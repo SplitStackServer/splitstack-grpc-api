@@ -17,6 +17,7 @@ import "google/protobuf/empty.proto";
 import "api/common.proto";
 import "common/common.proto";
 import "common/metrics.proto";
+import "stream/frame.proto";
 
 // BasestationService is the service providing API methods for managing basestations.
 service BasestationService {
@@ -70,6 +71,15 @@ service BasestationService {
             get: "/api/basestations/{id}/metrics"
         };
     }
+
+    // Returns a stream of frames for the given basestation ID.
+    rpc StreamBasestationFrames(StreamBasestationFramesRequest) returns (stream stream.FrameLogItem) {
+        option (google.api.http) = {
+        get : "/api/basestations/{id}/frames"
+        };
+    }
+
+
 }
 
 enum BasestationState {
@@ -344,6 +354,16 @@ message GetBasestationMetricsResponse {
 
     // Fraction of TX time, sliding window over one hour
     common.Metric duty_cycle = 5;
+
+    // Number of received messages.
+    common.Metric rx_count = 6;
+
+    // Number of received variable mac messages.
+    common.Metric rx_vm_count = 7;
 }
 
 
+message StreamBasestationFramesRequest {
+  // Basestation ID (UUID).
+  string id = 1;
+}

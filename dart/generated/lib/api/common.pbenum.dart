@@ -36,5 +36,29 @@ class IntegrationKind extends $pb.ProtobufEnum {
   const IntegrationKind._(super.value, super.name);
 }
 
+/// These are the Variable Mac types that are supported by the API.
+class VariableMac extends $pb.ProtobufEnum {
+  /// Type 1: Wireless M-Bus frame with Frame Format B (FFB)
+  static const VariableMac MBUS_FFB =
+      VariableMac._(0, _omitEnumNames ? '' : 'MBUS_FFB');
+
+  /// Type 2: M-Bus frame that starts with a wireless M-Bus MAC according to OMS-S Volume 2, Annex Q
+  ///
+  /// Open Metering System Specification (OMS-S), Volume 2, Annex Q, Issue 5.0.1, December 2023.
+  static const VariableMac MBUS_MAC =
+      VariableMac._(2, _omitEnumNames ? '' : 'MBUS_MAC');
+
+  static const $core.List<VariableMac> values = <VariableMac>[
+    MBUS_FFB,
+    MBUS_MAC,
+  ];
+
+  static final $core.Map<$core.int, VariableMac> _byValue =
+      $pb.ProtobufEnum.initByValue(values);
+  static VariableMac? valueOf($core.int value) => _byValue[value];
+
+  const VariableMac._(super.value, super.name);
+}
+
 const $core.bool _omitEnumNames =
     $core.bool.fromEnvironment('protobuf.omit_enum_names');

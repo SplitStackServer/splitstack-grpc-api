@@ -43,12 +43,20 @@ class TenantUserServiceClient extends $grpc.Client {
     return $createUnaryCall(_$addTenantUser, request, options: options);
   }
 
-  /// Get the the tenant user for the given tenant and user IDs.
+  /// Get the tenant user for the given tenant and user IDs.
   $grpc.ResponseFuture<$0.GetTenantUserResponse> getTenantUser(
     $0.GetTenantUserRequest request, {
     $grpc.CallOptions? options,
   }) {
     return $createUnaryCall(_$getTenantUser, request, options: options);
+  }
+
+  /// Get the count of tenant users for the given tenant ID.
+  $grpc.ResponseFuture<$0.GetTenantUserCountResponse> getTenantUserCount(
+    $0.GetTenantUserCountRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$getTenantUserCount, request, options: options);
   }
 
   /// Update the given tenant user.
@@ -87,6 +95,11 @@ class TenantUserServiceClient extends $grpc.Client {
           '/api.TenantUserService/GetTenantUser',
           ($0.GetTenantUserRequest value) => value.writeToBuffer(),
           $0.GetTenantUserResponse.fromBuffer);
+  static final _$getTenantUserCount = $grpc.ClientMethod<
+          $0.GetTenantUserCountRequest, $0.GetTenantUserCountResponse>(
+      '/api.TenantUserService/GetTenantUserCount',
+      ($0.GetTenantUserCountRequest value) => value.writeToBuffer(),
+      $0.GetTenantUserCountResponse.fromBuffer);
   static final _$updateTenantUser = $grpc.ClientMethod<
           $0.UpdateTenantUserRequest, $0.UpdateTenantUserResponse>(
       '/api.TenantUserService/UpdateTenantUser',
@@ -127,6 +140,15 @@ abstract class TenantUserServiceBase extends $grpc.Service {
             ($core.List<$core.int> value) =>
                 $0.GetTenantUserRequest.fromBuffer(value),
             ($0.GetTenantUserResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.GetTenantUserCountRequest,
+            $0.GetTenantUserCountResponse>(
+        'GetTenantUserCount',
+        getTenantUserCount_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.GetTenantUserCountRequest.fromBuffer(value),
+        ($0.GetTenantUserCountResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.UpdateTenantUserRequest,
             $0.UpdateTenantUserResponse>(
         'UpdateTenantUser',
@@ -172,6 +194,15 @@ abstract class TenantUserServiceBase extends $grpc.Service {
 
   $async.Future<$0.GetTenantUserResponse> getTenantUser(
       $grpc.ServiceCall call, $0.GetTenantUserRequest request);
+
+  $async.Future<$0.GetTenantUserCountResponse> getTenantUserCount_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.GetTenantUserCountRequest> $request) async {
+    return getTenantUserCount($call, await $request);
+  }
+
+  $async.Future<$0.GetTenantUserCountResponse> getTenantUserCount(
+      $grpc.ServiceCall call, $0.GetTenantUserCountRequest request);
 
   $async.Future<$0.UpdateTenantUserResponse> updateTenantUser_Pre(
       $grpc.ServiceCall $call,

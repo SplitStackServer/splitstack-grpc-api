@@ -14,11 +14,11 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 import 'package:protobuf/well_known_types/google/protobuf/timestamp.pb.dart'
-    as $3;
+    as $4;
 
-import '../common/common.pb.dart' as $2;
-import '../common/metrics.pb.dart' as $5;
-import 'common.pb.dart' as $4;
+import '../common/common.pb.dart' as $3;
+import '../common/metrics.pb.dart' as $6;
+import 'common.pb.dart' as $5;
 import 'device.pbenum.dart';
 
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
@@ -33,9 +33,9 @@ class Device extends $pb.GeneratedMessage {
     $core.String? deviceProfileId,
     $core.String? name,
     $core.String? description,
-    $2.GeoLocation? location,
-    $2.Tags? variables,
-    $2.Tags? tags,
+    $3.GeoLocation? location,
+    $3.Tags? variables,
+    $3.Tags? tags,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -69,12 +69,12 @@ class Device extends $pb.GeneratedMessage {
     ..aOS(4, _omitFieldNames ? '' : 'deviceProfileId')
     ..aOS(5, _omitFieldNames ? '' : 'name')
     ..aOS(6, _omitFieldNames ? '' : 'description')
-    ..aOM<$2.GeoLocation>(7, _omitFieldNames ? '' : 'location',
-        subBuilder: $2.GeoLocation.create)
-    ..aOM<$2.Tags>(9, _omitFieldNames ? '' : 'variables',
-        subBuilder: $2.Tags.create)
-    ..aOM<$2.Tags>(10, _omitFieldNames ? '' : 'tags',
-        subBuilder: $2.Tags.create)
+    ..aOM<$3.GeoLocation>(7, _omitFieldNames ? '' : 'location',
+        subBuilder: $3.GeoLocation.create)
+    ..aOM<$3.Tags>(9, _omitFieldNames ? '' : 'variables',
+        subBuilder: $3.Tags.create)
+    ..aOM<$3.Tags>(10, _omitFieldNames ? '' : 'tags',
+        subBuilder: $3.Tags.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -157,60 +157,60 @@ class Device extends $pb.GeneratedMessage {
 
   /// Location.
   @$pb.TagNumber(7)
-  $2.GeoLocation get location => $_getN(6);
+  $3.GeoLocation get location => $_getN(6);
   @$pb.TagNumber(7)
-  set location($2.GeoLocation value) => $_setField(7, value);
+  set location($3.GeoLocation value) => $_setField(7, value);
   @$pb.TagNumber(7)
   $core.bool hasLocation() => $_has(6);
   @$pb.TagNumber(7)
   void clearLocation() => $_clearField(7);
   @$pb.TagNumber(7)
-  $2.GeoLocation ensureLocation() => $_ensure(6);
+  $3.GeoLocation ensureLocation() => $_ensure(6);
 
   /// Variables (user defined).
   /// These variables can be used together with integrations to store tokens /
   /// secrets that must be configured per device. These variables are not
   /// exposed in the event payloads.
   @$pb.TagNumber(9)
-  $2.Tags get variables => $_getN(7);
+  $3.Tags get variables => $_getN(7);
   @$pb.TagNumber(9)
-  set variables($2.Tags value) => $_setField(9, value);
+  set variables($3.Tags value) => $_setField(9, value);
   @$pb.TagNumber(9)
   $core.bool hasVariables() => $_has(7);
   @$pb.TagNumber(9)
   void clearVariables() => $_clearField(9);
   @$pb.TagNumber(9)
-  $2.Tags ensureVariables() => $_ensure(7);
+  $3.Tags ensureVariables() => $_ensure(7);
 
   /// Tags (user defined).
   /// These tags can be used to add additional information to the device.
   /// These tags are exposed in all the integration events.
   @$pb.TagNumber(10)
-  $2.Tags get tags => $_getN(8);
+  $3.Tags get tags => $_getN(8);
   @$pb.TagNumber(10)
-  set tags($2.Tags value) => $_setField(10, value);
+  set tags($3.Tags value) => $_setField(10, value);
   @$pb.TagNumber(10)
   $core.bool hasTags() => $_has(8);
   @$pb.TagNumber(10)
   void clearTags() => $_clearField(10);
   @$pb.TagNumber(10)
-  $2.Tags ensureTags() => $_ensure(8);
+  $3.Tags ensureTags() => $_ensure(8);
 }
 
 class DeviceListItem extends $pb.GeneratedMessage {
   factory DeviceListItem({
     $core.String? id,
     $core.String? eui,
-    $3.Timestamp? createdAt,
-    $3.Timestamp? updatedAt,
-    $3.Timestamp? lastSeenAt,
+    $4.Timestamp? createdAt,
+    $4.Timestamp? updatedAt,
+    $4.Timestamp? lastSeenAt,
     $core.String? name,
     $core.String? description,
     $core.String? deviceProfileId,
     $core.String? deviceProfileName,
     $core.String? applicationId,
     $core.String? applicationName,
-    $2.Tags? tags,
+    $3.Tags? tags,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -243,20 +243,20 @@ class DeviceListItem extends $pb.GeneratedMessage {
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'id')
     ..aOS(2, _omitFieldNames ? '' : 'eui')
-    ..aOM<$3.Timestamp>(3, _omitFieldNames ? '' : 'createdAt',
-        subBuilder: $3.Timestamp.create)
-    ..aOM<$3.Timestamp>(4, _omitFieldNames ? '' : 'updatedAt',
-        subBuilder: $3.Timestamp.create)
-    ..aOM<$3.Timestamp>(5, _omitFieldNames ? '' : 'lastSeenAt',
-        subBuilder: $3.Timestamp.create)
+    ..aOM<$4.Timestamp>(3, _omitFieldNames ? '' : 'createdAt',
+        subBuilder: $4.Timestamp.create)
+    ..aOM<$4.Timestamp>(4, _omitFieldNames ? '' : 'updatedAt',
+        subBuilder: $4.Timestamp.create)
+    ..aOM<$4.Timestamp>(5, _omitFieldNames ? '' : 'lastSeenAt',
+        subBuilder: $4.Timestamp.create)
     ..aOS(6, _omitFieldNames ? '' : 'name')
     ..aOS(7, _omitFieldNames ? '' : 'description')
     ..aOS(8, _omitFieldNames ? '' : 'deviceProfileId')
     ..aOS(9, _omitFieldNames ? '' : 'deviceProfileName')
     ..aOS(10, _omitFieldNames ? '' : 'applicationId')
     ..aOS(11, _omitFieldNames ? '' : 'applicationName')
-    ..aOM<$2.Tags>(12, _omitFieldNames ? '' : 'tags',
-        subBuilder: $2.Tags.create)
+    ..aOM<$3.Tags>(12, _omitFieldNames ? '' : 'tags',
+        subBuilder: $3.Tags.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -300,39 +300,39 @@ class DeviceListItem extends $pb.GeneratedMessage {
 
   /// Created at timestamp.
   @$pb.TagNumber(3)
-  $3.Timestamp get createdAt => $_getN(2);
+  $4.Timestamp get createdAt => $_getN(2);
   @$pb.TagNumber(3)
-  set createdAt($3.Timestamp value) => $_setField(3, value);
+  set createdAt($4.Timestamp value) => $_setField(3, value);
   @$pb.TagNumber(3)
   $core.bool hasCreatedAt() => $_has(2);
   @$pb.TagNumber(3)
   void clearCreatedAt() => $_clearField(3);
   @$pb.TagNumber(3)
-  $3.Timestamp ensureCreatedAt() => $_ensure(2);
+  $4.Timestamp ensureCreatedAt() => $_ensure(2);
 
   /// Last update timestamp.
   @$pb.TagNumber(4)
-  $3.Timestamp get updatedAt => $_getN(3);
+  $4.Timestamp get updatedAt => $_getN(3);
   @$pb.TagNumber(4)
-  set updatedAt($3.Timestamp value) => $_setField(4, value);
+  set updatedAt($4.Timestamp value) => $_setField(4, value);
   @$pb.TagNumber(4)
   $core.bool hasUpdatedAt() => $_has(3);
   @$pb.TagNumber(4)
   void clearUpdatedAt() => $_clearField(4);
   @$pb.TagNumber(4)
-  $3.Timestamp ensureUpdatedAt() => $_ensure(3);
+  $4.Timestamp ensureUpdatedAt() => $_ensure(3);
 
   /// Last seen at timestamp.
   @$pb.TagNumber(5)
-  $3.Timestamp get lastSeenAt => $_getN(4);
+  $4.Timestamp get lastSeenAt => $_getN(4);
   @$pb.TagNumber(5)
-  set lastSeenAt($3.Timestamp value) => $_setField(5, value);
+  set lastSeenAt($4.Timestamp value) => $_setField(5, value);
   @$pb.TagNumber(5)
   $core.bool hasLastSeenAt() => $_has(4);
   @$pb.TagNumber(5)
   void clearLastSeenAt() => $_clearField(5);
   @$pb.TagNumber(5)
-  $3.Timestamp ensureLastSeenAt() => $_ensure(4);
+  $4.Timestamp ensureLastSeenAt() => $_ensure(4);
 
   /// Name.
   @$pb.TagNumber(6)
@@ -398,15 +398,15 @@ class DeviceListItem extends $pb.GeneratedMessage {
   /// These tags can be used to add additional information to the device.
   /// These tags are exposed in all the integration events.
   @$pb.TagNumber(12)
-  $2.Tags get tags => $_getN(11);
+  $3.Tags get tags => $_getN(11);
   @$pb.TagNumber(12)
-  set tags($2.Tags value) => $_setField(12, value);
+  set tags($3.Tags value) => $_setField(12, value);
   @$pb.TagNumber(12)
   $core.bool hasTags() => $_has(11);
   @$pb.TagNumber(12)
   void clearTags() => $_clearField(12);
   @$pb.TagNumber(12)
-  $2.Tags ensureTags() => $_ensure(11);
+  $3.Tags ensureTags() => $_ensure(11);
 }
 
 class CreateDeviceRequest extends $pb.GeneratedMessage {
@@ -416,9 +416,9 @@ class CreateDeviceRequest extends $pb.GeneratedMessage {
     $core.String? deviceProfileId,
     $core.String? name,
     $core.String? description,
-    $2.GeoLocation? location,
-    $2.Tags? variables,
-    $2.Tags? tags,
+    $3.GeoLocation? location,
+    $3.Tags? variables,
+    $3.Tags? tags,
   }) {
     final result = create();
     if (eui != null) result.eui = eui;
@@ -450,12 +450,12 @@ class CreateDeviceRequest extends $pb.GeneratedMessage {
     ..aOS(4, _omitFieldNames ? '' : 'deviceProfileId')
     ..aOS(5, _omitFieldNames ? '' : 'name')
     ..aOS(6, _omitFieldNames ? '' : 'description')
-    ..aOM<$2.GeoLocation>(7, _omitFieldNames ? '' : 'location',
-        subBuilder: $2.GeoLocation.create)
-    ..aOM<$2.Tags>(9, _omitFieldNames ? '' : 'variables',
-        subBuilder: $2.Tags.create)
-    ..aOM<$2.Tags>(10, _omitFieldNames ? '' : 'tags',
-        subBuilder: $2.Tags.create)
+    ..aOM<$3.GeoLocation>(7, _omitFieldNames ? '' : 'location',
+        subBuilder: $3.GeoLocation.create)
+    ..aOM<$3.Tags>(9, _omitFieldNames ? '' : 'variables',
+        subBuilder: $3.Tags.create)
+    ..aOM<$3.Tags>(10, _omitFieldNames ? '' : 'tags',
+        subBuilder: $3.Tags.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -529,50 +529,50 @@ class CreateDeviceRequest extends $pb.GeneratedMessage {
 
   /// Location.
   @$pb.TagNumber(7)
-  $2.GeoLocation get location => $_getN(5);
+  $3.GeoLocation get location => $_getN(5);
   @$pb.TagNumber(7)
-  set location($2.GeoLocation value) => $_setField(7, value);
+  set location($3.GeoLocation value) => $_setField(7, value);
   @$pb.TagNumber(7)
   $core.bool hasLocation() => $_has(5);
   @$pb.TagNumber(7)
   void clearLocation() => $_clearField(7);
   @$pb.TagNumber(7)
-  $2.GeoLocation ensureLocation() => $_ensure(5);
+  $3.GeoLocation ensureLocation() => $_ensure(5);
 
   /// Variables (user defined).
   /// These variables can be used together with integrations to store tokens /
   /// secrets that must be configured per device. These variables are not
   /// exposed in the event payloads.
   @$pb.TagNumber(9)
-  $2.Tags get variables => $_getN(6);
+  $3.Tags get variables => $_getN(6);
   @$pb.TagNumber(9)
-  set variables($2.Tags value) => $_setField(9, value);
+  set variables($3.Tags value) => $_setField(9, value);
   @$pb.TagNumber(9)
   $core.bool hasVariables() => $_has(6);
   @$pb.TagNumber(9)
   void clearVariables() => $_clearField(9);
   @$pb.TagNumber(9)
-  $2.Tags ensureVariables() => $_ensure(6);
+  $3.Tags ensureVariables() => $_ensure(6);
 
   /// Tags (user defined).
   /// These tags can be used to add additional information to the device.
   /// These tags are exposed in all the integration events.
   @$pb.TagNumber(10)
-  $2.Tags get tags => $_getN(7);
+  $3.Tags get tags => $_getN(7);
   @$pb.TagNumber(10)
-  set tags($2.Tags value) => $_setField(10, value);
+  set tags($3.Tags value) => $_setField(10, value);
   @$pb.TagNumber(10)
   $core.bool hasTags() => $_has(7);
   @$pb.TagNumber(10)
   void clearTags() => $_clearField(10);
   @$pb.TagNumber(10)
-  $2.Tags ensureTags() => $_ensure(7);
+  $3.Tags ensureTags() => $_ensure(7);
 }
 
 class CreateDeviceResponse extends $pb.GeneratedMessage {
   factory CreateDeviceResponse({
     Device? device,
-    $3.Timestamp? createdAt,
+    $4.Timestamp? createdAt,
   }) {
     final result = create();
     if (device != null) result.device = device;
@@ -594,8 +594,8 @@ class CreateDeviceResponse extends $pb.GeneratedMessage {
       package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
       createEmptyInstance: create)
     ..aOM<Device>(1, _omitFieldNames ? '' : 'device', subBuilder: Device.create)
-    ..aOM<$3.Timestamp>(2, _omitFieldNames ? '' : 'createdAt',
-        subBuilder: $3.Timestamp.create)
+    ..aOM<$4.Timestamp>(2, _omitFieldNames ? '' : 'createdAt',
+        subBuilder: $4.Timestamp.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -631,15 +631,15 @@ class CreateDeviceResponse extends $pb.GeneratedMessage {
 
   /// Created at timestamp.
   @$pb.TagNumber(2)
-  $3.Timestamp get createdAt => $_getN(1);
+  $4.Timestamp get createdAt => $_getN(1);
   @$pb.TagNumber(2)
-  set createdAt($3.Timestamp value) => $_setField(2, value);
+  set createdAt($4.Timestamp value) => $_setField(2, value);
   @$pb.TagNumber(2)
   $core.bool hasCreatedAt() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreatedAt() => $_clearField(2);
   @$pb.TagNumber(2)
-  $3.Timestamp ensureCreatedAt() => $_ensure(1);
+  $4.Timestamp ensureCreatedAt() => $_ensure(1);
 }
 
 class GetDeviceRequest extends $pb.GeneratedMessage {
@@ -700,9 +700,9 @@ class GetDeviceRequest extends $pb.GeneratedMessage {
 class GetDeviceResponse extends $pb.GeneratedMessage {
   factory GetDeviceResponse({
     Device? device,
-    $3.Timestamp? createdAt,
-    $3.Timestamp? updatedAt,
-    $3.Timestamp? lastSeenAt,
+    $4.Timestamp? createdAt,
+    $4.Timestamp? updatedAt,
+    $4.Timestamp? lastSeenAt,
   }) {
     final result = create();
     if (device != null) result.device = device;
@@ -726,12 +726,12 @@ class GetDeviceResponse extends $pb.GeneratedMessage {
       package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
       createEmptyInstance: create)
     ..aOM<Device>(1, _omitFieldNames ? '' : 'device', subBuilder: Device.create)
-    ..aOM<$3.Timestamp>(2, _omitFieldNames ? '' : 'createdAt',
-        subBuilder: $3.Timestamp.create)
-    ..aOM<$3.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt',
-        subBuilder: $3.Timestamp.create)
-    ..aOM<$3.Timestamp>(4, _omitFieldNames ? '' : 'lastSeenAt',
-        subBuilder: $3.Timestamp.create)
+    ..aOM<$4.Timestamp>(2, _omitFieldNames ? '' : 'createdAt',
+        subBuilder: $4.Timestamp.create)
+    ..aOM<$4.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt',
+        subBuilder: $4.Timestamp.create)
+    ..aOM<$4.Timestamp>(4, _omitFieldNames ? '' : 'lastSeenAt',
+        subBuilder: $4.Timestamp.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -767,39 +767,39 @@ class GetDeviceResponse extends $pb.GeneratedMessage {
 
   /// Created at timestamp.
   @$pb.TagNumber(2)
-  $3.Timestamp get createdAt => $_getN(1);
+  $4.Timestamp get createdAt => $_getN(1);
   @$pb.TagNumber(2)
-  set createdAt($3.Timestamp value) => $_setField(2, value);
+  set createdAt($4.Timestamp value) => $_setField(2, value);
   @$pb.TagNumber(2)
   $core.bool hasCreatedAt() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreatedAt() => $_clearField(2);
   @$pb.TagNumber(2)
-  $3.Timestamp ensureCreatedAt() => $_ensure(1);
+  $4.Timestamp ensureCreatedAt() => $_ensure(1);
 
   /// Last update timestamp.
   @$pb.TagNumber(3)
-  $3.Timestamp get updatedAt => $_getN(2);
+  $4.Timestamp get updatedAt => $_getN(2);
   @$pb.TagNumber(3)
-  set updatedAt($3.Timestamp value) => $_setField(3, value);
+  set updatedAt($4.Timestamp value) => $_setField(3, value);
   @$pb.TagNumber(3)
   $core.bool hasUpdatedAt() => $_has(2);
   @$pb.TagNumber(3)
   void clearUpdatedAt() => $_clearField(3);
   @$pb.TagNumber(3)
-  $3.Timestamp ensureUpdatedAt() => $_ensure(2);
+  $4.Timestamp ensureUpdatedAt() => $_ensure(2);
 
   /// Last seen at timestamp.
   @$pb.TagNumber(4)
-  $3.Timestamp get lastSeenAt => $_getN(3);
+  $4.Timestamp get lastSeenAt => $_getN(3);
   @$pb.TagNumber(4)
-  set lastSeenAt($3.Timestamp value) => $_setField(4, value);
+  set lastSeenAt($4.Timestamp value) => $_setField(4, value);
   @$pb.TagNumber(4)
   $core.bool hasLastSeenAt() => $_has(3);
   @$pb.TagNumber(4)
   void clearLastSeenAt() => $_clearField(4);
   @$pb.TagNumber(4)
-  $3.Timestamp ensureLastSeenAt() => $_ensure(3);
+  $4.Timestamp ensureLastSeenAt() => $_ensure(3);
 }
 
 class UpdateDeviceRequest extends $pb.GeneratedMessage {
@@ -809,9 +809,9 @@ class UpdateDeviceRequest extends $pb.GeneratedMessage {
     $core.String? deviceProfileId,
     $core.String? name,
     $core.String? description,
-    $2.GeoLocation? location,
-    $2.Tags? variables,
-    $2.Tags? tags,
+    $3.GeoLocation? location,
+    $3.Tags? variables,
+    $3.Tags? tags,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -843,12 +843,12 @@ class UpdateDeviceRequest extends $pb.GeneratedMessage {
     ..aOS(4, _omitFieldNames ? '' : 'deviceProfileId')
     ..aOS(5, _omitFieldNames ? '' : 'name')
     ..aOS(6, _omitFieldNames ? '' : 'description')
-    ..aOM<$2.GeoLocation>(7, _omitFieldNames ? '' : 'location',
-        subBuilder: $2.GeoLocation.create)
-    ..aOM<$2.Tags>(9, _omitFieldNames ? '' : 'variables',
-        subBuilder: $2.Tags.create)
-    ..aOM<$2.Tags>(10, _omitFieldNames ? '' : 'tags',
-        subBuilder: $2.Tags.create)
+    ..aOM<$3.GeoLocation>(7, _omitFieldNames ? '' : 'location',
+        subBuilder: $3.GeoLocation.create)
+    ..aOM<$3.Tags>(9, _omitFieldNames ? '' : 'variables',
+        subBuilder: $3.Tags.create)
+    ..aOM<$3.Tags>(10, _omitFieldNames ? '' : 'tags',
+        subBuilder: $3.Tags.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -922,51 +922,51 @@ class UpdateDeviceRequest extends $pb.GeneratedMessage {
 
   /// Location.
   @$pb.TagNumber(7)
-  $2.GeoLocation get location => $_getN(5);
+  $3.GeoLocation get location => $_getN(5);
   @$pb.TagNumber(7)
-  set location($2.GeoLocation value) => $_setField(7, value);
+  set location($3.GeoLocation value) => $_setField(7, value);
   @$pb.TagNumber(7)
   $core.bool hasLocation() => $_has(5);
   @$pb.TagNumber(7)
   void clearLocation() => $_clearField(7);
   @$pb.TagNumber(7)
-  $2.GeoLocation ensureLocation() => $_ensure(5);
+  $3.GeoLocation ensureLocation() => $_ensure(5);
 
   /// Variables (user defined).
   /// These variables can be used together with integrations to store tokens /
   /// secrets that must be configured per device. These variables are not
   /// exposed in the event payloads.
   @$pb.TagNumber(9)
-  $2.Tags get variables => $_getN(6);
+  $3.Tags get variables => $_getN(6);
   @$pb.TagNumber(9)
-  set variables($2.Tags value) => $_setField(9, value);
+  set variables($3.Tags value) => $_setField(9, value);
   @$pb.TagNumber(9)
   $core.bool hasVariables() => $_has(6);
   @$pb.TagNumber(9)
   void clearVariables() => $_clearField(9);
   @$pb.TagNumber(9)
-  $2.Tags ensureVariables() => $_ensure(6);
+  $3.Tags ensureVariables() => $_ensure(6);
 
   /// Tags (user defined).
   /// These tags can be used to add additional information to the device.
   /// These tags are exposed in all the integration events.
   @$pb.TagNumber(10)
-  $2.Tags get tags => $_getN(7);
+  $3.Tags get tags => $_getN(7);
   @$pb.TagNumber(10)
-  set tags($2.Tags value) => $_setField(10, value);
+  set tags($3.Tags value) => $_setField(10, value);
   @$pb.TagNumber(10)
   $core.bool hasTags() => $_has(7);
   @$pb.TagNumber(10)
   void clearTags() => $_clearField(10);
   @$pb.TagNumber(10)
-  $2.Tags ensureTags() => $_ensure(7);
+  $3.Tags ensureTags() => $_ensure(7);
 }
 
 class UpdateDeviceResponse extends $pb.GeneratedMessage {
   factory UpdateDeviceResponse({
     Device? device,
-    $3.Timestamp? createdAt,
-    $3.Timestamp? updatedAt,
+    $4.Timestamp? createdAt,
+    $4.Timestamp? updatedAt,
   }) {
     final result = create();
     if (device != null) result.device = device;
@@ -989,10 +989,10 @@ class UpdateDeviceResponse extends $pb.GeneratedMessage {
       package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
       createEmptyInstance: create)
     ..aOM<Device>(1, _omitFieldNames ? '' : 'device', subBuilder: Device.create)
-    ..aOM<$3.Timestamp>(2, _omitFieldNames ? '' : 'createdAt',
-        subBuilder: $3.Timestamp.create)
-    ..aOM<$3.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt',
-        subBuilder: $3.Timestamp.create)
+    ..aOM<$4.Timestamp>(2, _omitFieldNames ? '' : 'createdAt',
+        subBuilder: $4.Timestamp.create)
+    ..aOM<$4.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt',
+        subBuilder: $4.Timestamp.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1028,27 +1028,27 @@ class UpdateDeviceResponse extends $pb.GeneratedMessage {
 
   /// Created at timestamp.
   @$pb.TagNumber(2)
-  $3.Timestamp get createdAt => $_getN(1);
+  $4.Timestamp get createdAt => $_getN(1);
   @$pb.TagNumber(2)
-  set createdAt($3.Timestamp value) => $_setField(2, value);
+  set createdAt($4.Timestamp value) => $_setField(2, value);
   @$pb.TagNumber(2)
   $core.bool hasCreatedAt() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreatedAt() => $_clearField(2);
   @$pb.TagNumber(2)
-  $3.Timestamp ensureCreatedAt() => $_ensure(1);
+  $4.Timestamp ensureCreatedAt() => $_ensure(1);
 
   /// Last update timestamp.
   @$pb.TagNumber(3)
-  $3.Timestamp get updatedAt => $_getN(2);
+  $4.Timestamp get updatedAt => $_getN(2);
   @$pb.TagNumber(3)
-  set updatedAt($3.Timestamp value) => $_setField(3, value);
+  set updatedAt($4.Timestamp value) => $_setField(3, value);
   @$pb.TagNumber(3)
   $core.bool hasUpdatedAt() => $_has(2);
   @$pb.TagNumber(3)
   void clearUpdatedAt() => $_clearField(3);
   @$pb.TagNumber(3)
-  $3.Timestamp ensureUpdatedAt() => $_ensure(2);
+  $4.Timestamp ensureUpdatedAt() => $_ensure(2);
 }
 
 class DeleteDeviceRequest extends $pb.GeneratedMessage {
@@ -1108,11 +1108,11 @@ class DeleteDeviceRequest extends $pb.GeneratedMessage {
 
 class ListDevicesRequest extends $pb.GeneratedMessage {
   factory ListDevicesRequest({
-    $4.Paginator? paginator,
+    $5.Paginator? paginator,
     $core.String? searchName,
     $core.String? applicationId,
     $core.String? tenantId,
-    $2.Tags? tags,
+    $3.Tags? tags,
     $core.String? deviceProfileId,
     ListDevicesRequest_OrderBy? orderBy,
     $core.bool? orderByDesc,
@@ -1142,12 +1142,12 @@ class ListDevicesRequest extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'ListDevicesRequest',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
       createEmptyInstance: create)
-    ..aOM<$4.Paginator>(1, _omitFieldNames ? '' : 'paginator',
-        subBuilder: $4.Paginator.create)
+    ..aOM<$5.Paginator>(1, _omitFieldNames ? '' : 'paginator',
+        subBuilder: $5.Paginator.create)
     ..aOS(2, _omitFieldNames ? '' : 'searchName')
     ..aOS(3, _omitFieldNames ? '' : 'applicationId')
     ..aOS(4, _omitFieldNames ? '' : 'tenantId')
-    ..aOM<$2.Tags>(5, _omitFieldNames ? '' : 'tags', subBuilder: $2.Tags.create)
+    ..aOM<$3.Tags>(5, _omitFieldNames ? '' : 'tags', subBuilder: $3.Tags.create)
     ..aOS(6, _omitFieldNames ? '' : 'deviceProfileId')
     ..aE<ListDevicesRequest_OrderBy>(7, _omitFieldNames ? '' : 'orderBy',
         enumValues: ListDevicesRequest_OrderBy.values)
@@ -1175,15 +1175,15 @@ class ListDevicesRequest extends $pb.GeneratedMessage {
 
   /// Pagination. Defaults to 100 objects at page index 0.
   @$pb.TagNumber(1)
-  $4.Paginator get paginator => $_getN(0);
+  $5.Paginator get paginator => $_getN(0);
   @$pb.TagNumber(1)
-  set paginator($4.Paginator value) => $_setField(1, value);
+  set paginator($5.Paginator value) => $_setField(1, value);
   @$pb.TagNumber(1)
   $core.bool hasPaginator() => $_has(0);
   @$pb.TagNumber(1)
   void clearPaginator() => $_clearField(1);
   @$pb.TagNumber(1)
-  $4.Paginator ensurePaginator() => $_ensure(0);
+  $5.Paginator ensurePaginator() => $_ensure(0);
 
   /// If set, the given string will be used to search on name (optional).
   @$pb.TagNumber(2)
@@ -1220,15 +1220,15 @@ class ListDevicesRequest extends $pb.GeneratedMessage {
 
   /// Tags to filter devices on.
   @$pb.TagNumber(5)
-  $2.Tags get tags => $_getN(4);
+  $3.Tags get tags => $_getN(4);
   @$pb.TagNumber(5)
-  set tags($2.Tags value) => $_setField(5, value);
+  set tags($3.Tags value) => $_setField(5, value);
   @$pb.TagNumber(5)
   $core.bool hasTags() => $_has(4);
   @$pb.TagNumber(5)
   void clearTags() => $_clearField(5);
   @$pb.TagNumber(5)
-  $2.Tags ensureTags() => $_ensure(4);
+  $3.Tags ensureTags() => $_ensure(4);
 
   /// Device-profile ID (UUID) to filter devices on.
   @$pb.TagNumber(6)
@@ -1263,7 +1263,7 @@ class ListDevicesRequest extends $pb.GeneratedMessage {
 
 class ListDevicesResponse extends $pb.GeneratedMessage {
   factory ListDevicesResponse({
-    $4.Pagination? pagination,
+    $5.Pagination? pagination,
     $core.Iterable<DeviceListItem>? result,
   }) {
     final result$ = create();
@@ -1285,8 +1285,8 @@ class ListDevicesResponse extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'ListDevicesResponse',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
       createEmptyInstance: create)
-    ..aOM<$4.Pagination>(1, _omitFieldNames ? '' : 'pagination',
-        subBuilder: $4.Pagination.create)
+    ..aOM<$5.Pagination>(1, _omitFieldNames ? '' : 'pagination',
+        subBuilder: $5.Pagination.create)
     ..pPM<DeviceListItem>(2, _omitFieldNames ? '' : 'result',
         subBuilder: DeviceListItem.create)
     ..hasRequiredFields = false;
@@ -1312,15 +1312,15 @@ class ListDevicesResponse extends $pb.GeneratedMessage {
 
   /// Pagination.
   @$pb.TagNumber(1)
-  $4.Pagination get pagination => $_getN(0);
+  $5.Pagination get pagination => $_getN(0);
   @$pb.TagNumber(1)
-  set pagination($4.Pagination value) => $_setField(1, value);
+  set pagination($5.Pagination value) => $_setField(1, value);
   @$pb.TagNumber(1)
   $core.bool hasPagination() => $_has(0);
   @$pb.TagNumber(1)
   void clearPagination() => $_clearField(1);
   @$pb.TagNumber(1)
-  $4.Pagination ensurePagination() => $_ensure(0);
+  $5.Pagination ensurePagination() => $_ensure(0);
 
   /// Result-set.
   @$pb.TagNumber(2)
@@ -1330,9 +1330,9 @@ class ListDevicesResponse extends $pb.GeneratedMessage {
 class GetDeviceMetricsRequest extends $pb.GeneratedMessage {
   factory GetDeviceMetricsRequest({
     $core.String? id,
-    $3.Timestamp? start,
-    $3.Timestamp? end,
-    $5.Aggregation? aggregation,
+    $4.Timestamp? start,
+    $4.Timestamp? end,
+    $6.Aggregation? aggregation,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -1356,12 +1356,12 @@ class GetDeviceMetricsRequest extends $pb.GeneratedMessage {
       package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'id')
-    ..aOM<$3.Timestamp>(2, _omitFieldNames ? '' : 'start',
-        subBuilder: $3.Timestamp.create)
-    ..aOM<$3.Timestamp>(3, _omitFieldNames ? '' : 'end',
-        subBuilder: $3.Timestamp.create)
-    ..aE<$5.Aggregation>(4, _omitFieldNames ? '' : 'aggregation',
-        enumValues: $5.Aggregation.values)
+    ..aOM<$4.Timestamp>(2, _omitFieldNames ? '' : 'start',
+        subBuilder: $4.Timestamp.create)
+    ..aOM<$4.Timestamp>(3, _omitFieldNames ? '' : 'end',
+        subBuilder: $4.Timestamp.create)
+    ..aE<$6.Aggregation>(4, _omitFieldNames ? '' : 'aggregation',
+        enumValues: $6.Aggregation.values)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1396,33 +1396,33 @@ class GetDeviceMetricsRequest extends $pb.GeneratedMessage {
 
   /// Interval start timestamp.
   @$pb.TagNumber(2)
-  $3.Timestamp get start => $_getN(1);
+  $4.Timestamp get start => $_getN(1);
   @$pb.TagNumber(2)
-  set start($3.Timestamp value) => $_setField(2, value);
+  set start($4.Timestamp value) => $_setField(2, value);
   @$pb.TagNumber(2)
   $core.bool hasStart() => $_has(1);
   @$pb.TagNumber(2)
   void clearStart() => $_clearField(2);
   @$pb.TagNumber(2)
-  $3.Timestamp ensureStart() => $_ensure(1);
+  $4.Timestamp ensureStart() => $_ensure(1);
 
   /// Interval end timestamp.
   @$pb.TagNumber(3)
-  $3.Timestamp get end => $_getN(2);
+  $4.Timestamp get end => $_getN(2);
   @$pb.TagNumber(3)
-  set end($3.Timestamp value) => $_setField(3, value);
+  set end($4.Timestamp value) => $_setField(3, value);
   @$pb.TagNumber(3)
   $core.bool hasEnd() => $_has(2);
   @$pb.TagNumber(3)
   void clearEnd() => $_clearField(3);
   @$pb.TagNumber(3)
-  $3.Timestamp ensureEnd() => $_ensure(2);
+  $4.Timestamp ensureEnd() => $_ensure(2);
 
   /// Aggregation.
   @$pb.TagNumber(4)
-  $5.Aggregation get aggregation => $_getN(3);
+  $6.Aggregation get aggregation => $_getN(3);
   @$pb.TagNumber(4)
-  set aggregation($5.Aggregation value) => $_setField(4, value);
+  set aggregation($6.Aggregation value) => $_setField(4, value);
   @$pb.TagNumber(4)
   $core.bool hasAggregation() => $_has(3);
   @$pb.TagNumber(4)
@@ -1431,7 +1431,7 @@ class GetDeviceMetricsRequest extends $pb.GeneratedMessage {
 
 class GetDeviceMetricsResponse extends $pb.GeneratedMessage {
   factory GetDeviceMetricsResponse({
-    $core.Iterable<$core.MapEntry<$core.String, $5.Metric>>? metrics,
+    $core.Iterable<$core.MapEntry<$core.String, $6.Metric>>? metrics,
   }) {
     final result = create();
     if (metrics != null) result.metrics.addEntries(metrics);
@@ -1451,12 +1451,12 @@ class GetDeviceMetricsResponse extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'GetDeviceMetricsResponse',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
       createEmptyInstance: create)
-    ..m<$core.String, $5.Metric>(1, _omitFieldNames ? '' : 'metrics',
+    ..m<$core.String, $6.Metric>(1, _omitFieldNames ? '' : 'metrics',
         entryClassName: 'GetDeviceMetricsResponse.MetricsEntry',
         keyFieldType: $pb.PbFieldType.OS,
         valueFieldType: $pb.PbFieldType.OM,
-        valueCreator: $5.Metric.create,
-        valueDefaultOrMaker: $5.Metric.getDefault,
+        valueCreator: $6.Metric.create,
+        valueDefaultOrMaker: $6.Metric.getDefault,
         packageName: const $pb.PackageName('api'))
     ..hasRequiredFields = false;
 
@@ -1481,7 +1481,63 @@ class GetDeviceMetricsResponse extends $pb.GeneratedMessage {
   static GetDeviceMetricsResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $pb.PbMap<$core.String, $5.Metric> get metrics => $_getMap(0);
+  $pb.PbMap<$core.String, $6.Metric> get metrics => $_getMap(0);
+}
+
+class StreamDeviceFramesRequest extends $pb.GeneratedMessage {
+  factory StreamDeviceFramesRequest({
+    $core.String? id,
+  }) {
+    final result = create();
+    if (id != null) result.id = id;
+    return result;
+  }
+
+  StreamDeviceFramesRequest._();
+
+  factory StreamDeviceFramesRequest.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory StreamDeviceFramesRequest.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'StreamDeviceFramesRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  StreamDeviceFramesRequest clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  StreamDeviceFramesRequest copyWith(
+          void Function(StreamDeviceFramesRequest) updates) =>
+      super.copyWith((message) => updates(message as StreamDeviceFramesRequest))
+          as StreamDeviceFramesRequest;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static StreamDeviceFramesRequest create() => StreamDeviceFramesRequest._();
+  @$core.override
+  StreamDeviceFramesRequest createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static StreamDeviceFramesRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<StreamDeviceFramesRequest>(create);
+  static StreamDeviceFramesRequest? _defaultInstance;
+
+  /// Device ID (UUID).
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set id($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => $_clearField(1);
 }
 
 const $core.bool _omitFieldNames =

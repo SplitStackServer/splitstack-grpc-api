@@ -37,5 +37,89 @@ enum IntegrationKind {
 
 message VariableMacList {
 	// List of variable MACs
-	repeated uint32 vm = 1;
+	repeated VariableMac vm = 1;
+}
+
+// These are the Variable Mac types that are supported by the API.
+enum VariableMac {
+  // Type 1: Wireless M-Bus frame with Frame Format B (FFB)
+  MBUS_FFB = 0;
+  // Type 2: M-Bus frame that starts with a wireless M-Bus MAC according to OMS-S Volume 2, Annex Q
+  // 
+  // Open Metering System Specification (OMS-S), Volume 2, Annex Q, Issue 5.0.1, December 2023.
+  MBUS_MAC = 2;
+
+}
+
+// Counts of users, grouped by their privileges.
+message TenantUserCount {
+  // Count of active tenant users. 
+  // Note: this includes all tenant users, regardless of their privileges.
+  uint64 active_count = 1;
+
+  // Count of inactive tenant users. 
+  // Note: this includes all tenant users, regardless of their privileges.
+  uint64 inactive_count = 2;
+
+  // Count of tenant users with admin privileges.
+  uint64 admin_count = 3;
+
+  // Count of tenant users with end-node admin privileges.
+  uint64 endnode_admin_count = 4;
+
+  // Count of tenant users with basestation admin privileges.
+  uint64 basestation_admin_count = 5;
+}
+
+// Counts of basestations, grouped by their state.
+message BasestationCount {
+  // Online basestation count.
+  uint64 online_count = 1;
+
+  // Offline basestation count.
+  uint64 offline_count = 2;
+
+  // Inactive basestation count.
+  uint64 inactive_count = 3;
+
+  // Never seen basestation count.
+  uint64 never_seen_count = 4;
+}
+
+// Counts of device profiles.
+message DeviceProfileCount {
+  // count.
+  uint64 count = 1;
+}
+
+// Counts of devices, grouped by their state.
+message DeviceCount {
+  // Active device count.
+  uint64 active_count = 1;
+
+  // Inactive device count.
+  uint64 inactive_count = 2;
+
+  // Never seen device count.
+  uint64 never_seen_count = 3;
+}
+
+
+// Counts of applications of a tenant.
+message ApplicationCount {
+  // Active application count.
+  uint64 count = 1;
+
+  // Count of applications with variable MACs enabled.
+  uint64 vm_count = 2;
+}
+
+message ApplicationIntegrationCount {
+  // Active device count.
+  uint64 active_count = 1;
+
+  // Inactive device count.
+  uint64 inactive_count = 2;
+
+  repeated IntegrationKind integration_kinds = 3;
 }

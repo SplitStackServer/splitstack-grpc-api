@@ -18,11 +18,10 @@ import "google/protobuf/empty.proto";
 import "api/common.proto";
 import "common/common.proto";
 import "common/metrics.proto";
+import "stream/frame.proto";
 
 // DeviceService is the service providing API methods for managing devices.
 service DeviceService {
-
-
 
   // Create the given device.
   rpc CreateDevice(CreateDeviceRequest) returns (CreateDeviceResponse) {
@@ -70,6 +69,14 @@ service DeviceService {
       get : "/api/devices/{id}/metrics"
     };
   }
+
+  // Returns a stream of frames for the given device ID.
+  rpc StreamDeviceFrames(StreamDeviceFramesRequest) returns (stream stream.FrameLogItem) {
+    option (google.api.http) = {
+      get : "/api/devices/{id}/frames"
+    };
+  }
+
 
 }
 
@@ -304,8 +311,6 @@ message ListDevicesResponse {
     repeated DeviceListItem result = 2;
 }
 
-
-
 message GetDeviceMetricsRequest {
   // Device ID (UUID).
   string id = 1;
@@ -324,4 +329,7 @@ message GetDeviceMetricsResponse {
   map<string, common.Metric> metrics = 1;
 }
 
-
+message StreamDeviceFramesRequest {
+  // Device ID (UUID).
+  string id = 1;
+}

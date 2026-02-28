@@ -363,12 +363,22 @@ const UpdateTenantRequest$json = {
       '17': true
     },
     {
-      '1': 'tags',
+      '1': 'variable_mac_enabled',
       '3': 9,
       '4': 1,
       '5': 11,
-      '6': '.common.Tags',
+      '6': '.api.VariableMacList',
       '9': 7,
+      '10': 'variableMacEnabled',
+      '17': true
+    },
+    {
+      '1': 'tags',
+      '3': 10,
+      '4': 1,
+      '5': 11,
+      '6': '.common.Tags',
+      '9': 8,
       '10': 'tags',
       '17': true
     },
@@ -381,6 +391,7 @@ const UpdateTenantRequest$json = {
     {'1': '_max_device_count'},
     {'1': '_private_basestations'},
     {'1': '_private_devices'},
+    {'1': '_variable_mac_enabled'},
     {'1': '_tags'},
   ],
 };
@@ -393,10 +404,12 @@ final $typed_data.Uint8List updateTenantRequestDescriptor = $convert.base64Decod
     'Jhc2VzdGF0aW9uX2NvdW50GAUgASgNSANSE21heEJhc2VzdGF0aW9uQ291bnSIAQESLQoQbWF4'
     'X2RldmljZV9jb3VudBgGIAEoDUgEUg5tYXhEZXZpY2VDb3VudIgBARI2ChRwcml2YXRlX2Jhc2'
     'VzdGF0aW9ucxgHIAEoCEgFUhNwcml2YXRlQmFzZXN0YXRpb25ziAEBEiwKD3ByaXZhdGVfZGV2'
-    'aWNlcxgIIAEoCEgGUg5wcml2YXRlRGV2aWNlc4gBARIlCgR0YWdzGAkgASgLMgwuY29tbW9uLl'
-    'RhZ3NIB1IEdGFnc4gBAUIHCgVfbmFtZUIOCgxfZGVzY3JpcHRpb25CGAoWX2Nhbl9oYXZlX2Jh'
-    'c2VzdGF0aW9uc0IYChZfbWF4X2Jhc2VzdGF0aW9uX2NvdW50QhMKEV9tYXhfZGV2aWNlX2NvdW'
-    '50QhcKFV9wcml2YXRlX2Jhc2VzdGF0aW9uc0ISChBfcHJpdmF0ZV9kZXZpY2VzQgcKBV90YWdz');
+    'aWNlcxgIIAEoCEgGUg5wcml2YXRlRGV2aWNlc4gBARJLChR2YXJpYWJsZV9tYWNfZW5hYmxlZB'
+    'gJIAEoCzIULmFwaS5WYXJpYWJsZU1hY0xpc3RIB1ISdmFyaWFibGVNYWNFbmFibGVkiAEBEiUK'
+    'BHRhZ3MYCiABKAsyDC5jb21tb24uVGFnc0gIUgR0YWdziAEBQgcKBV9uYW1lQg4KDF9kZXNjcm'
+    'lwdGlvbkIYChZfY2FuX2hhdmVfYmFzZXN0YXRpb25zQhgKFl9tYXhfYmFzZXN0YXRpb25fY291'
+    'bnRCEwoRX21heF9kZXZpY2VfY291bnRCFwoVX3ByaXZhdGVfYmFzZXN0YXRpb25zQhIKEF9wcm'
+    'l2YXRlX2RldmljZXNCFwoVX3ZhcmlhYmxlX21hY19lbmFibGVkQgcKBV90YWdz');
 
 @$core.Deprecated('Use updateTenantResponseDescriptor instead')
 const UpdateTenantResponse$json = {
@@ -435,57 +448,6 @@ final $typed_data.Uint8List updateTenantResponseDescriptor = $convert.base64Deco
     '5hbnQSOQoKY3JlYXRlZF9hdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCWNy'
     'ZWF0ZWRBdBI5Cgp1cGRhdGVkX2F0GAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcF'
     'IJdXBkYXRlZEF0');
-
-@$core.Deprecated('Use enableVariableMacRequestDescriptor instead')
-const EnableVariableMacRequest$json = {
-  '1': 'EnableVariableMacRequest',
-  '2': [
-    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
-    {'1': 'vm', '3': 2, '4': 1, '5': 13, '10': 'vm'},
-  ],
-};
-
-/// Descriptor for `EnableVariableMacRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List enableVariableMacRequestDescriptor =
-    $convert.base64Decode(
-        'ChhFbmFibGVWYXJpYWJsZU1hY1JlcXVlc3QSDgoCaWQYASABKAlSAmlkEg4KAnZtGAIgASgNUg'
-        'J2bQ==');
-
-@$core.Deprecated('Use disableVariableMacRequestDescriptor instead')
-const DisableVariableMacRequest$json = {
-  '1': 'DisableVariableMacRequest',
-  '2': [
-    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
-    {'1': 'vm', '3': 2, '4': 1, '5': 13, '10': 'vm'},
-  ],
-};
-
-/// Descriptor for `DisableVariableMacRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List disableVariableMacRequestDescriptor =
-    $convert.base64Decode(
-        'ChlEaXNhYmxlVmFyaWFibGVNYWNSZXF1ZXN0Eg4KAmlkGAEgASgJUgJpZBIOCgJ2bRgCIAEoDV'
-        'ICdm0=');
-
-@$core.Deprecated('Use variableMacResponseDescriptor instead')
-const VariableMacResponse$json = {
-  '1': 'VariableMacResponse',
-  '2': [
-    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
-    {
-      '1': 'vm',
-      '3': 2,
-      '4': 1,
-      '5': 11,
-      '6': '.api.VariableMacList',
-      '10': 'vm'
-    },
-  ],
-};
-
-/// Descriptor for `VariableMacResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List variableMacResponseDescriptor = $convert.base64Decode(
-    'ChNWYXJpYWJsZU1hY1Jlc3BvbnNlEg4KAmlkGAEgASgJUgJpZBIkCgJ2bRgCIAEoCzIULmFwaS'
-    '5WYXJpYWJsZU1hY0xpc3RSAnZt');
 
 @$core.Deprecated('Use deleteTenantRequestDescriptor instead')
 const DeleteTenantRequest$json = {
@@ -570,3 +532,73 @@ final $typed_data.Uint8List listTenantsResponseDescriptor = $convert.base64Decod
     'ChNMaXN0VGVuYW50c1Jlc3BvbnNlEi8KCnBhZ2luYXRpb24YASABKAsyDy5hcGkuUGFnaW5hdG'
     'lvblIKcGFnaW5hdGlvbhIrCgZyZXN1bHQYAiADKAsyEy5hcGkuVGVuYW50TGlzdEl0ZW1SBnJl'
     'c3VsdA==');
+
+@$core.Deprecated('Use getTenantDetailsRequestDescriptor instead')
+const GetTenantDetailsRequest$json = {
+  '1': 'GetTenantDetailsRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+  ],
+};
+
+/// Descriptor for `GetTenantDetailsRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List getTenantDetailsRequestDescriptor = $convert
+    .base64Decode('ChdHZXRUZW5hbnREZXRhaWxzUmVxdWVzdBIOCgJpZBgBIAEoCVICaWQ=');
+
+@$core.Deprecated('Use getTenantDetailsResponseDescriptor instead')
+const GetTenantDetailsResponse$json = {
+  '1': 'GetTenantDetailsResponse',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {
+      '1': 'tenant_user_count',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.api.TenantUserCount',
+      '10': 'tenantUserCount'
+    },
+    {
+      '1': 'basestation_count',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.api.BasestationCount',
+      '10': 'basestationCount'
+    },
+    {
+      '1': 'device_profile_count',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.api.DeviceProfileCount',
+      '10': 'deviceProfileCount'
+    },
+    {
+      '1': 'application_count',
+      '3': 5,
+      '4': 1,
+      '5': 11,
+      '6': '.api.ApplicationCount',
+      '10': 'applicationCount'
+    },
+    {
+      '1': 'device_count',
+      '3': 6,
+      '4': 1,
+      '5': 11,
+      '6': '.api.DeviceCount',
+      '10': 'deviceCount'
+    },
+  ],
+};
+
+/// Descriptor for `GetTenantDetailsResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List getTenantDetailsResponseDescriptor = $convert.base64Decode(
+    'ChhHZXRUZW5hbnREZXRhaWxzUmVzcG9uc2USDgoCaWQYASABKAlSAmlkEkAKEXRlbmFudF91c2'
+    'VyX2NvdW50GAIgASgLMhQuYXBpLlRlbmFudFVzZXJDb3VudFIPdGVuYW50VXNlckNvdW50EkIK'
+    'EWJhc2VzdGF0aW9uX2NvdW50GAMgASgLMhUuYXBpLkJhc2VzdGF0aW9uQ291bnRSEGJhc2VzdG'
+    'F0aW9uQ291bnQSSQoUZGV2aWNlX3Byb2ZpbGVfY291bnQYBCABKAsyFy5hcGkuRGV2aWNlUHJv'
+    'ZmlsZUNvdW50UhJkZXZpY2VQcm9maWxlQ291bnQSQgoRYXBwbGljYXRpb25fY291bnQYBSABKA'
+    'syFS5hcGkuQXBwbGljYXRpb25Db3VudFIQYXBwbGljYXRpb25Db3VudBIzCgxkZXZpY2VfY291'
+    'bnQYBiABKAsyEC5hcGkuRGV2aWNlQ291bnRSC2RldmljZUNvdW50');
