@@ -789,6 +789,7 @@ class UpdateTenantRequest extends $pb.GeneratedMessage {
     $core.int? maxDeviceCount,
     $core.bool? privateBasestations,
     $core.bool? privateDevices,
+    $2.VariableMacList? variableMacEnabled,
     $3.Tags? tags,
   }) {
     final result = create();
@@ -803,6 +804,8 @@ class UpdateTenantRequest extends $pb.GeneratedMessage {
     if (privateBasestations != null)
       result.privateBasestations = privateBasestations;
     if (privateDevices != null) result.privateDevices = privateDevices;
+    if (variableMacEnabled != null)
+      result.variableMacEnabled = variableMacEnabled;
     if (tags != null) result.tags = tags;
     return result;
   }
@@ -830,7 +833,10 @@ class UpdateTenantRequest extends $pb.GeneratedMessage {
         fieldType: $pb.PbFieldType.OU3)
     ..aOB(7, _omitFieldNames ? '' : 'privateBasestations')
     ..aOB(8, _omitFieldNames ? '' : 'privateDevices')
-    ..aOM<$3.Tags>(9, _omitFieldNames ? '' : 'tags', subBuilder: $3.Tags.create)
+    ..aOM<$2.VariableMacList>(9, _omitFieldNames ? '' : 'variableMacEnabled',
+        subBuilder: $2.VariableMacList.create)
+    ..aOM<$3.Tags>(10, _omitFieldNames ? '' : 'tags',
+        subBuilder: $3.Tags.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -936,19 +942,31 @@ class UpdateTenantRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(8)
   void clearPrivateDevices() => $_clearField(8);
 
+  /// List of variable MACs to be enabled for the tenant.
+  @$pb.TagNumber(9)
+  $2.VariableMacList get variableMacEnabled => $_getN(8);
+  @$pb.TagNumber(9)
+  set variableMacEnabled($2.VariableMacList value) => $_setField(9, value);
+  @$pb.TagNumber(9)
+  $core.bool hasVariableMacEnabled() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearVariableMacEnabled() => $_clearField(9);
+  @$pb.TagNumber(9)
+  $2.VariableMacList ensureVariableMacEnabled() => $_ensure(8);
+
   /// Tags (user defined).
   /// These tags can be used to add additional information to the tenant. These
   /// tags are NOT exposed in the integration events.
-  @$pb.TagNumber(9)
-  $3.Tags get tags => $_getN(8);
-  @$pb.TagNumber(9)
-  set tags($3.Tags value) => $_setField(9, value);
-  @$pb.TagNumber(9)
-  $core.bool hasTags() => $_has(8);
-  @$pb.TagNumber(9)
-  void clearTags() => $_clearField(9);
-  @$pb.TagNumber(9)
-  $3.Tags ensureTags() => $_ensure(8);
+  @$pb.TagNumber(10)
+  $3.Tags get tags => $_getN(9);
+  @$pb.TagNumber(10)
+  set tags($3.Tags value) => $_setField(10, value);
+  @$pb.TagNumber(10)
+  $core.bool hasTags() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearTags() => $_clearField(10);
+  @$pb.TagNumber(10)
+  $3.Tags ensureTags() => $_ensure(9);
 }
 
 class UpdateTenantResponse extends $pb.GeneratedMessage {
@@ -1038,215 +1056,6 @@ class UpdateTenantResponse extends $pb.GeneratedMessage {
   void clearUpdatedAt() => $_clearField(3);
   @$pb.TagNumber(3)
   $4.Timestamp ensureUpdatedAt() => $_ensure(2);
-}
-
-class EnableVariableMacRequest extends $pb.GeneratedMessage {
-  factory EnableVariableMacRequest({
-    $core.String? id,
-    $core.int? vm,
-  }) {
-    final result = create();
-    if (id != null) result.id = id;
-    if (vm != null) result.vm = vm;
-    return result;
-  }
-
-  EnableVariableMacRequest._();
-
-  factory EnableVariableMacRequest.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory EnableVariableMacRequest.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'EnableVariableMacRequest',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
-      createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'id')
-    ..aI(2, _omitFieldNames ? '' : 'vm', fieldType: $pb.PbFieldType.OU3)
-    ..hasRequiredFields = false;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  EnableVariableMacRequest clone() => deepCopy();
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  EnableVariableMacRequest copyWith(
-          void Function(EnableVariableMacRequest) updates) =>
-      super.copyWith((message) => updates(message as EnableVariableMacRequest))
-          as EnableVariableMacRequest;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static EnableVariableMacRequest create() => EnableVariableMacRequest._();
-  @$core.override
-  EnableVariableMacRequest createEmptyInstance() => create();
-  @$core.pragma('dart2js:noInline')
-  static EnableVariableMacRequest getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<EnableVariableMacRequest>(create);
-  static EnableVariableMacRequest? _defaultInstance;
-
-  /// Tenant ID (UUID).
-  @$pb.TagNumber(1)
-  $core.String get id => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set id($core.String value) => $_setString(0, value);
-  @$pb.TagNumber(1)
-  $core.bool hasId() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearId() => $_clearField(1);
-
-  /// Variable MAC to enable for the tenant. See ETSI TS 103 357-2 Table 4-57
-  @$pb.TagNumber(2)
-  $core.int get vm => $_getIZ(1);
-  @$pb.TagNumber(2)
-  set vm($core.int value) => $_setUnsignedInt32(1, value);
-  @$pb.TagNumber(2)
-  $core.bool hasVm() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearVm() => $_clearField(2);
-}
-
-class DisableVariableMacRequest extends $pb.GeneratedMessage {
-  factory DisableVariableMacRequest({
-    $core.String? id,
-    $core.int? vm,
-  }) {
-    final result = create();
-    if (id != null) result.id = id;
-    if (vm != null) result.vm = vm;
-    return result;
-  }
-
-  DisableVariableMacRequest._();
-
-  factory DisableVariableMacRequest.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory DisableVariableMacRequest.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'DisableVariableMacRequest',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
-      createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'id')
-    ..aI(2, _omitFieldNames ? '' : 'vm', fieldType: $pb.PbFieldType.OU3)
-    ..hasRequiredFields = false;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  DisableVariableMacRequest clone() => deepCopy();
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  DisableVariableMacRequest copyWith(
-          void Function(DisableVariableMacRequest) updates) =>
-      super.copyWith((message) => updates(message as DisableVariableMacRequest))
-          as DisableVariableMacRequest;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static DisableVariableMacRequest create() => DisableVariableMacRequest._();
-  @$core.override
-  DisableVariableMacRequest createEmptyInstance() => create();
-  @$core.pragma('dart2js:noInline')
-  static DisableVariableMacRequest getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<DisableVariableMacRequest>(create);
-  static DisableVariableMacRequest? _defaultInstance;
-
-  /// Tenant ID (UUID).
-  @$pb.TagNumber(1)
-  $core.String get id => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set id($core.String value) => $_setString(0, value);
-  @$pb.TagNumber(1)
-  $core.bool hasId() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearId() => $_clearField(1);
-
-  /// Variable MAC to disable for the tenant. See ETSI TS 103 357-2 Table 4-57
-  @$pb.TagNumber(2)
-  $core.int get vm => $_getIZ(1);
-  @$pb.TagNumber(2)
-  set vm($core.int value) => $_setUnsignedInt32(1, value);
-  @$pb.TagNumber(2)
-  $core.bool hasVm() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearVm() => $_clearField(2);
-}
-
-class VariableMacResponse extends $pb.GeneratedMessage {
-  factory VariableMacResponse({
-    $core.String? id,
-    $2.VariableMacList? vm,
-  }) {
-    final result = create();
-    if (id != null) result.id = id;
-    if (vm != null) result.vm = vm;
-    return result;
-  }
-
-  VariableMacResponse._();
-
-  factory VariableMacResponse.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory VariableMacResponse.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'VariableMacResponse',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
-      createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'id')
-    ..aOM<$2.VariableMacList>(2, _omitFieldNames ? '' : 'vm',
-        subBuilder: $2.VariableMacList.create)
-    ..hasRequiredFields = false;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  VariableMacResponse clone() => deepCopy();
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  VariableMacResponse copyWith(void Function(VariableMacResponse) updates) =>
-      super.copyWith((message) => updates(message as VariableMacResponse))
-          as VariableMacResponse;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static VariableMacResponse create() => VariableMacResponse._();
-  @$core.override
-  VariableMacResponse createEmptyInstance() => create();
-  @$core.pragma('dart2js:noInline')
-  static VariableMacResponse getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<VariableMacResponse>(create);
-  static VariableMacResponse? _defaultInstance;
-
-  /// Tenant ID (UUID).
-  @$pb.TagNumber(1)
-  $core.String get id => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set id($core.String value) => $_setString(0, value);
-  @$pb.TagNumber(1)
-  $core.bool hasId() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearId() => $_clearField(1);
-
-  /// List of variable MACs enabled for the tenant.
-  @$pb.TagNumber(2)
-  $2.VariableMacList get vm => $_getN(1);
-  @$pb.TagNumber(2)
-  set vm($2.VariableMacList value) => $_setField(2, value);
-  @$pb.TagNumber(2)
-  $core.bool hasVm() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearVm() => $_clearField(2);
-  @$pb.TagNumber(2)
-  $2.VariableMacList ensureVm() => $_ensure(1);
 }
 
 class DeleteTenantRequest extends $pb.GeneratedMessage {
@@ -1453,6 +1262,209 @@ class ListTenantsResponse extends $pb.GeneratedMessage {
   /// Result-set.
   @$pb.TagNumber(2)
   $pb.PbList<TenantListItem> get result => $_getList(1);
+}
+
+class GetTenantDetailsRequest extends $pb.GeneratedMessage {
+  factory GetTenantDetailsRequest({
+    $core.String? id,
+  }) {
+    final result = create();
+    if (id != null) result.id = id;
+    return result;
+  }
+
+  GetTenantDetailsRequest._();
+
+  factory GetTenantDetailsRequest.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory GetTenantDetailsRequest.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'GetTenantDetailsRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetTenantDetailsRequest clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetTenantDetailsRequest copyWith(
+          void Function(GetTenantDetailsRequest) updates) =>
+      super.copyWith((message) => updates(message as GetTenantDetailsRequest))
+          as GetTenantDetailsRequest;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetTenantDetailsRequest create() => GetTenantDetailsRequest._();
+  @$core.override
+  GetTenantDetailsRequest createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static GetTenantDetailsRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GetTenantDetailsRequest>(create);
+  static GetTenantDetailsRequest? _defaultInstance;
+
+  /// Tenant ID.
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set id($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => $_clearField(1);
+}
+
+class GetTenantDetailsResponse extends $pb.GeneratedMessage {
+  factory GetTenantDetailsResponse({
+    $core.String? id,
+    $2.TenantUserCount? tenantUserCount,
+    $2.BasestationCount? basestationCount,
+    $2.DeviceProfileCount? deviceProfileCount,
+    $2.ApplicationCount? applicationCount,
+    $2.DeviceCount? deviceCount,
+  }) {
+    final result = create();
+    if (id != null) result.id = id;
+    if (tenantUserCount != null) result.tenantUserCount = tenantUserCount;
+    if (basestationCount != null) result.basestationCount = basestationCount;
+    if (deviceProfileCount != null)
+      result.deviceProfileCount = deviceProfileCount;
+    if (applicationCount != null) result.applicationCount = applicationCount;
+    if (deviceCount != null) result.deviceCount = deviceCount;
+    return result;
+  }
+
+  GetTenantDetailsResponse._();
+
+  factory GetTenantDetailsResponse.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory GetTenantDetailsResponse.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'GetTenantDetailsResponse',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..aOM<$2.TenantUserCount>(2, _omitFieldNames ? '' : 'tenantUserCount',
+        subBuilder: $2.TenantUserCount.create)
+    ..aOM<$2.BasestationCount>(3, _omitFieldNames ? '' : 'basestationCount',
+        subBuilder: $2.BasestationCount.create)
+    ..aOM<$2.DeviceProfileCount>(4, _omitFieldNames ? '' : 'deviceProfileCount',
+        subBuilder: $2.DeviceProfileCount.create)
+    ..aOM<$2.ApplicationCount>(5, _omitFieldNames ? '' : 'applicationCount',
+        subBuilder: $2.ApplicationCount.create)
+    ..aOM<$2.DeviceCount>(6, _omitFieldNames ? '' : 'deviceCount',
+        subBuilder: $2.DeviceCount.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetTenantDetailsResponse clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetTenantDetailsResponse copyWith(
+          void Function(GetTenantDetailsResponse) updates) =>
+      super.copyWith((message) => updates(message as GetTenantDetailsResponse))
+          as GetTenantDetailsResponse;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetTenantDetailsResponse create() => GetTenantDetailsResponse._();
+  @$core.override
+  GetTenantDetailsResponse createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static GetTenantDetailsResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GetTenantDetailsResponse>(create);
+  static GetTenantDetailsResponse? _defaultInstance;
+
+  /// Tenant ID.
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set id($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => $_clearField(1);
+
+  /// User counts for the tenant.
+  ///
+  /// Only available for global admin or tenant admin users or  API keys.
+  @$pb.TagNumber(2)
+  $2.TenantUserCount get tenantUserCount => $_getN(1);
+  @$pb.TagNumber(2)
+  set tenantUserCount($2.TenantUserCount value) => $_setField(2, value);
+  @$pb.TagNumber(2)
+  $core.bool hasTenantUserCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTenantUserCount() => $_clearField(2);
+  @$pb.TagNumber(2)
+  $2.TenantUserCount ensureTenantUserCount() => $_ensure(1);
+
+  /// Basestation counts for the tenant.
+  ///
+  /// Only available for global admin, tenant admin or basestation admin users or API keys.
+  @$pb.TagNumber(3)
+  $2.BasestationCount get basestationCount => $_getN(2);
+  @$pb.TagNumber(3)
+  set basestationCount($2.BasestationCount value) => $_setField(3, value);
+  @$pb.TagNumber(3)
+  $core.bool hasBasestationCount() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearBasestationCount() => $_clearField(3);
+  @$pb.TagNumber(3)
+  $2.BasestationCount ensureBasestationCount() => $_ensure(2);
+
+  /// Device profile counts for the tenant.
+  ///
+  /// Only available for global admin, tenant admin or endnode admin users or API keys.
+  @$pb.TagNumber(4)
+  $2.DeviceProfileCount get deviceProfileCount => $_getN(3);
+  @$pb.TagNumber(4)
+  set deviceProfileCount($2.DeviceProfileCount value) => $_setField(4, value);
+  @$pb.TagNumber(4)
+  $core.bool hasDeviceProfileCount() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearDeviceProfileCount() => $_clearField(4);
+  @$pb.TagNumber(4)
+  $2.DeviceProfileCount ensureDeviceProfileCount() => $_ensure(3);
+
+  /// Application counts for the tenant.
+  ///
+  /// Only available for global admin, tenant admin or endnode admin users or API keys.
+  @$pb.TagNumber(5)
+  $2.ApplicationCount get applicationCount => $_getN(4);
+  @$pb.TagNumber(5)
+  set applicationCount($2.ApplicationCount value) => $_setField(5, value);
+  @$pb.TagNumber(5)
+  $core.bool hasApplicationCount() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearApplicationCount() => $_clearField(5);
+  @$pb.TagNumber(5)
+  $2.ApplicationCount ensureApplicationCount() => $_ensure(4);
+
+  /// Device counts for the tenant.
+  ///
+  /// Only available for global admin, tenant admin or endnode admin users or API keys.
+  @$pb.TagNumber(6)
+  $2.DeviceCount get deviceCount => $_getN(5);
+  @$pb.TagNumber(6)
+  set deviceCount($2.DeviceCount value) => $_setField(6, value);
+  @$pb.TagNumber(6)
+  $core.bool hasDeviceCount() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearDeviceCount() => $_clearField(6);
+  @$pb.TagNumber(6)
+  $2.DeviceCount ensureDeviceCount() => $_ensure(5);
 }
 
 const $core.bool _omitFieldNames =

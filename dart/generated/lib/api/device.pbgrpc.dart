@@ -17,6 +17,7 @@ import 'package:grpc/service_api.dart' as $grpc;
 import 'package:protobuf/protobuf.dart' as $pb;
 import 'package:protobuf/well_known_types/google/protobuf/empty.pb.dart' as $1;
 
+import '../stream/frame.pb.dart' as $2;
 import 'device.pb.dart' as $0;
 
 export 'device.pb.dart';
@@ -84,6 +85,16 @@ class DeviceServiceClient extends $grpc.Client {
     return $createUnaryCall(_$getDeviceMetrics, request, options: options);
   }
 
+  /// Returns a stream of frames for the given device ID.
+  $grpc.ResponseStream<$2.FrameLogItem> streamDeviceFrames(
+    $0.StreamDeviceFramesRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createStreamingCall(
+        _$streamDeviceFrames, $async.Stream.fromIterable([request]),
+        options: options);
+  }
+
   // method descriptors
 
   static final _$createDevice =
@@ -116,6 +127,11 @@ class DeviceServiceClient extends $grpc.Client {
       '/api.DeviceService/GetDeviceMetrics',
       ($0.GetDeviceMetricsRequest value) => value.writeToBuffer(),
       $0.GetDeviceMetricsResponse.fromBuffer);
+  static final _$streamDeviceFrames =
+      $grpc.ClientMethod<$0.StreamDeviceFramesRequest, $2.FrameLogItem>(
+          '/api.DeviceService/StreamDeviceFrames',
+          ($0.StreamDeviceFramesRequest value) => value.writeToBuffer(),
+          $2.FrameLogItem.fromBuffer);
 }
 
 @$pb.GrpcServiceName('api.DeviceService')
@@ -174,6 +190,15 @@ abstract class DeviceServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.GetDeviceMetricsRequest.fromBuffer(value),
         ($0.GetDeviceMetricsResponse value) => value.writeToBuffer()));
+    $addMethod(
+        $grpc.ServiceMethod<$0.StreamDeviceFramesRequest, $2.FrameLogItem>(
+            'StreamDeviceFrames',
+            streamDeviceFrames_Pre,
+            false,
+            true,
+            ($core.List<$core.int> value) =>
+                $0.StreamDeviceFramesRequest.fromBuffer(value),
+            ($2.FrameLogItem value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.CreateDeviceResponse> createDevice_Pre(
@@ -226,4 +251,12 @@ abstract class DeviceServiceBase extends $grpc.Service {
 
   $async.Future<$0.GetDeviceMetricsResponse> getDeviceMetrics(
       $grpc.ServiceCall call, $0.GetDeviceMetricsRequest request);
+
+  $async.Stream<$2.FrameLogItem> streamDeviceFrames_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.StreamDeviceFramesRequest> $request) async* {
+    yield* streamDeviceFrames($call, await $request);
+  }
+
+  $async.Stream<$2.FrameLogItem> streamDeviceFrames(
+      $grpc.ServiceCall call, $0.StreamDeviceFramesRequest request);
 }

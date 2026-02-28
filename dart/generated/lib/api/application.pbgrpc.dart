@@ -50,6 +50,14 @@ class ApplicationServiceClient extends $grpc.Client {
     return $createUnaryCall(_$getApplication, request, options: options);
   }
 
+  /// Get the application details for the given ID.
+  $grpc.ResponseFuture<$0.GetApplicationDetailsResponse> getApplicationDetails(
+    $0.GetApplicationDetailsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$getApplicationDetails, request, options: options);
+  }
+
   /// Update updates the given application.
   $grpc.ResponseFuture<$0.UpdateApplicationResponse> updateApplication(
     $0.UpdateApplicationRequest request, {
@@ -86,6 +94,11 @@ class ApplicationServiceClient extends $grpc.Client {
           '/api.ApplicationService/GetApplication',
           ($0.GetApplicationRequest value) => value.writeToBuffer(),
           $0.GetApplicationResponse.fromBuffer);
+  static final _$getApplicationDetails = $grpc.ClientMethod<
+          $0.GetApplicationDetailsRequest, $0.GetApplicationDetailsResponse>(
+      '/api.ApplicationService/GetApplicationDetails',
+      ($0.GetApplicationDetailsRequest value) => value.writeToBuffer(),
+      $0.GetApplicationDetailsResponse.fromBuffer);
   static final _$updateApplication = $grpc.ClientMethod<
           $0.UpdateApplicationRequest, $0.UpdateApplicationResponse>(
       '/api.ApplicationService/UpdateApplication',
@@ -126,6 +139,15 @@ abstract class ApplicationServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.GetApplicationRequest.fromBuffer(value),
         ($0.GetApplicationResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.GetApplicationDetailsRequest,
+            $0.GetApplicationDetailsResponse>(
+        'GetApplicationDetails',
+        getApplicationDetails_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.GetApplicationDetailsRequest.fromBuffer(value),
+        ($0.GetApplicationDetailsResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.UpdateApplicationRequest,
             $0.UpdateApplicationResponse>(
         'UpdateApplication',
@@ -171,6 +193,15 @@ abstract class ApplicationServiceBase extends $grpc.Service {
 
   $async.Future<$0.GetApplicationResponse> getApplication(
       $grpc.ServiceCall call, $0.GetApplicationRequest request);
+
+  $async.Future<$0.GetApplicationDetailsResponse> getApplicationDetails_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.GetApplicationDetailsRequest> $request) async {
+    return getApplicationDetails($call, await $request);
+  }
+
+  $async.Future<$0.GetApplicationDetailsResponse> getApplicationDetails(
+      $grpc.ServiceCall call, $0.GetApplicationDetailsRequest request);
 
   $async.Future<$0.UpdateApplicationResponse> updateApplication_Pre(
       $grpc.ServiceCall $call,

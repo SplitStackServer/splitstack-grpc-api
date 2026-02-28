@@ -190,6 +190,43 @@ final $typed_data.Uint8List getTenantUserResponseDescriptor = $convert.base64Dec
     'LlRpbWVzdGFtcFIJY3JlYXRlZEF0EjkKCnVwZGF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG'
     '9idWYuVGltZXN0YW1wUgl1cGRhdGVkQXQ=');
 
+@$core.Deprecated('Use getTenantUserCountRequestDescriptor instead')
+const GetTenantUserCountRequest$json = {
+  '1': 'GetTenantUserCountRequest',
+  '2': [
+    {'1': 'tenant_id', '3': 1, '4': 1, '5': 9, '10': 'tenantId'},
+  ],
+};
+
+/// Descriptor for `GetTenantUserCountRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List getTenantUserCountRequestDescriptor =
+    $convert.base64Decode(
+        'ChlHZXRUZW5hbnRVc2VyQ291bnRSZXF1ZXN0EhsKCXRlbmFudF9pZBgBIAEoCVIIdGVuYW50SW'
+        'Q=');
+
+@$core.Deprecated('Use getTenantUserCountResponseDescriptor instead')
+const GetTenantUserCountResponse$json = {
+  '1': 'GetTenantUserCountResponse',
+  '2': [
+    {'1': 'tenant_id', '3': 1, '4': 1, '5': 9, '10': 'tenantId'},
+    {
+      '1': 'tenant_user_count',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.api.TenantUserCount',
+      '10': 'tenantUserCount'
+    },
+  ],
+};
+
+/// Descriptor for `GetTenantUserCountResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List getTenantUserCountResponseDescriptor =
+    $convert.base64Decode(
+        'ChpHZXRUZW5hbnRVc2VyQ291bnRSZXNwb25zZRIbCgl0ZW5hbnRfaWQYASABKAlSCHRlbmFudE'
+        'lkEkAKEXRlbmFudF91c2VyX2NvdW50GAIgASgLMhQuYXBpLlRlbmFudFVzZXJDb3VudFIPdGVu'
+        'YW50VXNlckNvdW50');
+
 @$core.Deprecated('Use updateTenantUserRequestDescriptor instead')
 const UpdateTenantUserRequest$json = {
   '1': 'UpdateTenantUserRequest',

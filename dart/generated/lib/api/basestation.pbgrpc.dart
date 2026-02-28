@@ -17,6 +17,7 @@ import 'package:grpc/service_api.dart' as $grpc;
 import 'package:protobuf/protobuf.dart' as $pb;
 import 'package:protobuf/well_known_types/google/protobuf/empty.pb.dart' as $1;
 
+import '../stream/frame.pb.dart' as $2;
 import 'basestation.pb.dart' as $0;
 
 export 'basestation.pb.dart';
@@ -92,6 +93,16 @@ class BasestationServiceClient extends $grpc.Client {
     return $createUnaryCall(_$getBasestationMetrics, request, options: options);
   }
 
+  /// Returns a stream of frames for the given basestation ID.
+  $grpc.ResponseStream<$2.FrameLogItem> streamBasestationFrames(
+    $0.StreamBasestationFramesRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createStreamingCall(
+        _$streamBasestationFrames, $async.Stream.fromIterable([request]),
+        options: options);
+  }
+
   // method descriptors
 
   static final _$createBasestation = $grpc.ClientMethod<
@@ -131,6 +142,11 @@ class BasestationServiceClient extends $grpc.Client {
       '/api.BasestationService/GetBasestationMetrics',
       ($0.GetBasestationMetricsRequest value) => value.writeToBuffer(),
       $0.GetBasestationMetricsResponse.fromBuffer);
+  static final _$streamBasestationFrames =
+      $grpc.ClientMethod<$0.StreamBasestationFramesRequest, $2.FrameLogItem>(
+          '/api.BasestationService/StreamBasestationFrames',
+          ($0.StreamBasestationFramesRequest value) => value.writeToBuffer(),
+          $2.FrameLogItem.fromBuffer);
 }
 
 @$pb.GrpcServiceName('api.BasestationService')
@@ -202,6 +218,15 @@ abstract class BasestationServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.GetBasestationMetricsRequest.fromBuffer(value),
         ($0.GetBasestationMetricsResponse value) => value.writeToBuffer()));
+    $addMethod(
+        $grpc.ServiceMethod<$0.StreamBasestationFramesRequest, $2.FrameLogItem>(
+            'StreamBasestationFrames',
+            streamBasestationFrames_Pre,
+            false,
+            true,
+            ($core.List<$core.int> value) =>
+                $0.StreamBasestationFramesRequest.fromBuffer(value),
+            ($2.FrameLogItem value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.CreateBasestationResponse> createBasestation_Pre(
@@ -268,4 +293,13 @@ abstract class BasestationServiceBase extends $grpc.Service {
 
   $async.Future<$0.GetBasestationMetricsResponse> getBasestationMetrics(
       $grpc.ServiceCall call, $0.GetBasestationMetricsRequest request);
+
+  $async.Stream<$2.FrameLogItem> streamBasestationFrames_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.StreamBasestationFramesRequest> $request) async* {
+    yield* streamBasestationFrames($call, await $request);
+  }
+
+  $async.Stream<$2.FrameLogItem> streamBasestationFrames(
+      $grpc.ServiceCall call, $0.StreamBasestationFramesRequest request);
 }

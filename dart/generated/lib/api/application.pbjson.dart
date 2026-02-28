@@ -416,3 +416,47 @@ final $typed_data.Uint8List listApplicationsResponseDescriptor = $convert.base64
     'ChhMaXN0QXBwbGljYXRpb25zUmVzcG9uc2USLwoKcGFnaW5hdGlvbhgBIAEoCzIPLmFwaS5QYW'
     'dpbmF0aW9uUgpwYWdpbmF0aW9uEjAKBnJlc3VsdBgCIAMoCzIYLmFwaS5BcHBsaWNhdGlvbkxp'
     'c3RJdGVtUgZyZXN1bHQ=');
+
+@$core.Deprecated('Use getApplicationDetailsRequestDescriptor instead')
+const GetApplicationDetailsRequest$json = {
+  '1': 'GetApplicationDetailsRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+  ],
+};
+
+/// Descriptor for `GetApplicationDetailsRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List getApplicationDetailsRequestDescriptor =
+    $convert.base64Decode(
+        'ChxHZXRBcHBsaWNhdGlvbkRldGFpbHNSZXF1ZXN0Eg4KAmlkGAEgASgJUgJpZA==');
+
+@$core.Deprecated('Use getApplicationDetailsResponseDescriptor instead')
+const GetApplicationDetailsResponse$json = {
+  '1': 'GetApplicationDetailsResponse',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {
+      '1': 'device_count',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.api.DeviceCount',
+      '10': 'deviceCount'
+    },
+    {
+      '1': 'integration_count',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.api.ApplicationIntegrationCount',
+      '10': 'integrationCount'
+    },
+  ],
+};
+
+/// Descriptor for `GetApplicationDetailsResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List getApplicationDetailsResponseDescriptor = $convert.base64Decode(
+    'Ch1HZXRBcHBsaWNhdGlvbkRldGFpbHNSZXNwb25zZRIOCgJpZBgBIAEoCVICaWQSMwoMZGV2aW'
+    'NlX2NvdW50GAIgASgLMhAuYXBpLkRldmljZUNvdW50UgtkZXZpY2VDb3VudBJNChFpbnRlZ3Jh'
+    'dGlvbl9jb3VudBgDIAEoCzIgLmFwaS5BcHBsaWNhdGlvbkludGVncmF0aW9uQ291bnRSEGludG'
+    'VncmF0aW9uQ291bnQ=');
