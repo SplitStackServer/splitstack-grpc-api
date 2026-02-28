@@ -50,3 +50,66 @@ enum VariableMac {
   MBUS_MAC = 2;
 
 }
+
+// Counts of users, grouped by their privileges.
+message TenantUserCount {
+  // Count of active tenant users. 
+  // Note: this includes all tenant users, regardless of their privileges.
+  uint32 active_count = 1;
+
+  // Count of inactive tenant users. 
+  // Note: this includes all tenant users, regardless of their privileges.
+  uint32 inactive_count = 2;
+
+  // Count of tenant users with admin privileges.
+  uint32 admin_count = 3;
+
+  // Count of tenant users with end-node admin privileges.
+  uint32 endnode_admin_count = 4;
+
+  // Count of tenant users with basestation admin privileges.
+  uint32 basestation_admin_count = 5;
+}
+
+// Counts of basestations, grouped by their state.
+message BasestationCount {
+  // Online basestation count.
+  uint32 online_count = 1;
+
+  // Offline basestation count.
+  uint32 offline_count = 2;
+
+  // Inactive basestation count.
+  uint32 inactive_count = 3;
+
+  // Never seen basestation count.
+  uint32 never_seen_count = 4;
+}
+
+// Counts of device profiles.
+message DeviceProfileCount {
+  // count.
+  uint32 count = 1;
+}
+
+// Counts of devices, grouped by their state.
+message DeviceCount {
+  // Active device count.
+  uint32 active_count = 1;
+
+  // Inactive device count.
+  uint32 inactive_count = 2;
+
+  // Never seen device count.
+  uint32 never_seen_count = 3;
+}
+
+
+// Counts of applications of a tenant.
+message ApplicationCount {
+  // Active application count.
+  uint32 count = 1;
+
+  // Count of applications with variable MACs enabled.
+  uint32 vm_count = 2;
+}
