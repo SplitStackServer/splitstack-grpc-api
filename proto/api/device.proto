@@ -339,7 +339,7 @@ message GetDeviceMetricsResponse {
   common.Metric eq_snr = 4;
 
   // The duration of the received messages.
-  common.Metric rq_duration = 5;
+  optional common.Metric rx_duration = 5;
 }
 
 message StreamDeviceFramesRequest {

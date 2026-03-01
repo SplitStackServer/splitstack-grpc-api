@@ -283,23 +283,15 @@ message GetTenantDetailsResponse {
   TenantUserCount tenant_user_count = 2;
 
   // Basestation counts for the tenant.
-  //
-  // Only available for global admin, tenant admin or basestation admin users or API keys.
   BasestationCount basestation_count = 3;
 
   // Device profile counts for the tenant.
-  //
-  // Only available for global admin, tenant admin or endnode admin users or API keys.
   DeviceProfileCount device_profile_count = 4;
 
   // Application counts for the tenant.
-  //
-  // Only available for global admin, tenant admin or endnode admin users or API keys.
   ApplicationCount application_count = 5;
 
   // Device counts for the tenant.
-  //
-  // Only available for global admin, tenant admin or endnode admin users or API keys.
   DeviceCount device_count = 6;
 }
 
