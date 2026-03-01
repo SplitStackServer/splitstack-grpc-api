@@ -25,29 +25,37 @@ const (
 type Aggregation int32
 
 const (
-	// Hour.
-	Aggregation_HOUR Aggregation = 0
-	// Day.
-	Aggregation_DAY Aggregation = 1
-	// Month.
-	Aggregation_MONTH Aggregation = 2
 	// Minute.
-	Aggregation_MINUTE Aggregation = 3
+	Aggregation_MINUTE Aggregation = 0
+	// Quarter.
+	Aggregation_QUARTER_HOUR Aggregation = 1
+	// Hour.
+	Aggregation_HOUR Aggregation = 2
+	// Day.
+	Aggregation_DAY Aggregation = 3
+	// Week.
+	Aggregation_WEEK Aggregation = 4
+	// Month.
+	Aggregation_MONTH Aggregation = 5
 )
 
 // Enum value maps for Aggregation.
 var (
 	Aggregation_name = map[int32]string{
-		0: "HOUR",
-		1: "DAY",
-		2: "MONTH",
-		3: "MINUTE",
+		0: "MINUTE",
+		1: "QUARTER_HOUR",
+		2: "HOUR",
+		3: "DAY",
+		4: "WEEK",
+		5: "MONTH",
 	}
 	Aggregation_value = map[string]int32{
-		"HOUR":   0,
-		"DAY":    1,
-		"MONTH":  2,
-		"MINUTE": 3,
+		"MINUTE":       0,
+		"QUARTER_HOUR": 1,
+		"HOUR":         2,
+		"DAY":          3,
+		"WEEK":         4,
+		"MONTH":        5,
 	}
 )
 
@@ -203,6 +211,114 @@ func (x *Metric) GetKind() MetricKind {
 	return MetricKind_COUNTER
 }
 
+type StringState struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Name.
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// Value.
+	Value         string `protobuf:"bytes,3,opt,name=value,proto3" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StringState) Reset() {
+	*x = StringState{}
+	mi := &file_common_metrics_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StringState) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StringState) ProtoMessage() {}
+
+func (x *StringState) ProtoReflect() protoreflect.Message {
+	mi := &file_common_metrics_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StringState.ProtoReflect.Descriptor instead.
+func (*StringState) Descriptor() ([]byte, []int) {
+	return file_common_metrics_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *StringState) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *StringState) GetValue() string {
+	if x != nil {
+		return x.Value
+	}
+	return ""
+}
+
+type BooleanState struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Name.
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// Value.
+	Value         bool `protobuf:"varint,3,opt,name=value,proto3" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BooleanState) Reset() {
+	*x = BooleanState{}
+	mi := &file_common_metrics_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BooleanState) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BooleanState) ProtoMessage() {}
+
+func (x *BooleanState) ProtoReflect() protoreflect.Message {
+	mi := &file_common_metrics_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BooleanState.ProtoReflect.Descriptor instead.
+func (*BooleanState) Descriptor() ([]byte, []int) {
+	return file_common_metrics_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *BooleanState) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *BooleanState) GetValue() bool {
+	if x != nil {
+		return x.Value
+	}
+	return false
+}
+
 type MetricDataset struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Label.
@@ -216,7 +332,7 @@ type MetricDataset struct {
 
 func (x *MetricDataset) Reset() {
 	*x = MetricDataset{}
-	mi := &file_common_metrics_proto_msgTypes[1]
+	mi := &file_common_metrics_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -228,7 +344,7 @@ func (x *MetricDataset) String() string {
 func (*MetricDataset) ProtoMessage() {}
 
 func (x *MetricDataset) ProtoReflect() protoreflect.Message {
-	mi := &file_common_metrics_proto_msgTypes[1]
+	mi := &file_common_metrics_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -241,7 +357,7 @@ func (x *MetricDataset) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MetricDataset.ProtoReflect.Descriptor instead.
 func (*MetricDataset) Descriptor() ([]byte, []int) {
-	return file_common_metrics_proto_rawDescGZIP(), []int{1}
+	return file_common_metrics_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *MetricDataset) GetLabel() string {
@@ -269,16 +385,24 @@ const file_common_metrics_proto_rawDesc = "" +
 	"timestamps\x18\x02 \x03(\v2\x1a.google.protobuf.TimestampR\n" +
 	"timestamps\x121\n" +
 	"\bdatasets\x18\x03 \x03(\v2\x15.common.MetricDatasetR\bdatasets\x12&\n" +
-	"\x04kind\x18\x04 \x01(\x0e2\x12.common.MetricKindR\x04kind\"9\n" +
+	"\x04kind\x18\x04 \x01(\x0e2\x12.common.MetricKindR\x04kind\"7\n" +
+	"\vStringState\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
+	"\x05value\x18\x03 \x01(\tR\x05value\"8\n" +
+	"\fBooleanState\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
+	"\x05value\x18\x03 \x01(\bR\x05value\"9\n" +
 	"\rMetricDataset\x12\x14\n" +
 	"\x05label\x18\x01 \x01(\tR\x05label\x12\x12\n" +
-	"\x04data\x18\x02 \x03(\x02R\x04data*7\n" +
-	"\vAggregation\x12\b\n" +
-	"\x04HOUR\x10\x00\x12\a\n" +
-	"\x03DAY\x10\x01\x12\t\n" +
-	"\x05MONTH\x10\x02\x12\n" +
+	"\x04data\x18\x02 \x03(\x02R\x04data*S\n" +
+	"\vAggregation\x12\n" +
 	"\n" +
-	"\x06MINUTE\x10\x03*2\n" +
+	"\x06MINUTE\x10\x00\x12\x10\n" +
+	"\fQUARTER_HOUR\x10\x01\x12\b\n" +
+	"\x04HOUR\x10\x02\x12\a\n" +
+	"\x03DAY\x10\x03\x12\b\n" +
+	"\x04WEEK\x10\x04\x12\t\n" +
+	"\x05MONTH\x10\x05*2\n" +
 	"\n" +
 	"MetricKind\x12\v\n" +
 	"\aCOUNTER\x10\x00\x12\f\n" +
@@ -299,17 +423,19 @@ func file_common_metrics_proto_rawDescGZIP() []byte {
 }
 
 var file_common_metrics_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_common_metrics_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_common_metrics_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_common_metrics_proto_goTypes = []any{
 	(Aggregation)(0),              // 0: common.Aggregation
 	(MetricKind)(0),               // 1: common.MetricKind
 	(*Metric)(nil),                // 2: common.Metric
-	(*MetricDataset)(nil),         // 3: common.MetricDataset
-	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
+	(*StringState)(nil),           // 3: common.StringState
+	(*BooleanState)(nil),          // 4: common.BooleanState
+	(*MetricDataset)(nil),         // 5: common.MetricDataset
+	(*timestamppb.Timestamp)(nil), // 6: google.protobuf.Timestamp
 }
 var file_common_metrics_proto_depIdxs = []int32{
-	4, // 0: common.Metric.timestamps:type_name -> google.protobuf.Timestamp
-	3, // 1: common.Metric.datasets:type_name -> common.MetricDataset
+	6, // 0: common.Metric.timestamps:type_name -> google.protobuf.Timestamp
+	5, // 1: common.Metric.datasets:type_name -> common.MetricDataset
 	1, // 2: common.Metric.kind:type_name -> common.MetricKind
 	3, // [3:3] is the sub-list for method output_type
 	3, // [3:3] is the sub-list for method input_type
@@ -329,7 +455,7 @@ func file_common_metrics_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_metrics_proto_rawDesc), len(file_common_metrics_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

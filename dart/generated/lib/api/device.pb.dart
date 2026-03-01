@@ -1432,9 +1432,13 @@ class GetDeviceMetricsRequest extends $pb.GeneratedMessage {
 class GetDeviceMetricsResponse extends $pb.GeneratedMessage {
   factory GetDeviceMetricsResponse({
     $core.Iterable<$core.MapEntry<$core.String, $6.Metric>>? metrics,
+    $core.Iterable<$core.MapEntry<$core.String, $6.StringState>>? stringState,
+    $core.Iterable<$core.MapEntry<$core.String, $6.BooleanState>>? booleanState,
   }) {
     final result = create();
     if (metrics != null) result.metrics.addEntries(metrics);
+    if (stringState != null) result.stringState.addEntries(stringState);
+    if (booleanState != null) result.booleanState.addEntries(booleanState);
     return result;
   }
 
@@ -1457,6 +1461,20 @@ class GetDeviceMetricsResponse extends $pb.GeneratedMessage {
         valueFieldType: $pb.PbFieldType.OM,
         valueCreator: $6.Metric.create,
         valueDefaultOrMaker: $6.Metric.getDefault,
+        packageName: const $pb.PackageName('api'))
+    ..m<$core.String, $6.StringState>(2, _omitFieldNames ? '' : 'stringState',
+        entryClassName: 'GetDeviceMetricsResponse.StringStateEntry',
+        keyFieldType: $pb.PbFieldType.OS,
+        valueFieldType: $pb.PbFieldType.OM,
+        valueCreator: $6.StringState.create,
+        valueDefaultOrMaker: $6.StringState.getDefault,
+        packageName: const $pb.PackageName('api'))
+    ..m<$core.String, $6.BooleanState>(3, _omitFieldNames ? '' : 'booleanState',
+        entryClassName: 'GetDeviceMetricsResponse.BooleanStateEntry',
+        keyFieldType: $pb.PbFieldType.OS,
+        valueFieldType: $pb.PbFieldType.OM,
+        valueCreator: $6.BooleanState.create,
+        valueDefaultOrMaker: $6.BooleanState.getDefault,
         packageName: const $pb.PackageName('api'))
     ..hasRequiredFields = false;
 
@@ -1482,6 +1500,12 @@ class GetDeviceMetricsResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $pb.PbMap<$core.String, $6.Metric> get metrics => $_getMap(0);
+
+  @$pb.TagNumber(2)
+  $pb.PbMap<$core.String, $6.StringState> get stringState => $_getMap(1);
+
+  @$pb.TagNumber(3)
+  $pb.PbMap<$core.String, $6.BooleanState> get booleanState => $_getMap(2);
 }
 
 class StreamDeviceFramesRequest extends $pb.GeneratedMessage {

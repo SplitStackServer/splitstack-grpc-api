@@ -327,6 +327,8 @@ message GetDeviceMetricsRequest {
 
 message GetDeviceMetricsResponse {
   map<string, common.Metric> metrics = 1;
+  map<string, common.StringState> string_state = 2;
+  map<string, common.BooleanState> boolean_state = 3;
 }
 
 message StreamDeviceFramesRequest {
