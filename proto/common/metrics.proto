@@ -53,6 +53,22 @@ message Metric {
   MetricKind kind = 4;
 }
 
+message StringState {
+  // Name.
+  string name = 2;
+
+  // Value.
+  string value = 3;
+}
+
+message BooleanState {
+  // Name.
+  string name = 2;
+
+  // Value.
+  bool value = 3;
+}
+
 message MetricDataset {
   // Label.
   string label = 1;

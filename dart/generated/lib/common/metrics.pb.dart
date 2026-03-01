@@ -106,6 +106,142 @@ class Metric extends $pb.GeneratedMessage {
   void clearKind() => $_clearField(4);
 }
 
+class StringState extends $pb.GeneratedMessage {
+  factory StringState({
+    $core.String? name,
+    $core.String? value,
+  }) {
+    final result = create();
+    if (name != null) result.name = name;
+    if (value != null) result.value = value;
+    return result;
+  }
+
+  StringState._();
+
+  factory StringState.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory StringState.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'StringState',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'common'),
+      createEmptyInstance: create)
+    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..aOS(3, _omitFieldNames ? '' : 'value')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  StringState clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  StringState copyWith(void Function(StringState) updates) =>
+      super.copyWith((message) => updates(message as StringState))
+          as StringState;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static StringState create() => StringState._();
+  @$core.override
+  StringState createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static StringState getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<StringState>(create);
+  static StringState? _defaultInstance;
+
+  /// Name.
+  @$pb.TagNumber(2)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(2)
+  set name($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(2)
+  $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(2)
+  void clearName() => $_clearField(2);
+
+  /// Value.
+  @$pb.TagNumber(3)
+  $core.String get value => $_getSZ(1);
+  @$pb.TagNumber(3)
+  set value($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(3)
+  $core.bool hasValue() => $_has(1);
+  @$pb.TagNumber(3)
+  void clearValue() => $_clearField(3);
+}
+
+class BooleanState extends $pb.GeneratedMessage {
+  factory BooleanState({
+    $core.String? name,
+    $core.bool? value,
+  }) {
+    final result = create();
+    if (name != null) result.name = name;
+    if (value != null) result.value = value;
+    return result;
+  }
+
+  BooleanState._();
+
+  factory BooleanState.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory BooleanState.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'BooleanState',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'common'),
+      createEmptyInstance: create)
+    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..aOB(3, _omitFieldNames ? '' : 'value')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  BooleanState clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  BooleanState copyWith(void Function(BooleanState) updates) =>
+      super.copyWith((message) => updates(message as BooleanState))
+          as BooleanState;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static BooleanState create() => BooleanState._();
+  @$core.override
+  BooleanState createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static BooleanState getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<BooleanState>(create);
+  static BooleanState? _defaultInstance;
+
+  /// Name.
+  @$pb.TagNumber(2)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(2)
+  set name($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(2)
+  $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(2)
+  void clearName() => $_clearField(2);
+
+  /// Value.
+  @$pb.TagNumber(3)
+  $core.bool get value => $_getBF(1);
+  @$pb.TagNumber(3)
+  set value($core.bool value) => $_setBool(1, value);
+  @$pb.TagNumber(3)
+  $core.bool hasValue() => $_has(1);
+  @$pb.TagNumber(3)
+  void clearValue() => $_clearField(3);
+}
+
 class MetricDataset extends $pb.GeneratedMessage {
   factory MetricDataset({
     $core.String? label,

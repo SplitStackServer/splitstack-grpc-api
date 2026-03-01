@@ -15,30 +15,40 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class Aggregation extends $pb.ProtobufEnum {
+  /// Minute.
+  static const Aggregation MINUTE =
+      Aggregation._(0, _omitEnumNames ? '' : 'MINUTE');
+
+  /// Quarter.
+  static const Aggregation QUARTER_HOUR =
+      Aggregation._(1, _omitEnumNames ? '' : 'QUARTER_HOUR');
+
   /// Hour.
   static const Aggregation HOUR =
-      Aggregation._(0, _omitEnumNames ? '' : 'HOUR');
+      Aggregation._(2, _omitEnumNames ? '' : 'HOUR');
 
   /// Day.
-  static const Aggregation DAY = Aggregation._(1, _omitEnumNames ? '' : 'DAY');
+  static const Aggregation DAY = Aggregation._(3, _omitEnumNames ? '' : 'DAY');
+
+  /// Week.
+  static const Aggregation WEEK =
+      Aggregation._(4, _omitEnumNames ? '' : 'WEEK');
 
   /// Month.
   static const Aggregation MONTH =
-      Aggregation._(2, _omitEnumNames ? '' : 'MONTH');
-
-  /// Minute.
-  static const Aggregation MINUTE =
-      Aggregation._(3, _omitEnumNames ? '' : 'MINUTE');
+      Aggregation._(5, _omitEnumNames ? '' : 'MONTH');
 
   static const $core.List<Aggregation> values = <Aggregation>[
+    MINUTE,
+    QUARTER_HOUR,
     HOUR,
     DAY,
+    WEEK,
     MONTH,
-    MINUTE,
   ];
 
   static final $core.List<Aggregation?> _byValue =
-      $pb.ProtobufEnum.$_initByValueList(values, 3);
+      $pb.ProtobufEnum.$_initByValueList(values, 5);
   static Aggregation? valueOf($core.int value) =>
       value < 0 || value >= _byValue.length ? null : _byValue[value];
 
