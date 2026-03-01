@@ -664,100 +664,41 @@ const GetDeviceMetricsResponse$json = {
   '1': 'GetDeviceMetricsResponse',
   '2': [
     {
-      '1': 'metrics',
+      '1': 'rx_count',
       '3': 1,
-      '4': 3,
-      '5': 11,
-      '6': '.api.GetDeviceMetricsResponse.MetricsEntry',
-      '10': 'metrics'
-    },
-    {
-      '1': 'string_state',
-      '3': 2,
-      '4': 3,
-      '5': 11,
-      '6': '.api.GetDeviceMetricsResponse.StringStateEntry',
-      '10': 'stringState'
-    },
-    {
-      '1': 'boolean_state',
-      '3': 3,
-      '4': 3,
-      '5': 11,
-      '6': '.api.GetDeviceMetricsResponse.BooleanStateEntry',
-      '10': 'booleanState'
-    },
-  ],
-  '3': [
-    GetDeviceMetricsResponse_MetricsEntry$json,
-    GetDeviceMetricsResponse_StringStateEntry$json,
-    GetDeviceMetricsResponse_BooleanStateEntry$json
-  ],
-};
-
-@$core.Deprecated('Use getDeviceMetricsResponseDescriptor instead')
-const GetDeviceMetricsResponse_MetricsEntry$json = {
-  '1': 'MetricsEntry',
-  '2': [
-    {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
-    {
-      '1': 'value',
-      '3': 2,
       '4': 1,
       '5': 11,
       '6': '.common.Metric',
-      '10': 'value'
+      '10': 'rxCount'
     },
-  ],
-  '7': {'7': true},
-};
-
-@$core.Deprecated('Use getDeviceMetricsResponseDescriptor instead')
-const GetDeviceMetricsResponse_StringStateEntry$json = {
-  '1': 'StringStateEntry',
-  '2': [
-    {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
+    {'1': 'rssi', '3': 2, '4': 1, '5': 11, '6': '.common.Metric', '10': 'rssi'},
+    {'1': 'snr', '3': 3, '4': 1, '5': 11, '6': '.common.Metric', '10': 'snr'},
     {
-      '1': 'value',
-      '3': 2,
+      '1': 'eq_snr',
+      '3': 4,
       '4': 1,
       '5': 11,
-      '6': '.common.StringState',
-      '10': 'value'
+      '6': '.common.Metric',
+      '10': 'eqSnr'
     },
-  ],
-  '7': {'7': true},
-};
-
-@$core.Deprecated('Use getDeviceMetricsResponseDescriptor instead')
-const GetDeviceMetricsResponse_BooleanStateEntry$json = {
-  '1': 'BooleanStateEntry',
-  '2': [
-    {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
     {
-      '1': 'value',
-      '3': 2,
+      '1': 'rq_duration',
+      '3': 5,
       '4': 1,
       '5': 11,
-      '6': '.common.BooleanState',
-      '10': 'value'
+      '6': '.common.Metric',
+      '10': 'rqDuration'
     },
   ],
-  '7': {'7': true},
 };
 
 /// Descriptor for `GetDeviceMetricsResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getDeviceMetricsResponseDescriptor = $convert.base64Decode(
-    'ChhHZXREZXZpY2VNZXRyaWNzUmVzcG9uc2USRAoHbWV0cmljcxgBIAMoCzIqLmFwaS5HZXREZX'
-    'ZpY2VNZXRyaWNzUmVzcG9uc2UuTWV0cmljc0VudHJ5UgdtZXRyaWNzElEKDHN0cmluZ19zdGF0'
-    'ZRgCIAMoCzIuLmFwaS5HZXREZXZpY2VNZXRyaWNzUmVzcG9uc2UuU3RyaW5nU3RhdGVFbnRyeV'
-    'ILc3RyaW5nU3RhdGUSVAoNYm9vbGVhbl9zdGF0ZRgDIAMoCzIvLmFwaS5HZXREZXZpY2VNZXRy'
-    'aWNzUmVzcG9uc2UuQm9vbGVhblN0YXRlRW50cnlSDGJvb2xlYW5TdGF0ZRpKCgxNZXRyaWNzRW'
-    '50cnkSEAoDa2V5GAEgASgJUgNrZXkSJAoFdmFsdWUYAiABKAsyDi5jb21tb24uTWV0cmljUgV2'
-    'YWx1ZToCOAEaUwoQU3RyaW5nU3RhdGVFbnRyeRIQCgNrZXkYASABKAlSA2tleRIpCgV2YWx1ZR'
-    'gCIAEoCzITLmNvbW1vbi5TdHJpbmdTdGF0ZVIFdmFsdWU6AjgBGlUKEUJvb2xlYW5TdGF0ZUVu'
-    'dHJ5EhAKA2tleRgBIAEoCVIDa2V5EioKBXZhbHVlGAIgASgLMhQuY29tbW9uLkJvb2xlYW5TdG'
-    'F0ZVIFdmFsdWU6AjgB');
+    'ChhHZXREZXZpY2VNZXRyaWNzUmVzcG9uc2USKQoIcnhfY291bnQYASABKAsyDi5jb21tb24uTW'
+    'V0cmljUgdyeENvdW50EiIKBHJzc2kYAiABKAsyDi5jb21tb24uTWV0cmljUgRyc3NpEiAKA3Nu'
+    'chgDIAEoCzIOLmNvbW1vbi5NZXRyaWNSA3NuchIlCgZlcV9zbnIYBCABKAsyDi5jb21tb24uTW'
+    'V0cmljUgVlcVNuchIvCgtycV9kdXJhdGlvbhgFIAEoCzIOLmNvbW1vbi5NZXRyaWNSCnJxRHVy'
+    'YXRpb24=');
 
 @$core.Deprecated('Use streamDeviceFramesRequestDescriptor instead')
 const StreamDeviceFramesRequest$json = {
