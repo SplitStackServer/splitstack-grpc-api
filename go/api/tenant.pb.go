@@ -976,20 +976,12 @@ type GetTenantDetailsResponse struct {
 	// Only available for global admin or tenant admin users or  API keys.
 	TenantUserCount *TenantUserCount `protobuf:"bytes,2,opt,name=tenant_user_count,json=tenantUserCount,proto3" json:"tenant_user_count,omitempty"`
 	// Basestation counts for the tenant.
-	//
-	// Only available for global admin, tenant admin or basestation admin users or API keys.
 	BasestationCount *BasestationCount `protobuf:"bytes,3,opt,name=basestation_count,json=basestationCount,proto3" json:"basestation_count,omitempty"`
 	// Device profile counts for the tenant.
-	//
-	// Only available for global admin, tenant admin or endnode admin users or API keys.
 	DeviceProfileCount *DeviceProfileCount `protobuf:"bytes,4,opt,name=device_profile_count,json=deviceProfileCount,proto3" json:"device_profile_count,omitempty"`
 	// Application counts for the tenant.
-	//
-	// Only available for global admin, tenant admin or endnode admin users or API keys.
 	ApplicationCount *ApplicationCount `protobuf:"bytes,5,opt,name=application_count,json=applicationCount,proto3" json:"application_count,omitempty"`
 	// Device counts for the tenant.
-	//
-	// Only available for global admin, tenant admin or endnode admin users or API keys.
 	DeviceCount   *DeviceCount `protobuf:"bytes,6,opt,name=device_count,json=deviceCount,proto3" json:"device_count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
