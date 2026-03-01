@@ -1411,8 +1411,6 @@ class GetTenantDetailsResponse extends $pb.GeneratedMessage {
   $2.TenantUserCount ensureTenantUserCount() => $_ensure(1);
 
   /// Basestation counts for the tenant.
-  ///
-  /// Only available for global admin, tenant admin or basestation admin users or API keys.
   @$pb.TagNumber(3)
   $2.BasestationCount get basestationCount => $_getN(2);
   @$pb.TagNumber(3)
@@ -1425,8 +1423,6 @@ class GetTenantDetailsResponse extends $pb.GeneratedMessage {
   $2.BasestationCount ensureBasestationCount() => $_ensure(2);
 
   /// Device profile counts for the tenant.
-  ///
-  /// Only available for global admin, tenant admin or endnode admin users or API keys.
   @$pb.TagNumber(4)
   $2.DeviceProfileCount get deviceProfileCount => $_getN(3);
   @$pb.TagNumber(4)
@@ -1439,8 +1435,6 @@ class GetTenantDetailsResponse extends $pb.GeneratedMessage {
   $2.DeviceProfileCount ensureDeviceProfileCount() => $_ensure(3);
 
   /// Application counts for the tenant.
-  ///
-  /// Only available for global admin, tenant admin or endnode admin users or API keys.
   @$pb.TagNumber(5)
   $2.ApplicationCount get applicationCount => $_getN(4);
   @$pb.TagNumber(5)
@@ -1453,8 +1447,6 @@ class GetTenantDetailsResponse extends $pb.GeneratedMessage {
   $2.ApplicationCount ensureApplicationCount() => $_ensure(4);
 
   /// Device counts for the tenant.
-  ///
-  /// Only available for global admin, tenant admin or endnode admin users or API keys.
   @$pb.TagNumber(6)
   $2.DeviceCount get deviceCount => $_getN(5);
   @$pb.TagNumber(6)

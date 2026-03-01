@@ -1435,14 +1435,14 @@ class GetDeviceMetricsResponse extends $pb.GeneratedMessage {
     $6.Metric? rssi,
     $6.Metric? snr,
     $6.Metric? eqSnr,
-    $6.Metric? rqDuration,
+    $6.Metric? rxDuration,
   }) {
     final result = create();
     if (rxCount != null) result.rxCount = rxCount;
     if (rssi != null) result.rssi = rssi;
     if (snr != null) result.snr = snr;
     if (eqSnr != null) result.eqSnr = eqSnr;
-    if (rqDuration != null) result.rqDuration = rqDuration;
+    if (rxDuration != null) result.rxDuration = rxDuration;
     return result;
   }
 
@@ -1467,7 +1467,7 @@ class GetDeviceMetricsResponse extends $pb.GeneratedMessage {
         subBuilder: $6.Metric.create)
     ..aOM<$6.Metric>(4, _omitFieldNames ? '' : 'eqSnr',
         subBuilder: $6.Metric.create)
-    ..aOM<$6.Metric>(5, _omitFieldNames ? '' : 'rqDuration',
+    ..aOM<$6.Metric>(5, _omitFieldNames ? '' : 'rxDuration',
         subBuilder: $6.Metric.create)
     ..hasRequiredFields = false;
 
@@ -1541,15 +1541,15 @@ class GetDeviceMetricsResponse extends $pb.GeneratedMessage {
 
   /// The duration of the received messages.
   @$pb.TagNumber(5)
-  $6.Metric get rqDuration => $_getN(4);
+  $6.Metric get rxDuration => $_getN(4);
   @$pb.TagNumber(5)
-  set rqDuration($6.Metric value) => $_setField(5, value);
+  set rxDuration($6.Metric value) => $_setField(5, value);
   @$pb.TagNumber(5)
-  $core.bool hasRqDuration() => $_has(4);
+  $core.bool hasRxDuration() => $_has(4);
   @$pb.TagNumber(5)
-  void clearRqDuration() => $_clearField(5);
+  void clearRxDuration() => $_clearField(5);
   @$pb.TagNumber(5)
-  $6.Metric ensureRqDuration() => $_ensure(4);
+  $6.Metric ensureRxDuration() => $_ensure(4);
 }
 
 class StreamDeviceFramesRequest extends $pb.GeneratedMessage {

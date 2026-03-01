@@ -1099,7 +1099,7 @@ type GetDeviceMetricsResponse struct {
 	// The eqSNR of the received messages.
 	EqSnr *common.Metric `protobuf:"bytes,4,opt,name=eq_snr,json=eqSnr,proto3" json:"eq_snr,omitempty"`
 	// The duration of the received messages.
-	RqDuration    *common.Metric `protobuf:"bytes,5,opt,name=rq_duration,json=rqDuration,proto3" json:"rq_duration,omitempty"`
+	RxDuration    *common.Metric `protobuf:"bytes,5,opt,name=rx_duration,json=rxDuration,proto3,oneof" json:"rx_duration,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1162,9 +1162,9 @@ func (x *GetDeviceMetricsResponse) GetEqSnr() *common.Metric {
 	return nil
 }
 
-func (x *GetDeviceMetricsResponse) GetRqDuration() *common.Metric {
+func (x *GetDeviceMetricsResponse) GetRxDuration() *common.Metric {
 	if x != nil {
-		return x.RqDuration
+		return x.RxDuration
 	}
 	return nil
 }
@@ -1346,14 +1346,15 @@ const file_api_device_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x120\n" +
 	"\x05start\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x05start\x12,\n" +
 	"\x03end\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x03end\x125\n" +
-	"\vaggregation\x18\x04 \x01(\x0e2\x13.common.AggregationR\vaggregation\"\xe3\x01\n" +
+	"\vaggregation\x18\x04 \x01(\x0e2\x13.common.AggregationR\vaggregation\"\xf8\x01\n" +
 	"\x18GetDeviceMetricsResponse\x12)\n" +
 	"\brx_count\x18\x01 \x01(\v2\x0e.common.MetricR\arxCount\x12\"\n" +
 	"\x04rssi\x18\x02 \x01(\v2\x0e.common.MetricR\x04rssi\x12 \n" +
 	"\x03snr\x18\x03 \x01(\v2\x0e.common.MetricR\x03snr\x12%\n" +
-	"\x06eq_snr\x18\x04 \x01(\v2\x0e.common.MetricR\x05eqSnr\x12/\n" +
-	"\vrq_duration\x18\x05 \x01(\v2\x0e.common.MetricR\n" +
-	"rqDuration\"+\n" +
+	"\x06eq_snr\x18\x04 \x01(\v2\x0e.common.MetricR\x05eqSnr\x124\n" +
+	"\vrx_duration\x18\x05 \x01(\v2\x0e.common.MetricH\x00R\n" +
+	"rxDuration\x88\x01\x01B\x0e\n" +
+	"\f_rx_duration\"+\n" +
 	"\x19StreamDeviceFramesRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id2\xc0\x05\n" +
 	"\rDeviceService\x12\\\n" +
@@ -1441,7 +1442,7 @@ var file_api_device_proto_depIdxs = []int32{
 	21, // 31: api.GetDeviceMetricsResponse.rssi:type_name -> common.Metric
 	21, // 32: api.GetDeviceMetricsResponse.snr:type_name -> common.Metric
 	21, // 33: api.GetDeviceMetricsResponse.eq_snr:type_name -> common.Metric
-	21, // 34: api.GetDeviceMetricsResponse.rq_duration:type_name -> common.Metric
+	21, // 34: api.GetDeviceMetricsResponse.rx_duration:type_name -> common.Metric
 	3,  // 35: api.DeviceService.CreateDevice:input_type -> api.CreateDeviceRequest
 	5,  // 36: api.DeviceService.GetDevice:input_type -> api.GetDeviceRequest
 	7,  // 37: api.DeviceService.UpdateDevice:input_type -> api.UpdateDeviceRequest
@@ -1474,6 +1475,7 @@ func file_api_device_proto_init() {
 	file_api_device_proto_msgTypes[2].OneofWrappers = []any{}
 	file_api_device_proto_msgTypes[6].OneofWrappers = []any{}
 	file_api_device_proto_msgTypes[9].OneofWrappers = []any{}
+	file_api_device_proto_msgTypes[12].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

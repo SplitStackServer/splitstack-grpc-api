@@ -682,13 +682,18 @@ const GetDeviceMetricsResponse$json = {
       '10': 'eqSnr'
     },
     {
-      '1': 'rq_duration',
+      '1': 'rx_duration',
       '3': 5,
       '4': 1,
       '5': 11,
       '6': '.common.Metric',
-      '10': 'rqDuration'
+      '9': 0,
+      '10': 'rxDuration',
+      '17': true
     },
+  ],
+  '8': [
+    {'1': '_rx_duration'},
   ],
 };
 
@@ -697,8 +702,8 @@ final $typed_data.Uint8List getDeviceMetricsResponseDescriptor = $convert.base64
     'ChhHZXREZXZpY2VNZXRyaWNzUmVzcG9uc2USKQoIcnhfY291bnQYASABKAsyDi5jb21tb24uTW'
     'V0cmljUgdyeENvdW50EiIKBHJzc2kYAiABKAsyDi5jb21tb24uTWV0cmljUgRyc3NpEiAKA3Nu'
     'chgDIAEoCzIOLmNvbW1vbi5NZXRyaWNSA3NuchIlCgZlcV9zbnIYBCABKAsyDi5jb21tb24uTW'
-    'V0cmljUgVlcVNuchIvCgtycV9kdXJhdGlvbhgFIAEoCzIOLmNvbW1vbi5NZXRyaWNSCnJxRHVy'
-    'YXRpb24=');
+    'V0cmljUgVlcVNuchI0CgtyeF9kdXJhdGlvbhgFIAEoCzIOLmNvbW1vbi5NZXRyaWNIAFIKcnhE'
+    'dXJhdGlvbogBAUIOCgxfcnhfZHVyYXRpb24=');
 
 @$core.Deprecated('Use streamDeviceFramesRequestDescriptor instead')
 const StreamDeviceFramesRequest$json = {
