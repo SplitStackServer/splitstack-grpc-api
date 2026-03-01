@@ -13,17 +13,18 @@ option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Common";
 import "google/protobuf/timestamp.proto";
 
 enum Aggregation {
-  // Hour.
-  HOUR = 0;
-
-  // Day.
-  DAY = 1;
-
-  // Month.
-  MONTH = 2;
-
   // Minute.
-  MINUTE = 3;
+  MINUTE = 0;
+  // Quarter.
+  QUARTER_HOUR = 1;
+  // Hour.
+  HOUR = 2;
+  // Day.
+  DAY = 3;
+  // Week.
+  WEEK = 4;
+  // Month.
+  MONTH = 5;
 }
 
 enum MetricKind {
