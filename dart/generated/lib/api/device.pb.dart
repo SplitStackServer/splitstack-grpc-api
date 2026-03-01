@@ -1431,14 +1431,18 @@ class GetDeviceMetricsRequest extends $pb.GeneratedMessage {
 
 class GetDeviceMetricsResponse extends $pb.GeneratedMessage {
   factory GetDeviceMetricsResponse({
-    $core.Iterable<$core.MapEntry<$core.String, $6.Metric>>? metrics,
-    $core.Iterable<$core.MapEntry<$core.String, $6.StringState>>? stringState,
-    $core.Iterable<$core.MapEntry<$core.String, $6.BooleanState>>? booleanState,
+    $6.Metric? rxCount,
+    $6.Metric? rssi,
+    $6.Metric? snr,
+    $6.Metric? eqSnr,
+    $6.Metric? rqDuration,
   }) {
     final result = create();
-    if (metrics != null) result.metrics.addEntries(metrics);
-    if (stringState != null) result.stringState.addEntries(stringState);
-    if (booleanState != null) result.booleanState.addEntries(booleanState);
+    if (rxCount != null) result.rxCount = rxCount;
+    if (rssi != null) result.rssi = rssi;
+    if (snr != null) result.snr = snr;
+    if (eqSnr != null) result.eqSnr = eqSnr;
+    if (rqDuration != null) result.rqDuration = rqDuration;
     return result;
   }
 
@@ -1455,27 +1459,16 @@ class GetDeviceMetricsResponse extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'GetDeviceMetricsResponse',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
       createEmptyInstance: create)
-    ..m<$core.String, $6.Metric>(1, _omitFieldNames ? '' : 'metrics',
-        entryClassName: 'GetDeviceMetricsResponse.MetricsEntry',
-        keyFieldType: $pb.PbFieldType.OS,
-        valueFieldType: $pb.PbFieldType.OM,
-        valueCreator: $6.Metric.create,
-        valueDefaultOrMaker: $6.Metric.getDefault,
-        packageName: const $pb.PackageName('api'))
-    ..m<$core.String, $6.StringState>(2, _omitFieldNames ? '' : 'stringState',
-        entryClassName: 'GetDeviceMetricsResponse.StringStateEntry',
-        keyFieldType: $pb.PbFieldType.OS,
-        valueFieldType: $pb.PbFieldType.OM,
-        valueCreator: $6.StringState.create,
-        valueDefaultOrMaker: $6.StringState.getDefault,
-        packageName: const $pb.PackageName('api'))
-    ..m<$core.String, $6.BooleanState>(3, _omitFieldNames ? '' : 'booleanState',
-        entryClassName: 'GetDeviceMetricsResponse.BooleanStateEntry',
-        keyFieldType: $pb.PbFieldType.OS,
-        valueFieldType: $pb.PbFieldType.OM,
-        valueCreator: $6.BooleanState.create,
-        valueDefaultOrMaker: $6.BooleanState.getDefault,
-        packageName: const $pb.PackageName('api'))
+    ..aOM<$6.Metric>(1, _omitFieldNames ? '' : 'rxCount',
+        subBuilder: $6.Metric.create)
+    ..aOM<$6.Metric>(2, _omitFieldNames ? '' : 'rssi',
+        subBuilder: $6.Metric.create)
+    ..aOM<$6.Metric>(3, _omitFieldNames ? '' : 'snr',
+        subBuilder: $6.Metric.create)
+    ..aOM<$6.Metric>(4, _omitFieldNames ? '' : 'eqSnr',
+        subBuilder: $6.Metric.create)
+    ..aOM<$6.Metric>(5, _omitFieldNames ? '' : 'rqDuration',
+        subBuilder: $6.Metric.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1498,14 +1491,65 @@ class GetDeviceMetricsResponse extends $pb.GeneratedMessage {
       $pb.GeneratedMessage.$_defaultFor<GetDeviceMetricsResponse>(create);
   static GetDeviceMetricsResponse? _defaultInstance;
 
+  /// Number of received messages.
   @$pb.TagNumber(1)
-  $pb.PbMap<$core.String, $6.Metric> get metrics => $_getMap(0);
+  $6.Metric get rxCount => $_getN(0);
+  @$pb.TagNumber(1)
+  set rxCount($6.Metric value) => $_setField(1, value);
+  @$pb.TagNumber(1)
+  $core.bool hasRxCount() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearRxCount() => $_clearField(1);
+  @$pb.TagNumber(1)
+  $6.Metric ensureRxCount() => $_ensure(0);
 
+  /// The RSSI of the received messages.
   @$pb.TagNumber(2)
-  $pb.PbMap<$core.String, $6.StringState> get stringState => $_getMap(1);
+  $6.Metric get rssi => $_getN(1);
+  @$pb.TagNumber(2)
+  set rssi($6.Metric value) => $_setField(2, value);
+  @$pb.TagNumber(2)
+  $core.bool hasRssi() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearRssi() => $_clearField(2);
+  @$pb.TagNumber(2)
+  $6.Metric ensureRssi() => $_ensure(1);
 
+  /// The SNR of the received messages.
   @$pb.TagNumber(3)
-  $pb.PbMap<$core.String, $6.BooleanState> get booleanState => $_getMap(2);
+  $6.Metric get snr => $_getN(2);
+  @$pb.TagNumber(3)
+  set snr($6.Metric value) => $_setField(3, value);
+  @$pb.TagNumber(3)
+  $core.bool hasSnr() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearSnr() => $_clearField(3);
+  @$pb.TagNumber(3)
+  $6.Metric ensureSnr() => $_ensure(2);
+
+  /// The eqSNR of the received messages.
+  @$pb.TagNumber(4)
+  $6.Metric get eqSnr => $_getN(3);
+  @$pb.TagNumber(4)
+  set eqSnr($6.Metric value) => $_setField(4, value);
+  @$pb.TagNumber(4)
+  $core.bool hasEqSnr() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearEqSnr() => $_clearField(4);
+  @$pb.TagNumber(4)
+  $6.Metric ensureEqSnr() => $_ensure(3);
+
+  /// The duration of the received messages.
+  @$pb.TagNumber(5)
+  $6.Metric get rqDuration => $_getN(4);
+  @$pb.TagNumber(5)
+  set rqDuration($6.Metric value) => $_setField(5, value);
+  @$pb.TagNumber(5)
+  $core.bool hasRqDuration() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearRqDuration() => $_clearField(5);
+  @$pb.TagNumber(5)
+  $6.Metric ensureRqDuration() => $_ensure(4);
 }
 
 class StreamDeviceFramesRequest extends $pb.GeneratedMessage {
