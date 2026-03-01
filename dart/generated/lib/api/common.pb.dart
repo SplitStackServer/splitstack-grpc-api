@@ -503,11 +503,13 @@ class DeviceCount extends $pb.GeneratedMessage {
     $fixnum.Int64? activeCount,
     $fixnum.Int64? inactiveCount,
     $fixnum.Int64? neverSeenCount,
+    $fixnum.Int64? seenCount,
   }) {
     final result = create();
     if (activeCount != null) result.activeCount = activeCount;
     if (inactiveCount != null) result.inactiveCount = inactiveCount;
     if (neverSeenCount != null) result.neverSeenCount = neverSeenCount;
+    if (seenCount != null) result.seenCount = seenCount;
     return result;
   }
 
@@ -533,6 +535,9 @@ class DeviceCount extends $pb.GeneratedMessage {
     ..a<$fixnum.Int64>(
         3, _omitFieldNames ? '' : 'neverSeenCount', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(
+        4, _omitFieldNames ? '' : 'seenCount', $pb.PbFieldType.OU6,
+        defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -555,6 +560,9 @@ class DeviceCount extends $pb.GeneratedMessage {
   static DeviceCount? _defaultInstance;
 
   /// Active device count.
+  /// Based on device profile transmission interval value.
+  /// Active if seen within 4 times the transmission interval.
+  /// Fallback to last 24 hours if no transmission interval is set.
   @$pb.TagNumber(1)
   $fixnum.Int64 get activeCount => $_getI64(0);
   @$pb.TagNumber(1)
@@ -565,6 +573,9 @@ class DeviceCount extends $pb.GeneratedMessage {
   void clearActiveCount() => $_clearField(1);
 
   /// Inactive device count.
+  /// Based on device profile transmission interval value.
+  /// Inactive if not seen within 4 times the transmission interval.
+  /// Fallback to last 24 hours if no transmission interval is set.
   @$pb.TagNumber(2)
   $fixnum.Int64 get inactiveCount => $_getI64(1);
   @$pb.TagNumber(2)
@@ -583,6 +594,16 @@ class DeviceCount extends $pb.GeneratedMessage {
   $core.bool hasNeverSeenCount() => $_has(2);
   @$pb.TagNumber(3)
   void clearNeverSeenCount() => $_clearField(3);
+
+  /// Seen device count.
+  @$pb.TagNumber(4)
+  $fixnum.Int64 get seenCount => $_getI64(3);
+  @$pb.TagNumber(4)
+  set seenCount($fixnum.Int64 value) => $_setInt64(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasSeenCount() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearSeenCount() => $_clearField(4);
 }
 
 /// Counts of applications of a tenant.

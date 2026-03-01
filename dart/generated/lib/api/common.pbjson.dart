@@ -152,6 +152,7 @@ const DeviceCount$json = {
     {'1': 'active_count', '3': 1, '4': 1, '5': 4, '10': 'activeCount'},
     {'1': 'inactive_count', '3': 2, '4': 1, '5': 4, '10': 'inactiveCount'},
     {'1': 'never_seen_count', '3': 3, '4': 1, '5': 4, '10': 'neverSeenCount'},
+    {'1': 'seen_count', '3': 4, '4': 1, '5': 4, '10': 'seenCount'},
   ],
 };
 
@@ -159,7 +160,7 @@ const DeviceCount$json = {
 final $typed_data.Uint8List deviceCountDescriptor = $convert.base64Decode(
     'CgtEZXZpY2VDb3VudBIhCgxhY3RpdmVfY291bnQYASABKARSC2FjdGl2ZUNvdW50EiUKDmluYW'
     'N0aXZlX2NvdW50GAIgASgEUg1pbmFjdGl2ZUNvdW50EigKEG5ldmVyX3NlZW5fY291bnQYAyAB'
-    'KARSDm5ldmVyU2VlbkNvdW50');
+    'KARSDm5ldmVyU2VlbkNvdW50Eh0KCnNlZW5fY291bnQYBCABKARSCXNlZW5Db3VudA==');
 
 @$core.Deprecated('Use applicationCountDescriptor instead')
 const ApplicationCount$json = {

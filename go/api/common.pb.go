@@ -483,13 +483,21 @@ func (x *DeviceProfileCount) GetCount() uint64 {
 type DeviceCount struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Active device count.
+	// Based on device profile transmission interval value.
+	// Active if seen within 4 times the transmission interval.
+	// Fallback to last 24 hours if no transmission interval is set.
 	ActiveCount uint64 `protobuf:"varint,1,opt,name=active_count,json=activeCount,proto3" json:"active_count,omitempty"`
 	// Inactive device count.
+	// Based on device profile transmission interval value.
+	// Inactive if not seen within 4 times the transmission interval.
+	// Fallback to last 24 hours if no transmission interval is set.
 	InactiveCount uint64 `protobuf:"varint,2,opt,name=inactive_count,json=inactiveCount,proto3" json:"inactive_count,omitempty"`
 	// Never seen device count.
 	NeverSeenCount uint64 `protobuf:"varint,3,opt,name=never_seen_count,json=neverSeenCount,proto3" json:"never_seen_count,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	// Seen device count.
+	SeenCount     uint64 `protobuf:"varint,4,opt,name=seen_count,json=seenCount,proto3" json:"seen_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *DeviceCount) Reset() {
@@ -539,6 +547,13 @@ func (x *DeviceCount) GetInactiveCount() uint64 {
 func (x *DeviceCount) GetNeverSeenCount() uint64 {
 	if x != nil {
 		return x.NeverSeenCount
+	}
+	return 0
+}
+
+func (x *DeviceCount) GetSeenCount() uint64 {
+	if x != nil {
+		return x.SeenCount
 	}
 	return 0
 }
@@ -687,11 +702,13 @@ const file_api_common_proto_rawDesc = "" +
 	"\x0einactive_count\x18\x03 \x01(\x04R\rinactiveCount\x12(\n" +
 	"\x10never_seen_count\x18\x04 \x01(\x04R\x0eneverSeenCount\"*\n" +
 	"\x12DeviceProfileCount\x12\x14\n" +
-	"\x05count\x18\x01 \x01(\x04R\x05count\"\x81\x01\n" +
+	"\x05count\x18\x01 \x01(\x04R\x05count\"\xa0\x01\n" +
 	"\vDeviceCount\x12!\n" +
 	"\factive_count\x18\x01 \x01(\x04R\vactiveCount\x12%\n" +
 	"\x0einactive_count\x18\x02 \x01(\x04R\rinactiveCount\x12(\n" +
-	"\x10never_seen_count\x18\x03 \x01(\x04R\x0eneverSeenCount\"C\n" +
+	"\x10never_seen_count\x18\x03 \x01(\x04R\x0eneverSeenCount\x12\x1d\n" +
+	"\n" +
+	"seen_count\x18\x04 \x01(\x04R\tseenCount\"C\n" +
 	"\x10ApplicationCount\x12\x14\n" +
 	"\x05count\x18\x01 \x01(\x04R\x05count\x12\x19\n" +
 	"\bvm_count\x18\x02 \x01(\x04R\avmCount\"\xaa\x01\n" +
