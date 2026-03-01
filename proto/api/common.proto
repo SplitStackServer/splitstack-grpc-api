@@ -94,14 +94,24 @@ message DeviceProfileCount {
 
 // Counts of devices, grouped by their state.
 message DeviceCount {
-  // Active device count.
+  // Active device count. 
+  // Based on device profile transmission interval value. 
+  // Active if seen within 4 times the transmission interval. 
+  // Fallback to last 24 hours if no transmission interval is set.
   uint64 active_count = 1;
 
-  // Inactive device count.
+  // Inactive device count. 
+  // Based on device profile transmission interval value. 
+  // Inactive if not seen within 4 times the transmission interval. 
+  // Fallback to last 24 hours if no transmission interval is set.
   uint64 inactive_count = 2;
 
   // Never seen device count.
   uint64 never_seen_count = 3;
+
+  // Seen device count.
+  uint64 seen_count = 4;
+
 }
 
 
