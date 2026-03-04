@@ -33,7 +33,7 @@ api:
 
 
 stream:
-	protoc ${PROTOC_ARGS} stream/frame.proto
+	protoc ${PROTOC_ARGS} streaming/frame.proto
 
 google:
 	protoc ${PROTOC_ARGS} google/api/http.proto

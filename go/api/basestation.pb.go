@@ -8,7 +8,7 @@ package api
 
 import (
 	common "github.com/SplitStackServer/splitstack-grpc-api/go/common"
-	stream "github.com/SplitStackServer/splitstack-grpc-api/go/stream"
+	streaming "github.com/SplitStackServer/splitstack-grpc-api/go/streaming"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -1423,7 +1423,7 @@ var File_api_basestation_proto protoreflect.FileDescriptor
 
 const file_api_basestation_proto_rawDesc = "" +
 	"\n" +
-	"\x15api/basestation.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x10api/common.proto\x1a\x13common/common.proto\x1a\x14common/metrics.proto\x1a\x12stream/frame.proto\"\xbe\x03\n" +
+	"\x15api/basestation.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x10api/common.proto\x1a\x13common/common.proto\x1a\x14common/metrics.proto\x1a\x15streaming/frame.proto\"\xbe\x03\n" +
 	"\vBasestation\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
 	"\x03eui\x18\x02 \x01(\tR\x03eui\x12\x12\n" +
@@ -1571,7 +1571,7 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\n" +
 	"\x06ONLINE\x10\x01\x12\v\n" +
 	"\aOFFLINE\x10\x02\x12\f\n" +
-	"\bINACTIVE\x10\x032\x82\b\n" +
+	"\bINACTIVE\x10\x032\x86\b\n" +
 	"\x12BasestationService\x12p\n" +
 	"\x11CreateBasestation\x12\x1d.api.CreateBasestationRequest\x1a\x1e.api.CreateBasestationResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/api/basestations\x12i\n" +
 	"\x0eGetBasestation\x12\x1a.api.GetBasestationRequest\x1a\x1b.api.GetBasestationResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/api/basestations/{id}\x12u\n" +
@@ -1579,8 +1579,8 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\x11DeleteBasestation\x12\x1d.api.DeleteBasestationRequest\x1a\x16.google.protobuf.Empty\"\x1e\x82\xd3\xe4\x93\x02\x18*\x16/api/basestations/{id}\x12j\n" +
 	"\x10ListBasestations\x12\x1c.api.ListBasestationsRequest\x1a\x1d.api.ListBasestationsResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/basestations\x12\xb7\x01\n" +
 	"$GenerateBasestationClientCertificate\x120.api.GenerateBasestationClientCertificateRequest\x1a1.api.GenerateBasestationClientCertificateResponse\"*\x82\xd3\xe4\x93\x02$\"\"/api/basestations/{id}/certificate\x12\x86\x01\n" +
-	"\x15GetBasestationMetrics\x12!.api.GetBasestationMetricsRequest\x1a\".api.GetBasestationMetricsResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/basestations/{id}/metrics\x12}\n" +
-	"\x17StreamBasestationFrames\x12#.api.StreamBasestationFramesRequest\x1a\x14.stream.FrameLogItem\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/basestations/{id}/frames0\x01B\xb0\x01\n" +
+	"\x15GetBasestationMetrics\x12!.api.GetBasestationMetricsRequest\x1a\".api.GetBasestationMetricsResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/basestations/{id}/metrics\x12\x80\x01\n" +
+	"\x17StreamBasestationFrames\x12#.api.StreamBasestationFramesRequest\x1a\x17.streaming.FrameLogItem\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/basestations/{id}/frames0\x01B\xb0\x01\n" +
 	"\x11io.splitstack.apiB\x10BasestationProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/go/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 
 var (
@@ -1625,7 +1625,7 @@ var file_api_basestation_proto_goTypes = []any{
 	(common.Aggregation)(0),                              // 24: common.Aggregation
 	(*common.Metric)(nil),                                // 25: common.Metric
 	(*emptypb.Empty)(nil),                                // 26: google.protobuf.Empty
-	(*stream.FrameLogItem)(nil),                          // 27: stream.FrameLogItem
+	(*streaming.FrameLogItem)(nil),                       // 27: streaming.FrameLogItem
 }
 var file_api_basestation_proto_depIdxs = []int32{
 	19, // 0: api.Basestation.location:type_name -> common.GeoLocation
@@ -1682,7 +1682,7 @@ var file_api_basestation_proto_depIdxs = []int32{
 	13, // 51: api.BasestationService.ListBasestations:output_type -> api.ListBasestationsResponse
 	15, // 52: api.BasestationService.GenerateBasestationClientCertificate:output_type -> api.GenerateBasestationClientCertificateResponse
 	17, // 53: api.BasestationService.GetBasestationMetrics:output_type -> api.GetBasestationMetricsResponse
-	27, // 54: api.BasestationService.StreamBasestationFrames:output_type -> stream.FrameLogItem
+	27, // 54: api.BasestationService.StreamBasestationFrames:output_type -> streaming.FrameLogItem
 	47, // [47:55] is the sub-list for method output_type
 	39, // [39:47] is the sub-list for method input_type
 	39, // [39:39] is the sub-list for extension type_name

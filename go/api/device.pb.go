@@ -8,7 +8,7 @@ package api
 
 import (
 	common "github.com/SplitStackServer/splitstack-grpc-api/go/common"
-	stream "github.com/SplitStackServer/splitstack-grpc-api/go/stream"
+	streaming "github.com/SplitStackServer/splitstack-grpc-api/go/streaming"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -1218,7 +1218,7 @@ var File_api_device_proto protoreflect.FileDescriptor
 
 const file_api_device_proto_rawDesc = "" +
 	"\n" +
-	"\x10api/device.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x10api/common.proto\x1a\x13common/common.proto\x1a\x14common/metrics.proto\x1a\x12stream/frame.proto\"\x95\x03\n" +
+	"\x10api/device.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x10api/common.proto\x1a\x13common/common.proto\x1a\x14common/metrics.proto\x1a\x15streaming/frame.proto\"\x95\x03\n" +
 	"\x06Device\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
 	"\x03eui\x18\x02 \x01(\tR\x03eui\x12%\n" +
@@ -1356,15 +1356,15 @@ const file_api_device_proto_rawDesc = "" +
 	"rxDuration\x88\x01\x01B\x0e\n" +
 	"\f_rx_duration\"+\n" +
 	"\x19StreamDeviceFramesRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2\xc0\x05\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\xc3\x05\n" +
 	"\rDeviceService\x12\\\n" +
 	"\fCreateDevice\x12\x18.api.CreateDeviceRequest\x1a\x19.api.CreateDeviceResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/api/devices\x12U\n" +
 	"\tGetDevice\x12\x15.api.GetDeviceRequest\x1a\x16.api.GetDeviceResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/devices/{id}\x12a\n" +
 	"\fUpdateDevice\x12\x18.api.UpdateDeviceRequest\x1a\x19.api.UpdateDeviceResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\x1a\x11/api/devices/{id}\x12[\n" +
 	"\fDeleteDevice\x12\x18.api.DeleteDeviceRequest\x1a\x16.google.protobuf.Empty\"\x19\x82\xd3\xe4\x93\x02\x13*\x11/api/devices/{id}\x12V\n" +
 	"\vListDevices\x12\x17.api.ListDevicesRequest\x1a\x18.api.ListDevicesResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/api/devices\x12r\n" +
-	"\x10GetDeviceMetrics\x12\x1c.api.GetDeviceMetricsRequest\x1a\x1d.api.GetDeviceMetricsResponse\"!\x82\xd3\xe4\x93\x02\x1b\x12\x19/api/devices/{id}/metrics\x12n\n" +
-	"\x12StreamDeviceFrames\x12\x1e.api.StreamDeviceFramesRequest\x1a\x14.stream.FrameLogItem\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/api/devices/{id}/frames0\x01B\xab\x01\n" +
+	"\x10GetDeviceMetrics\x12\x1c.api.GetDeviceMetricsRequest\x1a\x1d.api.GetDeviceMetricsResponse\"!\x82\xd3\xe4\x93\x02\x1b\x12\x19/api/devices/{id}/metrics\x12q\n" +
+	"\x12StreamDeviceFrames\x12\x1e.api.StreamDeviceFramesRequest\x1a\x17.streaming.FrameLogItem\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/api/devices/{id}/frames0\x01B\xab\x01\n" +
 	"\x11io.splitstack.apiB\vDeviceProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/go/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 
 var (
@@ -1405,7 +1405,7 @@ var file_api_device_proto_goTypes = []any{
 	(common.Aggregation)(0),           // 20: common.Aggregation
 	(*common.Metric)(nil),             // 21: common.Metric
 	(*emptypb.Empty)(nil),             // 22: google.protobuf.Empty
-	(*stream.FrameLogItem)(nil),       // 23: stream.FrameLogItem
+	(*streaming.FrameLogItem)(nil),    // 23: streaming.FrameLogItem
 }
 var file_api_device_proto_depIdxs = []int32{
 	15, // 0: api.Device.location:type_name -> common.GeoLocation
@@ -1456,7 +1456,7 @@ var file_api_device_proto_depIdxs = []int32{
 	22, // 45: api.DeviceService.DeleteDevice:output_type -> google.protobuf.Empty
 	11, // 46: api.DeviceService.ListDevices:output_type -> api.ListDevicesResponse
 	13, // 47: api.DeviceService.GetDeviceMetrics:output_type -> api.GetDeviceMetricsResponse
-	23, // 48: api.DeviceService.StreamDeviceFrames:output_type -> stream.FrameLogItem
+	23, // 48: api.DeviceService.StreamDeviceFrames:output_type -> streaming.FrameLogItem
 	42, // [42:49] is the sub-list for method output_type
 	35, // [35:42] is the sub-list for method input_type
 	35, // [35:35] is the sub-list for extension type_name

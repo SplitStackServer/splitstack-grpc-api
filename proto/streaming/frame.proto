@@ -1,15 +1,14 @@
 syntax = "proto3";
 
-package stream;
+package streaming;
 
-option go_package = "github.com/SplitStackServer/splitstack-grpc-api/go/stream";
-option java_package = "io.splitstack.api.stream";
+option go_package = "github.com/SplitStackServer/splitstack-grpc-api/go/streaming";
+option java_package = "io.splitstack.api.streaming";
 option java_multiple_files = true;
 option java_outer_classname = "FrameProto";
-option csharp_namespace = "SplitStackServer.Stream";
-option php_namespace = "SplitStackServer\\Stream";
-option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Stream";
-
+option csharp_namespace = "SplitStackServer.Streaming";
+option php_namespace = "SplitStackServer\\Streaming";
+option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Streaming";
 
 import "google/protobuf/timestamp.proto";
 import "common/common.proto";
@@ -17,7 +16,6 @@ import "bs/endnode.proto";
 import "bs/basestation.proto";
 import "bs/cmd.proto";
 import "bs/rsp.proto";
-
 
 message EndnodeDownlinkResultLog {
     // Basestation EUI, hex string

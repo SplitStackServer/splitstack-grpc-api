@@ -1,6 +1,6 @@
 // This is a generated file - do not edit.
 //
-// Generated from stream/frame.proto.
+// Generated from streaming/frame.proto.
 
 // @dart = 3.3
 
@@ -122,7 +122,7 @@ const EndnodeUplinkFrameLog$json = {
       '3': 8,
       '4': 1,
       '5': 11,
-      '6': '.stream.EndnodeDownlinkResultLog',
+      '6': '.streaming.EndnodeDownlinkResultLog',
       '9': 0,
       '10': 'dlRes'
     },
@@ -131,7 +131,7 @@ const EndnodeUplinkFrameLog$json = {
       '3': 9,
       '4': 1,
       '5': 11,
-      '6': '.stream.EndnodeDownlinkRxStatusLog',
+      '6': '.streaming.EndnodeDownlinkRxStatusLog',
       '9': 0,
       '10': 'dlRxStat'
     },
@@ -140,7 +140,7 @@ const EndnodeUplinkFrameLog$json = {
       '3': 10,
       '4': 3,
       '5': 11,
-      '6': '.stream.EndnodeUplinkFrameLog.MetadataEntry',
+      '6': '.streaming.EndnodeUplinkFrameLog.MetadataEntry',
       '10': 'metadata'
     },
   ],
@@ -175,13 +175,13 @@ final $typed_data.Uint8List endnodeUplinkFrameLogDescriptor = $convert.base64Dec
     'tJZBIpCgNhdHQYBCABKAsyFS5icy5FbmRub2RlQXR0TWVzc2FnZUgAUgNhdHQSKQoDZGV0GAUg'
     'ASgLMhUuYnMuRW5kbm9kZURldE1lc3NhZ2VIAFIDZGV0EjMKB3VsX2RhdGEYBiABKAsyGC5icy'
     '5FbmRub2RlVWxEYXRhTWVzc2FnZUgAUgZ1bERhdGESQwoKdm1fdWxfZGF0YRgHIAEoCzIjLmJz'
-    'LkVuZG5vZGVWYXJpYWJsZU1hY1VsRGF0YU1lc3NhZ2VIAFIIdm1VbERhdGESOQoGZGxfcmVzGA'
-    'ggASgLMiAuc3RyZWFtLkVuZG5vZGVEb3dubGlua1Jlc3VsdExvZ0gAUgVkbFJlcxJCCgpkbF9y'
-    'eF9zdGF0GAkgASgLMiIuc3RyZWFtLkVuZG5vZGVEb3dubGlua1J4U3RhdHVzTG9nSABSCGRsUn'
-    'hTdGF0EkcKCG1ldGFkYXRhGAogAygLMisuc3RyZWFtLkVuZG5vZGVVcGxpbmtGcmFtZUxvZy5N'
-    'ZXRhZGF0YUVudHJ5UghtZXRhZGF0YRpWCg1NZXRhZGF0YUVudHJ5EhAKA2tleRgBIAEoCVIDa2'
-    'V5Ei8KBXZhbHVlGAIgASgLMhkuYnMuRW5kbm9kZVVwbGlua01ldGFkYXRhUgV2YWx1ZToCOAFC'
-    'CQoHbWVzc2FnZQ==');
+    'LkVuZG5vZGVWYXJpYWJsZU1hY1VsRGF0YU1lc3NhZ2VIAFIIdm1VbERhdGESPAoGZGxfcmVzGA'
+    'ggASgLMiMuc3RyZWFtaW5nLkVuZG5vZGVEb3dubGlua1Jlc3VsdExvZ0gAUgVkbFJlcxJFCgpk'
+    'bF9yeF9zdGF0GAkgASgLMiUuc3RyZWFtaW5nLkVuZG5vZGVEb3dubGlua1J4U3RhdHVzTG9nSA'
+    'BSCGRsUnhTdGF0EkoKCG1ldGFkYXRhGAogAygLMi4uc3RyZWFtaW5nLkVuZG5vZGVVcGxpbmtG'
+    'cmFtZUxvZy5NZXRhZGF0YUVudHJ5UghtZXRhZGF0YRpWCg1NZXRhZGF0YUVudHJ5EhAKA2tleR'
+    'gBIAEoCVIDa2V5Ei8KBXZhbHVlGAIgASgLMhkuYnMuRW5kbm9kZVVwbGlua01ldGFkYXRhUgV2'
+    'YWx1ZToCOAFCCQoHbWVzc2FnZQ==');
 
 @$core.Deprecated('Use variableMacUplinkFrameLogDescriptor instead')
 const VariableMacUplinkFrameLog$json = {
@@ -218,7 +218,7 @@ const VariableMacUplinkFrameLog$json = {
       '3': 6,
       '4': 3,
       '5': 11,
-      '6': '.stream.VariableMacUplinkFrameLog.MetadataEntry',
+      '6': '.streaming.VariableMacUplinkFrameLog.MetadataEntry',
       '10': 'metadata'
     },
   ],
@@ -248,10 +248,10 @@ final $typed_data.Uint8List variableMacUplinkFrameLogDescriptor = $convert.base6
     'ZhcmlhYmxlTWFjVHlwZVIHbWFjTmFtZRIZCghtYWNfdHlwZRgCIAEoDVIHbWFjVHlwZRIuCgR0'
     'aW1lGAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIEdGltZRIbCgl1cGxpbmtfaW'
     'QYBCABKAlSCHVwbGlua0lkEj0KB21lc3NhZ2UYBSABKAsyIy5icy5FbmRub2RlVmFyaWFibGVN'
-    'YWNVbERhdGFNZXNzYWdlUgdtZXNzYWdlEksKCG1ldGFkYXRhGAYgAygLMi8uc3RyZWFtLlZhcm'
-    'lhYmxlTWFjVXBsaW5rRnJhbWVMb2cuTWV0YWRhdGFFbnRyeVIIbWV0YWRhdGEaVgoNTWV0YWRh'
-    'dGFFbnRyeRIQCgNrZXkYASABKAlSA2tleRIvCgV2YWx1ZRgCIAEoCzIZLmJzLkVuZG5vZGVVcG'
-    'xpbmtNZXRhZGF0YVIFdmFsdWU6AjgB');
+    'YWNVbERhdGFNZXNzYWdlUgdtZXNzYWdlEk4KCG1ldGFkYXRhGAYgAygLMjIuc3RyZWFtaW5nLl'
+    'ZhcmlhYmxlTWFjVXBsaW5rRnJhbWVMb2cuTWV0YWRhdGFFbnRyeVIIbWV0YWRhdGEaVgoNTWV0'
+    'YWRhdGFFbnRyeRIQCgNrZXkYASABKAlSA2tleRIvCgV2YWx1ZRgCIAEoCzIZLmJzLkVuZG5vZG'
+    'VVcGxpbmtNZXRhZGF0YVIFdmFsdWU6AjgB');
 
 @$core.Deprecated('Use endnodeDownlinkFrameLogDescriptor instead')
 const EndnodeDownlinkFrameLog$json = {
@@ -530,7 +530,7 @@ const FrameLogItem$json = {
       '3': 2,
       '4': 1,
       '5': 11,
-      '6': '.stream.EndnodeUplinkFrameLog',
+      '6': '.streaming.EndnodeUplinkFrameLog',
       '9': 0,
       '10': 'epUl'
     },
@@ -539,7 +539,7 @@ const FrameLogItem$json = {
       '3': 3,
       '4': 1,
       '5': 11,
-      '6': '.stream.EndnodeDownlinkFrameLog',
+      '6': '.streaming.EndnodeDownlinkFrameLog',
       '9': 0,
       '10': 'epDl'
     },
@@ -548,7 +548,7 @@ const FrameLogItem$json = {
       '3': 4,
       '4': 1,
       '5': 11,
-      '6': '.stream.BasestationUplinkFrameLog',
+      '6': '.streaming.BasestationUplinkFrameLog',
       '9': 0,
       '10': 'bsUl'
     },
@@ -557,7 +557,7 @@ const FrameLogItem$json = {
       '3': 5,
       '4': 1,
       '5': 11,
-      '6': '.stream.BasestationDownlinkFrameLog',
+      '6': '.streaming.BasestationDownlinkFrameLog',
       '9': 0,
       '10': 'bsDl'
     },
@@ -566,7 +566,7 @@ const FrameLogItem$json = {
       '3': 6,
       '4': 1,
       '5': 11,
-      '6': '.stream.VariableMacUplinkFrameLog',
+      '6': '.streaming.VariableMacUplinkFrameLog',
       '9': 0,
       '10': 'vmUl'
     },
@@ -578,10 +578,10 @@ const FrameLogItem$json = {
 
 /// Descriptor for `FrameLogItem`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List frameLogItemDescriptor = $convert.base64Decode(
-    'CgxGcmFtZUxvZ0l0ZW0SGwoJc3RyZWFtX2lkGAEgASgJUghzdHJlYW1JZBI0CgVlcF91bBgCIA'
-    'EoCzIdLnN0cmVhbS5FbmRub2RlVXBsaW5rRnJhbWVMb2dIAFIEZXBVbBI2CgVlcF9kbBgDIAEo'
-    'CzIfLnN0cmVhbS5FbmRub2RlRG93bmxpbmtGcmFtZUxvZ0gAUgRlcERsEjgKBWJzX3VsGAQgAS'
-    'gLMiEuc3RyZWFtLkJhc2VzdGF0aW9uVXBsaW5rRnJhbWVMb2dIAFIEYnNVbBI6CgVic19kbBgF'
-    'IAEoCzIjLnN0cmVhbS5CYXNlc3RhdGlvbkRvd25saW5rRnJhbWVMb2dIAFIEYnNEbBI4CgV2bV'
-    '91bBgGIAEoCzIhLnN0cmVhbS5WYXJpYWJsZU1hY1VwbGlua0ZyYW1lTG9nSABSBHZtVWxCBgoE'
-    'aXRlbQ==');
+    'CgxGcmFtZUxvZ0l0ZW0SGwoJc3RyZWFtX2lkGAEgASgJUghzdHJlYW1JZBI3CgVlcF91bBgCIA'
+    'EoCzIgLnN0cmVhbWluZy5FbmRub2RlVXBsaW5rRnJhbWVMb2dIAFIEZXBVbBI5CgVlcF9kbBgD'
+    'IAEoCzIiLnN0cmVhbWluZy5FbmRub2RlRG93bmxpbmtGcmFtZUxvZ0gAUgRlcERsEjsKBWJzX3'
+    'VsGAQgASgLMiQuc3RyZWFtaW5nLkJhc2VzdGF0aW9uVXBsaW5rRnJhbWVMb2dIAFIEYnNVbBI9'
+    'CgVic19kbBgFIAEoCzImLnN0cmVhbWluZy5CYXNlc3RhdGlvbkRvd25saW5rRnJhbWVMb2dIAF'
+    'IEYnNEbBI7CgV2bV91bBgGIAEoCzIkLnN0cmVhbWluZy5WYXJpYWJsZU1hY1VwbGlua0ZyYW1l'
+    'TG9nSABSBHZtVWxCBgoEaXRlbQ==');

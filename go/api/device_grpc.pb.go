@@ -8,7 +8,7 @@ package api
 
 import (
 	context "context"
-	stream "github.com/SplitStackServer/splitstack-grpc-api/go/stream"
+	streaming "github.com/SplitStackServer/splitstack-grpc-api/go/streaming"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -51,7 +51,7 @@ type DeviceServiceClient interface {
 	// configured.
 	GetDeviceMetrics(ctx context.Context, in *GetDeviceMetricsRequest, opts ...grpc.CallOption) (*GetDeviceMetricsResponse, error)
 	// Returns a stream of frames for the given device ID.
-	StreamDeviceFrames(ctx context.Context, in *StreamDeviceFramesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[stream.FrameLogItem], error)
+	StreamDeviceFrames(ctx context.Context, in *StreamDeviceFramesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[streaming.FrameLogItem], error)
 }
 
 type deviceServiceClient struct {
@@ -122,13 +122,13 @@ func (c *deviceServiceClient) GetDeviceMetrics(ctx context.Context, in *GetDevic
 	return out, nil
 }
 
-func (c *deviceServiceClient) StreamDeviceFrames(ctx context.Context, in *StreamDeviceFramesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[stream.FrameLogItem], error) {
+func (c *deviceServiceClient) StreamDeviceFrames(ctx context.Context, in *StreamDeviceFramesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[streaming.FrameLogItem], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &DeviceService_ServiceDesc.Streams[0], DeviceService_StreamDeviceFrames_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[StreamDeviceFramesRequest, stream.FrameLogItem]{ClientStream: stream}
+	x := &grpc.GenericClientStream[StreamDeviceFramesRequest, streaming.FrameLogItem]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -139,7 +139,7 @@ func (c *deviceServiceClient) StreamDeviceFrames(ctx context.Context, in *Stream
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DeviceService_StreamDeviceFramesClient = grpc.ServerStreamingClient[stream.FrameLogItem]
+type DeviceService_StreamDeviceFramesClient = grpc.ServerStreamingClient[streaming.FrameLogItem]
 
 // DeviceServiceServer is the server API for DeviceService service.
 // All implementations must embed UnimplementedDeviceServiceServer
@@ -162,7 +162,7 @@ type DeviceServiceServer interface {
 	// configured.
 	GetDeviceMetrics(context.Context, *GetDeviceMetricsRequest) (*GetDeviceMetricsResponse, error)
 	// Returns a stream of frames for the given device ID.
-	StreamDeviceFrames(*StreamDeviceFramesRequest, grpc.ServerStreamingServer[stream.FrameLogItem]) error
+	StreamDeviceFrames(*StreamDeviceFramesRequest, grpc.ServerStreamingServer[streaming.FrameLogItem]) error
 	mustEmbedUnimplementedDeviceServiceServer()
 }
 
@@ -191,7 +191,7 @@ func (UnimplementedDeviceServiceServer) ListDevices(context.Context, *ListDevice
 func (UnimplementedDeviceServiceServer) GetDeviceMetrics(context.Context, *GetDeviceMetricsRequest) (*GetDeviceMetricsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceMetrics not implemented")
 }
-func (UnimplementedDeviceServiceServer) StreamDeviceFrames(*StreamDeviceFramesRequest, grpc.ServerStreamingServer[stream.FrameLogItem]) error {
+func (UnimplementedDeviceServiceServer) StreamDeviceFrames(*StreamDeviceFramesRequest, grpc.ServerStreamingServer[streaming.FrameLogItem]) error {
 	return status.Errorf(codes.Unimplemented, "method StreamDeviceFrames not implemented")
 }
 func (UnimplementedDeviceServiceServer) mustEmbedUnimplementedDeviceServiceServer() {}
@@ -328,11 +328,11 @@ func _DeviceService_StreamDeviceFrames_Handler(srv interface{}, stream grpc.Serv
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(DeviceServiceServer).StreamDeviceFrames(m, &grpc.GenericServerStream[StreamDeviceFramesRequest, stream.FrameLogItem]{ServerStream: stream})
+	return srv.(DeviceServiceServer).StreamDeviceFrames(m, &grpc.GenericServerStream[StreamDeviceFramesRequest, streaming.FrameLogItem]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type DeviceService_StreamDeviceFramesServer = grpc.ServerStreamingServer[stream.FrameLogItem]
+type DeviceService_StreamDeviceFramesServer = grpc.ServerStreamingServer[streaming.FrameLogItem]
 
 // DeviceService_ServiceDesc is the grpc.ServiceDesc for DeviceService service.
 // It's only intended for direct use with grpc.RegisterService,

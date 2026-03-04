@@ -1,6 +1,6 @@
 // This is a generated file - do not edit.
 //
-// Generated from stream/frame.proto.
+// Generated from streaming/frame.proto.
 
 // @dart = 3.3
 
@@ -45,7 +45,7 @@ class EndnodeDownlinkResultLog extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'EndnodeDownlinkResultLog',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'stream'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'streaming'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'bsEui')
     ..aOM<$0.BasestationDownlinkResult>(2, _omitFieldNames ? '' : 'dlRes',
@@ -117,7 +117,7 @@ class EndnodeDownlinkRxStatusLog extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'EndnodeDownlinkRxStatusLog',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'stream'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'streaming'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'bsEui')
     ..aOM<$0.BasestationDownlinkRxStatus>(2, _omitFieldNames ? '' : 'dlRxStat',
@@ -227,7 +227,7 @@ class EndnodeUplinkFrameLog extends $pb.GeneratedMessage {
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'EndnodeUplinkFrameLog',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'stream'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'streaming'),
       createEmptyInstance: create)
     ..oo(0, [4, 5, 6, 7, 8, 9])
     ..aE<$4.EndnodeUplinkMessageType>(1, _omitFieldNames ? '' : 'messageType',
@@ -255,7 +255,7 @@ class EndnodeUplinkFrameLog extends $pb.GeneratedMessage {
         valueFieldType: $pb.PbFieldType.OM,
         valueCreator: $2.EndnodeUplinkMetadata.create,
         valueDefaultOrMaker: $2.EndnodeUplinkMetadata.getDefault,
-        packageName: const $pb.PackageName('stream'))
+        packageName: const $pb.PackageName('streaming'))
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -435,7 +435,7 @@ class VariableMacUplinkFrameLog extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'VariableMacUplinkFrameLog',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'stream'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'streaming'),
       createEmptyInstance: create)
     ..aE<$4.VariableMacType>(1, _omitFieldNames ? '' : 'macName',
         enumValues: $4.VariableMacType.values)
@@ -453,7 +453,7 @@ class VariableMacUplinkFrameLog extends $pb.GeneratedMessage {
         valueFieldType: $pb.PbFieldType.OM,
         valueCreator: $2.EndnodeUplinkMetadata.create,
         valueDefaultOrMaker: $2.EndnodeUplinkMetadata.getDefault,
-        packageName: const $pb.PackageName('stream'))
+        packageName: const $pb.PackageName('streaming'))
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -582,7 +582,7 @@ class EndnodeDownlinkFrameLog extends $pb.GeneratedMessage {
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'EndnodeDownlinkFrameLog',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'stream'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'streaming'),
       createEmptyInstance: create)
     ..oo(0, [9, 10, 11])
     ..aOS(1, _omitFieldNames ? '' : 'bsEui')
@@ -763,7 +763,7 @@ class BasestationUplinkFrameLog extends $pb.GeneratedMessage {
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'BasestationUplinkFrameLog',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'stream'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'streaming'),
       createEmptyInstance: create)
     ..oo(0, [5, 6, 7, 8])
     ..aOS(1, _omitFieldNames ? '' : 'bsEui')
@@ -971,7 +971,7 @@ class BasestationDownlinkFrameLog extends $pb.GeneratedMessage {
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'BasestationDownlinkFrameLog',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'stream'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'streaming'),
       createEmptyInstance: create)
     ..oo(0, [6, 7, 9, 10, 11, 12, 13])
     ..aOS(1, _omitFieldNames ? '' : 'bsEui')
@@ -1217,7 +1217,7 @@ class FrameLogItem extends $pb.GeneratedMessage {
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'FrameLogItem',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'stream'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'streaming'),
       createEmptyInstance: create)
     ..oo(0, [2, 3, 4, 5, 6])
     ..aOS(1, _omitFieldNames ? '' : 'streamId')

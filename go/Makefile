@@ -31,4 +31,4 @@ api:
 	protoc ${PROTOC_ARGS} api/stats.proto
 
 stream:
-	protoc ${PROTOC_ARGS} stream/frame.proto
+	protoc ${PROTOC_ARGS} streaming/frame.proto

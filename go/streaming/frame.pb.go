@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v3.21.12
-// source: stream/frame.proto
+// source: streaming/frame.proto
 
-package stream
+package streaming
 
 import (
 	bs "github.com/SplitStackServer/splitstack-grpc-api/go/bs"
@@ -36,7 +36,7 @@ type EndnodeDownlinkResultLog struct {
 
 func (x *EndnodeDownlinkResultLog) Reset() {
 	*x = EndnodeDownlinkResultLog{}
-	mi := &file_stream_frame_proto_msgTypes[0]
+	mi := &file_streaming_frame_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -48,7 +48,7 @@ func (x *EndnodeDownlinkResultLog) String() string {
 func (*EndnodeDownlinkResultLog) ProtoMessage() {}
 
 func (x *EndnodeDownlinkResultLog) ProtoReflect() protoreflect.Message {
-	mi := &file_stream_frame_proto_msgTypes[0]
+	mi := &file_streaming_frame_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -61,7 +61,7 @@ func (x *EndnodeDownlinkResultLog) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EndnodeDownlinkResultLog.ProtoReflect.Descriptor instead.
 func (*EndnodeDownlinkResultLog) Descriptor() ([]byte, []int) {
-	return file_stream_frame_proto_rawDescGZIP(), []int{0}
+	return file_streaming_frame_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *EndnodeDownlinkResultLog) GetBsEui() string {
@@ -90,7 +90,7 @@ type EndnodeDownlinkRxStatusLog struct {
 
 func (x *EndnodeDownlinkRxStatusLog) Reset() {
 	*x = EndnodeDownlinkRxStatusLog{}
-	mi := &file_stream_frame_proto_msgTypes[1]
+	mi := &file_streaming_frame_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -102,7 +102,7 @@ func (x *EndnodeDownlinkRxStatusLog) String() string {
 func (*EndnodeDownlinkRxStatusLog) ProtoMessage() {}
 
 func (x *EndnodeDownlinkRxStatusLog) ProtoReflect() protoreflect.Message {
-	mi := &file_stream_frame_proto_msgTypes[1]
+	mi := &file_streaming_frame_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115,7 +115,7 @@ func (x *EndnodeDownlinkRxStatusLog) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EndnodeDownlinkRxStatusLog.ProtoReflect.Descriptor instead.
 func (*EndnodeDownlinkRxStatusLog) Descriptor() ([]byte, []int) {
-	return file_stream_frame_proto_rawDescGZIP(), []int{1}
+	return file_streaming_frame_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *EndnodeDownlinkRxStatusLog) GetBsEui() string {
@@ -159,7 +159,7 @@ type EndnodeUplinkFrameLog struct {
 
 func (x *EndnodeUplinkFrameLog) Reset() {
 	*x = EndnodeUplinkFrameLog{}
-	mi := &file_stream_frame_proto_msgTypes[2]
+	mi := &file_streaming_frame_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -171,7 +171,7 @@ func (x *EndnodeUplinkFrameLog) String() string {
 func (*EndnodeUplinkFrameLog) ProtoMessage() {}
 
 func (x *EndnodeUplinkFrameLog) ProtoReflect() protoreflect.Message {
-	mi := &file_stream_frame_proto_msgTypes[2]
+	mi := &file_streaming_frame_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -184,7 +184,7 @@ func (x *EndnodeUplinkFrameLog) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EndnodeUplinkFrameLog.ProtoReflect.Descriptor instead.
 func (*EndnodeUplinkFrameLog) Descriptor() ([]byte, []int) {
-	return file_stream_frame_proto_rawDescGZIP(), []int{2}
+	return file_streaming_frame_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *EndnodeUplinkFrameLog) GetMessageType() common.EndnodeUplinkMessageType {
@@ -341,7 +341,7 @@ type VariableMacUplinkFrameLog struct {
 
 func (x *VariableMacUplinkFrameLog) Reset() {
 	*x = VariableMacUplinkFrameLog{}
-	mi := &file_stream_frame_proto_msgTypes[3]
+	mi := &file_streaming_frame_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -353,7 +353,7 @@ func (x *VariableMacUplinkFrameLog) String() string {
 func (*VariableMacUplinkFrameLog) ProtoMessage() {}
 
 func (x *VariableMacUplinkFrameLog) ProtoReflect() protoreflect.Message {
-	mi := &file_stream_frame_proto_msgTypes[3]
+	mi := &file_streaming_frame_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -366,7 +366,7 @@ func (x *VariableMacUplinkFrameLog) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VariableMacUplinkFrameLog.ProtoReflect.Descriptor instead.
 func (*VariableMacUplinkFrameLog) Descriptor() ([]byte, []int) {
-	return file_stream_frame_proto_rawDescGZIP(), []int{3}
+	return file_streaming_frame_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *VariableMacUplinkFrameLog) GetMacName() common.VariableMacType {
@@ -437,7 +437,7 @@ type EndnodeDownlinkFrameLog struct {
 
 func (x *EndnodeDownlinkFrameLog) Reset() {
 	*x = EndnodeDownlinkFrameLog{}
-	mi := &file_stream_frame_proto_msgTypes[4]
+	mi := &file_streaming_frame_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -449,7 +449,7 @@ func (x *EndnodeDownlinkFrameLog) String() string {
 func (*EndnodeDownlinkFrameLog) ProtoMessage() {}
 
 func (x *EndnodeDownlinkFrameLog) ProtoReflect() protoreflect.Message {
-	mi := &file_stream_frame_proto_msgTypes[4]
+	mi := &file_streaming_frame_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -462,7 +462,7 @@ func (x *EndnodeDownlinkFrameLog) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EndnodeDownlinkFrameLog.ProtoReflect.Descriptor instead.
 func (*EndnodeDownlinkFrameLog) Descriptor() ([]byte, []int) {
-	return file_stream_frame_proto_rawDescGZIP(), []int{4}
+	return file_streaming_frame_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *EndnodeDownlinkFrameLog) GetBsEui() string {
@@ -584,7 +584,7 @@ type BasestationUplinkFrameLog struct {
 
 func (x *BasestationUplinkFrameLog) Reset() {
 	*x = BasestationUplinkFrameLog{}
-	mi := &file_stream_frame_proto_msgTypes[5]
+	mi := &file_streaming_frame_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -596,7 +596,7 @@ func (x *BasestationUplinkFrameLog) String() string {
 func (*BasestationUplinkFrameLog) ProtoMessage() {}
 
 func (x *BasestationUplinkFrameLog) ProtoReflect() protoreflect.Message {
-	mi := &file_stream_frame_proto_msgTypes[5]
+	mi := &file_streaming_frame_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -609,7 +609,7 @@ func (x *BasestationUplinkFrameLog) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BasestationUplinkFrameLog.ProtoReflect.Descriptor instead.
 func (*BasestationUplinkFrameLog) Descriptor() ([]byte, []int) {
-	return file_stream_frame_proto_rawDescGZIP(), []int{5}
+	return file_streaming_frame_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *BasestationUplinkFrameLog) GetBsEui() string {
@@ -745,7 +745,7 @@ type BasestationDownlinkFrameLog struct {
 
 func (x *BasestationDownlinkFrameLog) Reset() {
 	*x = BasestationDownlinkFrameLog{}
-	mi := &file_stream_frame_proto_msgTypes[6]
+	mi := &file_streaming_frame_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -757,7 +757,7 @@ func (x *BasestationDownlinkFrameLog) String() string {
 func (*BasestationDownlinkFrameLog) ProtoMessage() {}
 
 func (x *BasestationDownlinkFrameLog) ProtoReflect() protoreflect.Message {
-	mi := &file_stream_frame_proto_msgTypes[6]
+	mi := &file_streaming_frame_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -770,7 +770,7 @@ func (x *BasestationDownlinkFrameLog) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BasestationDownlinkFrameLog.ProtoReflect.Descriptor instead.
 func (*BasestationDownlinkFrameLog) Descriptor() ([]byte, []int) {
-	return file_stream_frame_proto_rawDescGZIP(), []int{6}
+	return file_streaming_frame_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *BasestationDownlinkFrameLog) GetBsEui() string {
@@ -948,7 +948,7 @@ type FrameLogItem struct {
 
 func (x *FrameLogItem) Reset() {
 	*x = FrameLogItem{}
-	mi := &file_stream_frame_proto_msgTypes[7]
+	mi := &file_streaming_frame_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -960,7 +960,7 @@ func (x *FrameLogItem) String() string {
 func (*FrameLogItem) ProtoMessage() {}
 
 func (x *FrameLogItem) ProtoReflect() protoreflect.Message {
-	mi := &file_stream_frame_proto_msgTypes[7]
+	mi := &file_streaming_frame_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -973,7 +973,7 @@ func (x *FrameLogItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FrameLogItem.ProtoReflect.Descriptor instead.
 func (*FrameLogItem) Descriptor() ([]byte, []int) {
-	return file_stream_frame_proto_rawDescGZIP(), []int{7}
+	return file_streaming_frame_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *FrameLogItem) GetStreamId() string {
@@ -1069,18 +1069,18 @@ func (*FrameLogItem_BsDl) isFrameLogItem_Item() {}
 
 func (*FrameLogItem_VmUl) isFrameLogItem_Item() {}
 
-var File_stream_frame_proto protoreflect.FileDescriptor
+var File_streaming_frame_proto protoreflect.FileDescriptor
 
-const file_stream_frame_proto_rawDesc = "" +
+const file_streaming_frame_proto_rawDesc = "" +
 	"\n" +
-	"\x12stream/frame.proto\x12\x06stream\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x13common/common.proto\x1a\x10bs/endnode.proto\x1a\x14bs/basestation.proto\x1a\fbs/cmd.proto\x1a\fbs/rsp.proto\"g\n" +
+	"\x15streaming/frame.proto\x12\tstreaming\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x13common/common.proto\x1a\x10bs/endnode.proto\x1a\x14bs/basestation.proto\x1a\fbs/cmd.proto\x1a\fbs/rsp.proto\"g\n" +
 	"\x18EndnodeDownlinkResultLog\x12\x15\n" +
 	"\x06bs_eui\x18\x01 \x01(\tR\x05bsEui\x124\n" +
 	"\x06dl_res\x18\x02 \x01(\v2\x1d.bs.BasestationDownlinkResultR\x05dlRes\"r\n" +
 	"\x1aEndnodeDownlinkRxStatusLog\x12\x15\n" +
 	"\x06bs_eui\x18\x01 \x01(\tR\x05bsEui\x12=\n" +
 	"\n" +
-	"dl_rx_stat\x18\x02 \x01(\v2\x1f.bs.BasestationDownlinkRxStatusR\bdlRxStat\"\xa4\x05\n" +
+	"dl_rx_stat\x18\x02 \x01(\v2\x1f.bs.BasestationDownlinkRxStatusR\bdlRxStat\"\xad\x05\n" +
 	"\x15EndnodeUplinkFrameLog\x12C\n" +
 	"\fmessage_type\x18\x01 \x01(\x0e2 .common.EndnodeUplinkMessageTypeR\vmessageType\x12.\n" +
 	"\x04time\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12\x1b\n" +
@@ -1089,23 +1089,23 @@ const file_stream_frame_proto_rawDesc = "" +
 	"\x03det\x18\x05 \x01(\v2\x15.bs.EndnodeDetMessageH\x00R\x03det\x123\n" +
 	"\aul_data\x18\x06 \x01(\v2\x18.bs.EndnodeUlDataMessageH\x00R\x06ulData\x12C\n" +
 	"\n" +
-	"vm_ul_data\x18\a \x01(\v2#.bs.EndnodeVariableMacUlDataMessageH\x00R\bvmUlData\x129\n" +
-	"\x06dl_res\x18\b \x01(\v2 .stream.EndnodeDownlinkResultLogH\x00R\x05dlRes\x12B\n" +
+	"vm_ul_data\x18\a \x01(\v2#.bs.EndnodeVariableMacUlDataMessageH\x00R\bvmUlData\x12<\n" +
+	"\x06dl_res\x18\b \x01(\v2#.streaming.EndnodeDownlinkResultLogH\x00R\x05dlRes\x12E\n" +
 	"\n" +
-	"dl_rx_stat\x18\t \x01(\v2\".stream.EndnodeDownlinkRxStatusLogH\x00R\bdlRxStat\x12G\n" +
+	"dl_rx_stat\x18\t \x01(\v2%.streaming.EndnodeDownlinkRxStatusLogH\x00R\bdlRxStat\x12J\n" +
 	"\bmetadata\x18\n" +
-	" \x03(\v2+.stream.EndnodeUplinkFrameLog.MetadataEntryR\bmetadata\x1aV\n" +
+	" \x03(\v2..streaming.EndnodeUplinkFrameLog.MetadataEntryR\bmetadata\x1aV\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12/\n" +
 	"\x05value\x18\x02 \x01(\v2\x19.bs.EndnodeUplinkMetadataR\x05value:\x028\x01B\t\n" +
-	"\amessage\"\x9b\x03\n" +
+	"\amessage\"\x9e\x03\n" +
 	"\x19VariableMacUplinkFrameLog\x122\n" +
 	"\bmac_name\x18\x01 \x01(\x0e2\x17.common.VariableMacTypeR\amacName\x12\x19\n" +
 	"\bmac_type\x18\x02 \x01(\rR\amacType\x12.\n" +
 	"\x04time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12\x1b\n" +
 	"\tuplink_id\x18\x04 \x01(\tR\buplinkId\x12=\n" +
-	"\amessage\x18\x05 \x01(\v2#.bs.EndnodeVariableMacUlDataMessageR\amessage\x12K\n" +
-	"\bmetadata\x18\x06 \x03(\v2/.stream.VariableMacUplinkFrameLog.MetadataEntryR\bmetadata\x1aV\n" +
+	"\amessage\x18\x05 \x01(\v2#.bs.EndnodeVariableMacUlDataMessageR\amessage\x12N\n" +
+	"\bmetadata\x18\x06 \x03(\v22.streaming.VariableMacUplinkFrameLog.MetadataEntryR\bmetadata\x1aV\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12/\n" +
 	"\x05value\x18\x02 \x01(\v2\x19.bs.EndnodeUplinkMetadataR\x05value:\x028\x01\"\xb0\x03\n" +
@@ -1152,42 +1152,42 @@ const file_stream_frame_proto_rawDesc = "" +
 	"\bvm_batch\x18\r \x01(\v2\x14.bs.BatchVariableMacH\x00R\avmBatchB\t\n" +
 	"\amessageB\f\n" +
 	"\n" +
-	"_uplink_id\"\xd1\x02\n" +
+	"_uplink_id\"\xe0\x02\n" +
 	"\fFrameLogItem\x12\x1b\n" +
-	"\tstream_id\x18\x01 \x01(\tR\bstreamId\x124\n" +
-	"\x05ep_ul\x18\x02 \x01(\v2\x1d.stream.EndnodeUplinkFrameLogH\x00R\x04epUl\x126\n" +
-	"\x05ep_dl\x18\x03 \x01(\v2\x1f.stream.EndnodeDownlinkFrameLogH\x00R\x04epDl\x128\n" +
-	"\x05bs_ul\x18\x04 \x01(\v2!.stream.BasestationUplinkFrameLogH\x00R\x04bsUl\x12:\n" +
-	"\x05bs_dl\x18\x05 \x01(\v2#.stream.BasestationDownlinkFrameLogH\x00R\x04bsDl\x128\n" +
-	"\x05vm_ul\x18\x06 \x01(\v2!.stream.VariableMacUplinkFrameLogH\x00R\x04vmUlB\x06\n" +
-	"\x04itemB\xbd\x01\n" +
-	"\x18io.splitstack.api.streamB\n" +
-	"FrameProtoP\x01Z9github.com/SplitStackServer/splitstack-grpc-api/go/stream\xaa\x02\x17SplitStackServer.Stream\xca\x02\x17SplitStackServer\\Stream\xe2\x02#GPBMetadata\\SplitStackServer\\Streamb\x06proto3"
+	"\tstream_id\x18\x01 \x01(\tR\bstreamId\x127\n" +
+	"\x05ep_ul\x18\x02 \x01(\v2 .streaming.EndnodeUplinkFrameLogH\x00R\x04epUl\x129\n" +
+	"\x05ep_dl\x18\x03 \x01(\v2\".streaming.EndnodeDownlinkFrameLogH\x00R\x04epDl\x12;\n" +
+	"\x05bs_ul\x18\x04 \x01(\v2$.streaming.BasestationUplinkFrameLogH\x00R\x04bsUl\x12=\n" +
+	"\x05bs_dl\x18\x05 \x01(\v2&.streaming.BasestationDownlinkFrameLogH\x00R\x04bsDl\x12;\n" +
+	"\x05vm_ul\x18\x06 \x01(\v2$.streaming.VariableMacUplinkFrameLogH\x00R\x04vmUlB\x06\n" +
+	"\x04itemB\xcc\x01\n" +
+	"\x1bio.splitstack.api.streamingB\n" +
+	"FrameProtoP\x01Z<github.com/SplitStackServer/splitstack-grpc-api/go/streaming\xaa\x02\x1aSplitStackServer.Streaming\xca\x02\x1aSplitStackServer\\Streaming\xe2\x02&GPBMetadata\\SplitStackServer\\Streamingb\x06proto3"
 
 var (
-	file_stream_frame_proto_rawDescOnce sync.Once
-	file_stream_frame_proto_rawDescData []byte
+	file_streaming_frame_proto_rawDescOnce sync.Once
+	file_streaming_frame_proto_rawDescData []byte
 )
 
-func file_stream_frame_proto_rawDescGZIP() []byte {
-	file_stream_frame_proto_rawDescOnce.Do(func() {
-		file_stream_frame_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_stream_frame_proto_rawDesc), len(file_stream_frame_proto_rawDesc)))
+func file_streaming_frame_proto_rawDescGZIP() []byte {
+	file_streaming_frame_proto_rawDescOnce.Do(func() {
+		file_streaming_frame_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_streaming_frame_proto_rawDesc), len(file_streaming_frame_proto_rawDesc)))
 	})
-	return file_stream_frame_proto_rawDescData
+	return file_streaming_frame_proto_rawDescData
 }
 
-var file_stream_frame_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
-var file_stream_frame_proto_goTypes = []any{
-	(*EndnodeDownlinkResultLog)(nil),           // 0: stream.EndnodeDownlinkResultLog
-	(*EndnodeDownlinkRxStatusLog)(nil),         // 1: stream.EndnodeDownlinkRxStatusLog
-	(*EndnodeUplinkFrameLog)(nil),              // 2: stream.EndnodeUplinkFrameLog
-	(*VariableMacUplinkFrameLog)(nil),          // 3: stream.VariableMacUplinkFrameLog
-	(*EndnodeDownlinkFrameLog)(nil),            // 4: stream.EndnodeDownlinkFrameLog
-	(*BasestationUplinkFrameLog)(nil),          // 5: stream.BasestationUplinkFrameLog
-	(*BasestationDownlinkFrameLog)(nil),        // 6: stream.BasestationDownlinkFrameLog
-	(*FrameLogItem)(nil),                       // 7: stream.FrameLogItem
-	nil,                                        // 8: stream.EndnodeUplinkFrameLog.MetadataEntry
-	nil,                                        // 9: stream.VariableMacUplinkFrameLog.MetadataEntry
+var file_streaming_frame_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_streaming_frame_proto_goTypes = []any{
+	(*EndnodeDownlinkResultLog)(nil),           // 0: streaming.EndnodeDownlinkResultLog
+	(*EndnodeDownlinkRxStatusLog)(nil),         // 1: streaming.EndnodeDownlinkRxStatusLog
+	(*EndnodeUplinkFrameLog)(nil),              // 2: streaming.EndnodeUplinkFrameLog
+	(*VariableMacUplinkFrameLog)(nil),          // 3: streaming.VariableMacUplinkFrameLog
+	(*EndnodeDownlinkFrameLog)(nil),            // 4: streaming.EndnodeDownlinkFrameLog
+	(*BasestationUplinkFrameLog)(nil),          // 5: streaming.BasestationUplinkFrameLog
+	(*BasestationDownlinkFrameLog)(nil),        // 6: streaming.BasestationDownlinkFrameLog
+	(*FrameLogItem)(nil),                       // 7: streaming.FrameLogItem
+	nil,                                        // 8: streaming.EndnodeUplinkFrameLog.MetadataEntry
+	nil,                                        // 9: streaming.VariableMacUplinkFrameLog.MetadataEntry
 	(*bs.BasestationDownlinkResult)(nil),       // 10: bs.BasestationDownlinkResult
 	(*bs.BasestationDownlinkRxStatus)(nil),     // 11: bs.BasestationDownlinkRxStatus
 	(common.EndnodeUplinkMessageType)(0),       // 12: common.EndnodeUplinkMessageType
@@ -1216,49 +1216,49 @@ var file_stream_frame_proto_goTypes = []any{
 	(*bs.BatchVariableMac)(nil),                // 35: bs.BatchVariableMac
 	(*bs.EndnodeUplinkMetadata)(nil),           // 36: bs.EndnodeUplinkMetadata
 }
-var file_stream_frame_proto_depIdxs = []int32{
-	10, // 0: stream.EndnodeDownlinkResultLog.dl_res:type_name -> bs.BasestationDownlinkResult
-	11, // 1: stream.EndnodeDownlinkRxStatusLog.dl_rx_stat:type_name -> bs.BasestationDownlinkRxStatus
-	12, // 2: stream.EndnodeUplinkFrameLog.message_type:type_name -> common.EndnodeUplinkMessageType
-	13, // 3: stream.EndnodeUplinkFrameLog.time:type_name -> google.protobuf.Timestamp
-	14, // 4: stream.EndnodeUplinkFrameLog.att:type_name -> bs.EndnodeAttMessage
-	15, // 5: stream.EndnodeUplinkFrameLog.det:type_name -> bs.EndnodeDetMessage
-	16, // 6: stream.EndnodeUplinkFrameLog.ul_data:type_name -> bs.EndnodeUlDataMessage
-	17, // 7: stream.EndnodeUplinkFrameLog.vm_ul_data:type_name -> bs.EndnodeVariableMacUlDataMessage
-	0,  // 8: stream.EndnodeUplinkFrameLog.dl_res:type_name -> stream.EndnodeDownlinkResultLog
-	1,  // 9: stream.EndnodeUplinkFrameLog.dl_rx_stat:type_name -> stream.EndnodeDownlinkRxStatusLog
-	8,  // 10: stream.EndnodeUplinkFrameLog.metadata:type_name -> stream.EndnodeUplinkFrameLog.MetadataEntry
-	18, // 11: stream.VariableMacUplinkFrameLog.mac_name:type_name -> common.VariableMacType
-	13, // 12: stream.VariableMacUplinkFrameLog.time:type_name -> google.protobuf.Timestamp
-	17, // 13: stream.VariableMacUplinkFrameLog.message:type_name -> bs.EndnodeVariableMacUlDataMessage
-	9,  // 14: stream.VariableMacUplinkFrameLog.metadata:type_name -> stream.VariableMacUplinkFrameLog.MetadataEntry
-	19, // 15: stream.EndnodeDownlinkFrameLog.message_type:type_name -> common.EndnodeDownlinkMessageType
-	13, // 16: stream.EndnodeDownlinkFrameLog.time:type_name -> google.protobuf.Timestamp
-	20, // 17: stream.EndnodeDownlinkFrameLog.dl_data_que:type_name -> bs.EnqueDownlink
-	21, // 18: stream.EndnodeDownlinkFrameLog.dl_data_rev:type_name -> bs.RevokeDownlink
-	22, // 19: stream.EndnodeDownlinkFrameLog.dl_rx_stat_qry:type_name -> bs.DownlinkRxStatusQuery
-	23, // 20: stream.BasestationUplinkFrameLog.message_type:type_name -> common.BasestationUplinkMessageType
-	13, // 21: stream.BasestationUplinkFrameLog.time:type_name -> google.protobuf.Timestamp
-	24, // 22: stream.BasestationUplinkFrameLog.con:type_name -> bs.BasestationConnection
-	25, // 23: stream.BasestationUplinkFrameLog.status:type_name -> bs.BasestationStatus
-	26, // 24: stream.BasestationUplinkFrameLog.vm_status:type_name -> bs.BasestationVariableMacStatus
-	27, // 25: stream.BasestationUplinkFrameLog.prp_ack:type_name -> bs.BasestationPropagationAck
-	28, // 26: stream.BasestationDownlinkFrameLog.message_type:type_name -> common.BasestationDownlinkMessageType
-	13, // 27: stream.BasestationDownlinkFrameLog.time:type_name -> google.protobuf.Timestamp
-	29, // 28: stream.BasestationDownlinkFrameLog.att_prp:type_name -> bs.AttachPropagate
-	30, // 29: stream.BasestationDownlinkFrameLog.det_prp:type_name -> bs.DetachPropagate
-	31, // 30: stream.BasestationDownlinkFrameLog.req_status:type_name -> bs.RequestStatus
-	32, // 31: stream.BasestationDownlinkFrameLog.req_vm_status:type_name -> bs.RequestVariableMacStatus
-	33, // 32: stream.BasestationDownlinkFrameLog.vm_activate:type_name -> bs.EnableVariableMac
-	34, // 33: stream.BasestationDownlinkFrameLog.vm_deactivate:type_name -> bs.DisableVariableMac
-	35, // 34: stream.BasestationDownlinkFrameLog.vm_batch:type_name -> bs.BatchVariableMac
-	2,  // 35: stream.FrameLogItem.ep_ul:type_name -> stream.EndnodeUplinkFrameLog
-	4,  // 36: stream.FrameLogItem.ep_dl:type_name -> stream.EndnodeDownlinkFrameLog
-	5,  // 37: stream.FrameLogItem.bs_ul:type_name -> stream.BasestationUplinkFrameLog
-	6,  // 38: stream.FrameLogItem.bs_dl:type_name -> stream.BasestationDownlinkFrameLog
-	3,  // 39: stream.FrameLogItem.vm_ul:type_name -> stream.VariableMacUplinkFrameLog
-	36, // 40: stream.EndnodeUplinkFrameLog.MetadataEntry.value:type_name -> bs.EndnodeUplinkMetadata
-	36, // 41: stream.VariableMacUplinkFrameLog.MetadataEntry.value:type_name -> bs.EndnodeUplinkMetadata
+var file_streaming_frame_proto_depIdxs = []int32{
+	10, // 0: streaming.EndnodeDownlinkResultLog.dl_res:type_name -> bs.BasestationDownlinkResult
+	11, // 1: streaming.EndnodeDownlinkRxStatusLog.dl_rx_stat:type_name -> bs.BasestationDownlinkRxStatus
+	12, // 2: streaming.EndnodeUplinkFrameLog.message_type:type_name -> common.EndnodeUplinkMessageType
+	13, // 3: streaming.EndnodeUplinkFrameLog.time:type_name -> google.protobuf.Timestamp
+	14, // 4: streaming.EndnodeUplinkFrameLog.att:type_name -> bs.EndnodeAttMessage
+	15, // 5: streaming.EndnodeUplinkFrameLog.det:type_name -> bs.EndnodeDetMessage
+	16, // 6: streaming.EndnodeUplinkFrameLog.ul_data:type_name -> bs.EndnodeUlDataMessage
+	17, // 7: streaming.EndnodeUplinkFrameLog.vm_ul_data:type_name -> bs.EndnodeVariableMacUlDataMessage
+	0,  // 8: streaming.EndnodeUplinkFrameLog.dl_res:type_name -> streaming.EndnodeDownlinkResultLog
+	1,  // 9: streaming.EndnodeUplinkFrameLog.dl_rx_stat:type_name -> streaming.EndnodeDownlinkRxStatusLog
+	8,  // 10: streaming.EndnodeUplinkFrameLog.metadata:type_name -> streaming.EndnodeUplinkFrameLog.MetadataEntry
+	18, // 11: streaming.VariableMacUplinkFrameLog.mac_name:type_name -> common.VariableMacType
+	13, // 12: streaming.VariableMacUplinkFrameLog.time:type_name -> google.protobuf.Timestamp
+	17, // 13: streaming.VariableMacUplinkFrameLog.message:type_name -> bs.EndnodeVariableMacUlDataMessage
+	9,  // 14: streaming.VariableMacUplinkFrameLog.metadata:type_name -> streaming.VariableMacUplinkFrameLog.MetadataEntry
+	19, // 15: streaming.EndnodeDownlinkFrameLog.message_type:type_name -> common.EndnodeDownlinkMessageType
+	13, // 16: streaming.EndnodeDownlinkFrameLog.time:type_name -> google.protobuf.Timestamp
+	20, // 17: streaming.EndnodeDownlinkFrameLog.dl_data_que:type_name -> bs.EnqueDownlink
+	21, // 18: streaming.EndnodeDownlinkFrameLog.dl_data_rev:type_name -> bs.RevokeDownlink
+	22, // 19: streaming.EndnodeDownlinkFrameLog.dl_rx_stat_qry:type_name -> bs.DownlinkRxStatusQuery
+	23, // 20: streaming.BasestationUplinkFrameLog.message_type:type_name -> common.BasestationUplinkMessageType
+	13, // 21: streaming.BasestationUplinkFrameLog.time:type_name -> google.protobuf.Timestamp
+	24, // 22: streaming.BasestationUplinkFrameLog.con:type_name -> bs.BasestationConnection
+	25, // 23: streaming.BasestationUplinkFrameLog.status:type_name -> bs.BasestationStatus
+	26, // 24: streaming.BasestationUplinkFrameLog.vm_status:type_name -> bs.BasestationVariableMacStatus
+	27, // 25: streaming.BasestationUplinkFrameLog.prp_ack:type_name -> bs.BasestationPropagationAck
+	28, // 26: streaming.BasestationDownlinkFrameLog.message_type:type_name -> common.BasestationDownlinkMessageType
+	13, // 27: streaming.BasestationDownlinkFrameLog.time:type_name -> google.protobuf.Timestamp
+	29, // 28: streaming.BasestationDownlinkFrameLog.att_prp:type_name -> bs.AttachPropagate
+	30, // 29: streaming.BasestationDownlinkFrameLog.det_prp:type_name -> bs.DetachPropagate
+	31, // 30: streaming.BasestationDownlinkFrameLog.req_status:type_name -> bs.RequestStatus
+	32, // 31: streaming.BasestationDownlinkFrameLog.req_vm_status:type_name -> bs.RequestVariableMacStatus
+	33, // 32: streaming.BasestationDownlinkFrameLog.vm_activate:type_name -> bs.EnableVariableMac
+	34, // 33: streaming.BasestationDownlinkFrameLog.vm_deactivate:type_name -> bs.DisableVariableMac
+	35, // 34: streaming.BasestationDownlinkFrameLog.vm_batch:type_name -> bs.BatchVariableMac
+	2,  // 35: streaming.FrameLogItem.ep_ul:type_name -> streaming.EndnodeUplinkFrameLog
+	4,  // 36: streaming.FrameLogItem.ep_dl:type_name -> streaming.EndnodeDownlinkFrameLog
+	5,  // 37: streaming.FrameLogItem.bs_ul:type_name -> streaming.BasestationUplinkFrameLog
+	6,  // 38: streaming.FrameLogItem.bs_dl:type_name -> streaming.BasestationDownlinkFrameLog
+	3,  // 39: streaming.FrameLogItem.vm_ul:type_name -> streaming.VariableMacUplinkFrameLog
+	36, // 40: streaming.EndnodeUplinkFrameLog.MetadataEntry.value:type_name -> bs.EndnodeUplinkMetadata
+	36, // 41: streaming.VariableMacUplinkFrameLog.MetadataEntry.value:type_name -> bs.EndnodeUplinkMetadata
 	42, // [42:42] is the sub-list for method output_type
 	42, // [42:42] is the sub-list for method input_type
 	42, // [42:42] is the sub-list for extension type_name
@@ -1266,12 +1266,12 @@ var file_stream_frame_proto_depIdxs = []int32{
 	0,  // [0:42] is the sub-list for field type_name
 }
 
-func init() { file_stream_frame_proto_init() }
-func file_stream_frame_proto_init() {
-	if File_stream_frame_proto != nil {
+func init() { file_streaming_frame_proto_init() }
+func file_streaming_frame_proto_init() {
+	if File_streaming_frame_proto != nil {
 		return
 	}
-	file_stream_frame_proto_msgTypes[2].OneofWrappers = []any{
+	file_streaming_frame_proto_msgTypes[2].OneofWrappers = []any{
 		(*EndnodeUplinkFrameLog_Att)(nil),
 		(*EndnodeUplinkFrameLog_Det)(nil),
 		(*EndnodeUplinkFrameLog_UlData)(nil),
@@ -1279,18 +1279,18 @@ func file_stream_frame_proto_init() {
 		(*EndnodeUplinkFrameLog_DlRes)(nil),
 		(*EndnodeUplinkFrameLog_DlRxStat)(nil),
 	}
-	file_stream_frame_proto_msgTypes[4].OneofWrappers = []any{
+	file_streaming_frame_proto_msgTypes[4].OneofWrappers = []any{
 		(*EndnodeDownlinkFrameLog_DlDataQue)(nil),
 		(*EndnodeDownlinkFrameLog_DlDataRev)(nil),
 		(*EndnodeDownlinkFrameLog_DlRxStatQry)(nil),
 	}
-	file_stream_frame_proto_msgTypes[5].OneofWrappers = []any{
+	file_streaming_frame_proto_msgTypes[5].OneofWrappers = []any{
 		(*BasestationUplinkFrameLog_Con)(nil),
 		(*BasestationUplinkFrameLog_Status)(nil),
 		(*BasestationUplinkFrameLog_VmStatus)(nil),
 		(*BasestationUplinkFrameLog_PrpAck)(nil),
 	}
-	file_stream_frame_proto_msgTypes[6].OneofWrappers = []any{
+	file_streaming_frame_proto_msgTypes[6].OneofWrappers = []any{
 		(*BasestationDownlinkFrameLog_AttPrp)(nil),
 		(*BasestationDownlinkFrameLog_DetPrp)(nil),
 		(*BasestationDownlinkFrameLog_ReqStatus)(nil),
@@ -1299,7 +1299,7 @@ func file_stream_frame_proto_init() {
 		(*BasestationDownlinkFrameLog_VmDeactivate)(nil),
 		(*BasestationDownlinkFrameLog_VmBatch)(nil),
 	}
-	file_stream_frame_proto_msgTypes[7].OneofWrappers = []any{
+	file_streaming_frame_proto_msgTypes[7].OneofWrappers = []any{
 		(*FrameLogItem_EpUl)(nil),
 		(*FrameLogItem_EpDl)(nil),
 		(*FrameLogItem_BsUl)(nil),
@@ -1310,17 +1310,17 @@ func file_stream_frame_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_stream_frame_proto_rawDesc), len(file_stream_frame_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_streaming_frame_proto_rawDesc), len(file_streaming_frame_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_stream_frame_proto_goTypes,
-		DependencyIndexes: file_stream_frame_proto_depIdxs,
-		MessageInfos:      file_stream_frame_proto_msgTypes,
+		GoTypes:           file_streaming_frame_proto_goTypes,
+		DependencyIndexes: file_streaming_frame_proto_depIdxs,
+		MessageInfos:      file_streaming_frame_proto_msgTypes,
 	}.Build()
-	File_stream_frame_proto = out.File
-	file_stream_frame_proto_goTypes = nil
-	file_stream_frame_proto_depIdxs = nil
+	File_streaming_frame_proto = out.File
+	file_streaming_frame_proto_goTypes = nil
+	file_streaming_frame_proto_depIdxs = nil
 }

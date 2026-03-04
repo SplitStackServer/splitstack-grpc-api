@@ -8,7 +8,7 @@ package api
 
 import (
 	context "context"
-	stream "github.com/SplitStackServer/splitstack-grpc-api/go/stream"
+	streaming "github.com/SplitStackServer/splitstack-grpc-api/go/streaming"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -52,7 +52,7 @@ type BasestationServiceClient interface {
 	// GetMetrics returns the gateway metrics.
 	GetBasestationMetrics(ctx context.Context, in *GetBasestationMetricsRequest, opts ...grpc.CallOption) (*GetBasestationMetricsResponse, error)
 	// Returns a stream of frames for the given basestation ID.
-	StreamBasestationFrames(ctx context.Context, in *StreamBasestationFramesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[stream.FrameLogItem], error)
+	StreamBasestationFrames(ctx context.Context, in *StreamBasestationFramesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[streaming.FrameLogItem], error)
 }
 
 type basestationServiceClient struct {
@@ -133,13 +133,13 @@ func (c *basestationServiceClient) GetBasestationMetrics(ctx context.Context, in
 	return out, nil
 }
 
-func (c *basestationServiceClient) StreamBasestationFrames(ctx context.Context, in *StreamBasestationFramesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[stream.FrameLogItem], error) {
+func (c *basestationServiceClient) StreamBasestationFrames(ctx context.Context, in *StreamBasestationFramesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[streaming.FrameLogItem], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &BasestationService_ServiceDesc.Streams[0], BasestationService_StreamBasestationFrames_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[StreamBasestationFramesRequest, stream.FrameLogItem]{ClientStream: stream}
+	x := &grpc.GenericClientStream[StreamBasestationFramesRequest, streaming.FrameLogItem]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -150,7 +150,7 @@ func (c *basestationServiceClient) StreamBasestationFrames(ctx context.Context, 
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type BasestationService_StreamBasestationFramesClient = grpc.ServerStreamingClient[stream.FrameLogItem]
+type BasestationService_StreamBasestationFramesClient = grpc.ServerStreamingClient[streaming.FrameLogItem]
 
 // BasestationServiceServer is the server API for BasestationService service.
 // All implementations must embed UnimplementedBasestationServiceServer
@@ -173,7 +173,7 @@ type BasestationServiceServer interface {
 	// GetMetrics returns the gateway metrics.
 	GetBasestationMetrics(context.Context, *GetBasestationMetricsRequest) (*GetBasestationMetricsResponse, error)
 	// Returns a stream of frames for the given basestation ID.
-	StreamBasestationFrames(*StreamBasestationFramesRequest, grpc.ServerStreamingServer[stream.FrameLogItem]) error
+	StreamBasestationFrames(*StreamBasestationFramesRequest, grpc.ServerStreamingServer[streaming.FrameLogItem]) error
 	mustEmbedUnimplementedBasestationServiceServer()
 }
 
@@ -205,7 +205,7 @@ func (UnimplementedBasestationServiceServer) GenerateBasestationClientCertificat
 func (UnimplementedBasestationServiceServer) GetBasestationMetrics(context.Context, *GetBasestationMetricsRequest) (*GetBasestationMetricsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBasestationMetrics not implemented")
 }
-func (UnimplementedBasestationServiceServer) StreamBasestationFrames(*StreamBasestationFramesRequest, grpc.ServerStreamingServer[stream.FrameLogItem]) error {
+func (UnimplementedBasestationServiceServer) StreamBasestationFrames(*StreamBasestationFramesRequest, grpc.ServerStreamingServer[streaming.FrameLogItem]) error {
 	return status.Errorf(codes.Unimplemented, "method StreamBasestationFrames not implemented")
 }
 func (UnimplementedBasestationServiceServer) mustEmbedUnimplementedBasestationServiceServer() {}
@@ -360,11 +360,11 @@ func _BasestationService_StreamBasestationFrames_Handler(srv interface{}, stream
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(BasestationServiceServer).StreamBasestationFrames(m, &grpc.GenericServerStream[StreamBasestationFramesRequest, stream.FrameLogItem]{ServerStream: stream})
+	return srv.(BasestationServiceServer).StreamBasestationFrames(m, &grpc.GenericServerStream[StreamBasestationFramesRequest, streaming.FrameLogItem]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type BasestationService_StreamBasestationFramesServer = grpc.ServerStreamingServer[stream.FrameLogItem]
+type BasestationService_StreamBasestationFramesServer = grpc.ServerStreamingServer[streaming.FrameLogItem]
 
 // BasestationService_ServiceDesc is the grpc.ServiceDesc for BasestationService service.
 // It's only intended for direct use with grpc.RegisterService,

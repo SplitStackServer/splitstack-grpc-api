@@ -17,7 +17,7 @@ import "google/protobuf/empty.proto";
 import "api/common.proto";
 import "common/common.proto";
 import "common/metrics.proto";
-import "stream/frame.proto";
+import "streaming/frame.proto";
 
 // BasestationService is the service providing API methods for managing basestations.
 service BasestationService {
@@ -73,7 +73,7 @@ service BasestationService {
     }
 
     // Returns a stream of frames for the given basestation ID.
-    rpc StreamBasestationFrames(StreamBasestationFramesRequest) returns (stream stream.FrameLogItem) {
+    rpc StreamBasestationFrames(StreamBasestationFramesRequest) returns (stream streaming.FrameLogItem) {
         option (google.api.http) = {
         get : "/api/basestations/{id}/frames"
         };

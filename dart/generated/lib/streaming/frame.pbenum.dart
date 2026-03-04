@@ -1,6 +1,6 @@
 // This is a generated file - do not edit.
 //
-// Generated from stream/frame.proto.
+// Generated from streaming/frame.proto.
 
 // @dart = 3.3
 
