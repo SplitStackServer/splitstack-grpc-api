@@ -13,6 +13,7 @@ bs:
 	protoc ${PROTOC_ARGS} bs/basestation.proto
 	protoc ${PROTOC_ARGS} bs/cmd.proto
 	protoc ${PROTOC_ARGS} bs/rsp.proto
+	protoc ${PROTOC_ARGS} bs/certificate.proto
 
 api:
 	protoc ${PROTOC_ARGS} api/application.proto
