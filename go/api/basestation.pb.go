@@ -131,7 +131,7 @@ func (x ListBasestationsRequest_OrderBy) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ListBasestationsRequest_OrderBy.Descriptor instead.
 func (ListBasestationsRequest_OrderBy) EnumDescriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{10, 0}
+	return file_api_basestation_proto_rawDescGZIP(), []int{12, 0}
 }
 
 type Basestation struct {
@@ -401,6 +401,150 @@ func (x *BasestationListItem) GetState() BasestationState {
 	return BasestationState_NEVER_SEEN
 }
 
+type BasestationLocations struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Tenant ID.
+	TenantId string `protobuf:"bytes,1,opt,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
+	// Basestation locations.
+	Locations     []*BasestationLocation `protobuf:"bytes,2,rep,name=locations,proto3" json:"locations,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BasestationLocations) Reset() {
+	*x = BasestationLocations{}
+	mi := &file_api_basestation_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BasestationLocations) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BasestationLocations) ProtoMessage() {}
+
+func (x *BasestationLocations) ProtoReflect() protoreflect.Message {
+	mi := &file_api_basestation_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BasestationLocations.ProtoReflect.Descriptor instead.
+func (*BasestationLocations) Descriptor() ([]byte, []int) {
+	return file_api_basestation_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *BasestationLocations) GetTenantId() string {
+	if x != nil {
+		return x.TenantId
+	}
+	return ""
+}
+
+func (x *BasestationLocations) GetLocations() []*BasestationLocation {
+	if x != nil {
+		return x.Locations
+	}
+	return nil
+}
+
+type BasestationLocation struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Basestation ID (UUID).
+	BasestationId string `protobuf:"bytes,2,opt,name=basestation_id,json=basestationId,proto3" json:"basestation_id,omitempty"`
+	// Basestation EUI64.
+	Eui string `protobuf:"bytes,3,opt,name=eui,proto3" json:"eui,omitempty"`
+	// Name.
+	Name string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	// Location.
+	Location *common.GeoLocation `protobuf:"bytes,6,opt,name=location,proto3,oneof" json:"location,omitempty"`
+	// Last seen at timestamp.
+	LastSeenAt *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=last_seen_at,json=lastSeenAt,proto3,oneof" json:"last_seen_at,omitempty"`
+	// Basestation state.
+	State         BasestationState `protobuf:"varint,12,opt,name=state,proto3,enum=api.BasestationState" json:"state,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BasestationLocation) Reset() {
+	*x = BasestationLocation{}
+	mi := &file_api_basestation_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BasestationLocation) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BasestationLocation) ProtoMessage() {}
+
+func (x *BasestationLocation) ProtoReflect() protoreflect.Message {
+	mi := &file_api_basestation_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BasestationLocation.ProtoReflect.Descriptor instead.
+func (*BasestationLocation) Descriptor() ([]byte, []int) {
+	return file_api_basestation_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *BasestationLocation) GetBasestationId() string {
+	if x != nil {
+		return x.BasestationId
+	}
+	return ""
+}
+
+func (x *BasestationLocation) GetEui() string {
+	if x != nil {
+		return x.Eui
+	}
+	return ""
+}
+
+func (x *BasestationLocation) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *BasestationLocation) GetLocation() *common.GeoLocation {
+	if x != nil {
+		return x.Location
+	}
+	return nil
+}
+
+func (x *BasestationLocation) GetLastSeenAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.LastSeenAt
+	}
+	return nil
+}
+
+func (x *BasestationLocation) GetState() BasestationState {
+	if x != nil {
+		return x.State
+	}
+	return BasestationState_NEVER_SEEN
+}
+
 type BasestationMetadata struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Vendor.
@@ -417,7 +561,7 @@ type BasestationMetadata struct {
 
 func (x *BasestationMetadata) Reset() {
 	*x = BasestationMetadata{}
-	mi := &file_api_basestation_proto_msgTypes[2]
+	mi := &file_api_basestation_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -429,7 +573,7 @@ func (x *BasestationMetadata) String() string {
 func (*BasestationMetadata) ProtoMessage() {}
 
 func (x *BasestationMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[2]
+	mi := &file_api_basestation_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -442,7 +586,7 @@ func (x *BasestationMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BasestationMetadata.ProtoReflect.Descriptor instead.
 func (*BasestationMetadata) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{2}
+	return file_api_basestation_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *BasestationMetadata) GetVendor() string {
@@ -495,7 +639,7 @@ type CreateBasestationRequest struct {
 
 func (x *CreateBasestationRequest) Reset() {
 	*x = CreateBasestationRequest{}
-	mi := &file_api_basestation_proto_msgTypes[3]
+	mi := &file_api_basestation_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -507,7 +651,7 @@ func (x *CreateBasestationRequest) String() string {
 func (*CreateBasestationRequest) ProtoMessage() {}
 
 func (x *CreateBasestationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[3]
+	mi := &file_api_basestation_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -520,7 +664,7 @@ func (x *CreateBasestationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateBasestationRequest.ProtoReflect.Descriptor instead.
 func (*CreateBasestationRequest) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{3}
+	return file_api_basestation_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *CreateBasestationRequest) GetTenantId() string {
@@ -584,7 +728,7 @@ type CreateBasestationResponse struct {
 
 func (x *CreateBasestationResponse) Reset() {
 	*x = CreateBasestationResponse{}
-	mi := &file_api_basestation_proto_msgTypes[4]
+	mi := &file_api_basestation_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -596,7 +740,7 @@ func (x *CreateBasestationResponse) String() string {
 func (*CreateBasestationResponse) ProtoMessage() {}
 
 func (x *CreateBasestationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[4]
+	mi := &file_api_basestation_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -609,7 +753,7 @@ func (x *CreateBasestationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateBasestationResponse.ProtoReflect.Descriptor instead.
 func (*CreateBasestationResponse) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{4}
+	return file_api_basestation_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *CreateBasestationResponse) GetBasestation() *Basestation {
@@ -636,7 +780,7 @@ type GetBasestationRequest struct {
 
 func (x *GetBasestationRequest) Reset() {
 	*x = GetBasestationRequest{}
-	mi := &file_api_basestation_proto_msgTypes[5]
+	mi := &file_api_basestation_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -648,7 +792,7 @@ func (x *GetBasestationRequest) String() string {
 func (*GetBasestationRequest) ProtoMessage() {}
 
 func (x *GetBasestationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[5]
+	mi := &file_api_basestation_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -661,7 +805,7 @@ func (x *GetBasestationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBasestationRequest.ProtoReflect.Descriptor instead.
 func (*GetBasestationRequest) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{5}
+	return file_api_basestation_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetBasestationRequest) GetId() string {
@@ -687,7 +831,7 @@ type GetBasestationResponse struct {
 
 func (x *GetBasestationResponse) Reset() {
 	*x = GetBasestationResponse{}
-	mi := &file_api_basestation_proto_msgTypes[6]
+	mi := &file_api_basestation_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -699,7 +843,7 @@ func (x *GetBasestationResponse) String() string {
 func (*GetBasestationResponse) ProtoMessage() {}
 
 func (x *GetBasestationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[6]
+	mi := &file_api_basestation_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -712,7 +856,7 @@ func (x *GetBasestationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBasestationResponse.ProtoReflect.Descriptor instead.
 func (*GetBasestationResponse) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{6}
+	return file_api_basestation_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetBasestationResponse) GetBasestation() *Basestation {
@@ -763,7 +907,7 @@ type UpdateBasestationRequest struct {
 
 func (x *UpdateBasestationRequest) Reset() {
 	*x = UpdateBasestationRequest{}
-	mi := &file_api_basestation_proto_msgTypes[7]
+	mi := &file_api_basestation_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -775,7 +919,7 @@ func (x *UpdateBasestationRequest) String() string {
 func (*UpdateBasestationRequest) ProtoMessage() {}
 
 func (x *UpdateBasestationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[7]
+	mi := &file_api_basestation_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -788,7 +932,7 @@ func (x *UpdateBasestationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateBasestationRequest.ProtoReflect.Descriptor instead.
 func (*UpdateBasestationRequest) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{7}
+	return file_api_basestation_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *UpdateBasestationRequest) GetId() string {
@@ -847,7 +991,7 @@ type UpdateBasestationResponse struct {
 
 func (x *UpdateBasestationResponse) Reset() {
 	*x = UpdateBasestationResponse{}
-	mi := &file_api_basestation_proto_msgTypes[8]
+	mi := &file_api_basestation_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -859,7 +1003,7 @@ func (x *UpdateBasestationResponse) String() string {
 func (*UpdateBasestationResponse) ProtoMessage() {}
 
 func (x *UpdateBasestationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[8]
+	mi := &file_api_basestation_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -872,7 +1016,7 @@ func (x *UpdateBasestationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateBasestationResponse.ProtoReflect.Descriptor instead.
 func (*UpdateBasestationResponse) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{8}
+	return file_api_basestation_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *UpdateBasestationResponse) GetBasestation() *Basestation {
@@ -906,7 +1050,7 @@ type DeleteBasestationRequest struct {
 
 func (x *DeleteBasestationRequest) Reset() {
 	*x = DeleteBasestationRequest{}
-	mi := &file_api_basestation_proto_msgTypes[9]
+	mi := &file_api_basestation_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -918,7 +1062,7 @@ func (x *DeleteBasestationRequest) String() string {
 func (*DeleteBasestationRequest) ProtoMessage() {}
 
 func (x *DeleteBasestationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[9]
+	mi := &file_api_basestation_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -931,7 +1075,7 @@ func (x *DeleteBasestationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBasestationRequest.ProtoReflect.Descriptor instead.
 func (*DeleteBasestationRequest) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{9}
+	return file_api_basestation_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *DeleteBasestationRequest) GetId() string {
@@ -962,7 +1106,7 @@ type ListBasestationsRequest struct {
 
 func (x *ListBasestationsRequest) Reset() {
 	*x = ListBasestationsRequest{}
-	mi := &file_api_basestation_proto_msgTypes[10]
+	mi := &file_api_basestation_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -974,7 +1118,7 @@ func (x *ListBasestationsRequest) String() string {
 func (*ListBasestationsRequest) ProtoMessage() {}
 
 func (x *ListBasestationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[10]
+	mi := &file_api_basestation_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -987,7 +1131,7 @@ func (x *ListBasestationsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListBasestationsRequest.ProtoReflect.Descriptor instead.
 func (*ListBasestationsRequest) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{10}
+	return file_api_basestation_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ListBasestationsRequest) GetTenantId() string {
@@ -1044,7 +1188,7 @@ type ListBasestationsResponse struct {
 
 func (x *ListBasestationsResponse) Reset() {
 	*x = ListBasestationsResponse{}
-	mi := &file_api_basestation_proto_msgTypes[11]
+	mi := &file_api_basestation_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1056,7 +1200,7 @@ func (x *ListBasestationsResponse) String() string {
 func (*ListBasestationsResponse) ProtoMessage() {}
 
 func (x *ListBasestationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[11]
+	mi := &file_api_basestation_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1069,7 +1213,7 @@ func (x *ListBasestationsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListBasestationsResponse.ProtoReflect.Descriptor instead.
 func (*ListBasestationsResponse) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{11}
+	return file_api_basestation_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ListBasestationsResponse) GetPagination() *Pagination {
@@ -1086,6 +1230,129 @@ func (x *ListBasestationsResponse) GetResult() []*BasestationListItem {
 	return nil
 }
 
+type GetBasestationsMapRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Tenant IDs (UUID) to filter basestations on.
+	// To list all basestations as a global admin user, this field can be left blank.
+	TenantId      []string `protobuf:"bytes,1,rep,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
+	MinLat        float64  `protobuf:"fixed64,2,opt,name=min_lat,json=minLat,proto3" json:"min_lat,omitempty"`
+	MaxLat        float64  `protobuf:"fixed64,3,opt,name=max_lat,json=maxLat,proto3" json:"max_lat,omitempty"`
+	MinLon        float64  `protobuf:"fixed64,4,opt,name=min_lon,json=minLon,proto3" json:"min_lon,omitempty"`
+	MaxLon        float64  `protobuf:"fixed64,5,opt,name=max_lon,json=maxLon,proto3" json:"max_lon,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBasestationsMapRequest) Reset() {
+	*x = GetBasestationsMapRequest{}
+	mi := &file_api_basestation_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBasestationsMapRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBasestationsMapRequest) ProtoMessage() {}
+
+func (x *GetBasestationsMapRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_basestation_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBasestationsMapRequest.ProtoReflect.Descriptor instead.
+func (*GetBasestationsMapRequest) Descriptor() ([]byte, []int) {
+	return file_api_basestation_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *GetBasestationsMapRequest) GetTenantId() []string {
+	if x != nil {
+		return x.TenantId
+	}
+	return nil
+}
+
+func (x *GetBasestationsMapRequest) GetMinLat() float64 {
+	if x != nil {
+		return x.MinLat
+	}
+	return 0
+}
+
+func (x *GetBasestationsMapRequest) GetMaxLat() float64 {
+	if x != nil {
+		return x.MaxLat
+	}
+	return 0
+}
+
+func (x *GetBasestationsMapRequest) GetMinLon() float64 {
+	if x != nil {
+		return x.MinLon
+	}
+	return 0
+}
+
+func (x *GetBasestationsMapRequest) GetMaxLon() float64 {
+	if x != nil {
+		return x.MaxLon
+	}
+	return 0
+}
+
+type GetBasestationsMapResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Basestation objects.
+	Basestations  []*BasestationLocations `protobuf:"bytes,1,rep,name=basestations,proto3" json:"basestations,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBasestationsMapResponse) Reset() {
+	*x = GetBasestationsMapResponse{}
+	mi := &file_api_basestation_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBasestationsMapResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBasestationsMapResponse) ProtoMessage() {}
+
+func (x *GetBasestationsMapResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_basestation_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBasestationsMapResponse.ProtoReflect.Descriptor instead.
+func (*GetBasestationsMapResponse) Descriptor() ([]byte, []int) {
+	return file_api_basestation_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *GetBasestationsMapResponse) GetBasestations() []*BasestationLocations {
+	if x != nil {
+		return x.Basestations
+	}
+	return nil
+}
+
 type GenerateBasestationClientCertificateRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Basestation ID (UUID).
@@ -1096,7 +1363,7 @@ type GenerateBasestationClientCertificateRequest struct {
 
 func (x *GenerateBasestationClientCertificateRequest) Reset() {
 	*x = GenerateBasestationClientCertificateRequest{}
-	mi := &file_api_basestation_proto_msgTypes[12]
+	mi := &file_api_basestation_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1108,7 +1375,7 @@ func (x *GenerateBasestationClientCertificateRequest) String() string {
 func (*GenerateBasestationClientCertificateRequest) ProtoMessage() {}
 
 func (x *GenerateBasestationClientCertificateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[12]
+	mi := &file_api_basestation_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1121,7 +1388,7 @@ func (x *GenerateBasestationClientCertificateRequest) ProtoReflect() protoreflec
 
 // Deprecated: Use GenerateBasestationClientCertificateRequest.ProtoReflect.Descriptor instead.
 func (*GenerateBasestationClientCertificateRequest) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{12}
+	return file_api_basestation_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *GenerateBasestationClientCertificateRequest) GetId() string {
@@ -1147,7 +1414,7 @@ type GenerateBasestationClientCertificateResponse struct {
 
 func (x *GenerateBasestationClientCertificateResponse) Reset() {
 	*x = GenerateBasestationClientCertificateResponse{}
-	mi := &file_api_basestation_proto_msgTypes[13]
+	mi := &file_api_basestation_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1159,7 +1426,7 @@ func (x *GenerateBasestationClientCertificateResponse) String() string {
 func (*GenerateBasestationClientCertificateResponse) ProtoMessage() {}
 
 func (x *GenerateBasestationClientCertificateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[13]
+	mi := &file_api_basestation_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1172,7 +1439,7 @@ func (x *GenerateBasestationClientCertificateResponse) ProtoReflect() protorefle
 
 // Deprecated: Use GenerateBasestationClientCertificateResponse.ProtoReflect.Descriptor instead.
 func (*GenerateBasestationClientCertificateResponse) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{13}
+	return file_api_basestation_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GenerateBasestationClientCertificateResponse) GetTlsCert() string {
@@ -1219,7 +1486,7 @@ type GetBasestationMetricsRequest struct {
 
 func (x *GetBasestationMetricsRequest) Reset() {
 	*x = GetBasestationMetricsRequest{}
-	mi := &file_api_basestation_proto_msgTypes[14]
+	mi := &file_api_basestation_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1231,7 +1498,7 @@ func (x *GetBasestationMetricsRequest) String() string {
 func (*GetBasestationMetricsRequest) ProtoMessage() {}
 
 func (x *GetBasestationMetricsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[14]
+	mi := &file_api_basestation_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1244,7 +1511,7 @@ func (x *GetBasestationMetricsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBasestationMetricsRequest.ProtoReflect.Descriptor instead.
 func (*GetBasestationMetricsRequest) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{14}
+	return file_api_basestation_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetBasestationMetricsRequest) GetId() string {
@@ -1297,7 +1564,7 @@ type GetBasestationMetricsResponse struct {
 
 func (x *GetBasestationMetricsResponse) Reset() {
 	*x = GetBasestationMetricsResponse{}
-	mi := &file_api_basestation_proto_msgTypes[15]
+	mi := &file_api_basestation_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1309,7 +1576,7 @@ func (x *GetBasestationMetricsResponse) String() string {
 func (*GetBasestationMetricsResponse) ProtoMessage() {}
 
 func (x *GetBasestationMetricsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[15]
+	mi := &file_api_basestation_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1322,7 +1589,7 @@ func (x *GetBasestationMetricsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBasestationMetricsResponse.ProtoReflect.Descriptor instead.
 func (*GetBasestationMetricsResponse) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{15}
+	return file_api_basestation_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GetBasestationMetricsResponse) GetUptime() *common.Metric {
@@ -1384,7 +1651,7 @@ type StreamBasestationFramesRequest struct {
 
 func (x *StreamBasestationFramesRequest) Reset() {
 	*x = StreamBasestationFramesRequest{}
-	mi := &file_api_basestation_proto_msgTypes[16]
+	mi := &file_api_basestation_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1396,7 +1663,7 @@ func (x *StreamBasestationFramesRequest) String() string {
 func (*StreamBasestationFramesRequest) ProtoMessage() {}
 
 func (x *StreamBasestationFramesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[16]
+	mi := &file_api_basestation_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1409,7 +1676,7 @@ func (x *StreamBasestationFramesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamBasestationFramesRequest.ProtoReflect.Descriptor instead.
 func (*StreamBasestationFramesRequest) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{16}
+	return file_api_basestation_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *StreamBasestationFramesRequest) GetId() string {
@@ -1460,6 +1727,20 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\f_descriptionB\v\n" +
 	"\t_locationB\v\n" +
 	"\t_metadataB\x0f\n" +
+	"\r_last_seen_at\"k\n" +
+	"\x14BasestationLocations\x12\x1b\n" +
+	"\ttenant_id\x18\x01 \x01(\tR\btenantId\x126\n" +
+	"\tlocations\x18\x02 \x03(\v2\x18.api.BasestationLocationR\tlocations\"\xa6\x02\n" +
+	"\x13BasestationLocation\x12%\n" +
+	"\x0ebasestation_id\x18\x02 \x01(\tR\rbasestationId\x12\x10\n" +
+	"\x03eui\x18\x03 \x01(\tR\x03eui\x12\x12\n" +
+	"\x04name\x18\x04 \x01(\tR\x04name\x124\n" +
+	"\blocation\x18\x06 \x01(\v2\x13.common.GeoLocationH\x00R\blocation\x88\x01\x01\x12A\n" +
+	"\flast_seen_at\x18\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampH\x01R\n" +
+	"lastSeenAt\x88\x01\x01\x12+\n" +
+	"\x05state\x18\f \x01(\x0e2\x15.api.BasestationStateR\x05stateB\v\n" +
+	"\t_locationB\x0f\n" +
 	"\r_last_seen_at\"\xba\x01\n" +
 	"\x13BasestationMetadata\x12\x1b\n" +
 	"\x06vendor\x18\x01 \x01(\tH\x00R\x06vendor\x88\x01\x01\x12\x19\n" +
@@ -1540,7 +1821,15 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\n" +
 	"pagination\x18\x01 \x01(\v2\x0f.api.PaginationR\n" +
 	"pagination\x120\n" +
-	"\x06result\x18\x02 \x03(\v2\x18.api.BasestationListItemR\x06result\"=\n" +
+	"\x06result\x18\x02 \x03(\v2\x18.api.BasestationListItemR\x06result\"\x9c\x01\n" +
+	"\x19GetBasestationsMapRequest\x12\x1b\n" +
+	"\ttenant_id\x18\x01 \x03(\tR\btenantId\x12\x17\n" +
+	"\amin_lat\x18\x02 \x01(\x01R\x06minLat\x12\x17\n" +
+	"\amax_lat\x18\x03 \x01(\x01R\x06maxLat\x12\x17\n" +
+	"\amin_lon\x18\x04 \x01(\x01R\x06minLon\x12\x17\n" +
+	"\amax_lon\x18\x05 \x01(\x01R\x06maxLon\"[\n" +
+	"\x1aGetBasestationsMapResponse\x12=\n" +
+	"\fbasestations\x18\x01 \x03(\v2\x19.api.BasestationLocationsR\fbasestations\"=\n" +
 	"+GenerateBasestationClientCertificateRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\xb6\x01\n" +
 	",GenerateBasestationClientCertificateResponse\x12\x19\n" +
@@ -1571,13 +1860,14 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\n" +
 	"\x06ONLINE\x10\x01\x12\v\n" +
 	"\aOFFLINE\x10\x02\x12\f\n" +
-	"\bINACTIVE\x10\x032\x86\b\n" +
+	"\bINACTIVE\x10\x032\xfb\b\n" +
 	"\x12BasestationService\x12p\n" +
 	"\x11CreateBasestation\x12\x1d.api.CreateBasestationRequest\x1a\x1e.api.CreateBasestationResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/api/basestations\x12i\n" +
 	"\x0eGetBasestation\x12\x1a.api.GetBasestationRequest\x1a\x1b.api.GetBasestationResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/api/basestations/{id}\x12u\n" +
 	"\x11UpdateBasestation\x12\x1d.api.UpdateBasestationRequest\x1a\x1e.api.UpdateBasestationResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\x1a\x16/api/basestations/{id}\x12j\n" +
 	"\x11DeleteBasestation\x12\x1d.api.DeleteBasestationRequest\x1a\x16.google.protobuf.Empty\"\x1e\x82\xd3\xe4\x93\x02\x18*\x16/api/basestations/{id}\x12j\n" +
-	"\x10ListBasestations\x12\x1c.api.ListBasestationsRequest\x1a\x1d.api.ListBasestationsResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/basestations\x12\xb7\x01\n" +
+	"\x10ListBasestations\x12\x1c.api.ListBasestationsRequest\x1a\x1d.api.ListBasestationsResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/basestations\x12s\n" +
+	"\x11GetBasestationMap\x12\x1e.api.GetBasestationsMapRequest\x1a\x1f.api.GetBasestationsMapResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/api/basestations/map\x12\xb7\x01\n" +
 	"$GenerateBasestationClientCertificate\x120.api.GenerateBasestationClientCertificateRequest\x1a1.api.GenerateBasestationClientCertificateResponse\"*\x82\xd3\xe4\x93\x02$\"\"/api/basestations/{id}/certificate\x12\x86\x01\n" +
 	"\x15GetBasestationMetrics\x12!.api.GetBasestationMetricsRequest\x1a\".api.GetBasestationMetricsResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/basestations/{id}/metrics\x12\x80\x01\n" +
 	"\x17StreamBasestationFrames\x12#.api.StreamBasestationFramesRequest\x1a\x17.streaming.FrameLogItem\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/basestations/{id}/frames0\x01B\xb0\x01\n" +
@@ -1596,98 +1886,109 @@ func file_api_basestation_proto_rawDescGZIP() []byte {
 }
 
 var file_api_basestation_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_api_basestation_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_api_basestation_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
 var file_api_basestation_proto_goTypes = []any{
 	(BasestationState)(0),                                // 0: api.BasestationState
 	(ListBasestationsRequest_OrderBy)(0),                 // 1: api.ListBasestationsRequest.OrderBy
 	(*Basestation)(nil),                                  // 2: api.Basestation
 	(*BasestationListItem)(nil),                          // 3: api.BasestationListItem
-	(*BasestationMetadata)(nil),                          // 4: api.BasestationMetadata
-	(*CreateBasestationRequest)(nil),                     // 5: api.CreateBasestationRequest
-	(*CreateBasestationResponse)(nil),                    // 6: api.CreateBasestationResponse
-	(*GetBasestationRequest)(nil),                        // 7: api.GetBasestationRequest
-	(*GetBasestationResponse)(nil),                       // 8: api.GetBasestationResponse
-	(*UpdateBasestationRequest)(nil),                     // 9: api.UpdateBasestationRequest
-	(*UpdateBasestationResponse)(nil),                    // 10: api.UpdateBasestationResponse
-	(*DeleteBasestationRequest)(nil),                     // 11: api.DeleteBasestationRequest
-	(*ListBasestationsRequest)(nil),                      // 12: api.ListBasestationsRequest
-	(*ListBasestationsResponse)(nil),                     // 13: api.ListBasestationsResponse
-	(*GenerateBasestationClientCertificateRequest)(nil),  // 14: api.GenerateBasestationClientCertificateRequest
-	(*GenerateBasestationClientCertificateResponse)(nil), // 15: api.GenerateBasestationClientCertificateResponse
-	(*GetBasestationMetricsRequest)(nil),                 // 16: api.GetBasestationMetricsRequest
-	(*GetBasestationMetricsResponse)(nil),                // 17: api.GetBasestationMetricsResponse
-	(*StreamBasestationFramesRequest)(nil),               // 18: api.StreamBasestationFramesRequest
-	(*common.GeoLocation)(nil),                           // 19: common.GeoLocation
-	(*common.Tags)(nil),                                  // 20: common.Tags
-	(*timestamppb.Timestamp)(nil),                        // 21: google.protobuf.Timestamp
-	(*Paginator)(nil),                                    // 22: api.Paginator
-	(*Pagination)(nil),                                   // 23: api.Pagination
-	(common.Aggregation)(0),                              // 24: common.Aggregation
-	(*common.Metric)(nil),                                // 25: common.Metric
-	(*emptypb.Empty)(nil),                                // 26: google.protobuf.Empty
-	(*streaming.FrameLogItem)(nil),                       // 27: streaming.FrameLogItem
+	(*BasestationLocations)(nil),                         // 4: api.BasestationLocations
+	(*BasestationLocation)(nil),                          // 5: api.BasestationLocation
+	(*BasestationMetadata)(nil),                          // 6: api.BasestationMetadata
+	(*CreateBasestationRequest)(nil),                     // 7: api.CreateBasestationRequest
+	(*CreateBasestationResponse)(nil),                    // 8: api.CreateBasestationResponse
+	(*GetBasestationRequest)(nil),                        // 9: api.GetBasestationRequest
+	(*GetBasestationResponse)(nil),                       // 10: api.GetBasestationResponse
+	(*UpdateBasestationRequest)(nil),                     // 11: api.UpdateBasestationRequest
+	(*UpdateBasestationResponse)(nil),                    // 12: api.UpdateBasestationResponse
+	(*DeleteBasestationRequest)(nil),                     // 13: api.DeleteBasestationRequest
+	(*ListBasestationsRequest)(nil),                      // 14: api.ListBasestationsRequest
+	(*ListBasestationsResponse)(nil),                     // 15: api.ListBasestationsResponse
+	(*GetBasestationsMapRequest)(nil),                    // 16: api.GetBasestationsMapRequest
+	(*GetBasestationsMapResponse)(nil),                   // 17: api.GetBasestationsMapResponse
+	(*GenerateBasestationClientCertificateRequest)(nil),  // 18: api.GenerateBasestationClientCertificateRequest
+	(*GenerateBasestationClientCertificateResponse)(nil), // 19: api.GenerateBasestationClientCertificateResponse
+	(*GetBasestationMetricsRequest)(nil),                 // 20: api.GetBasestationMetricsRequest
+	(*GetBasestationMetricsResponse)(nil),                // 21: api.GetBasestationMetricsResponse
+	(*StreamBasestationFramesRequest)(nil),               // 22: api.StreamBasestationFramesRequest
+	(*common.GeoLocation)(nil),                           // 23: common.GeoLocation
+	(*common.Tags)(nil),                                  // 24: common.Tags
+	(*timestamppb.Timestamp)(nil),                        // 25: google.protobuf.Timestamp
+	(*Paginator)(nil),                                    // 26: api.Paginator
+	(*Pagination)(nil),                                   // 27: api.Pagination
+	(common.Aggregation)(0),                              // 28: common.Aggregation
+	(*common.Metric)(nil),                                // 29: common.Metric
+	(*emptypb.Empty)(nil),                                // 30: google.protobuf.Empty
+	(*streaming.FrameLogItem)(nil),                       // 31: streaming.FrameLogItem
 }
 var file_api_basestation_proto_depIdxs = []int32{
-	19, // 0: api.Basestation.location:type_name -> common.GeoLocation
-	4,  // 1: api.Basestation.metadata:type_name -> api.BasestationMetadata
-	20, // 2: api.Basestation.tags:type_name -> common.Tags
+	23, // 0: api.Basestation.location:type_name -> common.GeoLocation
+	6,  // 1: api.Basestation.metadata:type_name -> api.BasestationMetadata
+	24, // 2: api.Basestation.tags:type_name -> common.Tags
 	0,  // 3: api.Basestation.state:type_name -> api.BasestationState
-	19, // 4: api.BasestationListItem.location:type_name -> common.GeoLocation
-	4,  // 5: api.BasestationListItem.metadata:type_name -> api.BasestationMetadata
-	21, // 6: api.BasestationListItem.created_at:type_name -> google.protobuf.Timestamp
-	21, // 7: api.BasestationListItem.updated_at:type_name -> google.protobuf.Timestamp
-	21, // 8: api.BasestationListItem.last_seen_at:type_name -> google.protobuf.Timestamp
+	23, // 4: api.BasestationListItem.location:type_name -> common.GeoLocation
+	6,  // 5: api.BasestationListItem.metadata:type_name -> api.BasestationMetadata
+	25, // 6: api.BasestationListItem.created_at:type_name -> google.protobuf.Timestamp
+	25, // 7: api.BasestationListItem.updated_at:type_name -> google.protobuf.Timestamp
+	25, // 8: api.BasestationListItem.last_seen_at:type_name -> google.protobuf.Timestamp
 	0,  // 9: api.BasestationListItem.state:type_name -> api.BasestationState
-	19, // 10: api.CreateBasestationRequest.location:type_name -> common.GeoLocation
-	20, // 11: api.CreateBasestationRequest.tags:type_name -> common.Tags
-	2,  // 12: api.CreateBasestationResponse.basestation:type_name -> api.Basestation
-	21, // 13: api.CreateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
-	2,  // 14: api.GetBasestationResponse.basestation:type_name -> api.Basestation
-	21, // 15: api.GetBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
-	21, // 16: api.GetBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	21, // 17: api.GetBasestationResponse.last_seen_at:type_name -> google.protobuf.Timestamp
-	19, // 18: api.UpdateBasestationRequest.location:type_name -> common.GeoLocation
-	20, // 19: api.UpdateBasestationRequest.tags:type_name -> common.Tags
-	2,  // 20: api.UpdateBasestationResponse.basestation:type_name -> api.Basestation
-	21, // 21: api.UpdateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
-	21, // 22: api.UpdateBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	22, // 23: api.ListBasestationsRequest.paginator:type_name -> api.Paginator
-	20, // 24: api.ListBasestationsRequest.tags:type_name -> common.Tags
-	1,  // 25: api.ListBasestationsRequest.order_by:type_name -> api.ListBasestationsRequest.OrderBy
-	23, // 26: api.ListBasestationsResponse.pagination:type_name -> api.Pagination
-	3,  // 27: api.ListBasestationsResponse.result:type_name -> api.BasestationListItem
-	21, // 28: api.GenerateBasestationClientCertificateResponse.expires_at:type_name -> google.protobuf.Timestamp
-	21, // 29: api.GetBasestationMetricsRequest.start:type_name -> google.protobuf.Timestamp
-	21, // 30: api.GetBasestationMetricsRequest.end:type_name -> google.protobuf.Timestamp
-	24, // 31: api.GetBasestationMetricsRequest.aggregation:type_name -> common.Aggregation
-	25, // 32: api.GetBasestationMetricsResponse.uptime:type_name -> common.Metric
-	25, // 33: api.GetBasestationMetricsResponse.cpu:type_name -> common.Metric
-	25, // 34: api.GetBasestationMetricsResponse.memory:type_name -> common.Metric
-	25, // 35: api.GetBasestationMetricsResponse.temp:type_name -> common.Metric
-	25, // 36: api.GetBasestationMetricsResponse.duty_cycle:type_name -> common.Metric
-	25, // 37: api.GetBasestationMetricsResponse.rx_count:type_name -> common.Metric
-	25, // 38: api.GetBasestationMetricsResponse.rx_vm_count:type_name -> common.Metric
-	5,  // 39: api.BasestationService.CreateBasestation:input_type -> api.CreateBasestationRequest
-	7,  // 40: api.BasestationService.GetBasestation:input_type -> api.GetBasestationRequest
-	9,  // 41: api.BasestationService.UpdateBasestation:input_type -> api.UpdateBasestationRequest
-	11, // 42: api.BasestationService.DeleteBasestation:input_type -> api.DeleteBasestationRequest
-	12, // 43: api.BasestationService.ListBasestations:input_type -> api.ListBasestationsRequest
-	14, // 44: api.BasestationService.GenerateBasestationClientCertificate:input_type -> api.GenerateBasestationClientCertificateRequest
-	16, // 45: api.BasestationService.GetBasestationMetrics:input_type -> api.GetBasestationMetricsRequest
-	18, // 46: api.BasestationService.StreamBasestationFrames:input_type -> api.StreamBasestationFramesRequest
-	6,  // 47: api.BasestationService.CreateBasestation:output_type -> api.CreateBasestationResponse
-	8,  // 48: api.BasestationService.GetBasestation:output_type -> api.GetBasestationResponse
-	10, // 49: api.BasestationService.UpdateBasestation:output_type -> api.UpdateBasestationResponse
-	26, // 50: api.BasestationService.DeleteBasestation:output_type -> google.protobuf.Empty
-	13, // 51: api.BasestationService.ListBasestations:output_type -> api.ListBasestationsResponse
-	15, // 52: api.BasestationService.GenerateBasestationClientCertificate:output_type -> api.GenerateBasestationClientCertificateResponse
-	17, // 53: api.BasestationService.GetBasestationMetrics:output_type -> api.GetBasestationMetricsResponse
-	27, // 54: api.BasestationService.StreamBasestationFrames:output_type -> streaming.FrameLogItem
-	47, // [47:55] is the sub-list for method output_type
-	39, // [39:47] is the sub-list for method input_type
-	39, // [39:39] is the sub-list for extension type_name
-	39, // [39:39] is the sub-list for extension extendee
-	0,  // [0:39] is the sub-list for field type_name
+	5,  // 10: api.BasestationLocations.locations:type_name -> api.BasestationLocation
+	23, // 11: api.BasestationLocation.location:type_name -> common.GeoLocation
+	25, // 12: api.BasestationLocation.last_seen_at:type_name -> google.protobuf.Timestamp
+	0,  // 13: api.BasestationLocation.state:type_name -> api.BasestationState
+	23, // 14: api.CreateBasestationRequest.location:type_name -> common.GeoLocation
+	24, // 15: api.CreateBasestationRequest.tags:type_name -> common.Tags
+	2,  // 16: api.CreateBasestationResponse.basestation:type_name -> api.Basestation
+	25, // 17: api.CreateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
+	2,  // 18: api.GetBasestationResponse.basestation:type_name -> api.Basestation
+	25, // 19: api.GetBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
+	25, // 20: api.GetBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	25, // 21: api.GetBasestationResponse.last_seen_at:type_name -> google.protobuf.Timestamp
+	23, // 22: api.UpdateBasestationRequest.location:type_name -> common.GeoLocation
+	24, // 23: api.UpdateBasestationRequest.tags:type_name -> common.Tags
+	2,  // 24: api.UpdateBasestationResponse.basestation:type_name -> api.Basestation
+	25, // 25: api.UpdateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
+	25, // 26: api.UpdateBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	26, // 27: api.ListBasestationsRequest.paginator:type_name -> api.Paginator
+	24, // 28: api.ListBasestationsRequest.tags:type_name -> common.Tags
+	1,  // 29: api.ListBasestationsRequest.order_by:type_name -> api.ListBasestationsRequest.OrderBy
+	27, // 30: api.ListBasestationsResponse.pagination:type_name -> api.Pagination
+	3,  // 31: api.ListBasestationsResponse.result:type_name -> api.BasestationListItem
+	4,  // 32: api.GetBasestationsMapResponse.basestations:type_name -> api.BasestationLocations
+	25, // 33: api.GenerateBasestationClientCertificateResponse.expires_at:type_name -> google.protobuf.Timestamp
+	25, // 34: api.GetBasestationMetricsRequest.start:type_name -> google.protobuf.Timestamp
+	25, // 35: api.GetBasestationMetricsRequest.end:type_name -> google.protobuf.Timestamp
+	28, // 36: api.GetBasestationMetricsRequest.aggregation:type_name -> common.Aggregation
+	29, // 37: api.GetBasestationMetricsResponse.uptime:type_name -> common.Metric
+	29, // 38: api.GetBasestationMetricsResponse.cpu:type_name -> common.Metric
+	29, // 39: api.GetBasestationMetricsResponse.memory:type_name -> common.Metric
+	29, // 40: api.GetBasestationMetricsResponse.temp:type_name -> common.Metric
+	29, // 41: api.GetBasestationMetricsResponse.duty_cycle:type_name -> common.Metric
+	29, // 42: api.GetBasestationMetricsResponse.rx_count:type_name -> common.Metric
+	29, // 43: api.GetBasestationMetricsResponse.rx_vm_count:type_name -> common.Metric
+	7,  // 44: api.BasestationService.CreateBasestation:input_type -> api.CreateBasestationRequest
+	9,  // 45: api.BasestationService.GetBasestation:input_type -> api.GetBasestationRequest
+	11, // 46: api.BasestationService.UpdateBasestation:input_type -> api.UpdateBasestationRequest
+	13, // 47: api.BasestationService.DeleteBasestation:input_type -> api.DeleteBasestationRequest
+	14, // 48: api.BasestationService.ListBasestations:input_type -> api.ListBasestationsRequest
+	16, // 49: api.BasestationService.GetBasestationMap:input_type -> api.GetBasestationsMapRequest
+	18, // 50: api.BasestationService.GenerateBasestationClientCertificate:input_type -> api.GenerateBasestationClientCertificateRequest
+	20, // 51: api.BasestationService.GetBasestationMetrics:input_type -> api.GetBasestationMetricsRequest
+	22, // 52: api.BasestationService.StreamBasestationFrames:input_type -> api.StreamBasestationFramesRequest
+	8,  // 53: api.BasestationService.CreateBasestation:output_type -> api.CreateBasestationResponse
+	10, // 54: api.BasestationService.GetBasestation:output_type -> api.GetBasestationResponse
+	12, // 55: api.BasestationService.UpdateBasestation:output_type -> api.UpdateBasestationResponse
+	30, // 56: api.BasestationService.DeleteBasestation:output_type -> google.protobuf.Empty
+	15, // 57: api.BasestationService.ListBasestations:output_type -> api.ListBasestationsResponse
+	17, // 58: api.BasestationService.GetBasestationMap:output_type -> api.GetBasestationsMapResponse
+	19, // 59: api.BasestationService.GenerateBasestationClientCertificate:output_type -> api.GenerateBasestationClientCertificateResponse
+	21, // 60: api.BasestationService.GetBasestationMetrics:output_type -> api.GetBasestationMetricsResponse
+	31, // 61: api.BasestationService.StreamBasestationFrames:output_type -> streaming.FrameLogItem
+	53, // [53:62] is the sub-list for method output_type
+	44, // [44:53] is the sub-list for method input_type
+	44, // [44:44] is the sub-list for extension type_name
+	44, // [44:44] is the sub-list for extension extendee
+	0,  // [0:44] is the sub-list for field type_name
 }
 
 func init() { file_api_basestation_proto_init() }
@@ -1698,18 +1999,19 @@ func file_api_basestation_proto_init() {
 	file_api_common_proto_init()
 	file_api_basestation_proto_msgTypes[0].OneofWrappers = []any{}
 	file_api_basestation_proto_msgTypes[1].OneofWrappers = []any{}
-	file_api_basestation_proto_msgTypes[2].OneofWrappers = []any{}
 	file_api_basestation_proto_msgTypes[3].OneofWrappers = []any{}
-	file_api_basestation_proto_msgTypes[6].OneofWrappers = []any{}
-	file_api_basestation_proto_msgTypes[7].OneofWrappers = []any{}
-	file_api_basestation_proto_msgTypes[10].OneofWrappers = []any{}
+	file_api_basestation_proto_msgTypes[4].OneofWrappers = []any{}
+	file_api_basestation_proto_msgTypes[5].OneofWrappers = []any{}
+	file_api_basestation_proto_msgTypes[8].OneofWrappers = []any{}
+	file_api_basestation_proto_msgTypes[9].OneofWrappers = []any{}
+	file_api_basestation_proto_msgTypes[12].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_basestation_proto_rawDesc), len(file_api_basestation_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   17,
+			NumMessages:   21,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

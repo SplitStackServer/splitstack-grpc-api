@@ -75,6 +75,14 @@ class BasestationServiceClient extends $grpc.Client {
     return $createUnaryCall(_$listBasestations, request, options: options);
   }
 
+  /// Get the list of basestations.
+  $grpc.ResponseFuture<$0.GetBasestationsMapResponse> getBasestationMap(
+    $0.GetBasestationsMapRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$getBasestationMap, request, options: options);
+  }
+
   /// Generate client-certificate for the gateway.
   $grpc.ResponseFuture<$0.GenerateBasestationClientCertificateResponse>
       generateBasestationClientCertificate(
@@ -130,6 +138,11 @@ class BasestationServiceClient extends $grpc.Client {
       '/api.BasestationService/ListBasestations',
       ($0.ListBasestationsRequest value) => value.writeToBuffer(),
       $0.ListBasestationsResponse.fromBuffer);
+  static final _$getBasestationMap = $grpc.ClientMethod<
+          $0.GetBasestationsMapRequest, $0.GetBasestationsMapResponse>(
+      '/api.BasestationService/GetBasestationMap',
+      ($0.GetBasestationsMapRequest value) => value.writeToBuffer(),
+      $0.GetBasestationsMapResponse.fromBuffer);
   static final _$generateBasestationClientCertificate = $grpc.ClientMethod<
           $0.GenerateBasestationClientCertificateRequest,
           $0.GenerateBasestationClientCertificateResponse>(
@@ -198,6 +211,15 @@ abstract class BasestationServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.ListBasestationsRequest.fromBuffer(value),
         ($0.ListBasestationsResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.GetBasestationsMapRequest,
+            $0.GetBasestationsMapResponse>(
+        'GetBasestationMap',
+        getBasestationMap_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.GetBasestationsMapRequest.fromBuffer(value),
+        ($0.GetBasestationsMapResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<
             $0.GenerateBasestationClientCertificateRequest,
             $0.GenerateBasestationClientCertificateResponse>(
@@ -272,6 +294,15 @@ abstract class BasestationServiceBase extends $grpc.Service {
 
   $async.Future<$0.ListBasestationsResponse> listBasestations(
       $grpc.ServiceCall call, $0.ListBasestationsRequest request);
+
+  $async.Future<$0.GetBasestationsMapResponse> getBasestationMap_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.GetBasestationsMapRequest> $request) async {
+    return getBasestationMap($call, await $request);
+  }
+
+  $async.Future<$0.GetBasestationsMapResponse> getBasestationMap(
+      $grpc.ServiceCall call, $0.GetBasestationsMapRequest request);
 
   $async.Future<$0.GenerateBasestationClientCertificateResponse>
       generateBasestationClientCertificate_Pre(

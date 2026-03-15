@@ -58,6 +58,14 @@ service BasestationService {
         };
     }
 
+    // Get the list of basestations.
+    rpc GetBasestationMap(GetBasestationsMapRequest) returns (GetBasestationsMapResponse) {
+        option(google.api.http) = {
+            get: "/api/basestations/map"
+        };
+    }
+
+
     // Generate client-certificate for the gateway.
     rpc GenerateBasestationClientCertificate(GenerateBasestationClientCertificateRequest) returns (GenerateBasestationClientCertificateResponse) {
         option(google.api.http) = {
@@ -163,6 +171,33 @@ message BasestationListItem {
 
     // Basestation state.
     BasestationState state = 12;
+}
+
+message BasestationLocations {
+    // Tenant ID.
+    string tenant_id = 1;
+    // Basestation locations.
+    repeated BasestationLocation locations = 2;
+}
+
+message BasestationLocation {
+    // Basestation ID (UUID).
+    string basestation_id = 2;
+
+    // Basestation EUI64.
+    string eui = 3;
+
+    // Name.
+    string name = 4;
+
+    // Location.
+    optional common.GeoLocation location = 5;
+
+    // Last seen at timestamp.
+    optional google.protobuf.Timestamp last_seen_at = 6;
+
+    // Basestation state.
+    BasestationState state = 7;
 }
 
 message BasestationMetadata {
@@ -305,6 +340,25 @@ message ListBasestationsResponse {
     // Result-set.
     repeated BasestationListItem result = 2;
 }
+
+
+message GetBasestationsMapRequest {
+    // Tenant IDs (UUID) to filter basestations on.
+    // To list all basestations as a global admin user, this field can be left blank.
+    repeated string tenant_id = 1;
+
+    double min_lat = 2;
+    double max_lat = 3;
+    double min_lon = 4;
+    double max_lon = 5;
+}
+
+message GetBasestationsMapResponse {
+    // Basestation objects.
+    repeated BasestationLocations locations = 1;
+}
+
+
 
 message GenerateBasestationClientCertificateRequest {
     // Basestation ID (UUID).
