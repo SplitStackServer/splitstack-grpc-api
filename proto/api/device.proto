@@ -89,13 +89,13 @@ service DeviceService {
 
 enum DeviceState {
   // Device has never been seen.
-  NEVER_SEEN = 0;
+  DEV_NEVER_SEEN = 0;
 
   // Device is active.
-  ACTIVE = 1;
+  DEV_ACTIVE = 1;
 
   // Device is inactive.
-  INACTIVE = 2;
+  DEV_INACTIVE = 2;
 }
 
 message Device {

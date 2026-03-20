@@ -92,16 +92,16 @@ service BasestationService {
 
 enum BasestationState {
     // The gateway has never sent any data.
-    NEVER_SEEN = 0;
+    BS_NEVER_SEEN = 0;
 
     // Online.
-    ONLINE = 1;
+    BS_ONLINE = 1;
 
     // Offline.
-    OFFLINE = 2;
+    BS_OFFLINE = 2;
 
     // Inactive.
-    INACTIVE = 3;
+    BS_INACTIVE = 3;
 
 }
 
