@@ -75,6 +75,14 @@ class DeviceServiceClient extends $grpc.Client {
     return $createUnaryCall(_$listDevices, request, options: options);
   }
 
+  /// Get the list of devices for map rendering.
+  $grpc.ResponseFuture<$0.GetDevicesMapResponse> getDeviceMap(
+    $0.GetDevicesMapRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$getDeviceMap, request, options: options);
+  }
+
   /// GetMetrics returns the device metrics.
   /// Note that this requires a device-profile with codec and measurements
   /// configured.
@@ -122,6 +130,11 @@ class DeviceServiceClient extends $grpc.Client {
           '/api.DeviceService/ListDevices',
           ($0.ListDevicesRequest value) => value.writeToBuffer(),
           $0.ListDevicesResponse.fromBuffer);
+  static final _$getDeviceMap =
+      $grpc.ClientMethod<$0.GetDevicesMapRequest, $0.GetDevicesMapResponse>(
+          '/api.DeviceService/GetDeviceMap',
+          ($0.GetDevicesMapRequest value) => value.writeToBuffer(),
+          $0.GetDevicesMapResponse.fromBuffer);
   static final _$getDeviceMetrics = $grpc.ClientMethod<
           $0.GetDeviceMetricsRequest, $0.GetDeviceMetricsResponse>(
       '/api.DeviceService/GetDeviceMetrics',
@@ -181,6 +194,15 @@ abstract class DeviceServiceBase extends $grpc.Service {
             ($core.List<$core.int> value) =>
                 $0.ListDevicesRequest.fromBuffer(value),
             ($0.ListDevicesResponse value) => value.writeToBuffer()));
+    $addMethod(
+        $grpc.ServiceMethod<$0.GetDevicesMapRequest, $0.GetDevicesMapResponse>(
+            'GetDeviceMap',
+            getDeviceMap_Pre,
+            false,
+            false,
+            ($core.List<$core.int> value) =>
+                $0.GetDevicesMapRequest.fromBuffer(value),
+            ($0.GetDevicesMapResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.GetDeviceMetricsRequest,
             $0.GetDeviceMetricsResponse>(
         'GetDeviceMetrics',
@@ -242,6 +264,15 @@ abstract class DeviceServiceBase extends $grpc.Service {
 
   $async.Future<$0.ListDevicesResponse> listDevices(
       $grpc.ServiceCall call, $0.ListDevicesRequest request);
+
+  $async.Future<$0.GetDevicesMapResponse> getDeviceMap_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.GetDevicesMapRequest> $request) async {
+    return getDeviceMap($call, await $request);
+  }
+
+  $async.Future<$0.GetDevicesMapResponse> getDeviceMap(
+      $grpc.ServiceCall call, $0.GetDevicesMapRequest request);
 
   $async.Future<$0.GetDeviceMetricsResponse> getDeviceMetrics_Pre(
       $grpc.ServiceCall $call,

@@ -602,7 +602,7 @@ func (MacPayloadFormat) EnumDescriptor() ([]byte, []int) {
 	return file_common_common_proto_rawDescGZIP(), []int{9}
 }
 
-type GeoLocation struct {
+type Location struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Latitude in degrees. Zero value is considered to be unset.
 	Lat float64 `protobuf:"fixed64,1,opt,name=lat,proto3" json:"lat,omitempty"`
@@ -614,9 +614,70 @@ type GeoLocation struct {
 	sizeCache     protoimpl.SizeCache
 }
 
+func (x *Location) Reset() {
+	*x = Location{}
+	mi := &file_common_common_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Location) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Location) ProtoMessage() {}
+
+func (x *Location) ProtoReflect() protoreflect.Message {
+	mi := &file_common_common_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Location.ProtoReflect.Descriptor instead.
+func (*Location) Descriptor() ([]byte, []int) {
+	return file_common_common_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Location) GetLat() float64 {
+	if x != nil {
+		return x.Lat
+	}
+	return 0
+}
+
+func (x *Location) GetLon() float64 {
+	if x != nil {
+		return x.Lon
+	}
+	return 0
+}
+
+func (x *Location) GetAlt() float64 {
+	if x != nil {
+		return x.Alt
+	}
+	return 0
+}
+
+type GeoLocation struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Latitude in degrees. Zero value is considered to be unset.
+	Location *Location `protobuf:"bytes,1,opt,name=location,proto3" json:"location,omitempty"`
+	// Geohash of the location. Empty string is considered to be unset.
+	Geohash       string `protobuf:"bytes,2,opt,name=geohash,proto3" json:"geohash,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
 func (x *GeoLocation) Reset() {
 	*x = GeoLocation{}
-	mi := &file_common_common_proto_msgTypes[0]
+	mi := &file_common_common_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -628,7 +689,7 @@ func (x *GeoLocation) String() string {
 func (*GeoLocation) ProtoMessage() {}
 
 func (x *GeoLocation) ProtoReflect() protoreflect.Message {
-	mi := &file_common_common_proto_msgTypes[0]
+	mi := &file_common_common_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -641,26 +702,91 @@ func (x *GeoLocation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GeoLocation.ProtoReflect.Descriptor instead.
 func (*GeoLocation) Descriptor() ([]byte, []int) {
-	return file_common_common_proto_rawDescGZIP(), []int{0}
+	return file_common_common_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GeoLocation) GetLat() float64 {
+func (x *GeoLocation) GetLocation() *Location {
 	if x != nil {
-		return x.Lat
+		return x.Location
+	}
+	return nil
+}
+
+func (x *GeoLocation) GetGeohash() string {
+	if x != nil {
+		return x.Geohash
+	}
+	return ""
+}
+
+type LocationBoundary struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Minimum latitude of the map viewport in degrees.
+	MinLat float64 `protobuf:"fixed64,2,opt,name=min_lat,json=minLat,proto3" json:"min_lat,omitempty"`
+	// Maximum latitude of the map viewport in degrees.
+	MaxLat float64 `protobuf:"fixed64,3,opt,name=max_lat,json=maxLat,proto3" json:"max_lat,omitempty"`
+	// Minimum longitude of the map viewport in degrees.
+	MinLon float64 `protobuf:"fixed64,4,opt,name=min_lon,json=minLon,proto3" json:"min_lon,omitempty"`
+	// Maximum longitude of the map viewport in degrees.
+	MaxLon        float64 `protobuf:"fixed64,5,opt,name=max_lon,json=maxLon,proto3" json:"max_lon,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LocationBoundary) Reset() {
+	*x = LocationBoundary{}
+	mi := &file_common_common_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LocationBoundary) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LocationBoundary) ProtoMessage() {}
+
+func (x *LocationBoundary) ProtoReflect() protoreflect.Message {
+	mi := &file_common_common_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LocationBoundary.ProtoReflect.Descriptor instead.
+func (*LocationBoundary) Descriptor() ([]byte, []int) {
+	return file_common_common_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *LocationBoundary) GetMinLat() float64 {
+	if x != nil {
+		return x.MinLat
 	}
 	return 0
 }
 
-func (x *GeoLocation) GetLon() float64 {
+func (x *LocationBoundary) GetMaxLat() float64 {
 	if x != nil {
-		return x.Lon
+		return x.MaxLat
 	}
 	return 0
 }
 
-func (x *GeoLocation) GetAlt() float64 {
+func (x *LocationBoundary) GetMinLon() float64 {
 	if x != nil {
-		return x.Alt
+		return x.MinLon
+	}
+	return 0
+}
+
+func (x *LocationBoundary) GetMaxLon() float64 {
+	if x != nil {
+		return x.MaxLon
 	}
 	return 0
 }
@@ -681,7 +807,7 @@ type MbusHeader struct {
 
 func (x *MbusHeader) Reset() {
 	*x = MbusHeader{}
-	mi := &file_common_common_proto_msgTypes[1]
+	mi := &file_common_common_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -693,7 +819,7 @@ func (x *MbusHeader) String() string {
 func (*MbusHeader) ProtoMessage() {}
 
 func (x *MbusHeader) ProtoReflect() protoreflect.Message {
-	mi := &file_common_common_proto_msgTypes[1]
+	mi := &file_common_common_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -706,7 +832,7 @@ func (x *MbusHeader) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MbusHeader.ProtoReflect.Descriptor instead.
 func (*MbusHeader) Descriptor() ([]byte, []int) {
-	return file_common_common_proto_rawDescGZIP(), []int{1}
+	return file_common_common_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *MbusHeader) GetSerialNo() string {
@@ -750,7 +876,7 @@ type Tags struct {
 
 func (x *Tags) Reset() {
 	*x = Tags{}
-	mi := &file_common_common_proto_msgTypes[2]
+	mi := &file_common_common_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -762,7 +888,7 @@ func (x *Tags) String() string {
 func (*Tags) ProtoMessage() {}
 
 func (x *Tags) ProtoReflect() protoreflect.Message {
-	mi := &file_common_common_proto_msgTypes[2]
+	mi := &file_common_common_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -775,7 +901,7 @@ func (x *Tags) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Tags.ProtoReflect.Descriptor instead.
 func (*Tags) Descriptor() ([]byte, []int) {
-	return file_common_common_proto_rawDescGZIP(), []int{2}
+	return file_common_common_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Tags) GetFields() map[string]string {
@@ -789,11 +915,19 @@ var File_common_common_proto protoreflect.FileDescriptor
 
 const file_common_common_proto_rawDesc = "" +
 	"\n" +
-	"\x13common/common.proto\x12\x06common\"C\n" +
-	"\vGeoLocation\x12\x10\n" +
+	"\x13common/common.proto\x12\x06common\"@\n" +
+	"\bLocation\x12\x10\n" +
 	"\x03lat\x18\x01 \x01(\x01R\x03lat\x12\x10\n" +
 	"\x03lon\x18\x02 \x01(\x01R\x03lon\x12\x10\n" +
-	"\x03alt\x18\x03 \x01(\x01R\x03alt\"\x84\x01\n" +
+	"\x03alt\x18\x03 \x01(\x01R\x03alt\"U\n" +
+	"\vGeoLocation\x12,\n" +
+	"\blocation\x18\x01 \x01(\v2\x10.common.LocationR\blocation\x12\x18\n" +
+	"\ageohash\x18\x02 \x01(\tR\ageohash\"v\n" +
+	"\x10LocationBoundary\x12\x17\n" +
+	"\amin_lat\x18\x02 \x01(\x01R\x06minLat\x12\x17\n" +
+	"\amax_lat\x18\x03 \x01(\x01R\x06maxLat\x12\x17\n" +
+	"\amin_lon\x18\x04 \x01(\x01R\x06minLon\x12\x17\n" +
+	"\amax_lon\x18\x05 \x01(\x01R\x06maxLon\"\x84\x01\n" +
 	"\n" +
 	"MbusHeader\x12\x1a\n" +
 	"\bserialNo\x18\x01 \x01(\tR\bserialNo\x12\x1e\n" +
@@ -884,7 +1018,7 @@ func file_common_common_proto_rawDescGZIP() []byte {
 }
 
 var file_common_common_proto_enumTypes = make([]protoimpl.EnumInfo, 10)
-var file_common_common_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_common_common_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_common_common_proto_goTypes = []any{
 	(Region)(0),                         // 0: common.Region
 	(TsUnbMode)(0),                      // 1: common.TsUnbMode
@@ -896,18 +1030,21 @@ var file_common_common_proto_goTypes = []any{
 	(DeviceClass)(0),                    // 7: common.DeviceClass
 	(VariableMacType)(0),                // 8: common.VariableMacType
 	(MacPayloadFormat)(0),               // 9: common.MacPayloadFormat
-	(*GeoLocation)(nil),                 // 10: common.GeoLocation
-	(*MbusHeader)(nil),                  // 11: common.MbusHeader
-	(*Tags)(nil),                        // 12: common.Tags
-	nil,                                 // 13: common.Tags.FieldsEntry
+	(*Location)(nil),                    // 10: common.Location
+	(*GeoLocation)(nil),                 // 11: common.GeoLocation
+	(*LocationBoundary)(nil),            // 12: common.LocationBoundary
+	(*MbusHeader)(nil),                  // 13: common.MbusHeader
+	(*Tags)(nil),                        // 14: common.Tags
+	nil,                                 // 15: common.Tags.FieldsEntry
 }
 var file_common_common_proto_depIdxs = []int32{
-	13, // 0: common.Tags.fields:type_name -> common.Tags.FieldsEntry
-	1,  // [1:1] is the sub-list for method output_type
-	1,  // [1:1] is the sub-list for method input_type
-	1,  // [1:1] is the sub-list for extension type_name
-	1,  // [1:1] is the sub-list for extension extendee
-	0,  // [0:1] is the sub-list for field type_name
+	10, // 0: common.GeoLocation.location:type_name -> common.Location
+	15, // 1: common.Tags.fields:type_name -> common.Tags.FieldsEntry
+	2,  // [2:2] is the sub-list for method output_type
+	2,  // [2:2] is the sub-list for method input_type
+	2,  // [2:2] is the sub-list for extension type_name
+	2,  // [2:2] is the sub-list for extension extendee
+	0,  // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_common_common_proto_init() }
@@ -921,7 +1058,7 @@ func file_common_common_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_common_proto_rawDesc), len(file_common_common_proto_rawDesc)),
 			NumEnums:      10,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

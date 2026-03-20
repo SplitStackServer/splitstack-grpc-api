@@ -187,9 +187,9 @@ final $typed_data.Uint8List macPayloadFormatDescriptor = $convert.base64Decode(
     'ChBNYWNQYXlsb2FkRm9ybWF0EgsKB0RFRkFVTFQQABIICgRNQlVTEAESDAoITUJVU19BUEwQAh'
     'ILCgdJT19MSU5LEAMSDQoJTUJVU19NQkFMEAQSGQoVTUFOVUZBQ1RVUkVSX1NQRUNJRklDEAU=');
 
-@$core.Deprecated('Use geoLocationDescriptor instead')
-const GeoLocation$json = {
-  '1': 'GeoLocation',
+@$core.Deprecated('Use locationDescriptor instead')
+const Location$json = {
+  '1': 'Location',
   '2': [
     {'1': 'lat', '3': 1, '4': 1, '5': 1, '10': 'lat'},
     {'1': 'lon', '3': 2, '4': 1, '5': 1, '10': 'lon'},
@@ -197,10 +197,48 @@ const GeoLocation$json = {
   ],
 };
 
+/// Descriptor for `Location`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List locationDescriptor = $convert.base64Decode(
+    'CghMb2NhdGlvbhIQCgNsYXQYASABKAFSA2xhdBIQCgNsb24YAiABKAFSA2xvbhIQCgNhbHQYAy'
+    'ABKAFSA2FsdA==');
+
+@$core.Deprecated('Use geoLocationDescriptor instead')
+const GeoLocation$json = {
+  '1': 'GeoLocation',
+  '2': [
+    {
+      '1': 'location',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.common.Location',
+      '10': 'location'
+    },
+    {'1': 'geohash', '3': 2, '4': 1, '5': 9, '10': 'geohash'},
+  ],
+};
+
 /// Descriptor for `GeoLocation`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List geoLocationDescriptor = $convert.base64Decode(
-    'CgtHZW9Mb2NhdGlvbhIQCgNsYXQYASABKAFSA2xhdBIQCgNsb24YAiABKAFSA2xvbhIQCgNhbH'
-    'QYAyABKAFSA2FsdA==');
+    'CgtHZW9Mb2NhdGlvbhIsCghsb2NhdGlvbhgBIAEoCzIQLmNvbW1vbi5Mb2NhdGlvblIIbG9jYX'
+    'Rpb24SGAoHZ2VvaGFzaBgCIAEoCVIHZ2VvaGFzaA==');
+
+@$core.Deprecated('Use locationBoundaryDescriptor instead')
+const LocationBoundary$json = {
+  '1': 'LocationBoundary',
+  '2': [
+    {'1': 'min_lat', '3': 2, '4': 1, '5': 1, '10': 'minLat'},
+    {'1': 'max_lat', '3': 3, '4': 1, '5': 1, '10': 'maxLat'},
+    {'1': 'min_lon', '3': 4, '4': 1, '5': 1, '10': 'minLon'},
+    {'1': 'max_lon', '3': 5, '4': 1, '5': 1, '10': 'maxLon'},
+  ],
+};
+
+/// Descriptor for `LocationBoundary`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List locationBoundaryDescriptor = $convert.base64Decode(
+    'ChBMb2NhdGlvbkJvdW5kYXJ5EhcKB21pbl9sYXQYAiABKAFSBm1pbkxhdBIXCgdtYXhfbGF0GA'
+    'MgASgBUgZtYXhMYXQSFwoHbWluX2xvbhgEIAEoAVIGbWluTG9uEhcKB21heF9sb24YBSABKAFS'
+    'Bm1heExvbg==');
 
 @$core.Deprecated('Use mbusHeaderDescriptor instead')
 const MbusHeader$json = {

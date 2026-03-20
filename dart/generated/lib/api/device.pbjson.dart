@@ -15,6 +15,21 @@ import 'dart:convert' as $convert;
 import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
 
+@$core.Deprecated('Use deviceStateDescriptor instead')
+const DeviceState$json = {
+  '1': 'DeviceState',
+  '2': [
+    {'1': 'NEVER_SEEN', '2': 0},
+    {'1': 'ACTIVE', '2': 1},
+    {'1': 'INACTIVE', '2': 2},
+  ],
+};
+
+/// Descriptor for `DeviceState`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List deviceStateDescriptor = $convert.base64Decode(
+    'CgtEZXZpY2VTdGF0ZRIOCgpORVZFUl9TRUVOEAASCgoGQUNUSVZFEAESDAoISU5BQ1RJVkUQAg'
+    '==');
+
 @$core.Deprecated('Use deviceDescriptor instead')
 const Device$json = {
   '1': 'Device',
@@ -46,7 +61,7 @@ const Device$json = {
       '3': 7,
       '4': 1,
       '5': 11,
-      '6': '.common.GeoLocation',
+      '6': '.common.Location',
       '9': 2,
       '10': 'location',
       '17': true
@@ -71,6 +86,14 @@ const Device$json = {
       '10': 'tags',
       '17': true
     },
+    {
+      '1': 'state',
+      '3': 11,
+      '4': 1,
+      '5': 14,
+      '6': '.api.DeviceState',
+      '10': 'state'
+    },
   ],
   '8': [
     {'1': '_device_profile_id'},
@@ -86,11 +109,11 @@ final $typed_data.Uint8List deviceDescriptor = $convert.base64Decode(
     'CgZEZXZpY2USDgoCaWQYASABKAlSAmlkEhAKA2V1aRgCIAEoCVIDZXVpEiUKDmFwcGxpY2F0aW'
     '9uX2lkGAMgASgJUg1hcHBsaWNhdGlvbklkEi8KEWRldmljZV9wcm9maWxlX2lkGAQgASgJSABS'
     'D2RldmljZVByb2ZpbGVJZIgBARISCgRuYW1lGAUgASgJUgRuYW1lEiUKC2Rlc2NyaXB0aW9uGA'
-    'YgASgJSAFSC2Rlc2NyaXB0aW9uiAEBEjQKCGxvY2F0aW9uGAcgASgLMhMuY29tbW9uLkdlb0xv'
-    'Y2F0aW9uSAJSCGxvY2F0aW9uiAEBEi8KCXZhcmlhYmxlcxgJIAEoCzIMLmNvbW1vbi5UYWdzSA'
-    'NSCXZhcmlhYmxlc4gBARIlCgR0YWdzGAogASgLMgwuY29tbW9uLlRhZ3NIBFIEdGFnc4gBAUIU'
-    'ChJfZGV2aWNlX3Byb2ZpbGVfaWRCDgoMX2Rlc2NyaXB0aW9uQgsKCV9sb2NhdGlvbkIMCgpfdm'
-    'FyaWFibGVzQgcKBV90YWdz');
+    'YgASgJSAFSC2Rlc2NyaXB0aW9uiAEBEjEKCGxvY2F0aW9uGAcgASgLMhAuY29tbW9uLkxvY2F0'
+    'aW9uSAJSCGxvY2F0aW9uiAEBEi8KCXZhcmlhYmxlcxgJIAEoCzIMLmNvbW1vbi5UYWdzSANSCX'
+    'ZhcmlhYmxlc4gBARIlCgR0YWdzGAogASgLMgwuY29tbW9uLlRhZ3NIBFIEdGFnc4gBARImCgVz'
+    'dGF0ZRgLIAEoDjIQLmFwaS5EZXZpY2VTdGF0ZVIFc3RhdGVCFAoSX2RldmljZV9wcm9maWxlX2'
+    'lkQg4KDF9kZXNjcmlwdGlvbkILCglfbG9jYXRpb25CDAoKX3ZhcmlhYmxlc0IHCgVfdGFncw==');
 
 @$core.Deprecated('Use deviceListItemDescriptor instead')
 const DeviceListItem$json = {
@@ -218,7 +241,7 @@ const CreateDeviceRequest$json = {
       '3': 7,
       '4': 1,
       '5': 11,
-      '6': '.common.GeoLocation',
+      '6': '.common.Location',
       '9': 3,
       '10': 'location',
       '17': true
@@ -259,11 +282,11 @@ final $typed_data.Uint8List createDeviceRequestDescriptor = $convert.base64Decod
     'ChNDcmVhdGVEZXZpY2VSZXF1ZXN0EhAKA2V1aRgCIAEoCVIDZXVpEiUKDmFwcGxpY2F0aW9uX2'
     'lkGAMgASgJUg1hcHBsaWNhdGlvbklkEi8KEWRldmljZV9wcm9maWxlX2lkGAQgASgJSABSD2Rl'
     'dmljZVByb2ZpbGVJZIgBARIXCgRuYW1lGAUgASgJSAFSBG5hbWWIAQESJQoLZGVzY3JpcHRpb2'
-    '4YBiABKAlIAlILZGVzY3JpcHRpb26IAQESNAoIbG9jYXRpb24YByABKAsyEy5jb21tb24uR2Vv'
-    'TG9jYXRpb25IA1IIbG9jYXRpb26IAQESLwoJdmFyaWFibGVzGAkgASgLMgwuY29tbW9uLlRhZ3'
-    'NIBFIJdmFyaWFibGVziAEBEiUKBHRhZ3MYCiABKAsyDC5jb21tb24uVGFnc0gFUgR0YWdziAEB'
-    'QhQKEl9kZXZpY2VfcHJvZmlsZV9pZEIHCgVfbmFtZUIOCgxfZGVzY3JpcHRpb25CCwoJX2xvY2'
-    'F0aW9uQgwKCl92YXJpYWJsZXNCBwoFX3RhZ3M=');
+    '4YBiABKAlIAlILZGVzY3JpcHRpb26IAQESMQoIbG9jYXRpb24YByABKAsyEC5jb21tb24uTG9j'
+    'YXRpb25IA1IIbG9jYXRpb26IAQESLwoJdmFyaWFibGVzGAkgASgLMgwuY29tbW9uLlRhZ3NIBF'
+    'IJdmFyaWFibGVziAEBEiUKBHRhZ3MYCiABKAsyDC5jb21tb24uVGFnc0gFUgR0YWdziAEBQhQK'
+    'El9kZXZpY2VfcHJvZmlsZV9pZEIHCgVfbmFtZUIOCgxfZGVzY3JpcHRpb25CCwoJX2xvY2F0aW'
+    '9uQgwKCl92YXJpYWJsZXNCBwoFX3RhZ3M=');
 
 @$core.Deprecated('Use createDeviceResponseDescriptor instead')
 const CreateDeviceResponse$json = {
@@ -391,7 +414,7 @@ const UpdateDeviceRequest$json = {
       '3': 7,
       '4': 1,
       '5': 11,
-      '6': '.common.GeoLocation',
+      '6': '.common.Location',
       '9': 4,
       '10': 'location',
       '17': true
@@ -433,11 +456,11 @@ final $typed_data.Uint8List updateDeviceRequestDescriptor = $convert.base64Decod
     'ChNVcGRhdGVEZXZpY2VSZXF1ZXN0Eg4KAmlkGAEgASgJUgJpZBIqCg5hcHBsaWNhdGlvbl9pZB'
     'gDIAEoCUgAUg1hcHBsaWNhdGlvbklkiAEBEi8KEWRldmljZV9wcm9maWxlX2lkGAQgASgJSAFS'
     'D2RldmljZVByb2ZpbGVJZIgBARIXCgRuYW1lGAUgASgJSAJSBG5hbWWIAQESJQoLZGVzY3JpcH'
-    'Rpb24YBiABKAlIA1ILZGVzY3JpcHRpb26IAQESNAoIbG9jYXRpb24YByABKAsyEy5jb21tb24u'
-    'R2VvTG9jYXRpb25IBFIIbG9jYXRpb26IAQESLwoJdmFyaWFibGVzGAkgASgLMgwuY29tbW9uLl'
-    'RhZ3NIBVIJdmFyaWFibGVziAEBEiUKBHRhZ3MYCiABKAsyDC5jb21tb24uVGFnc0gGUgR0YWdz'
-    'iAEBQhEKD19hcHBsaWNhdGlvbl9pZEIUChJfZGV2aWNlX3Byb2ZpbGVfaWRCBwoFX25hbWVCDg'
-    'oMX2Rlc2NyaXB0aW9uQgsKCV9sb2NhdGlvbkIMCgpfdmFyaWFibGVzQgcKBV90YWdz');
+    'Rpb24YBiABKAlIA1ILZGVzY3JpcHRpb26IAQESMQoIbG9jYXRpb24YByABKAsyEC5jb21tb24u'
+    'TG9jYXRpb25IBFIIbG9jYXRpb26IAQESLwoJdmFyaWFibGVzGAkgASgLMgwuY29tbW9uLlRhZ3'
+    'NIBVIJdmFyaWFibGVziAEBEiUKBHRhZ3MYCiABKAsyDC5jb21tb24uVGFnc0gGUgR0YWdziAEB'
+    'QhEKD19hcHBsaWNhdGlvbl9pZEIUChJfZGV2aWNlX3Byb2ZpbGVfaWRCBwoFX25hbWVCDgoMX2'
+    'Rlc2NyaXB0aW9uQgsKCV9sb2NhdGlvbkIMCgpfdmFyaWFibGVzQgcKBV90YWdz');
 
 @$core.Deprecated('Use updateDeviceResponseDescriptor instead')
 const UpdateDeviceResponse$json = {
@@ -619,6 +642,181 @@ final $typed_data.Uint8List listDevicesResponseDescriptor = $convert.base64Decod
     'ChNMaXN0RGV2aWNlc1Jlc3BvbnNlEi8KCnBhZ2luYXRpb24YASABKAsyDy5hcGkuUGFnaW5hdG'
     'lvblIKcGFnaW5hdGlvbhIrCgZyZXN1bHQYAiADKAsyEy5hcGkuRGV2aWNlTGlzdEl0ZW1SBnJl'
     'c3VsdA==');
+
+@$core.Deprecated('Use getDevicesMapRequestDescriptor instead')
+const GetDevicesMapRequest$json = {
+  '1': 'GetDevicesMapRequest',
+  '2': [
+    {'1': 'tenant_id', '3': 1, '4': 3, '5': 9, '10': 'tenantId'},
+    {'1': 'application_id', '3': 2, '4': 3, '5': 9, '10': 'applicationId'},
+    {
+      '1': 'bounds',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.common.LocationBoundary',
+      '9': 0,
+      '10': 'bounds',
+      '17': true
+    },
+    {
+      '1': 'geohash_prefix',
+      '3': 4,
+      '4': 1,
+      '5': 9,
+      '9': 1,
+      '10': 'geohashPrefix',
+      '17': true
+    },
+    {
+      '1': 'state_filter',
+      '3': 5,
+      '4': 3,
+      '5': 14,
+      '6': '.api.DeviceState',
+      '10': 'stateFilter'
+    },
+    {
+      '1': 'tags',
+      '3': 6,
+      '4': 1,
+      '5': 11,
+      '6': '.common.Tags',
+      '9': 2,
+      '10': 'tags',
+      '17': true
+    },
+  ],
+  '8': [
+    {'1': '_bounds'},
+    {'1': '_geohash_prefix'},
+    {'1': '_tags'},
+  ],
+};
+
+/// Descriptor for `GetDevicesMapRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List getDevicesMapRequestDescriptor = $convert.base64Decode(
+    'ChRHZXREZXZpY2VzTWFwUmVxdWVzdBIbCgl0ZW5hbnRfaWQYASADKAlSCHRlbmFudElkEiUKDm'
+    'FwcGxpY2F0aW9uX2lkGAIgAygJUg1hcHBsaWNhdGlvbklkEjUKBmJvdW5kcxgDIAEoCzIYLmNv'
+    'bW1vbi5Mb2NhdGlvbkJvdW5kYXJ5SABSBmJvdW5kc4gBARIqCg5nZW9oYXNoX3ByZWZpeBgEIA'
+    'EoCUgBUg1nZW9oYXNoUHJlZml4iAEBEjMKDHN0YXRlX2ZpbHRlchgFIAMoDjIQLmFwaS5EZXZp'
+    'Y2VTdGF0ZVILc3RhdGVGaWx0ZXISJQoEdGFncxgGIAEoCzIMLmNvbW1vbi5UYWdzSAJSBHRhZ3'
+    'OIAQFCCQoHX2JvdW5kc0IRCg9fZ2VvaGFzaF9wcmVmaXhCBwoFX3RhZ3M=');
+
+@$core.Deprecated('Use deviceLocationDescriptor instead')
+const DeviceLocation$json = {
+  '1': 'DeviceLocation',
+  '2': [
+    {'1': 'device_id', '3': 1, '4': 1, '5': 9, '10': 'deviceId'},
+    {'1': 'eui', '3': 2, '4': 1, '5': 9, '10': 'eui'},
+    {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
+    {
+      '1': 'location',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.common.GeoLocation',
+      '9': 0,
+      '10': 'location',
+      '17': true
+    },
+    {
+      '1': 'last_seen_at',
+      '3': 5,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.Timestamp',
+      '9': 1,
+      '10': 'lastSeenAt',
+      '17': true
+    },
+    {
+      '1': 'state',
+      '3': 6,
+      '4': 1,
+      '5': 14,
+      '6': '.api.DeviceState',
+      '10': 'state'
+    },
+  ],
+  '8': [
+    {'1': '_location'},
+    {'1': '_last_seen_at'},
+  ],
+};
+
+/// Descriptor for `DeviceLocation`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List deviceLocationDescriptor = $convert.base64Decode(
+    'Cg5EZXZpY2VMb2NhdGlvbhIbCglkZXZpY2VfaWQYASABKAlSCGRldmljZUlkEhAKA2V1aRgCIA'
+    'EoCVIDZXVpEhIKBG5hbWUYAyABKAlSBG5hbWUSNAoIbG9jYXRpb24YBCABKAsyEy5jb21tb24u'
+    'R2VvTG9jYXRpb25IAFIIbG9jYXRpb26IAQESQQoMbGFzdF9zZWVuX2F0GAUgASgLMhouZ29vZ2'
+    'xlLnByb3RvYnVmLlRpbWVzdGFtcEgBUgpsYXN0U2VlbkF0iAEBEiYKBXN0YXRlGAYgASgOMhAu'
+    'YXBpLkRldmljZVN0YXRlUgVzdGF0ZUILCglfbG9jYXRpb25CDwoNX2xhc3Rfc2Vlbl9hdA==');
+
+@$core.Deprecated('Use deviceLocationsByApplicationDescriptor instead')
+const DeviceLocationsByApplication$json = {
+  '1': 'DeviceLocationsByApplication',
+  '2': [
+    {'1': 'application_id', '3': 1, '4': 1, '5': 9, '10': 'applicationId'},
+    {
+      '1': 'locations',
+      '3': 2,
+      '4': 3,
+      '5': 11,
+      '6': '.api.DeviceLocation',
+      '10': 'locations'
+    },
+  ],
+};
+
+/// Descriptor for `DeviceLocationsByApplication`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List deviceLocationsByApplicationDescriptor =
+    $convert.base64Decode(
+        'ChxEZXZpY2VMb2NhdGlvbnNCeUFwcGxpY2F0aW9uEiUKDmFwcGxpY2F0aW9uX2lkGAEgASgJUg'
+        '1hcHBsaWNhdGlvbklkEjEKCWxvY2F0aW9ucxgCIAMoCzITLmFwaS5EZXZpY2VMb2NhdGlvblIJ'
+        'bG9jYXRpb25z');
+
+@$core.Deprecated('Use deviceLocationsByTenantDescriptor instead')
+const DeviceLocationsByTenant$json = {
+  '1': 'DeviceLocationsByTenant',
+  '2': [
+    {'1': 'tenant_id', '3': 1, '4': 1, '5': 9, '10': 'tenantId'},
+    {
+      '1': 'applications',
+      '3': 2,
+      '4': 3,
+      '5': 11,
+      '6': '.api.DeviceLocationsByApplication',
+      '10': 'applications'
+    },
+  ],
+};
+
+/// Descriptor for `DeviceLocationsByTenant`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List deviceLocationsByTenantDescriptor = $convert.base64Decode(
+    'ChdEZXZpY2VMb2NhdGlvbnNCeVRlbmFudBIbCgl0ZW5hbnRfaWQYASABKAlSCHRlbmFudElkEk'
+    'UKDGFwcGxpY2F0aW9ucxgCIAMoCzIhLmFwaS5EZXZpY2VMb2NhdGlvbnNCeUFwcGxpY2F0aW9u'
+    'UgxhcHBsaWNhdGlvbnM=');
+
+@$core.Deprecated('Use getDevicesMapResponseDescriptor instead')
+const GetDevicesMapResponse$json = {
+  '1': 'GetDevicesMapResponse',
+  '2': [
+    {
+      '1': 'locations',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.api.DeviceLocationsByTenant',
+      '10': 'locations'
+    },
+  ],
+};
+
+/// Descriptor for `GetDevicesMapResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List getDevicesMapResponseDescriptor = $convert.base64Decode(
+    'ChVHZXREZXZpY2VzTWFwUmVzcG9uc2USOgoJbG9jYXRpb25zGAEgAygLMhwuYXBpLkRldmljZU'
+    'xvY2F0aW9uc0J5VGVuYW50Uglsb2NhdGlvbnM=');
 
 @$core.Deprecated('Use getDeviceMetricsRequestDescriptor instead')
 const GetDeviceMetricsRequest$json = {

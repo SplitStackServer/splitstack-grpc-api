@@ -131,7 +131,7 @@ func (x ListBasestationsRequest_OrderBy) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ListBasestationsRequest_OrderBy.Descriptor instead.
 func (ListBasestationsRequest_OrderBy) EnumDescriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{12, 0}
+	return file_api_basestation_proto_rawDescGZIP(), []int{10, 0}
 }
 
 type Basestation struct {
@@ -145,7 +145,7 @@ type Basestation struct {
 	// Description.
 	Description *string `protobuf:"bytes,4,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	// Basestation location.
-	Location *common.GeoLocation `protobuf:"bytes,5,opt,name=location,proto3,oneof" json:"location,omitempty"`
+	Location *common.Location `protobuf:"bytes,5,opt,name=location,proto3,oneof" json:"location,omitempty"`
 	// Basestation metadata (set on connection).
 	Metadata           *BasestationMetadata `protobuf:"bytes,6,opt,name=metadata,proto3,oneof" json:"metadata,omitempty"`
 	UseGpsLocation     bool                 `protobuf:"varint,7,opt,name=use_gps_location,json=useGpsLocation,proto3" json:"use_gps_location,omitempty"`
@@ -216,7 +216,7 @@ func (x *Basestation) GetDescription() string {
 	return ""
 }
 
-func (x *Basestation) GetLocation() *common.GeoLocation {
+func (x *Basestation) GetLocation() *common.Location {
 	if x != nil {
 		return x.Location
 	}
@@ -271,7 +271,7 @@ type BasestationListItem struct {
 	// Description.
 	Description *string `protobuf:"bytes,5,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	// Location.
-	Location *common.GeoLocation `protobuf:"bytes,6,opt,name=location,proto3,oneof" json:"location,omitempty"`
+	Location *common.Location `protobuf:"bytes,6,opt,name=location,proto3,oneof" json:"location,omitempty"`
 	// Basestation metadata (set on connection).
 	Metadata *BasestationMetadata `protobuf:"bytes,7,opt,name=metadata,proto3,oneof" json:"metadata,omitempty"`
 	// Created at timestamp.
@@ -352,7 +352,7 @@ func (x *BasestationListItem) GetDescription() string {
 	return ""
 }
 
-func (x *BasestationListItem) GetLocation() *common.GeoLocation {
+func (x *BasestationListItem) GetLocation() *common.Location {
 	if x != nil {
 		return x.Location
 	}
@@ -401,150 +401,6 @@ func (x *BasestationListItem) GetState() BasestationState {
 	return BasestationState_NEVER_SEEN
 }
 
-type BasestationLocations struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Tenant ID.
-	TenantId string `protobuf:"bytes,1,opt,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
-	// Basestation locations.
-	Locations     []*BasestationLocation `protobuf:"bytes,2,rep,name=locations,proto3" json:"locations,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *BasestationLocations) Reset() {
-	*x = BasestationLocations{}
-	mi := &file_api_basestation_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *BasestationLocations) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*BasestationLocations) ProtoMessage() {}
-
-func (x *BasestationLocations) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use BasestationLocations.ProtoReflect.Descriptor instead.
-func (*BasestationLocations) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *BasestationLocations) GetTenantId() string {
-	if x != nil {
-		return x.TenantId
-	}
-	return ""
-}
-
-func (x *BasestationLocations) GetLocations() []*BasestationLocation {
-	if x != nil {
-		return x.Locations
-	}
-	return nil
-}
-
-type BasestationLocation struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Basestation ID (UUID).
-	BasestationId string `protobuf:"bytes,2,opt,name=basestation_id,json=basestationId,proto3" json:"basestation_id,omitempty"`
-	// Basestation EUI64.
-	Eui string `protobuf:"bytes,3,opt,name=eui,proto3" json:"eui,omitempty"`
-	// Name.
-	Name string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
-	// Location.
-	Location *common.GeoLocation `protobuf:"bytes,6,opt,name=location,proto3,oneof" json:"location,omitempty"`
-	// Last seen at timestamp.
-	LastSeenAt *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=last_seen_at,json=lastSeenAt,proto3,oneof" json:"last_seen_at,omitempty"`
-	// Basestation state.
-	State         BasestationState `protobuf:"varint,12,opt,name=state,proto3,enum=api.BasestationState" json:"state,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *BasestationLocation) Reset() {
-	*x = BasestationLocation{}
-	mi := &file_api_basestation_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *BasestationLocation) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*BasestationLocation) ProtoMessage() {}
-
-func (x *BasestationLocation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use BasestationLocation.ProtoReflect.Descriptor instead.
-func (*BasestationLocation) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *BasestationLocation) GetBasestationId() string {
-	if x != nil {
-		return x.BasestationId
-	}
-	return ""
-}
-
-func (x *BasestationLocation) GetEui() string {
-	if x != nil {
-		return x.Eui
-	}
-	return ""
-}
-
-func (x *BasestationLocation) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *BasestationLocation) GetLocation() *common.GeoLocation {
-	if x != nil {
-		return x.Location
-	}
-	return nil
-}
-
-func (x *BasestationLocation) GetLastSeenAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.LastSeenAt
-	}
-	return nil
-}
-
-func (x *BasestationLocation) GetState() BasestationState {
-	if x != nil {
-		return x.State
-	}
-	return BasestationState_NEVER_SEEN
-}
-
 type BasestationMetadata struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Vendor.
@@ -561,7 +417,7 @@ type BasestationMetadata struct {
 
 func (x *BasestationMetadata) Reset() {
 	*x = BasestationMetadata{}
-	mi := &file_api_basestation_proto_msgTypes[4]
+	mi := &file_api_basestation_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -573,7 +429,7 @@ func (x *BasestationMetadata) String() string {
 func (*BasestationMetadata) ProtoMessage() {}
 
 func (x *BasestationMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[4]
+	mi := &file_api_basestation_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -586,7 +442,7 @@ func (x *BasestationMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BasestationMetadata.ProtoReflect.Descriptor instead.
 func (*BasestationMetadata) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{4}
+	return file_api_basestation_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *BasestationMetadata) GetVendor() string {
@@ -628,7 +484,7 @@ type CreateBasestationRequest struct {
 	// Description.
 	Description *string `protobuf:"bytes,4,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	// Location.
-	Location *common.GeoLocation `protobuf:"bytes,5,opt,name=location,proto3,oneof" json:"location,omitempty"`
+	Location *common.Location `protobuf:"bytes,5,opt,name=location,proto3,oneof" json:"location,omitempty"`
 	// Use location data provided by the basestation.
 	UseGpsLocation bool `protobuf:"varint,6,opt,name=use_gps_location,json=useGpsLocation,proto3" json:"use_gps_location,omitempty"`
 	// Tags.
@@ -639,7 +495,7 @@ type CreateBasestationRequest struct {
 
 func (x *CreateBasestationRequest) Reset() {
 	*x = CreateBasestationRequest{}
-	mi := &file_api_basestation_proto_msgTypes[5]
+	mi := &file_api_basestation_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -651,7 +507,7 @@ func (x *CreateBasestationRequest) String() string {
 func (*CreateBasestationRequest) ProtoMessage() {}
 
 func (x *CreateBasestationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[5]
+	mi := &file_api_basestation_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -664,7 +520,7 @@ func (x *CreateBasestationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateBasestationRequest.ProtoReflect.Descriptor instead.
 func (*CreateBasestationRequest) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{5}
+	return file_api_basestation_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *CreateBasestationRequest) GetTenantId() string {
@@ -695,7 +551,7 @@ func (x *CreateBasestationRequest) GetDescription() string {
 	return ""
 }
 
-func (x *CreateBasestationRequest) GetLocation() *common.GeoLocation {
+func (x *CreateBasestationRequest) GetLocation() *common.Location {
 	if x != nil {
 		return x.Location
 	}
@@ -728,7 +584,7 @@ type CreateBasestationResponse struct {
 
 func (x *CreateBasestationResponse) Reset() {
 	*x = CreateBasestationResponse{}
-	mi := &file_api_basestation_proto_msgTypes[6]
+	mi := &file_api_basestation_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -740,7 +596,7 @@ func (x *CreateBasestationResponse) String() string {
 func (*CreateBasestationResponse) ProtoMessage() {}
 
 func (x *CreateBasestationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[6]
+	mi := &file_api_basestation_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -753,7 +609,7 @@ func (x *CreateBasestationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateBasestationResponse.ProtoReflect.Descriptor instead.
 func (*CreateBasestationResponse) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{6}
+	return file_api_basestation_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *CreateBasestationResponse) GetBasestation() *Basestation {
@@ -780,7 +636,7 @@ type GetBasestationRequest struct {
 
 func (x *GetBasestationRequest) Reset() {
 	*x = GetBasestationRequest{}
-	mi := &file_api_basestation_proto_msgTypes[7]
+	mi := &file_api_basestation_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -792,7 +648,7 @@ func (x *GetBasestationRequest) String() string {
 func (*GetBasestationRequest) ProtoMessage() {}
 
 func (x *GetBasestationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[7]
+	mi := &file_api_basestation_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -805,7 +661,7 @@ func (x *GetBasestationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBasestationRequest.ProtoReflect.Descriptor instead.
 func (*GetBasestationRequest) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{7}
+	return file_api_basestation_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetBasestationRequest) GetId() string {
@@ -831,7 +687,7 @@ type GetBasestationResponse struct {
 
 func (x *GetBasestationResponse) Reset() {
 	*x = GetBasestationResponse{}
-	mi := &file_api_basestation_proto_msgTypes[8]
+	mi := &file_api_basestation_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -843,7 +699,7 @@ func (x *GetBasestationResponse) String() string {
 func (*GetBasestationResponse) ProtoMessage() {}
 
 func (x *GetBasestationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[8]
+	mi := &file_api_basestation_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -856,7 +712,7 @@ func (x *GetBasestationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBasestationResponse.ProtoReflect.Descriptor instead.
 func (*GetBasestationResponse) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{8}
+	return file_api_basestation_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetBasestationResponse) GetBasestation() *Basestation {
@@ -896,7 +752,7 @@ type UpdateBasestationRequest struct {
 	// Description.
 	Description *string `protobuf:"bytes,4,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	// Location.
-	Location *common.GeoLocation `protobuf:"bytes,5,opt,name=location,proto3,oneof" json:"location,omitempty"`
+	Location *common.Location `protobuf:"bytes,5,opt,name=location,proto3,oneof" json:"location,omitempty"`
 	// Use location data provided by the basestation.
 	UseGpsLocation *bool `protobuf:"varint,6,opt,name=use_gps_location,json=useGpsLocation,proto3,oneof" json:"use_gps_location,omitempty"`
 	// Tags.
@@ -907,7 +763,7 @@ type UpdateBasestationRequest struct {
 
 func (x *UpdateBasestationRequest) Reset() {
 	*x = UpdateBasestationRequest{}
-	mi := &file_api_basestation_proto_msgTypes[9]
+	mi := &file_api_basestation_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -919,7 +775,7 @@ func (x *UpdateBasestationRequest) String() string {
 func (*UpdateBasestationRequest) ProtoMessage() {}
 
 func (x *UpdateBasestationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[9]
+	mi := &file_api_basestation_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -932,7 +788,7 @@ func (x *UpdateBasestationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateBasestationRequest.ProtoReflect.Descriptor instead.
 func (*UpdateBasestationRequest) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{9}
+	return file_api_basestation_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *UpdateBasestationRequest) GetId() string {
@@ -956,7 +812,7 @@ func (x *UpdateBasestationRequest) GetDescription() string {
 	return ""
 }
 
-func (x *UpdateBasestationRequest) GetLocation() *common.GeoLocation {
+func (x *UpdateBasestationRequest) GetLocation() *common.Location {
 	if x != nil {
 		return x.Location
 	}
@@ -991,7 +847,7 @@ type UpdateBasestationResponse struct {
 
 func (x *UpdateBasestationResponse) Reset() {
 	*x = UpdateBasestationResponse{}
-	mi := &file_api_basestation_proto_msgTypes[10]
+	mi := &file_api_basestation_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1003,7 +859,7 @@ func (x *UpdateBasestationResponse) String() string {
 func (*UpdateBasestationResponse) ProtoMessage() {}
 
 func (x *UpdateBasestationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[10]
+	mi := &file_api_basestation_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1016,7 +872,7 @@ func (x *UpdateBasestationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateBasestationResponse.ProtoReflect.Descriptor instead.
 func (*UpdateBasestationResponse) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{10}
+	return file_api_basestation_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *UpdateBasestationResponse) GetBasestation() *Basestation {
@@ -1050,7 +906,7 @@ type DeleteBasestationRequest struct {
 
 func (x *DeleteBasestationRequest) Reset() {
 	*x = DeleteBasestationRequest{}
-	mi := &file_api_basestation_proto_msgTypes[11]
+	mi := &file_api_basestation_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1062,7 +918,7 @@ func (x *DeleteBasestationRequest) String() string {
 func (*DeleteBasestationRequest) ProtoMessage() {}
 
 func (x *DeleteBasestationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[11]
+	mi := &file_api_basestation_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1075,7 +931,7 @@ func (x *DeleteBasestationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBasestationRequest.ProtoReflect.Descriptor instead.
 func (*DeleteBasestationRequest) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{11}
+	return file_api_basestation_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *DeleteBasestationRequest) GetId() string {
@@ -1106,7 +962,7 @@ type ListBasestationsRequest struct {
 
 func (x *ListBasestationsRequest) Reset() {
 	*x = ListBasestationsRequest{}
-	mi := &file_api_basestation_proto_msgTypes[12]
+	mi := &file_api_basestation_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1118,7 +974,7 @@ func (x *ListBasestationsRequest) String() string {
 func (*ListBasestationsRequest) ProtoMessage() {}
 
 func (x *ListBasestationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[12]
+	mi := &file_api_basestation_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1131,7 +987,7 @@ func (x *ListBasestationsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListBasestationsRequest.ProtoReflect.Descriptor instead.
 func (*ListBasestationsRequest) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{12}
+	return file_api_basestation_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ListBasestationsRequest) GetTenantId() string {
@@ -1188,7 +1044,7 @@ type ListBasestationsResponse struct {
 
 func (x *ListBasestationsResponse) Reset() {
 	*x = ListBasestationsResponse{}
-	mi := &file_api_basestation_proto_msgTypes[13]
+	mi := &file_api_basestation_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1200,7 +1056,7 @@ func (x *ListBasestationsResponse) String() string {
 func (*ListBasestationsResponse) ProtoMessage() {}
 
 func (x *ListBasestationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[13]
+	mi := &file_api_basestation_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1213,7 +1069,7 @@ func (x *ListBasestationsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListBasestationsResponse.ProtoReflect.Descriptor instead.
 func (*ListBasestationsResponse) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{13}
+	return file_api_basestation_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListBasestationsResponse) GetPagination() *Pagination {
@@ -1234,18 +1090,23 @@ type GetBasestationsMapRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Tenant IDs (UUID) to filter basestations on.
 	// To list all basestations as a global admin user, this field can be left blank.
-	TenantId      []string `protobuf:"bytes,1,rep,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
-	MinLat        float64  `protobuf:"fixed64,2,opt,name=min_lat,json=minLat,proto3" json:"min_lat,omitempty"`
-	MaxLat        float64  `protobuf:"fixed64,3,opt,name=max_lat,json=maxLat,proto3" json:"max_lat,omitempty"`
-	MinLon        float64  `protobuf:"fixed64,4,opt,name=min_lon,json=minLon,proto3" json:"min_lon,omitempty"`
-	MaxLon        float64  `protobuf:"fixed64,5,opt,name=max_lon,json=maxLon,proto3" json:"max_lon,omitempty"`
+	TenantId []string `protobuf:"bytes,1,rep,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
+	// Boundary of the map viewport. Only basestations within the given bounds will be returned.
+	Bounds *common.LocationBoundary `protobuf:"bytes,2,opt,name=bounds,proto3,oneof" json:"bounds,omitempty"`
+	// If set, geohash prefix filter (starts-with match).
+	// This is useful for zoom-dependent map queries.
+	GeohashPrefix *string `protobuf:"bytes,6,opt,name=geohash_prefix,json=geohashPrefix,proto3,oneof" json:"geohash_prefix,omitempty"`
+	// Optional state filters. If empty, all states are included.
+	StateFilter []BasestationState `protobuf:"varint,7,rep,packed,name=state_filter,json=stateFilter,proto3,enum=api.BasestationState" json:"state_filter,omitempty"`
+	// Optional tags to filter basestations on.
+	Tags          *common.Tags `protobuf:"bytes,8,opt,name=tags,proto3,oneof" json:"tags,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetBasestationsMapRequest) Reset() {
 	*x = GetBasestationsMapRequest{}
-	mi := &file_api_basestation_proto_msgTypes[14]
+	mi := &file_api_basestation_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1257,7 +1118,7 @@ func (x *GetBasestationsMapRequest) String() string {
 func (*GetBasestationsMapRequest) ProtoMessage() {}
 
 func (x *GetBasestationsMapRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[14]
+	mi := &file_api_basestation_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1270,7 +1131,7 @@ func (x *GetBasestationsMapRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBasestationsMapRequest.ProtoReflect.Descriptor instead.
 func (*GetBasestationsMapRequest) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{14}
+	return file_api_basestation_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetBasestationsMapRequest) GetTenantId() []string {
@@ -1280,38 +1141,182 @@ func (x *GetBasestationsMapRequest) GetTenantId() []string {
 	return nil
 }
 
-func (x *GetBasestationsMapRequest) GetMinLat() float64 {
+func (x *GetBasestationsMapRequest) GetBounds() *common.LocationBoundary {
 	if x != nil {
-		return x.MinLat
+		return x.Bounds
 	}
-	return 0
+	return nil
 }
 
-func (x *GetBasestationsMapRequest) GetMaxLat() float64 {
-	if x != nil {
-		return x.MaxLat
+func (x *GetBasestationsMapRequest) GetGeohashPrefix() string {
+	if x != nil && x.GeohashPrefix != nil {
+		return *x.GeohashPrefix
 	}
-	return 0
+	return ""
 }
 
-func (x *GetBasestationsMapRequest) GetMinLon() float64 {
+func (x *GetBasestationsMapRequest) GetStateFilter() []BasestationState {
 	if x != nil {
-		return x.MinLon
+		return x.StateFilter
 	}
-	return 0
+	return nil
 }
 
-func (x *GetBasestationsMapRequest) GetMaxLon() float64 {
+func (x *GetBasestationsMapRequest) GetTags() *common.Tags {
 	if x != nil {
-		return x.MaxLon
+		return x.Tags
 	}
-	return 0
+	return nil
+}
+
+type BasestationLocations struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Tenant ID.
+	TenantId string `protobuf:"bytes,1,opt,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
+	// Basestation locations.
+	Locations     []*BasestationLocation `protobuf:"bytes,2,rep,name=locations,proto3" json:"locations,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BasestationLocations) Reset() {
+	*x = BasestationLocations{}
+	mi := &file_api_basestation_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BasestationLocations) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BasestationLocations) ProtoMessage() {}
+
+func (x *BasestationLocations) ProtoReflect() protoreflect.Message {
+	mi := &file_api_basestation_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BasestationLocations.ProtoReflect.Descriptor instead.
+func (*BasestationLocations) Descriptor() ([]byte, []int) {
+	return file_api_basestation_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *BasestationLocations) GetTenantId() string {
+	if x != nil {
+		return x.TenantId
+	}
+	return ""
+}
+
+func (x *BasestationLocations) GetLocations() []*BasestationLocation {
+	if x != nil {
+		return x.Locations
+	}
+	return nil
+}
+
+type BasestationLocation struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Basestation ID (UUID).
+	BasestationId string `protobuf:"bytes,2,opt,name=basestation_id,json=basestationId,proto3" json:"basestation_id,omitempty"`
+	// Basestation EUI64.
+	Eui string `protobuf:"bytes,3,opt,name=eui,proto3" json:"eui,omitempty"`
+	// Name.
+	Name string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	// Location.
+	Location *common.GeoLocation `protobuf:"bytes,5,opt,name=location,proto3,oneof" json:"location,omitempty"`
+	// Last seen at timestamp.
+	LastSeenAt *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=last_seen_at,json=lastSeenAt,proto3,oneof" json:"last_seen_at,omitempty"`
+	// Basestation state.
+	State         BasestationState `protobuf:"varint,7,opt,name=state,proto3,enum=api.BasestationState" json:"state,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BasestationLocation) Reset() {
+	*x = BasestationLocation{}
+	mi := &file_api_basestation_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BasestationLocation) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BasestationLocation) ProtoMessage() {}
+
+func (x *BasestationLocation) ProtoReflect() protoreflect.Message {
+	mi := &file_api_basestation_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BasestationLocation.ProtoReflect.Descriptor instead.
+func (*BasestationLocation) Descriptor() ([]byte, []int) {
+	return file_api_basestation_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *BasestationLocation) GetBasestationId() string {
+	if x != nil {
+		return x.BasestationId
+	}
+	return ""
+}
+
+func (x *BasestationLocation) GetEui() string {
+	if x != nil {
+		return x.Eui
+	}
+	return ""
+}
+
+func (x *BasestationLocation) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *BasestationLocation) GetLocation() *common.GeoLocation {
+	if x != nil {
+		return x.Location
+	}
+	return nil
+}
+
+func (x *BasestationLocation) GetLastSeenAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.LastSeenAt
+	}
+	return nil
+}
+
+func (x *BasestationLocation) GetState() BasestationState {
+	if x != nil {
+		return x.State
+	}
+	return BasestationState_NEVER_SEEN
 }
 
 type GetBasestationsMapResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Basestation objects.
-	Basestations  []*BasestationLocations `protobuf:"bytes,1,rep,name=basestations,proto3" json:"basestations,omitempty"`
+	Locations     []*BasestationLocations `protobuf:"bytes,1,rep,name=locations,proto3" json:"locations,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1346,9 +1351,9 @@ func (*GetBasestationsMapResponse) Descriptor() ([]byte, []int) {
 	return file_api_basestation_proto_rawDescGZIP(), []int{15}
 }
 
-func (x *GetBasestationsMapResponse) GetBasestations() []*BasestationLocations {
+func (x *GetBasestationsMapResponse) GetLocations() []*BasestationLocations {
 	if x != nil {
-		return x.Basestations
+		return x.Locations
 	}
 	return nil
 }
@@ -1690,13 +1695,13 @@ var File_api_basestation_proto protoreflect.FileDescriptor
 
 const file_api_basestation_proto_rawDesc = "" +
 	"\n" +
-	"\x15api/basestation.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x10api/common.proto\x1a\x13common/common.proto\x1a\x14common/metrics.proto\x1a\x15streaming/frame.proto\"\xbe\x03\n" +
+	"\x15api/basestation.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x10api/common.proto\x1a\x13common/common.proto\x1a\x14common/metrics.proto\x1a\x15streaming/frame.proto\"\xbb\x03\n" +
 	"\vBasestation\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
 	"\x03eui\x18\x02 \x01(\tR\x03eui\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12%\n" +
-	"\vdescription\x18\x04 \x01(\tH\x00R\vdescription\x88\x01\x01\x124\n" +
-	"\blocation\x18\x05 \x01(\v2\x13.common.GeoLocationH\x01R\blocation\x88\x01\x01\x129\n" +
+	"\vdescription\x18\x04 \x01(\tH\x00R\vdescription\x88\x01\x01\x121\n" +
+	"\blocation\x18\x05 \x01(\v2\x10.common.LocationH\x01R\blocation\x88\x01\x01\x129\n" +
 	"\bmetadata\x18\x06 \x01(\v2\x18.api.BasestationMetadataH\x02R\bmetadata\x88\x01\x01\x12(\n" +
 	"\x10use_gps_location\x18\a \x01(\bR\x0euseGpsLocation\x120\n" +
 	"\x14variable_mac_support\x18\b \x01(\bR\x12variableMacSupport\x12%\n" +
@@ -1706,14 +1711,14 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\f_descriptionB\v\n" +
 	"\t_locationB\v\n" +
 	"\t_metadataB\a\n" +
-	"\x05_tags\"\xea\x04\n" +
+	"\x05_tags\"\xe7\x04\n" +
 	"\x13BasestationListItem\x12\x1b\n" +
 	"\ttenant_id\x18\x01 \x01(\tR\btenantId\x12%\n" +
 	"\x0ebasestation_id\x18\x02 \x01(\tR\rbasestationId\x12\x10\n" +
 	"\x03eui\x18\x03 \x01(\tR\x03eui\x12\x12\n" +
 	"\x04name\x18\x04 \x01(\tR\x04name\x12%\n" +
-	"\vdescription\x18\x05 \x01(\tH\x00R\vdescription\x88\x01\x01\x124\n" +
-	"\blocation\x18\x06 \x01(\v2\x13.common.GeoLocationH\x01R\blocation\x88\x01\x01\x129\n" +
+	"\vdescription\x18\x05 \x01(\tH\x00R\vdescription\x88\x01\x01\x121\n" +
+	"\blocation\x18\x06 \x01(\v2\x10.common.LocationH\x01R\blocation\x88\x01\x01\x129\n" +
 	"\bmetadata\x18\a \x01(\v2\x18.api.BasestationMetadataH\x02R\bmetadata\x88\x01\x01\x129\n" +
 	"\n" +
 	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
@@ -1727,20 +1732,6 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\f_descriptionB\v\n" +
 	"\t_locationB\v\n" +
 	"\t_metadataB\x0f\n" +
-	"\r_last_seen_at\"k\n" +
-	"\x14BasestationLocations\x12\x1b\n" +
-	"\ttenant_id\x18\x01 \x01(\tR\btenantId\x126\n" +
-	"\tlocations\x18\x02 \x03(\v2\x18.api.BasestationLocationR\tlocations\"\xa6\x02\n" +
-	"\x13BasestationLocation\x12%\n" +
-	"\x0ebasestation_id\x18\x02 \x01(\tR\rbasestationId\x12\x10\n" +
-	"\x03eui\x18\x03 \x01(\tR\x03eui\x12\x12\n" +
-	"\x04name\x18\x04 \x01(\tR\x04name\x124\n" +
-	"\blocation\x18\x06 \x01(\v2\x13.common.GeoLocationH\x00R\blocation\x88\x01\x01\x12A\n" +
-	"\flast_seen_at\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampH\x01R\n" +
-	"lastSeenAt\x88\x01\x01\x12+\n" +
-	"\x05state\x18\f \x01(\x0e2\x15.api.BasestationStateR\x05stateB\v\n" +
-	"\t_locationB\x0f\n" +
 	"\r_last_seen_at\"\xba\x01\n" +
 	"\x13BasestationMetadata\x12\x1b\n" +
 	"\x06vendor\x18\x01 \x01(\tH\x00R\x06vendor\x88\x01\x01\x12\x19\n" +
@@ -1751,13 +1742,13 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\a_vendorB\b\n" +
 	"\x06_modelB\b\n" +
 	"\x06_aliasB\r\n" +
-	"\v_sw_version\"\xbf\x02\n" +
+	"\v_sw_version\"\xbc\x02\n" +
 	"\x18CreateBasestationRequest\x12\x1b\n" +
 	"\ttenant_id\x18\x01 \x01(\tR\btenantId\x12\x10\n" +
 	"\x03eui\x18\x02 \x01(\tR\x03eui\x12\x17\n" +
 	"\x04name\x18\x03 \x01(\tH\x00R\x04name\x88\x01\x01\x12%\n" +
-	"\vdescription\x18\x04 \x01(\tH\x01R\vdescription\x88\x01\x01\x124\n" +
-	"\blocation\x18\x05 \x01(\v2\x13.common.GeoLocationH\x02R\blocation\x88\x01\x01\x12(\n" +
+	"\vdescription\x18\x04 \x01(\tH\x01R\vdescription\x88\x01\x01\x121\n" +
+	"\blocation\x18\x05 \x01(\v2\x10.common.LocationH\x02R\blocation\x88\x01\x01\x12(\n" +
 	"\x10use_gps_location\x18\x06 \x01(\bR\x0euseGpsLocation\x12%\n" +
 	"\x04tags\x18\b \x01(\v2\f.common.TagsH\x03R\x04tags\x88\x01\x01B\a\n" +
 	"\x05_nameB\x0e\n" +
@@ -1778,12 +1769,12 @@ const file_api_basestation_proto_rawDesc = "" +
 	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12A\n" +
 	"\flast_seen_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\n" +
 	"lastSeenAt\x88\x01\x01B\x0f\n" +
-	"\r_last_seen_at\"\xba\x02\n" +
+	"\r_last_seen_at\"\xb7\x02\n" +
 	"\x18UpdateBasestationRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\x04name\x18\x03 \x01(\tH\x00R\x04name\x88\x01\x01\x12%\n" +
-	"\vdescription\x18\x04 \x01(\tH\x01R\vdescription\x88\x01\x01\x124\n" +
-	"\blocation\x18\x05 \x01(\v2\x13.common.GeoLocationH\x02R\blocation\x88\x01\x01\x12-\n" +
+	"\vdescription\x18\x04 \x01(\tH\x01R\vdescription\x88\x01\x01\x121\n" +
+	"\blocation\x18\x05 \x01(\v2\x10.common.LocationH\x02R\blocation\x88\x01\x01\x12-\n" +
 	"\x10use_gps_location\x18\x06 \x01(\bH\x03R\x0euseGpsLocation\x88\x01\x01\x12%\n" +
 	"\x04tags\x18\b \x01(\v2\f.common.TagsH\x04R\x04tags\x88\x01\x01B\a\n" +
 	"\x05_nameB\x0e\n" +
@@ -1821,15 +1812,31 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\n" +
 	"pagination\x18\x01 \x01(\v2\x0f.api.PaginationR\n" +
 	"pagination\x120\n" +
-	"\x06result\x18\x02 \x03(\v2\x18.api.BasestationListItemR\x06result\"\x9c\x01\n" +
+	"\x06result\x18\x02 \x03(\v2\x18.api.BasestationListItemR\x06result\"\xa3\x02\n" +
 	"\x19GetBasestationsMapRequest\x12\x1b\n" +
-	"\ttenant_id\x18\x01 \x03(\tR\btenantId\x12\x17\n" +
-	"\amin_lat\x18\x02 \x01(\x01R\x06minLat\x12\x17\n" +
-	"\amax_lat\x18\x03 \x01(\x01R\x06maxLat\x12\x17\n" +
-	"\amin_lon\x18\x04 \x01(\x01R\x06minLon\x12\x17\n" +
-	"\amax_lon\x18\x05 \x01(\x01R\x06maxLon\"[\n" +
-	"\x1aGetBasestationsMapResponse\x12=\n" +
-	"\fbasestations\x18\x01 \x03(\v2\x19.api.BasestationLocationsR\fbasestations\"=\n" +
+	"\ttenant_id\x18\x01 \x03(\tR\btenantId\x125\n" +
+	"\x06bounds\x18\x02 \x01(\v2\x18.common.LocationBoundaryH\x00R\x06bounds\x88\x01\x01\x12*\n" +
+	"\x0egeohash_prefix\x18\x06 \x01(\tH\x01R\rgeohashPrefix\x88\x01\x01\x128\n" +
+	"\fstate_filter\x18\a \x03(\x0e2\x15.api.BasestationStateR\vstateFilter\x12%\n" +
+	"\x04tags\x18\b \x01(\v2\f.common.TagsH\x02R\x04tags\x88\x01\x01B\t\n" +
+	"\a_boundsB\x11\n" +
+	"\x0f_geohash_prefixB\a\n" +
+	"\x05_tags\"k\n" +
+	"\x14BasestationLocations\x12\x1b\n" +
+	"\ttenant_id\x18\x01 \x01(\tR\btenantId\x126\n" +
+	"\tlocations\x18\x02 \x03(\v2\x18.api.BasestationLocationR\tlocations\"\xa6\x02\n" +
+	"\x13BasestationLocation\x12%\n" +
+	"\x0ebasestation_id\x18\x02 \x01(\tR\rbasestationId\x12\x10\n" +
+	"\x03eui\x18\x03 \x01(\tR\x03eui\x12\x12\n" +
+	"\x04name\x18\x04 \x01(\tR\x04name\x124\n" +
+	"\blocation\x18\x05 \x01(\v2\x13.common.GeoLocationH\x00R\blocation\x88\x01\x01\x12A\n" +
+	"\flast_seen_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampH\x01R\n" +
+	"lastSeenAt\x88\x01\x01\x12+\n" +
+	"\x05state\x18\a \x01(\x0e2\x15.api.BasestationStateR\x05stateB\v\n" +
+	"\t_locationB\x0f\n" +
+	"\r_last_seen_at\"U\n" +
+	"\x1aGetBasestationsMapResponse\x127\n" +
+	"\tlocations\x18\x01 \x03(\v2\x19.api.BasestationLocationsR\tlocations\"=\n" +
 	"+GenerateBasestationClientCertificateRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\xb6\x01\n" +
 	",GenerateBasestationClientCertificateResponse\x12\x19\n" +
@@ -1892,103 +1899,108 @@ var file_api_basestation_proto_goTypes = []any{
 	(ListBasestationsRequest_OrderBy)(0),                 // 1: api.ListBasestationsRequest.OrderBy
 	(*Basestation)(nil),                                  // 2: api.Basestation
 	(*BasestationListItem)(nil),                          // 3: api.BasestationListItem
-	(*BasestationLocations)(nil),                         // 4: api.BasestationLocations
-	(*BasestationLocation)(nil),                          // 5: api.BasestationLocation
-	(*BasestationMetadata)(nil),                          // 6: api.BasestationMetadata
-	(*CreateBasestationRequest)(nil),                     // 7: api.CreateBasestationRequest
-	(*CreateBasestationResponse)(nil),                    // 8: api.CreateBasestationResponse
-	(*GetBasestationRequest)(nil),                        // 9: api.GetBasestationRequest
-	(*GetBasestationResponse)(nil),                       // 10: api.GetBasestationResponse
-	(*UpdateBasestationRequest)(nil),                     // 11: api.UpdateBasestationRequest
-	(*UpdateBasestationResponse)(nil),                    // 12: api.UpdateBasestationResponse
-	(*DeleteBasestationRequest)(nil),                     // 13: api.DeleteBasestationRequest
-	(*ListBasestationsRequest)(nil),                      // 14: api.ListBasestationsRequest
-	(*ListBasestationsResponse)(nil),                     // 15: api.ListBasestationsResponse
-	(*GetBasestationsMapRequest)(nil),                    // 16: api.GetBasestationsMapRequest
+	(*BasestationMetadata)(nil),                          // 4: api.BasestationMetadata
+	(*CreateBasestationRequest)(nil),                     // 5: api.CreateBasestationRequest
+	(*CreateBasestationResponse)(nil),                    // 6: api.CreateBasestationResponse
+	(*GetBasestationRequest)(nil),                        // 7: api.GetBasestationRequest
+	(*GetBasestationResponse)(nil),                       // 8: api.GetBasestationResponse
+	(*UpdateBasestationRequest)(nil),                     // 9: api.UpdateBasestationRequest
+	(*UpdateBasestationResponse)(nil),                    // 10: api.UpdateBasestationResponse
+	(*DeleteBasestationRequest)(nil),                     // 11: api.DeleteBasestationRequest
+	(*ListBasestationsRequest)(nil),                      // 12: api.ListBasestationsRequest
+	(*ListBasestationsResponse)(nil),                     // 13: api.ListBasestationsResponse
+	(*GetBasestationsMapRequest)(nil),                    // 14: api.GetBasestationsMapRequest
+	(*BasestationLocations)(nil),                         // 15: api.BasestationLocations
+	(*BasestationLocation)(nil),                          // 16: api.BasestationLocation
 	(*GetBasestationsMapResponse)(nil),                   // 17: api.GetBasestationsMapResponse
 	(*GenerateBasestationClientCertificateRequest)(nil),  // 18: api.GenerateBasestationClientCertificateRequest
 	(*GenerateBasestationClientCertificateResponse)(nil), // 19: api.GenerateBasestationClientCertificateResponse
 	(*GetBasestationMetricsRequest)(nil),                 // 20: api.GetBasestationMetricsRequest
 	(*GetBasestationMetricsResponse)(nil),                // 21: api.GetBasestationMetricsResponse
 	(*StreamBasestationFramesRequest)(nil),               // 22: api.StreamBasestationFramesRequest
-	(*common.GeoLocation)(nil),                           // 23: common.GeoLocation
+	(*common.Location)(nil),                              // 23: common.Location
 	(*common.Tags)(nil),                                  // 24: common.Tags
 	(*timestamppb.Timestamp)(nil),                        // 25: google.protobuf.Timestamp
 	(*Paginator)(nil),                                    // 26: api.Paginator
 	(*Pagination)(nil),                                   // 27: api.Pagination
-	(common.Aggregation)(0),                              // 28: common.Aggregation
-	(*common.Metric)(nil),                                // 29: common.Metric
-	(*emptypb.Empty)(nil),                                // 30: google.protobuf.Empty
-	(*streaming.FrameLogItem)(nil),                       // 31: streaming.FrameLogItem
+	(*common.LocationBoundary)(nil),                      // 28: common.LocationBoundary
+	(*common.GeoLocation)(nil),                           // 29: common.GeoLocation
+	(common.Aggregation)(0),                              // 30: common.Aggregation
+	(*common.Metric)(nil),                                // 31: common.Metric
+	(*emptypb.Empty)(nil),                                // 32: google.protobuf.Empty
+	(*streaming.FrameLogItem)(nil),                       // 33: streaming.FrameLogItem
 }
 var file_api_basestation_proto_depIdxs = []int32{
-	23, // 0: api.Basestation.location:type_name -> common.GeoLocation
-	6,  // 1: api.Basestation.metadata:type_name -> api.BasestationMetadata
+	23, // 0: api.Basestation.location:type_name -> common.Location
+	4,  // 1: api.Basestation.metadata:type_name -> api.BasestationMetadata
 	24, // 2: api.Basestation.tags:type_name -> common.Tags
 	0,  // 3: api.Basestation.state:type_name -> api.BasestationState
-	23, // 4: api.BasestationListItem.location:type_name -> common.GeoLocation
-	6,  // 5: api.BasestationListItem.metadata:type_name -> api.BasestationMetadata
+	23, // 4: api.BasestationListItem.location:type_name -> common.Location
+	4,  // 5: api.BasestationListItem.metadata:type_name -> api.BasestationMetadata
 	25, // 6: api.BasestationListItem.created_at:type_name -> google.protobuf.Timestamp
 	25, // 7: api.BasestationListItem.updated_at:type_name -> google.protobuf.Timestamp
 	25, // 8: api.BasestationListItem.last_seen_at:type_name -> google.protobuf.Timestamp
 	0,  // 9: api.BasestationListItem.state:type_name -> api.BasestationState
-	5,  // 10: api.BasestationLocations.locations:type_name -> api.BasestationLocation
-	23, // 11: api.BasestationLocation.location:type_name -> common.GeoLocation
-	25, // 12: api.BasestationLocation.last_seen_at:type_name -> google.protobuf.Timestamp
-	0,  // 13: api.BasestationLocation.state:type_name -> api.BasestationState
-	23, // 14: api.CreateBasestationRequest.location:type_name -> common.GeoLocation
-	24, // 15: api.CreateBasestationRequest.tags:type_name -> common.Tags
-	2,  // 16: api.CreateBasestationResponse.basestation:type_name -> api.Basestation
-	25, // 17: api.CreateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
-	2,  // 18: api.GetBasestationResponse.basestation:type_name -> api.Basestation
-	25, // 19: api.GetBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
-	25, // 20: api.GetBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	25, // 21: api.GetBasestationResponse.last_seen_at:type_name -> google.protobuf.Timestamp
-	23, // 22: api.UpdateBasestationRequest.location:type_name -> common.GeoLocation
-	24, // 23: api.UpdateBasestationRequest.tags:type_name -> common.Tags
-	2,  // 24: api.UpdateBasestationResponse.basestation:type_name -> api.Basestation
-	25, // 25: api.UpdateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
-	25, // 26: api.UpdateBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	26, // 27: api.ListBasestationsRequest.paginator:type_name -> api.Paginator
-	24, // 28: api.ListBasestationsRequest.tags:type_name -> common.Tags
-	1,  // 29: api.ListBasestationsRequest.order_by:type_name -> api.ListBasestationsRequest.OrderBy
-	27, // 30: api.ListBasestationsResponse.pagination:type_name -> api.Pagination
-	3,  // 31: api.ListBasestationsResponse.result:type_name -> api.BasestationListItem
-	4,  // 32: api.GetBasestationsMapResponse.basestations:type_name -> api.BasestationLocations
-	25, // 33: api.GenerateBasestationClientCertificateResponse.expires_at:type_name -> google.protobuf.Timestamp
-	25, // 34: api.GetBasestationMetricsRequest.start:type_name -> google.protobuf.Timestamp
-	25, // 35: api.GetBasestationMetricsRequest.end:type_name -> google.protobuf.Timestamp
-	28, // 36: api.GetBasestationMetricsRequest.aggregation:type_name -> common.Aggregation
-	29, // 37: api.GetBasestationMetricsResponse.uptime:type_name -> common.Metric
-	29, // 38: api.GetBasestationMetricsResponse.cpu:type_name -> common.Metric
-	29, // 39: api.GetBasestationMetricsResponse.memory:type_name -> common.Metric
-	29, // 40: api.GetBasestationMetricsResponse.temp:type_name -> common.Metric
-	29, // 41: api.GetBasestationMetricsResponse.duty_cycle:type_name -> common.Metric
-	29, // 42: api.GetBasestationMetricsResponse.rx_count:type_name -> common.Metric
-	29, // 43: api.GetBasestationMetricsResponse.rx_vm_count:type_name -> common.Metric
-	7,  // 44: api.BasestationService.CreateBasestation:input_type -> api.CreateBasestationRequest
-	9,  // 45: api.BasestationService.GetBasestation:input_type -> api.GetBasestationRequest
-	11, // 46: api.BasestationService.UpdateBasestation:input_type -> api.UpdateBasestationRequest
-	13, // 47: api.BasestationService.DeleteBasestation:input_type -> api.DeleteBasestationRequest
-	14, // 48: api.BasestationService.ListBasestations:input_type -> api.ListBasestationsRequest
-	16, // 49: api.BasestationService.GetBasestationMap:input_type -> api.GetBasestationsMapRequest
-	18, // 50: api.BasestationService.GenerateBasestationClientCertificate:input_type -> api.GenerateBasestationClientCertificateRequest
-	20, // 51: api.BasestationService.GetBasestationMetrics:input_type -> api.GetBasestationMetricsRequest
-	22, // 52: api.BasestationService.StreamBasestationFrames:input_type -> api.StreamBasestationFramesRequest
-	8,  // 53: api.BasestationService.CreateBasestation:output_type -> api.CreateBasestationResponse
-	10, // 54: api.BasestationService.GetBasestation:output_type -> api.GetBasestationResponse
-	12, // 55: api.BasestationService.UpdateBasestation:output_type -> api.UpdateBasestationResponse
-	30, // 56: api.BasestationService.DeleteBasestation:output_type -> google.protobuf.Empty
-	15, // 57: api.BasestationService.ListBasestations:output_type -> api.ListBasestationsResponse
-	17, // 58: api.BasestationService.GetBasestationMap:output_type -> api.GetBasestationsMapResponse
-	19, // 59: api.BasestationService.GenerateBasestationClientCertificate:output_type -> api.GenerateBasestationClientCertificateResponse
-	21, // 60: api.BasestationService.GetBasestationMetrics:output_type -> api.GetBasestationMetricsResponse
-	31, // 61: api.BasestationService.StreamBasestationFrames:output_type -> streaming.FrameLogItem
-	53, // [53:62] is the sub-list for method output_type
-	44, // [44:53] is the sub-list for method input_type
-	44, // [44:44] is the sub-list for extension type_name
-	44, // [44:44] is the sub-list for extension extendee
-	0,  // [0:44] is the sub-list for field type_name
+	23, // 10: api.CreateBasestationRequest.location:type_name -> common.Location
+	24, // 11: api.CreateBasestationRequest.tags:type_name -> common.Tags
+	2,  // 12: api.CreateBasestationResponse.basestation:type_name -> api.Basestation
+	25, // 13: api.CreateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
+	2,  // 14: api.GetBasestationResponse.basestation:type_name -> api.Basestation
+	25, // 15: api.GetBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
+	25, // 16: api.GetBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	25, // 17: api.GetBasestationResponse.last_seen_at:type_name -> google.protobuf.Timestamp
+	23, // 18: api.UpdateBasestationRequest.location:type_name -> common.Location
+	24, // 19: api.UpdateBasestationRequest.tags:type_name -> common.Tags
+	2,  // 20: api.UpdateBasestationResponse.basestation:type_name -> api.Basestation
+	25, // 21: api.UpdateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
+	25, // 22: api.UpdateBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	26, // 23: api.ListBasestationsRequest.paginator:type_name -> api.Paginator
+	24, // 24: api.ListBasestationsRequest.tags:type_name -> common.Tags
+	1,  // 25: api.ListBasestationsRequest.order_by:type_name -> api.ListBasestationsRequest.OrderBy
+	27, // 26: api.ListBasestationsResponse.pagination:type_name -> api.Pagination
+	3,  // 27: api.ListBasestationsResponse.result:type_name -> api.BasestationListItem
+	28, // 28: api.GetBasestationsMapRequest.bounds:type_name -> common.LocationBoundary
+	0,  // 29: api.GetBasestationsMapRequest.state_filter:type_name -> api.BasestationState
+	24, // 30: api.GetBasestationsMapRequest.tags:type_name -> common.Tags
+	16, // 31: api.BasestationLocations.locations:type_name -> api.BasestationLocation
+	29, // 32: api.BasestationLocation.location:type_name -> common.GeoLocation
+	25, // 33: api.BasestationLocation.last_seen_at:type_name -> google.protobuf.Timestamp
+	0,  // 34: api.BasestationLocation.state:type_name -> api.BasestationState
+	15, // 35: api.GetBasestationsMapResponse.locations:type_name -> api.BasestationLocations
+	25, // 36: api.GenerateBasestationClientCertificateResponse.expires_at:type_name -> google.protobuf.Timestamp
+	25, // 37: api.GetBasestationMetricsRequest.start:type_name -> google.protobuf.Timestamp
+	25, // 38: api.GetBasestationMetricsRequest.end:type_name -> google.protobuf.Timestamp
+	30, // 39: api.GetBasestationMetricsRequest.aggregation:type_name -> common.Aggregation
+	31, // 40: api.GetBasestationMetricsResponse.uptime:type_name -> common.Metric
+	31, // 41: api.GetBasestationMetricsResponse.cpu:type_name -> common.Metric
+	31, // 42: api.GetBasestationMetricsResponse.memory:type_name -> common.Metric
+	31, // 43: api.GetBasestationMetricsResponse.temp:type_name -> common.Metric
+	31, // 44: api.GetBasestationMetricsResponse.duty_cycle:type_name -> common.Metric
+	31, // 45: api.GetBasestationMetricsResponse.rx_count:type_name -> common.Metric
+	31, // 46: api.GetBasestationMetricsResponse.rx_vm_count:type_name -> common.Metric
+	5,  // 47: api.BasestationService.CreateBasestation:input_type -> api.CreateBasestationRequest
+	7,  // 48: api.BasestationService.GetBasestation:input_type -> api.GetBasestationRequest
+	9,  // 49: api.BasestationService.UpdateBasestation:input_type -> api.UpdateBasestationRequest
+	11, // 50: api.BasestationService.DeleteBasestation:input_type -> api.DeleteBasestationRequest
+	12, // 51: api.BasestationService.ListBasestations:input_type -> api.ListBasestationsRequest
+	14, // 52: api.BasestationService.GetBasestationMap:input_type -> api.GetBasestationsMapRequest
+	18, // 53: api.BasestationService.GenerateBasestationClientCertificate:input_type -> api.GenerateBasestationClientCertificateRequest
+	20, // 54: api.BasestationService.GetBasestationMetrics:input_type -> api.GetBasestationMetricsRequest
+	22, // 55: api.BasestationService.StreamBasestationFrames:input_type -> api.StreamBasestationFramesRequest
+	6,  // 56: api.BasestationService.CreateBasestation:output_type -> api.CreateBasestationResponse
+	8,  // 57: api.BasestationService.GetBasestation:output_type -> api.GetBasestationResponse
+	10, // 58: api.BasestationService.UpdateBasestation:output_type -> api.UpdateBasestationResponse
+	32, // 59: api.BasestationService.DeleteBasestation:output_type -> google.protobuf.Empty
+	13, // 60: api.BasestationService.ListBasestations:output_type -> api.ListBasestationsResponse
+	17, // 61: api.BasestationService.GetBasestationMap:output_type -> api.GetBasestationsMapResponse
+	19, // 62: api.BasestationService.GenerateBasestationClientCertificate:output_type -> api.GenerateBasestationClientCertificateResponse
+	21, // 63: api.BasestationService.GetBasestationMetrics:output_type -> api.GetBasestationMetricsResponse
+	33, // 64: api.BasestationService.StreamBasestationFrames:output_type -> streaming.FrameLogItem
+	56, // [56:65] is the sub-list for method output_type
+	47, // [47:56] is the sub-list for method input_type
+	47, // [47:47] is the sub-list for extension type_name
+	47, // [47:47] is the sub-list for extension extendee
+	0,  // [0:47] is the sub-list for field type_name
 }
 
 func init() { file_api_basestation_proto_init() }
@@ -1999,12 +2011,13 @@ func file_api_basestation_proto_init() {
 	file_api_common_proto_init()
 	file_api_basestation_proto_msgTypes[0].OneofWrappers = []any{}
 	file_api_basestation_proto_msgTypes[1].OneofWrappers = []any{}
+	file_api_basestation_proto_msgTypes[2].OneofWrappers = []any{}
 	file_api_basestation_proto_msgTypes[3].OneofWrappers = []any{}
-	file_api_basestation_proto_msgTypes[4].OneofWrappers = []any{}
-	file_api_basestation_proto_msgTypes[5].OneofWrappers = []any{}
-	file_api_basestation_proto_msgTypes[8].OneofWrappers = []any{}
-	file_api_basestation_proto_msgTypes[9].OneofWrappers = []any{}
+	file_api_basestation_proto_msgTypes[6].OneofWrappers = []any{}
+	file_api_basestation_proto_msgTypes[7].OneofWrappers = []any{}
+	file_api_basestation_proto_msgTypes[10].OneofWrappers = []any{}
 	file_api_basestation_proto_msgTypes[12].OneofWrappers = []any{}
+	file_api_basestation_proto_msgTypes[14].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

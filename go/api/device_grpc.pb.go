@@ -26,6 +26,7 @@ const (
 	DeviceService_UpdateDevice_FullMethodName       = "/api.DeviceService/UpdateDevice"
 	DeviceService_DeleteDevice_FullMethodName       = "/api.DeviceService/DeleteDevice"
 	DeviceService_ListDevices_FullMethodName        = "/api.DeviceService/ListDevices"
+	DeviceService_GetDeviceMap_FullMethodName       = "/api.DeviceService/GetDeviceMap"
 	DeviceService_GetDeviceMetrics_FullMethodName   = "/api.DeviceService/GetDeviceMetrics"
 	DeviceService_StreamDeviceFrames_FullMethodName = "/api.DeviceService/StreamDeviceFrames"
 )
@@ -46,6 +47,8 @@ type DeviceServiceClient interface {
 	DeleteDevice(ctx context.Context, in *DeleteDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Get the list of devices.
 	ListDevices(ctx context.Context, in *ListDevicesRequest, opts ...grpc.CallOption) (*ListDevicesResponse, error)
+	// Get the list of devices for map rendering.
+	GetDeviceMap(ctx context.Context, in *GetDevicesMapRequest, opts ...grpc.CallOption) (*GetDevicesMapResponse, error)
 	// GetMetrics returns the device metrics.
 	// Note that this requires a device-profile with codec and measurements
 	// configured.
@@ -112,6 +115,16 @@ func (c *deviceServiceClient) ListDevices(ctx context.Context, in *ListDevicesRe
 	return out, nil
 }
 
+func (c *deviceServiceClient) GetDeviceMap(ctx context.Context, in *GetDevicesMapRequest, opts ...grpc.CallOption) (*GetDevicesMapResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetDevicesMapResponse)
+	err := c.cc.Invoke(ctx, DeviceService_GetDeviceMap_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *deviceServiceClient) GetDeviceMetrics(ctx context.Context, in *GetDeviceMetricsRequest, opts ...grpc.CallOption) (*GetDeviceMetricsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetDeviceMetricsResponse)
@@ -157,6 +170,8 @@ type DeviceServiceServer interface {
 	DeleteDevice(context.Context, *DeleteDeviceRequest) (*emptypb.Empty, error)
 	// Get the list of devices.
 	ListDevices(context.Context, *ListDevicesRequest) (*ListDevicesResponse, error)
+	// Get the list of devices for map rendering.
+	GetDeviceMap(context.Context, *GetDevicesMapRequest) (*GetDevicesMapResponse, error)
 	// GetMetrics returns the device metrics.
 	// Note that this requires a device-profile with codec and measurements
 	// configured.
@@ -187,6 +202,9 @@ func (UnimplementedDeviceServiceServer) DeleteDevice(context.Context, *DeleteDev
 }
 func (UnimplementedDeviceServiceServer) ListDevices(context.Context, *ListDevicesRequest) (*ListDevicesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDevices not implemented")
+}
+func (UnimplementedDeviceServiceServer) GetDeviceMap(context.Context, *GetDevicesMapRequest) (*GetDevicesMapResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceMap not implemented")
 }
 func (UnimplementedDeviceServiceServer) GetDeviceMetrics(context.Context, *GetDeviceMetricsRequest) (*GetDeviceMetricsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceMetrics not implemented")
@@ -305,6 +323,24 @@ func _DeviceService_ListDevices_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceService_GetDeviceMap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDevicesMapRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceServiceServer).GetDeviceMap(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceService_GetDeviceMap_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceServiceServer).GetDeviceMap(ctx, req.(*GetDevicesMapRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DeviceService_GetDeviceMetrics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDeviceMetricsRequest)
 	if err := dec(in); err != nil {
@@ -360,6 +396,10 @@ var DeviceService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListDevices",
 			Handler:    _DeviceService_ListDevices_Handler,
+		},
+		{
+			MethodName: "GetDeviceMap",
+			Handler:    _DeviceService_GetDeviceMap_Handler,
 		},
 		{
 			MethodName: "GetDeviceMetrics",

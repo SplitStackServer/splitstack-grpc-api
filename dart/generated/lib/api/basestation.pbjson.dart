@@ -52,7 +52,7 @@ const Basestation$json = {
       '3': 5,
       '4': 1,
       '5': 11,
-      '6': '.common.GeoLocation',
+      '6': '.common.Location',
       '9': 1,
       '10': 'location',
       '17': true
@@ -105,14 +105,13 @@ const Basestation$json = {
 /// Descriptor for `Basestation`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List basestationDescriptor = $convert.base64Decode(
     'CgtCYXNlc3RhdGlvbhIOCgJpZBgBIAEoCVICaWQSEAoDZXVpGAIgASgJUgNldWkSEgoEbmFtZR'
-    'gDIAEoCVIEbmFtZRIlCgtkZXNjcmlwdGlvbhgEIAEoCUgAUgtkZXNjcmlwdGlvbogBARI0Cghs'
-    'b2NhdGlvbhgFIAEoCzITLmNvbW1vbi5HZW9Mb2NhdGlvbkgBUghsb2NhdGlvbogBARI5CghtZX'
-    'RhZGF0YRgGIAEoCzIYLmFwaS5CYXNlc3RhdGlvbk1ldGFkYXRhSAJSCG1ldGFkYXRhiAEBEigK'
-    'EHVzZV9ncHNfbG9jYXRpb24YByABKAhSDnVzZUdwc0xvY2F0aW9uEjAKFHZhcmlhYmxlX21hY1'
-    '9zdXBwb3J0GAggASgIUhJ2YXJpYWJsZU1hY1N1cHBvcnQSJQoEdGFncxgJIAEoCzIMLmNvbW1v'
-    'bi5UYWdzSANSBHRhZ3OIAQESKwoFc3RhdGUYCiABKA4yFS5hcGkuQmFzZXN0YXRpb25TdGF0ZV'
-    'IFc3RhdGVCDgoMX2Rlc2NyaXB0aW9uQgsKCV9sb2NhdGlvbkILCglfbWV0YWRhdGFCBwoFX3Rh'
-    'Z3M=');
+    'gDIAEoCVIEbmFtZRIlCgtkZXNjcmlwdGlvbhgEIAEoCUgAUgtkZXNjcmlwdGlvbogBARIxCghs'
+    'b2NhdGlvbhgFIAEoCzIQLmNvbW1vbi5Mb2NhdGlvbkgBUghsb2NhdGlvbogBARI5CghtZXRhZG'
+    'F0YRgGIAEoCzIYLmFwaS5CYXNlc3RhdGlvbk1ldGFkYXRhSAJSCG1ldGFkYXRhiAEBEigKEHVz'
+    'ZV9ncHNfbG9jYXRpb24YByABKAhSDnVzZUdwc0xvY2F0aW9uEjAKFHZhcmlhYmxlX21hY19zdX'
+    'Bwb3J0GAggASgIUhJ2YXJpYWJsZU1hY1N1cHBvcnQSJQoEdGFncxgJIAEoCzIMLmNvbW1vbi5U'
+    'YWdzSANSBHRhZ3OIAQESKwoFc3RhdGUYCiABKA4yFS5hcGkuQmFzZXN0YXRpb25TdGF0ZVIFc3'
+    'RhdGVCDgoMX2Rlc2NyaXB0aW9uQgsKCV9sb2NhdGlvbkILCglfbWV0YWRhdGFCBwoFX3RhZ3M=');
 
 @$core.Deprecated('Use basestationListItemDescriptor instead')
 const BasestationListItem$json = {
@@ -136,7 +135,7 @@ const BasestationListItem$json = {
       '3': 6,
       '4': 1,
       '5': 11,
-      '6': '.common.GeoLocation',
+      '6': '.common.Location',
       '9': 1,
       '10': 'location',
       '17': true
@@ -206,87 +205,15 @@ final $typed_data.Uint8List basestationListItemDescriptor = $convert.base64Decod
     'ChNCYXNlc3RhdGlvbkxpc3RJdGVtEhsKCXRlbmFudF9pZBgBIAEoCVIIdGVuYW50SWQSJQoOYm'
     'FzZXN0YXRpb25faWQYAiABKAlSDWJhc2VzdGF0aW9uSWQSEAoDZXVpGAMgASgJUgNldWkSEgoE'
     'bmFtZRgEIAEoCVIEbmFtZRIlCgtkZXNjcmlwdGlvbhgFIAEoCUgAUgtkZXNjcmlwdGlvbogBAR'
-    'I0Cghsb2NhdGlvbhgGIAEoCzITLmNvbW1vbi5HZW9Mb2NhdGlvbkgBUghsb2NhdGlvbogBARI5'
-    'CghtZXRhZGF0YRgHIAEoCzIYLmFwaS5CYXNlc3RhdGlvbk1ldGFkYXRhSAJSCG1ldGFkYXRhiA'
-    'EBEjkKCmNyZWF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgljcmVh'
-    'dGVkQXQSOQoKdXBkYXRlZF9hdBgJIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCX'
-    'VwZGF0ZWRBdBJBCgxsYXN0X3NlZW5fYXQYCiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0'
-    'YW1wSANSCmxhc3RTZWVuQXSIAQESMAoUdmFyaWFibGVfbWFjX3N1cHBvcnQYCyABKAhSEnZhcm'
-    'lhYmxlTWFjU3VwcG9ydBIrCgVzdGF0ZRgMIAEoDjIVLmFwaS5CYXNlc3RhdGlvblN0YXRlUgVz'
-    'dGF0ZUIOCgxfZGVzY3JpcHRpb25CCwoJX2xvY2F0aW9uQgsKCV9tZXRhZGF0YUIPCg1fbGFzdF'
-    '9zZWVuX2F0');
-
-@$core.Deprecated('Use basestationLocationsDescriptor instead')
-const BasestationLocations$json = {
-  '1': 'BasestationLocations',
-  '2': [
-    {'1': 'tenant_id', '3': 1, '4': 1, '5': 9, '10': 'tenantId'},
-    {
-      '1': 'locations',
-      '3': 2,
-      '4': 3,
-      '5': 11,
-      '6': '.api.BasestationLocation',
-      '10': 'locations'
-    },
-  ],
-};
-
-/// Descriptor for `BasestationLocations`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List basestationLocationsDescriptor = $convert.base64Decode(
-    'ChRCYXNlc3RhdGlvbkxvY2F0aW9ucxIbCgl0ZW5hbnRfaWQYASABKAlSCHRlbmFudElkEjYKCW'
-    'xvY2F0aW9ucxgCIAMoCzIYLmFwaS5CYXNlc3RhdGlvbkxvY2F0aW9uUglsb2NhdGlvbnM=');
-
-@$core.Deprecated('Use basestationLocationDescriptor instead')
-const BasestationLocation$json = {
-  '1': 'BasestationLocation',
-  '2': [
-    {'1': 'basestation_id', '3': 2, '4': 1, '5': 9, '10': 'basestationId'},
-    {'1': 'eui', '3': 3, '4': 1, '5': 9, '10': 'eui'},
-    {'1': 'name', '3': 4, '4': 1, '5': 9, '10': 'name'},
-    {
-      '1': 'location',
-      '3': 6,
-      '4': 1,
-      '5': 11,
-      '6': '.common.GeoLocation',
-      '9': 0,
-      '10': 'location',
-      '17': true
-    },
-    {
-      '1': 'last_seen_at',
-      '3': 10,
-      '4': 1,
-      '5': 11,
-      '6': '.google.protobuf.Timestamp',
-      '9': 1,
-      '10': 'lastSeenAt',
-      '17': true
-    },
-    {
-      '1': 'state',
-      '3': 12,
-      '4': 1,
-      '5': 14,
-      '6': '.api.BasestationState',
-      '10': 'state'
-    },
-  ],
-  '8': [
-    {'1': '_location'},
-    {'1': '_last_seen_at'},
-  ],
-};
-
-/// Descriptor for `BasestationLocation`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List basestationLocationDescriptor = $convert.base64Decode(
-    'ChNCYXNlc3RhdGlvbkxvY2F0aW9uEiUKDmJhc2VzdGF0aW9uX2lkGAIgASgJUg1iYXNlc3RhdG'
-    'lvbklkEhAKA2V1aRgDIAEoCVIDZXVpEhIKBG5hbWUYBCABKAlSBG5hbWUSNAoIbG9jYXRpb24Y'
-    'BiABKAsyEy5jb21tb24uR2VvTG9jYXRpb25IAFIIbG9jYXRpb26IAQESQQoMbGFzdF9zZWVuX2'
-    'F0GAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEgBUgpsYXN0U2VlbkF0iAEBEisK'
-    'BXN0YXRlGAwgASgOMhUuYXBpLkJhc2VzdGF0aW9uU3RhdGVSBXN0YXRlQgsKCV9sb2NhdGlvbk'
-    'IPCg1fbGFzdF9zZWVuX2F0');
+    'IxCghsb2NhdGlvbhgGIAEoCzIQLmNvbW1vbi5Mb2NhdGlvbkgBUghsb2NhdGlvbogBARI5Cght'
+    'ZXRhZGF0YRgHIAEoCzIYLmFwaS5CYXNlc3RhdGlvbk1ldGFkYXRhSAJSCG1ldGFkYXRhiAEBEj'
+    'kKCmNyZWF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgljcmVhdGVk'
+    'QXQSOQoKdXBkYXRlZF9hdBgJIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCXVwZG'
+    'F0ZWRBdBJBCgxsYXN0X3NlZW5fYXQYCiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1w'
+    'SANSCmxhc3RTZWVuQXSIAQESMAoUdmFyaWFibGVfbWFjX3N1cHBvcnQYCyABKAhSEnZhcmlhYm'
+    'xlTWFjU3VwcG9ydBIrCgVzdGF0ZRgMIAEoDjIVLmFwaS5CYXNlc3RhdGlvblN0YXRlUgVzdGF0'
+    'ZUIOCgxfZGVzY3JpcHRpb25CCwoJX2xvY2F0aW9uQgsKCV9tZXRhZGF0YUIPCg1fbGFzdF9zZW'
+    'VuX2F0');
 
 @$core.Deprecated('Use basestationMetadataDescriptor instead')
 const BasestationMetadata$json = {
@@ -341,7 +268,7 @@ const CreateBasestationRequest$json = {
       '3': 5,
       '4': 1,
       '5': 11,
-      '6': '.common.GeoLocation',
+      '6': '.common.Location',
       '9': 2,
       '10': 'location',
       '17': true
@@ -370,10 +297,10 @@ const CreateBasestationRequest$json = {
 final $typed_data.Uint8List createBasestationRequestDescriptor = $convert.base64Decode(
     'ChhDcmVhdGVCYXNlc3RhdGlvblJlcXVlc3QSGwoJdGVuYW50X2lkGAEgASgJUgh0ZW5hbnRJZB'
     'IQCgNldWkYAiABKAlSA2V1aRIXCgRuYW1lGAMgASgJSABSBG5hbWWIAQESJQoLZGVzY3JpcHRp'
-    'b24YBCABKAlIAVILZGVzY3JpcHRpb26IAQESNAoIbG9jYXRpb24YBSABKAsyEy5jb21tb24uR2'
-    'VvTG9jYXRpb25IAlIIbG9jYXRpb26IAQESKAoQdXNlX2dwc19sb2NhdGlvbhgGIAEoCFIOdXNl'
-    'R3BzTG9jYXRpb24SJQoEdGFncxgIIAEoCzIMLmNvbW1vbi5UYWdzSANSBHRhZ3OIAQFCBwoFX2'
-    '5hbWVCDgoMX2Rlc2NyaXB0aW9uQgsKCV9sb2NhdGlvbkIHCgVfdGFncw==');
+    'b24YBCABKAlIAVILZGVzY3JpcHRpb26IAQESMQoIbG9jYXRpb24YBSABKAsyEC5jb21tb24uTG'
+    '9jYXRpb25IAlIIbG9jYXRpb26IAQESKAoQdXNlX2dwc19sb2NhdGlvbhgGIAEoCFIOdXNlR3Bz'
+    'TG9jYXRpb24SJQoEdGFncxgIIAEoCzIMLmNvbW1vbi5UYWdzSANSBHRhZ3OIAQFCBwoFX25hbW'
+    'VCDgoMX2Rlc2NyaXB0aW9uQgsKCV9sb2NhdGlvbkIHCgVfdGFncw==');
 
 @$core.Deprecated('Use createBasestationResponseDescriptor instead')
 const CreateBasestationResponse$json = {
@@ -489,7 +416,7 @@ const UpdateBasestationRequest$json = {
       '3': 5,
       '4': 1,
       '5': 11,
-      '6': '.common.GeoLocation',
+      '6': '.common.Location',
       '9': 2,
       '10': 'location',
       '17': true
@@ -526,11 +453,11 @@ const UpdateBasestationRequest$json = {
 /// Descriptor for `UpdateBasestationRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List updateBasestationRequestDescriptor = $convert.base64Decode(
     'ChhVcGRhdGVCYXNlc3RhdGlvblJlcXVlc3QSDgoCaWQYASABKAlSAmlkEhcKBG5hbWUYAyABKA'
-    'lIAFIEbmFtZYgBARIlCgtkZXNjcmlwdGlvbhgEIAEoCUgBUgtkZXNjcmlwdGlvbogBARI0Cghs'
-    'b2NhdGlvbhgFIAEoCzITLmNvbW1vbi5HZW9Mb2NhdGlvbkgCUghsb2NhdGlvbogBARItChB1c2'
-    'VfZ3BzX2xvY2F0aW9uGAYgASgISANSDnVzZUdwc0xvY2F0aW9uiAEBEiUKBHRhZ3MYCCABKAsy'
-    'DC5jb21tb24uVGFnc0gEUgR0YWdziAEBQgcKBV9uYW1lQg4KDF9kZXNjcmlwdGlvbkILCglfbG'
-    '9jYXRpb25CEwoRX3VzZV9ncHNfbG9jYXRpb25CBwoFX3RhZ3M=');
+    'lIAFIEbmFtZYgBARIlCgtkZXNjcmlwdGlvbhgEIAEoCUgBUgtkZXNjcmlwdGlvbogBARIxCghs'
+    'b2NhdGlvbhgFIAEoCzIQLmNvbW1vbi5Mb2NhdGlvbkgCUghsb2NhdGlvbogBARItChB1c2VfZ3'
+    'BzX2xvY2F0aW9uGAYgASgISANSDnVzZUdwc0xvY2F0aW9uiAEBEiUKBHRhZ3MYCCABKAsyDC5j'
+    'b21tb24uVGFnc0gEUgR0YWdziAEBQgcKBV9uYW1lQg4KDF9kZXNjcmlwdGlvbkILCglfbG9jYX'
+    'Rpb25CEwoRX3VzZV9ncHNfbG9jYXRpb25CBwoFX3RhZ3M=');
 
 @$core.Deprecated('Use updateBasestationResponseDescriptor instead')
 const UpdateBasestationResponse$json = {
@@ -695,30 +622,143 @@ const GetBasestationsMapRequest$json = {
   '1': 'GetBasestationsMapRequest',
   '2': [
     {'1': 'tenant_id', '3': 1, '4': 3, '5': 9, '10': 'tenantId'},
-    {'1': 'min_lat', '3': 2, '4': 1, '5': 1, '10': 'minLat'},
-    {'1': 'max_lat', '3': 3, '4': 1, '5': 1, '10': 'maxLat'},
-    {'1': 'min_lon', '3': 4, '4': 1, '5': 1, '10': 'minLon'},
-    {'1': 'max_lon', '3': 5, '4': 1, '5': 1, '10': 'maxLon'},
+    {
+      '1': 'bounds',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.common.LocationBoundary',
+      '9': 0,
+      '10': 'bounds',
+      '17': true
+    },
+    {
+      '1': 'geohash_prefix',
+      '3': 6,
+      '4': 1,
+      '5': 9,
+      '9': 1,
+      '10': 'geohashPrefix',
+      '17': true
+    },
+    {
+      '1': 'state_filter',
+      '3': 7,
+      '4': 3,
+      '5': 14,
+      '6': '.api.BasestationState',
+      '10': 'stateFilter'
+    },
+    {
+      '1': 'tags',
+      '3': 8,
+      '4': 1,
+      '5': 11,
+      '6': '.common.Tags',
+      '9': 2,
+      '10': 'tags',
+      '17': true
+    },
+  ],
+  '8': [
+    {'1': '_bounds'},
+    {'1': '_geohash_prefix'},
+    {'1': '_tags'},
   ],
 };
 
 /// Descriptor for `GetBasestationsMapRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getBasestationsMapRequestDescriptor = $convert.base64Decode(
     'ChlHZXRCYXNlc3RhdGlvbnNNYXBSZXF1ZXN0EhsKCXRlbmFudF9pZBgBIAMoCVIIdGVuYW50SW'
-    'QSFwoHbWluX2xhdBgCIAEoAVIGbWluTGF0EhcKB21heF9sYXQYAyABKAFSBm1heExhdBIXCgdt'
-    'aW5fbG9uGAQgASgBUgZtaW5Mb24SFwoHbWF4X2xvbhgFIAEoAVIGbWF4TG9u');
+    'QSNQoGYm91bmRzGAIgASgLMhguY29tbW9uLkxvY2F0aW9uQm91bmRhcnlIAFIGYm91bmRziAEB'
+    'EioKDmdlb2hhc2hfcHJlZml4GAYgASgJSAFSDWdlb2hhc2hQcmVmaXiIAQESOAoMc3RhdGVfZm'
+    'lsdGVyGAcgAygOMhUuYXBpLkJhc2VzdGF0aW9uU3RhdGVSC3N0YXRlRmlsdGVyEiUKBHRhZ3MY'
+    'CCABKAsyDC5jb21tb24uVGFnc0gCUgR0YWdziAEBQgkKB19ib3VuZHNCEQoPX2dlb2hhc2hfcH'
+    'JlZml4QgcKBV90YWdz');
+
+@$core.Deprecated('Use basestationLocationsDescriptor instead')
+const BasestationLocations$json = {
+  '1': 'BasestationLocations',
+  '2': [
+    {'1': 'tenant_id', '3': 1, '4': 1, '5': 9, '10': 'tenantId'},
+    {
+      '1': 'locations',
+      '3': 2,
+      '4': 3,
+      '5': 11,
+      '6': '.api.BasestationLocation',
+      '10': 'locations'
+    },
+  ],
+};
+
+/// Descriptor for `BasestationLocations`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List basestationLocationsDescriptor = $convert.base64Decode(
+    'ChRCYXNlc3RhdGlvbkxvY2F0aW9ucxIbCgl0ZW5hbnRfaWQYASABKAlSCHRlbmFudElkEjYKCW'
+    'xvY2F0aW9ucxgCIAMoCzIYLmFwaS5CYXNlc3RhdGlvbkxvY2F0aW9uUglsb2NhdGlvbnM=');
+
+@$core.Deprecated('Use basestationLocationDescriptor instead')
+const BasestationLocation$json = {
+  '1': 'BasestationLocation',
+  '2': [
+    {'1': 'basestation_id', '3': 2, '4': 1, '5': 9, '10': 'basestationId'},
+    {'1': 'eui', '3': 3, '4': 1, '5': 9, '10': 'eui'},
+    {'1': 'name', '3': 4, '4': 1, '5': 9, '10': 'name'},
+    {
+      '1': 'location',
+      '3': 5,
+      '4': 1,
+      '5': 11,
+      '6': '.common.GeoLocation',
+      '9': 0,
+      '10': 'location',
+      '17': true
+    },
+    {
+      '1': 'last_seen_at',
+      '3': 6,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.Timestamp',
+      '9': 1,
+      '10': 'lastSeenAt',
+      '17': true
+    },
+    {
+      '1': 'state',
+      '3': 7,
+      '4': 1,
+      '5': 14,
+      '6': '.api.BasestationState',
+      '10': 'state'
+    },
+  ],
+  '8': [
+    {'1': '_location'},
+    {'1': '_last_seen_at'},
+  ],
+};
+
+/// Descriptor for `BasestationLocation`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List basestationLocationDescriptor = $convert.base64Decode(
+    'ChNCYXNlc3RhdGlvbkxvY2F0aW9uEiUKDmJhc2VzdGF0aW9uX2lkGAIgASgJUg1iYXNlc3RhdG'
+    'lvbklkEhAKA2V1aRgDIAEoCVIDZXVpEhIKBG5hbWUYBCABKAlSBG5hbWUSNAoIbG9jYXRpb24Y'
+    'BSABKAsyEy5jb21tb24uR2VvTG9jYXRpb25IAFIIbG9jYXRpb26IAQESQQoMbGFzdF9zZWVuX2'
+    'F0GAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEgBUgpsYXN0U2VlbkF0iAEBEisK'
+    'BXN0YXRlGAcgASgOMhUuYXBpLkJhc2VzdGF0aW9uU3RhdGVSBXN0YXRlQgsKCV9sb2NhdGlvbk'
+    'IPCg1fbGFzdF9zZWVuX2F0');
 
 @$core.Deprecated('Use getBasestationsMapResponseDescriptor instead')
 const GetBasestationsMapResponse$json = {
   '1': 'GetBasestationsMapResponse',
   '2': [
     {
-      '1': 'basestations',
+      '1': 'locations',
       '3': 1,
       '4': 3,
       '5': 11,
       '6': '.api.BasestationLocations',
-      '10': 'basestations'
+      '10': 'locations'
     },
   ],
 };
@@ -726,8 +766,8 @@ const GetBasestationsMapResponse$json = {
 /// Descriptor for `GetBasestationsMapResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getBasestationsMapResponseDescriptor =
     $convert.base64Decode(
-        'ChpHZXRCYXNlc3RhdGlvbnNNYXBSZXNwb25zZRI9CgxiYXNlc3RhdGlvbnMYASADKAsyGS5hcG'
-        'kuQmFzZXN0YXRpb25Mb2NhdGlvbnNSDGJhc2VzdGF0aW9ucw==');
+        'ChpHZXRCYXNlc3RhdGlvbnNNYXBSZXNwb25zZRI3Cglsb2NhdGlvbnMYASADKAsyGS5hcGkuQm'
+        'FzZXN0YXRpb25Mb2NhdGlvbnNSCWxvY2F0aW9ucw==');
 
 @$core.Deprecated(
     'Use generateBasestationClientCertificateRequestDescriptor instead')

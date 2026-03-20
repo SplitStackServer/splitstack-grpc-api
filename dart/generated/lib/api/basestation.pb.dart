@@ -31,7 +31,7 @@ class Basestation extends $pb.GeneratedMessage {
     $core.String? eui,
     $core.String? name,
     $core.String? description,
-    $3.GeoLocation? location,
+    $3.Location? location,
     BasestationMetadata? metadata,
     $core.bool? useGpsLocation,
     $core.bool? variableMacSupport,
@@ -70,8 +70,8 @@ class Basestation extends $pb.GeneratedMessage {
     ..aOS(2, _omitFieldNames ? '' : 'eui')
     ..aOS(3, _omitFieldNames ? '' : 'name')
     ..aOS(4, _omitFieldNames ? '' : 'description')
-    ..aOM<$3.GeoLocation>(5, _omitFieldNames ? '' : 'location',
-        subBuilder: $3.GeoLocation.create)
+    ..aOM<$3.Location>(5, _omitFieldNames ? '' : 'location',
+        subBuilder: $3.Location.create)
     ..aOM<BasestationMetadata>(6, _omitFieldNames ? '' : 'metadata',
         subBuilder: BasestationMetadata.create)
     ..aOB(7, _omitFieldNames ? '' : 'useGpsLocation')
@@ -142,15 +142,15 @@ class Basestation extends $pb.GeneratedMessage {
 
   /// Basestation location.
   @$pb.TagNumber(5)
-  $3.GeoLocation get location => $_getN(4);
+  $3.Location get location => $_getN(4);
   @$pb.TagNumber(5)
-  set location($3.GeoLocation value) => $_setField(5, value);
+  set location($3.Location value) => $_setField(5, value);
   @$pb.TagNumber(5)
   $core.bool hasLocation() => $_has(4);
   @$pb.TagNumber(5)
   void clearLocation() => $_clearField(5);
   @$pb.TagNumber(5)
-  $3.GeoLocation ensureLocation() => $_ensure(4);
+  $3.Location ensureLocation() => $_ensure(4);
 
   /// Basestation metadata (set on connection).
   @$pb.TagNumber(6)
@@ -212,7 +212,7 @@ class BasestationListItem extends $pb.GeneratedMessage {
     $core.String? eui,
     $core.String? name,
     $core.String? description,
-    $3.GeoLocation? location,
+    $3.Location? location,
     BasestationMetadata? metadata,
     $4.Timestamp? createdAt,
     $4.Timestamp? updatedAt,
@@ -255,8 +255,8 @@ class BasestationListItem extends $pb.GeneratedMessage {
     ..aOS(3, _omitFieldNames ? '' : 'eui')
     ..aOS(4, _omitFieldNames ? '' : 'name')
     ..aOS(5, _omitFieldNames ? '' : 'description')
-    ..aOM<$3.GeoLocation>(6, _omitFieldNames ? '' : 'location',
-        subBuilder: $3.GeoLocation.create)
+    ..aOM<$3.Location>(6, _omitFieldNames ? '' : 'location',
+        subBuilder: $3.Location.create)
     ..aOM<BasestationMetadata>(7, _omitFieldNames ? '' : 'metadata',
         subBuilder: BasestationMetadata.create)
     ..aOM<$4.Timestamp>(8, _omitFieldNames ? '' : 'createdAt',
@@ -341,15 +341,15 @@ class BasestationListItem extends $pb.GeneratedMessage {
 
   /// Location.
   @$pb.TagNumber(6)
-  $3.GeoLocation get location => $_getN(5);
+  $3.Location get location => $_getN(5);
   @$pb.TagNumber(6)
-  set location($3.GeoLocation value) => $_setField(6, value);
+  set location($3.Location value) => $_setField(6, value);
   @$pb.TagNumber(6)
   $core.bool hasLocation() => $_has(5);
   @$pb.TagNumber(6)
   void clearLocation() => $_clearField(6);
   @$pb.TagNumber(6)
-  $3.GeoLocation ensureLocation() => $_ensure(5);
+  $3.Location ensureLocation() => $_ensure(5);
 
   /// Basestation metadata (set on connection).
   @$pb.TagNumber(7)
@@ -415,196 +415,6 @@ class BasestationListItem extends $pb.GeneratedMessage {
   set state(BasestationState value) => $_setField(12, value);
   @$pb.TagNumber(12)
   $core.bool hasState() => $_has(11);
-  @$pb.TagNumber(12)
-  void clearState() => $_clearField(12);
-}
-
-class BasestationLocations extends $pb.GeneratedMessage {
-  factory BasestationLocations({
-    $core.String? tenantId,
-    $core.Iterable<BasestationLocation>? locations,
-  }) {
-    final result = create();
-    if (tenantId != null) result.tenantId = tenantId;
-    if (locations != null) result.locations.addAll(locations);
-    return result;
-  }
-
-  BasestationLocations._();
-
-  factory BasestationLocations.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory BasestationLocations.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'BasestationLocations',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
-      createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'tenantId')
-    ..pPM<BasestationLocation>(2, _omitFieldNames ? '' : 'locations',
-        subBuilder: BasestationLocation.create)
-    ..hasRequiredFields = false;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  BasestationLocations clone() => deepCopy();
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  BasestationLocations copyWith(void Function(BasestationLocations) updates) =>
-      super.copyWith((message) => updates(message as BasestationLocations))
-          as BasestationLocations;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static BasestationLocations create() => BasestationLocations._();
-  @$core.override
-  BasestationLocations createEmptyInstance() => create();
-  @$core.pragma('dart2js:noInline')
-  static BasestationLocations getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<BasestationLocations>(create);
-  static BasestationLocations? _defaultInstance;
-
-  /// Tenant ID.
-  @$pb.TagNumber(1)
-  $core.String get tenantId => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set tenantId($core.String value) => $_setString(0, value);
-  @$pb.TagNumber(1)
-  $core.bool hasTenantId() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearTenantId() => $_clearField(1);
-
-  /// Basestation locations.
-  @$pb.TagNumber(2)
-  $pb.PbList<BasestationLocation> get locations => $_getList(1);
-}
-
-class BasestationLocation extends $pb.GeneratedMessage {
-  factory BasestationLocation({
-    $core.String? basestationId,
-    $core.String? eui,
-    $core.String? name,
-    $3.GeoLocation? location,
-    $4.Timestamp? lastSeenAt,
-    BasestationState? state,
-  }) {
-    final result = create();
-    if (basestationId != null) result.basestationId = basestationId;
-    if (eui != null) result.eui = eui;
-    if (name != null) result.name = name;
-    if (location != null) result.location = location;
-    if (lastSeenAt != null) result.lastSeenAt = lastSeenAt;
-    if (state != null) result.state = state;
-    return result;
-  }
-
-  BasestationLocation._();
-
-  factory BasestationLocation.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory BasestationLocation.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'BasestationLocation',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
-      createEmptyInstance: create)
-    ..aOS(2, _omitFieldNames ? '' : 'basestationId')
-    ..aOS(3, _omitFieldNames ? '' : 'eui')
-    ..aOS(4, _omitFieldNames ? '' : 'name')
-    ..aOM<$3.GeoLocation>(6, _omitFieldNames ? '' : 'location',
-        subBuilder: $3.GeoLocation.create)
-    ..aOM<$4.Timestamp>(10, _omitFieldNames ? '' : 'lastSeenAt',
-        subBuilder: $4.Timestamp.create)
-    ..aE<BasestationState>(12, _omitFieldNames ? '' : 'state',
-        enumValues: BasestationState.values)
-    ..hasRequiredFields = false;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  BasestationLocation clone() => deepCopy();
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  BasestationLocation copyWith(void Function(BasestationLocation) updates) =>
-      super.copyWith((message) => updates(message as BasestationLocation))
-          as BasestationLocation;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static BasestationLocation create() => BasestationLocation._();
-  @$core.override
-  BasestationLocation createEmptyInstance() => create();
-  @$core.pragma('dart2js:noInline')
-  static BasestationLocation getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<BasestationLocation>(create);
-  static BasestationLocation? _defaultInstance;
-
-  /// Basestation ID (UUID).
-  @$pb.TagNumber(2)
-  $core.String get basestationId => $_getSZ(0);
-  @$pb.TagNumber(2)
-  set basestationId($core.String value) => $_setString(0, value);
-  @$pb.TagNumber(2)
-  $core.bool hasBasestationId() => $_has(0);
-  @$pb.TagNumber(2)
-  void clearBasestationId() => $_clearField(2);
-
-  /// Basestation EUI64.
-  @$pb.TagNumber(3)
-  $core.String get eui => $_getSZ(1);
-  @$pb.TagNumber(3)
-  set eui($core.String value) => $_setString(1, value);
-  @$pb.TagNumber(3)
-  $core.bool hasEui() => $_has(1);
-  @$pb.TagNumber(3)
-  void clearEui() => $_clearField(3);
-
-  /// Name.
-  @$pb.TagNumber(4)
-  $core.String get name => $_getSZ(2);
-  @$pb.TagNumber(4)
-  set name($core.String value) => $_setString(2, value);
-  @$pb.TagNumber(4)
-  $core.bool hasName() => $_has(2);
-  @$pb.TagNumber(4)
-  void clearName() => $_clearField(4);
-
-  /// Location.
-  @$pb.TagNumber(6)
-  $3.GeoLocation get location => $_getN(3);
-  @$pb.TagNumber(6)
-  set location($3.GeoLocation value) => $_setField(6, value);
-  @$pb.TagNumber(6)
-  $core.bool hasLocation() => $_has(3);
-  @$pb.TagNumber(6)
-  void clearLocation() => $_clearField(6);
-  @$pb.TagNumber(6)
-  $3.GeoLocation ensureLocation() => $_ensure(3);
-
-  /// Last seen at timestamp.
-  @$pb.TagNumber(10)
-  $4.Timestamp get lastSeenAt => $_getN(4);
-  @$pb.TagNumber(10)
-  set lastSeenAt($4.Timestamp value) => $_setField(10, value);
-  @$pb.TagNumber(10)
-  $core.bool hasLastSeenAt() => $_has(4);
-  @$pb.TagNumber(10)
-  void clearLastSeenAt() => $_clearField(10);
-  @$pb.TagNumber(10)
-  $4.Timestamp ensureLastSeenAt() => $_ensure(4);
-
-  /// Basestation state.
-  @$pb.TagNumber(12)
-  BasestationState get state => $_getN(5);
-  @$pb.TagNumber(12)
-  set state(BasestationState value) => $_setField(12, value);
-  @$pb.TagNumber(12)
-  $core.bool hasState() => $_has(5);
   @$pb.TagNumber(12)
   void clearState() => $_clearField(12);
 }
@@ -709,7 +519,7 @@ class CreateBasestationRequest extends $pb.GeneratedMessage {
     $core.String? eui,
     $core.String? name,
     $core.String? description,
-    $3.GeoLocation? location,
+    $3.Location? location,
     $core.bool? useGpsLocation,
     $3.Tags? tags,
   }) {
@@ -741,8 +551,8 @@ class CreateBasestationRequest extends $pb.GeneratedMessage {
     ..aOS(2, _omitFieldNames ? '' : 'eui')
     ..aOS(3, _omitFieldNames ? '' : 'name')
     ..aOS(4, _omitFieldNames ? '' : 'description')
-    ..aOM<$3.GeoLocation>(5, _omitFieldNames ? '' : 'location',
-        subBuilder: $3.GeoLocation.create)
+    ..aOM<$3.Location>(5, _omitFieldNames ? '' : 'location',
+        subBuilder: $3.Location.create)
     ..aOB(6, _omitFieldNames ? '' : 'useGpsLocation')
     ..aOM<$3.Tags>(8, _omitFieldNames ? '' : 'tags', subBuilder: $3.Tags.create)
     ..hasRequiredFields = false;
@@ -809,15 +619,15 @@ class CreateBasestationRequest extends $pb.GeneratedMessage {
 
   /// Location.
   @$pb.TagNumber(5)
-  $3.GeoLocation get location => $_getN(4);
+  $3.Location get location => $_getN(4);
   @$pb.TagNumber(5)
-  set location($3.GeoLocation value) => $_setField(5, value);
+  set location($3.Location value) => $_setField(5, value);
   @$pb.TagNumber(5)
   $core.bool hasLocation() => $_has(4);
   @$pb.TagNumber(5)
   void clearLocation() => $_clearField(5);
   @$pb.TagNumber(5)
-  $3.GeoLocation ensureLocation() => $_ensure(4);
+  $3.Location ensureLocation() => $_ensure(4);
 
   /// Use location data provided by the basestation.
   @$pb.TagNumber(6)
@@ -1085,7 +895,7 @@ class UpdateBasestationRequest extends $pb.GeneratedMessage {
     $core.String? id,
     $core.String? name,
     $core.String? description,
-    $3.GeoLocation? location,
+    $3.Location? location,
     $core.bool? useGpsLocation,
     $3.Tags? tags,
   }) {
@@ -1115,8 +925,8 @@ class UpdateBasestationRequest extends $pb.GeneratedMessage {
     ..aOS(1, _omitFieldNames ? '' : 'id')
     ..aOS(3, _omitFieldNames ? '' : 'name')
     ..aOS(4, _omitFieldNames ? '' : 'description')
-    ..aOM<$3.GeoLocation>(5, _omitFieldNames ? '' : 'location',
-        subBuilder: $3.GeoLocation.create)
+    ..aOM<$3.Location>(5, _omitFieldNames ? '' : 'location',
+        subBuilder: $3.Location.create)
     ..aOB(6, _omitFieldNames ? '' : 'useGpsLocation')
     ..aOM<$3.Tags>(8, _omitFieldNames ? '' : 'tags', subBuilder: $3.Tags.create)
     ..hasRequiredFields = false;
@@ -1173,15 +983,15 @@ class UpdateBasestationRequest extends $pb.GeneratedMessage {
 
   /// Location.
   @$pb.TagNumber(5)
-  $3.GeoLocation get location => $_getN(3);
+  $3.Location get location => $_getN(3);
   @$pb.TagNumber(5)
-  set location($3.GeoLocation value) => $_setField(5, value);
+  set location($3.Location value) => $_setField(5, value);
   @$pb.TagNumber(5)
   $core.bool hasLocation() => $_has(3);
   @$pb.TagNumber(5)
   void clearLocation() => $_clearField(5);
   @$pb.TagNumber(5)
-  $3.GeoLocation ensureLocation() => $_ensure(3);
+  $3.Location ensureLocation() => $_ensure(3);
 
   /// Use location data provided by the basestation.
   @$pb.TagNumber(6)
@@ -1551,17 +1361,17 @@ class ListBasestationsResponse extends $pb.GeneratedMessage {
 class GetBasestationsMapRequest extends $pb.GeneratedMessage {
   factory GetBasestationsMapRequest({
     $core.Iterable<$core.String>? tenantId,
-    $core.double? minLat,
-    $core.double? maxLat,
-    $core.double? minLon,
-    $core.double? maxLon,
+    $3.LocationBoundary? bounds,
+    $core.String? geohashPrefix,
+    $core.Iterable<BasestationState>? stateFilter,
+    $3.Tags? tags,
   }) {
     final result = create();
     if (tenantId != null) result.tenantId.addAll(tenantId);
-    if (minLat != null) result.minLat = minLat;
-    if (maxLat != null) result.maxLat = maxLat;
-    if (minLon != null) result.minLon = minLon;
-    if (maxLon != null) result.maxLon = maxLon;
+    if (bounds != null) result.bounds = bounds;
+    if (geohashPrefix != null) result.geohashPrefix = geohashPrefix;
+    if (stateFilter != null) result.stateFilter.addAll(stateFilter);
+    if (tags != null) result.tags = tags;
     return result;
   }
 
@@ -1579,10 +1389,15 @@ class GetBasestationsMapRequest extends $pb.GeneratedMessage {
       package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
       createEmptyInstance: create)
     ..pPS(1, _omitFieldNames ? '' : 'tenantId')
-    ..aD(2, _omitFieldNames ? '' : 'minLat')
-    ..aD(3, _omitFieldNames ? '' : 'maxLat')
-    ..aD(4, _omitFieldNames ? '' : 'minLon')
-    ..aD(5, _omitFieldNames ? '' : 'maxLon')
+    ..aOM<$3.LocationBoundary>(2, _omitFieldNames ? '' : 'bounds',
+        subBuilder: $3.LocationBoundary.create)
+    ..aOS(6, _omitFieldNames ? '' : 'geohashPrefix')
+    ..pc<BasestationState>(
+        7, _omitFieldNames ? '' : 'stateFilter', $pb.PbFieldType.KE,
+        valueOf: BasestationState.valueOf,
+        enumValues: BasestationState.values,
+        defaultEnumValue: BasestationState.NEVER_SEEN)
+    ..aOM<$3.Tags>(8, _omitFieldNames ? '' : 'tags', subBuilder: $3.Tags.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1610,49 +1425,242 @@ class GetBasestationsMapRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $pb.PbList<$core.String> get tenantId => $_getList(0);
 
+  /// Boundary of the map viewport. Only basestations within the given bounds will be returned.
   @$pb.TagNumber(2)
-  $core.double get minLat => $_getN(1);
+  $3.LocationBoundary get bounds => $_getN(1);
   @$pb.TagNumber(2)
-  set minLat($core.double value) => $_setDouble(1, value);
+  set bounds($3.LocationBoundary value) => $_setField(2, value);
   @$pb.TagNumber(2)
-  $core.bool hasMinLat() => $_has(1);
+  $core.bool hasBounds() => $_has(1);
   @$pb.TagNumber(2)
-  void clearMinLat() => $_clearField(2);
+  void clearBounds() => $_clearField(2);
+  @$pb.TagNumber(2)
+  $3.LocationBoundary ensureBounds() => $_ensure(1);
 
-  @$pb.TagNumber(3)
-  $core.double get maxLat => $_getN(2);
-  @$pb.TagNumber(3)
-  set maxLat($core.double value) => $_setDouble(2, value);
-  @$pb.TagNumber(3)
-  $core.bool hasMaxLat() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearMaxLat() => $_clearField(3);
+  /// If set, geohash prefix filter (starts-with match).
+  /// This is useful for zoom-dependent map queries.
+  @$pb.TagNumber(6)
+  $core.String get geohashPrefix => $_getSZ(2);
+  @$pb.TagNumber(6)
+  set geohashPrefix($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(6)
+  $core.bool hasGeohashPrefix() => $_has(2);
+  @$pb.TagNumber(6)
+  void clearGeohashPrefix() => $_clearField(6);
 
-  @$pb.TagNumber(4)
-  $core.double get minLon => $_getN(3);
-  @$pb.TagNumber(4)
-  set minLon($core.double value) => $_setDouble(3, value);
-  @$pb.TagNumber(4)
-  $core.bool hasMinLon() => $_has(3);
-  @$pb.TagNumber(4)
-  void clearMinLon() => $_clearField(4);
+  /// Optional state filters. If empty, all states are included.
+  @$pb.TagNumber(7)
+  $pb.PbList<BasestationState> get stateFilter => $_getList(3);
 
+  /// Optional tags to filter basestations on.
+  @$pb.TagNumber(8)
+  $3.Tags get tags => $_getN(4);
+  @$pb.TagNumber(8)
+  set tags($3.Tags value) => $_setField(8, value);
+  @$pb.TagNumber(8)
+  $core.bool hasTags() => $_has(4);
+  @$pb.TagNumber(8)
+  void clearTags() => $_clearField(8);
+  @$pb.TagNumber(8)
+  $3.Tags ensureTags() => $_ensure(4);
+}
+
+class BasestationLocations extends $pb.GeneratedMessage {
+  factory BasestationLocations({
+    $core.String? tenantId,
+    $core.Iterable<BasestationLocation>? locations,
+  }) {
+    final result = create();
+    if (tenantId != null) result.tenantId = tenantId;
+    if (locations != null) result.locations.addAll(locations);
+    return result;
+  }
+
+  BasestationLocations._();
+
+  factory BasestationLocations.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory BasestationLocations.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'BasestationLocations',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'tenantId')
+    ..pPM<BasestationLocation>(2, _omitFieldNames ? '' : 'locations',
+        subBuilder: BasestationLocation.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  BasestationLocations clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  BasestationLocations copyWith(void Function(BasestationLocations) updates) =>
+      super.copyWith((message) => updates(message as BasestationLocations))
+          as BasestationLocations;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static BasestationLocations create() => BasestationLocations._();
+  @$core.override
+  BasestationLocations createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static BasestationLocations getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<BasestationLocations>(create);
+  static BasestationLocations? _defaultInstance;
+
+  /// Tenant ID.
+  @$pb.TagNumber(1)
+  $core.String get tenantId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set tenantId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasTenantId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTenantId() => $_clearField(1);
+
+  /// Basestation locations.
+  @$pb.TagNumber(2)
+  $pb.PbList<BasestationLocation> get locations => $_getList(1);
+}
+
+class BasestationLocation extends $pb.GeneratedMessage {
+  factory BasestationLocation({
+    $core.String? basestationId,
+    $core.String? eui,
+    $core.String? name,
+    $3.GeoLocation? location,
+    $4.Timestamp? lastSeenAt,
+    BasestationState? state,
+  }) {
+    final result = create();
+    if (basestationId != null) result.basestationId = basestationId;
+    if (eui != null) result.eui = eui;
+    if (name != null) result.name = name;
+    if (location != null) result.location = location;
+    if (lastSeenAt != null) result.lastSeenAt = lastSeenAt;
+    if (state != null) result.state = state;
+    return result;
+  }
+
+  BasestationLocation._();
+
+  factory BasestationLocation.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory BasestationLocation.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'BasestationLocation',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
+      createEmptyInstance: create)
+    ..aOS(2, _omitFieldNames ? '' : 'basestationId')
+    ..aOS(3, _omitFieldNames ? '' : 'eui')
+    ..aOS(4, _omitFieldNames ? '' : 'name')
+    ..aOM<$3.GeoLocation>(5, _omitFieldNames ? '' : 'location',
+        subBuilder: $3.GeoLocation.create)
+    ..aOM<$4.Timestamp>(6, _omitFieldNames ? '' : 'lastSeenAt',
+        subBuilder: $4.Timestamp.create)
+    ..aE<BasestationState>(7, _omitFieldNames ? '' : 'state',
+        enumValues: BasestationState.values)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  BasestationLocation clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  BasestationLocation copyWith(void Function(BasestationLocation) updates) =>
+      super.copyWith((message) => updates(message as BasestationLocation))
+          as BasestationLocation;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static BasestationLocation create() => BasestationLocation._();
+  @$core.override
+  BasestationLocation createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static BasestationLocation getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<BasestationLocation>(create);
+  static BasestationLocation? _defaultInstance;
+
+  /// Basestation ID (UUID).
+  @$pb.TagNumber(2)
+  $core.String get basestationId => $_getSZ(0);
+  @$pb.TagNumber(2)
+  set basestationId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(2)
+  $core.bool hasBasestationId() => $_has(0);
+  @$pb.TagNumber(2)
+  void clearBasestationId() => $_clearField(2);
+
+  /// Basestation EUI64.
+  @$pb.TagNumber(3)
+  $core.String get eui => $_getSZ(1);
+  @$pb.TagNumber(3)
+  set eui($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(3)
+  $core.bool hasEui() => $_has(1);
+  @$pb.TagNumber(3)
+  void clearEui() => $_clearField(3);
+
+  /// Name.
+  @$pb.TagNumber(4)
+  $core.String get name => $_getSZ(2);
+  @$pb.TagNumber(4)
+  set name($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(4)
+  $core.bool hasName() => $_has(2);
+  @$pb.TagNumber(4)
+  void clearName() => $_clearField(4);
+
+  /// Location.
   @$pb.TagNumber(5)
-  $core.double get maxLon => $_getN(4);
+  $3.GeoLocation get location => $_getN(3);
   @$pb.TagNumber(5)
-  set maxLon($core.double value) => $_setDouble(4, value);
+  set location($3.GeoLocation value) => $_setField(5, value);
   @$pb.TagNumber(5)
-  $core.bool hasMaxLon() => $_has(4);
+  $core.bool hasLocation() => $_has(3);
   @$pb.TagNumber(5)
-  void clearMaxLon() => $_clearField(5);
+  void clearLocation() => $_clearField(5);
+  @$pb.TagNumber(5)
+  $3.GeoLocation ensureLocation() => $_ensure(3);
+
+  /// Last seen at timestamp.
+  @$pb.TagNumber(6)
+  $4.Timestamp get lastSeenAt => $_getN(4);
+  @$pb.TagNumber(6)
+  set lastSeenAt($4.Timestamp value) => $_setField(6, value);
+  @$pb.TagNumber(6)
+  $core.bool hasLastSeenAt() => $_has(4);
+  @$pb.TagNumber(6)
+  void clearLastSeenAt() => $_clearField(6);
+  @$pb.TagNumber(6)
+  $4.Timestamp ensureLastSeenAt() => $_ensure(4);
+
+  /// Basestation state.
+  @$pb.TagNumber(7)
+  BasestationState get state => $_getN(5);
+  @$pb.TagNumber(7)
+  set state(BasestationState value) => $_setField(7, value);
+  @$pb.TagNumber(7)
+  $core.bool hasState() => $_has(5);
+  @$pb.TagNumber(7)
+  void clearState() => $_clearField(7);
 }
 
 class GetBasestationsMapResponse extends $pb.GeneratedMessage {
   factory GetBasestationsMapResponse({
-    $core.Iterable<BasestationLocations>? basestations,
+    $core.Iterable<BasestationLocations>? locations,
   }) {
     final result = create();
-    if (basestations != null) result.basestations.addAll(basestations);
+    if (locations != null) result.locations.addAll(locations);
     return result;
   }
 
@@ -1669,7 +1677,7 @@ class GetBasestationsMapResponse extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'GetBasestationsMapResponse',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
       createEmptyInstance: create)
-    ..pPM<BasestationLocations>(1, _omitFieldNames ? '' : 'basestations',
+    ..pPM<BasestationLocations>(1, _omitFieldNames ? '' : 'locations',
         subBuilder: BasestationLocations.create)
     ..hasRequiredFields = false;
 
@@ -1696,7 +1704,7 @@ class GetBasestationsMapResponse extends $pb.GeneratedMessage {
 
   /// Basestation objects.
   @$pb.TagNumber(1)
-  $pb.PbList<BasestationLocations> get basestations => $_getList(0);
+  $pb.PbList<BasestationLocations> get locations => $_getList(0);
 }
 
 class GenerateBasestationClientCertificateRequest extends $pb.GeneratedMessage {
