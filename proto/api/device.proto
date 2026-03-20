@@ -61,6 +61,13 @@ service DeviceService {
     };
   }
 
+  // Get the list of devices for map rendering.
+  rpc GetDeviceMap(GetDevicesMapRequest) returns (GetDevicesMapResponse) {
+    option (google.api.http) = {
+      get : "/api/devices/map"
+    };
+  }
+
   // GetMetrics returns the device metrics.
   // Note that this requires a device-profile with codec and measurements
   // configured.
@@ -78,6 +85,17 @@ service DeviceService {
   }
 
 
+}
+
+enum DeviceState {
+  // Device has never been seen.
+  NEVER_SEEN = 0;
+
+  // Device is active.
+  ACTIVE = 1;
+
+  // Device is inactive.
+  INACTIVE = 2;
 }
 
 message Device {
@@ -114,6 +132,8 @@ message Device {
   optional common.Tags tags = 10;
 
 
+  // Device state.
+  DeviceState state = 11;
 }
 
 
@@ -309,6 +329,74 @@ message ListDevicesResponse {
 
     // Result-set.
     repeated DeviceListItem result = 2;
+}
+
+message GetDevicesMapRequest {
+  // Tenant IDs (UUID) to filter devices on.
+  // To list all devices as a global admin user, this field can be left blank.
+  repeated string tenant_id = 1;
+
+  // Application IDs (UUID) to filter devices on.
+  // If empty, devices from all applications are included.
+  repeated string application_id = 2;
+
+  // Boundary of the map viewport.
+  // Only devices within the given bounds will be returned.
+  optional common.LocationBoundary bounds = 3;
+
+  // If set, geohash prefix filter (starts-with match).
+  // This is useful for zoom-dependent map queries.
+  optional string geohash_prefix = 4;
+
+  // Optional derived state filters. If empty, all states are included.
+  repeated DeviceState state_filter = 5;
+
+  // Optional tags to filter devices on.
+  optional common.Tags tags = 6;
+
+  // All filters are combined using AND semantics:
+  // tenant_id AND application_id AND bounds AND geohash_prefix AND state_filter AND tags.
+}
+
+message DeviceLocation {
+  // Device ID (UUID).
+  string device_id = 1;
+
+  // Device EUI (EUI64).
+  string eui = 2;
+
+  // Name.
+  string name = 3;
+
+  // Location.
+  optional common.GeoLocation location = 4;
+
+  // Last seen at timestamp.
+  optional google.protobuf.Timestamp last_seen_at = 5;
+
+  // State for map filtering.
+  DeviceState state = 6;
+}
+
+message DeviceLocationsByApplication {
+  // Application ID (UUID).
+  string application_id = 1;
+
+  // Device locations for the application.
+  repeated DeviceLocation locations = 2;
+}
+
+message DeviceLocationsByTenant {
+  // Tenant ID (UUID).
+  string tenant_id = 1;
+
+  // Grouped device locations by application.
+  repeated DeviceLocationsByApplication applications = 2;
+}
+
+message GetDevicesMapResponse {
+  // Grouped device locations by tenant and application.
+  repeated DeviceLocationsByTenant locations = 1;
 }
 
 message GetDeviceMetricsRequest {

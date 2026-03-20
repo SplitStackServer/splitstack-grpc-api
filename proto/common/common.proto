@@ -31,6 +31,19 @@ message GeoLocation {
     string geohash = 2;
 }
 
+message LocationBoundary {
+    // Minimum latitude of the map viewport in degrees.
+    double min_lat = 2;
+
+    // Maximum latitude of the map viewport in degrees.
+    double max_lat = 3;
+
+    // Minimum longitude of the map viewport in degrees.
+    double min_lon = 4;
+
+    // Maximum longitude of the map viewport in degrees.
+    double max_lon = 5;
+}
 
 enum Region {
   // EU868
