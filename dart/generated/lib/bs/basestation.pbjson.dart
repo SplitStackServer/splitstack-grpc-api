@@ -167,13 +167,13 @@ const BasestationConnection$json = {
       '17': true
     },
     {
-      '1': 'geo_location',
+      '1': 'location',
       '3': 9,
       '4': 1,
       '5': 11,
-      '6': '.common.GeoLocation',
+      '6': '.common.Location',
       '9': 4,
-      '10': 'geoLocation',
+      '10': 'location',
       '17': true
     },
   ],
@@ -182,7 +182,7 @@ const BasestationConnection$json = {
     {'1': '_model'},
     {'1': '_name'},
     {'1': '_sw_version'},
-    {'1': '_geo_location'},
+    {'1': '_location'},
   ],
 };
 
@@ -191,9 +191,9 @@ final $typed_data.Uint8List basestationConnectionDescriptor = $convert.base64Dec
     'ChVCYXNlc3RhdGlvbkNvbm5lY3Rpb24SGAoHdmVyc2lvbhgDIAEoCVIHdmVyc2lvbhISCgRiaW'
     'RpGAQgASgIUgRiaWRpEhsKBnZlbmRvchgFIAEoCUgAUgZ2ZW5kb3KIAQESGQoFbW9kZWwYBiAB'
     'KAlIAVIFbW9kZWyIAQESFwoEbmFtZRgHIAEoCUgCUgRuYW1liAEBEiIKCnN3X3ZlcnNpb24YCC'
-    'ABKAlIA1IJc3dWZXJzaW9uiAEBEjsKDGdlb19sb2NhdGlvbhgJIAEoCzITLmNvbW1vbi5HZW9M'
-    'b2NhdGlvbkgEUgtnZW9Mb2NhdGlvbogBAUIJCgdfdmVuZG9yQggKBl9tb2RlbEIHCgVfbmFtZU'
-    'INCgtfc3dfdmVyc2lvbkIPCg1fZ2VvX2xvY2F0aW9u');
+    'ABKAlIA1IJc3dWZXJzaW9uiAEBEjEKCGxvY2F0aW9uGAkgASgLMhAuY29tbW9uLkxvY2F0aW9u'
+    'SARSCGxvY2F0aW9uiAEBQgkKB192ZW5kb3JCCAoGX21vZGVsQgcKBV9uYW1lQg0KC19zd192ZX'
+    'JzaW9uQgsKCV9sb2NhdGlvbg==');
 
 @$core.Deprecated('Use basestationStatusDescriptor instead')
 const BasestationStatus$json = {
@@ -211,13 +211,13 @@ const BasestationStatus$json = {
     },
     {'1': 'duty_cycle', '3': 5, '4': 1, '5': 2, '10': 'dutyCycle'},
     {
-      '1': 'geo_location',
+      '1': 'location',
       '3': 6,
       '4': 1,
       '5': 11,
-      '6': '.common.GeoLocation',
+      '6': '.common.Location',
       '9': 0,
-      '10': 'geoLocation',
+      '10': 'location',
       '17': true
     },
     {'1': 'uptime', '3': 7, '4': 1, '5': 4, '9': 1, '10': 'uptime', '17': true},
@@ -243,7 +243,7 @@ const BasestationStatus$json = {
     },
   ],
   '8': [
-    {'1': '_geo_location'},
+    {'1': '_location'},
     {'1': '_uptime'},
     {'1': '_temp'},
     {'1': '_cpu'},
@@ -256,12 +256,12 @@ const BasestationStatus$json = {
 final $typed_data.Uint8List basestationStatusDescriptor = $convert.base64Decode(
     'ChFCYXNlc3RhdGlvblN0YXR1cxIfCgtzdGF0dXNfY29kZRgCIAEoDVIKc3RhdHVzQ29kZRIdCg'
     'pzdGF0dXNfbXNnGAMgASgJUglzdGF0dXNNc2cSKgoCdHMYBCABKAsyGi5nb29nbGUucHJvdG9i'
-    'dWYuVGltZXN0YW1wUgJ0cxIdCgpkdXR5X2N5Y2xlGAUgASgCUglkdXR5Q3ljbGUSOwoMZ2VvX2'
-    'xvY2F0aW9uGAYgASgLMhMuY29tbW9uLkdlb0xvY2F0aW9uSABSC2dlb0xvY2F0aW9uiAEBEhsK'
-    'BnVwdGltZRgHIAEoBEgBUgZ1cHRpbWWIAQESFwoEdGVtcBgIIAEoAUgCUgR0ZW1wiAEBEhUKA2'
-    'NwdRgJIAEoAUgDUgNjcHWIAQESGwoGbWVtb3J5GAogASgBSARSBm1lbW9yeYgBARIdCgdsYXRl'
-    'bmN5GAsgASgDSAVSB2xhdGVuY3mIAQFCDwoNX2dlb19sb2NhdGlvbkIJCgdfdXB0aW1lQgcKBV'
-    '90ZW1wQgYKBF9jcHVCCQoHX21lbW9yeUIKCghfbGF0ZW5jeQ==');
+    'dWYuVGltZXN0YW1wUgJ0cxIdCgpkdXR5X2N5Y2xlGAUgASgCUglkdXR5Q3ljbGUSMQoIbG9jYX'
+    'Rpb24YBiABKAsyEC5jb21tb24uTG9jYXRpb25IAFIIbG9jYXRpb26IAQESGwoGdXB0aW1lGAcg'
+    'ASgESAFSBnVwdGltZYgBARIXCgR0ZW1wGAggASgBSAJSBHRlbXCIAQESFQoDY3B1GAkgASgBSA'
+    'NSA2NwdYgBARIbCgZtZW1vcnkYCiABKAFIBFIGbWVtb3J5iAEBEh0KB2xhdGVuY3kYCyABKANI'
+    'BVIHbGF0ZW5jeYgBAUILCglfbG9jYXRpb25CCQoHX3VwdGltZUIHCgVfdGVtcEIGCgRfY3B1Qg'
+    'kKB19tZW1vcnlCCgoIX2xhdGVuY3k=');
 
 @$core.Deprecated('Use basestationVariableMacStatusDescriptor instead')
 const BasestationVariableMacStatus$json = {

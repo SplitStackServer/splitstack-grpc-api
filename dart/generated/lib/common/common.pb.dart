@@ -18,8 +18,8 @@ export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 export 'common.pbenum.dart';
 
-class GeoLocation extends $pb.GeneratedMessage {
-  factory GeoLocation({
+class Location extends $pb.GeneratedMessage {
+  factory Location({
     $core.double? lat,
     $core.double? lon,
     $core.double? alt,
@@ -31,17 +31,17 @@ class GeoLocation extends $pb.GeneratedMessage {
     return result;
   }
 
-  GeoLocation._();
+  Location._();
 
-  factory GeoLocation.fromBuffer($core.List<$core.int> data,
+  factory Location.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(data, registry);
-  factory GeoLocation.fromJson($core.String json,
+  factory Location.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'GeoLocation',
+      _omitMessageNames ? '' : 'Location',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'common'),
       createEmptyInstance: create)
     ..aD(1, _omitFieldNames ? '' : 'lat')
@@ -50,23 +50,22 @@ class GeoLocation extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  GeoLocation clone() => deepCopy();
+  Location clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  GeoLocation copyWith(void Function(GeoLocation) updates) =>
-      super.copyWith((message) => updates(message as GeoLocation))
-          as GeoLocation;
+  Location copyWith(void Function(Location) updates) =>
+      super.copyWith((message) => updates(message as Location)) as Location;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static GeoLocation create() => GeoLocation._();
+  static Location create() => Location._();
   @$core.override
-  GeoLocation createEmptyInstance() => create();
+  Location createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static GeoLocation getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<GeoLocation>(create);
-  static GeoLocation? _defaultInstance;
+  static Location getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Location>(create);
+  static Location? _defaultInstance;
 
   /// Latitude in degrees. Zero value is considered to be unset.
   @$pb.TagNumber(1)
@@ -97,6 +96,171 @@ class GeoLocation extends $pb.GeneratedMessage {
   $core.bool hasAlt() => $_has(2);
   @$pb.TagNumber(3)
   void clearAlt() => $_clearField(3);
+}
+
+class GeoLocation extends $pb.GeneratedMessage {
+  factory GeoLocation({
+    Location? location,
+    $core.String? geohash,
+  }) {
+    final result = create();
+    if (location != null) result.location = location;
+    if (geohash != null) result.geohash = geohash;
+    return result;
+  }
+
+  GeoLocation._();
+
+  factory GeoLocation.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory GeoLocation.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'GeoLocation',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'common'),
+      createEmptyInstance: create)
+    ..aOM<Location>(1, _omitFieldNames ? '' : 'location',
+        subBuilder: Location.create)
+    ..aOS(2, _omitFieldNames ? '' : 'geohash')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GeoLocation clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GeoLocation copyWith(void Function(GeoLocation) updates) =>
+      super.copyWith((message) => updates(message as GeoLocation))
+          as GeoLocation;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GeoLocation create() => GeoLocation._();
+  @$core.override
+  GeoLocation createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static GeoLocation getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GeoLocation>(create);
+  static GeoLocation? _defaultInstance;
+
+  /// Latitude in degrees. Zero value is considered to be unset.
+  @$pb.TagNumber(1)
+  Location get location => $_getN(0);
+  @$pb.TagNumber(1)
+  set location(Location value) => $_setField(1, value);
+  @$pb.TagNumber(1)
+  $core.bool hasLocation() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearLocation() => $_clearField(1);
+  @$pb.TagNumber(1)
+  Location ensureLocation() => $_ensure(0);
+
+  /// Geohash of the location. Empty string is considered to be unset.
+  @$pb.TagNumber(2)
+  $core.String get geohash => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set geohash($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasGeohash() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearGeohash() => $_clearField(2);
+}
+
+class LocationBoundary extends $pb.GeneratedMessage {
+  factory LocationBoundary({
+    $core.double? minLat,
+    $core.double? maxLat,
+    $core.double? minLon,
+    $core.double? maxLon,
+  }) {
+    final result = create();
+    if (minLat != null) result.minLat = minLat;
+    if (maxLat != null) result.maxLat = maxLat;
+    if (minLon != null) result.minLon = minLon;
+    if (maxLon != null) result.maxLon = maxLon;
+    return result;
+  }
+
+  LocationBoundary._();
+
+  factory LocationBoundary.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory LocationBoundary.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'LocationBoundary',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'common'),
+      createEmptyInstance: create)
+    ..aD(2, _omitFieldNames ? '' : 'minLat')
+    ..aD(3, _omitFieldNames ? '' : 'maxLat')
+    ..aD(4, _omitFieldNames ? '' : 'minLon')
+    ..aD(5, _omitFieldNames ? '' : 'maxLon')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  LocationBoundary clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  LocationBoundary copyWith(void Function(LocationBoundary) updates) =>
+      super.copyWith((message) => updates(message as LocationBoundary))
+          as LocationBoundary;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static LocationBoundary create() => LocationBoundary._();
+  @$core.override
+  LocationBoundary createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static LocationBoundary getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<LocationBoundary>(create);
+  static LocationBoundary? _defaultInstance;
+
+  /// Minimum latitude of the map viewport in degrees.
+  @$pb.TagNumber(2)
+  $core.double get minLat => $_getN(0);
+  @$pb.TagNumber(2)
+  set minLat($core.double value) => $_setDouble(0, value);
+  @$pb.TagNumber(2)
+  $core.bool hasMinLat() => $_has(0);
+  @$pb.TagNumber(2)
+  void clearMinLat() => $_clearField(2);
+
+  /// Maximum latitude of the map viewport in degrees.
+  @$pb.TagNumber(3)
+  $core.double get maxLat => $_getN(1);
+  @$pb.TagNumber(3)
+  set maxLat($core.double value) => $_setDouble(1, value);
+  @$pb.TagNumber(3)
+  $core.bool hasMaxLat() => $_has(1);
+  @$pb.TagNumber(3)
+  void clearMaxLat() => $_clearField(3);
+
+  /// Minimum longitude of the map viewport in degrees.
+  @$pb.TagNumber(4)
+  $core.double get minLon => $_getN(2);
+  @$pb.TagNumber(4)
+  set minLon($core.double value) => $_setDouble(2, value);
+  @$pb.TagNumber(4)
+  $core.bool hasMinLon() => $_has(2);
+  @$pb.TagNumber(4)
+  void clearMinLon() => $_clearField(4);
+
+  /// Maximum longitude of the map viewport in degrees.
+  @$pb.TagNumber(5)
+  $core.double get maxLon => $_getN(3);
+  @$pb.TagNumber(5)
+  set maxLon($core.double value) => $_setDouble(3, value);
+  @$pb.TagNumber(5)
+  $core.bool hasMaxLon() => $_has(3);
+  @$pb.TagNumber(5)
+  void clearMaxLon() => $_clearField(5);
 }
 
 class MbusHeader extends $pb.GeneratedMessage {

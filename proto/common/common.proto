@@ -13,13 +13,36 @@ option php_metadata_namespace = "GPBMetadata\\SplitStackServer\\Common";
 
 
 
-message GeoLocation {
+message Location {
     // Latitude in degrees. Zero value is considered to be unset.
     double lat = 1;
     // Longitude in degrees. Zero value is considered to be unset.
     double lon = 2;
     // Altitude in meters. Only evaluated if Latitude and Longitude are set.
     double alt = 3;
+}
+
+// 
+message GeoLocation {
+    // Latitude in degrees. Zero value is considered to be unset.
+    Location location = 1;
+
+    // Geohash of the location. Empty string is considered to be unset.
+    string geohash = 2;
+}
+
+message LocationBoundary {
+    // Minimum latitude of the map viewport in degrees.
+    double min_lat = 2;
+
+    // Maximum latitude of the map viewport in degrees.
+    double max_lat = 3;
+
+    // Minimum longitude of the map viewport in degrees.
+    double min_lon = 4;
+
+    // Maximum longitude of the map viewport in degrees.
+    double max_lon = 5;
 }
 
 enum Region {

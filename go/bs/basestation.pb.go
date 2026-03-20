@@ -415,7 +415,7 @@ type BasestationConnection struct {
 	// Software version, optional
 	SwVersion *string `protobuf:"bytes,8,opt,name=sw_version,json=swVersion,proto3,oneof" json:"sw_version,omitempty"`
 	// Geographic location [Latitude, Longitude, Altitude], optional
-	GeoLocation   *common.GeoLocation `protobuf:"bytes,9,opt,name=geo_location,json=geoLocation,proto3,oneof" json:"geo_location,omitempty"`
+	Location      *common.Location `protobuf:"bytes,9,opt,name=location,proto3,oneof" json:"location,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -492,9 +492,9 @@ func (x *BasestationConnection) GetSwVersion() string {
 	return ""
 }
 
-func (x *BasestationConnection) GetGeoLocation() *common.GeoLocation {
+func (x *BasestationConnection) GetLocation() *common.Location {
 	if x != nil {
-		return x.GeoLocation
+		return x.Location
 	}
 	return nil
 }
@@ -511,7 +511,7 @@ type BasestationStatus struct {
 	// Fraction of TX time, sliding window over one hour
 	DutyCycle float32 `protobuf:"fixed32,5,opt,name=duty_cycle,json=dutyCycle,proto3" json:"duty_cycle,omitempty"`
 	// Geographic location [Latitude, Longitude, Altitude], optional
-	GeoLocation *common.GeoLocation `protobuf:"bytes,6,opt,name=geo_location,json=geoLocation,proto3,oneof" json:"geo_location,omitempty"`
+	Location *common.Location `protobuf:"bytes,6,opt,name=location,proto3,oneof" json:"location,omitempty"`
 	// System uptime in seconds, optional
 	Uptime *uint64 `protobuf:"varint,7,opt,name=uptime,proto3,oneof" json:"uptime,omitempty"`
 	// System temperature in degree Celsius, optional
@@ -585,9 +585,9 @@ func (x *BasestationStatus) GetDutyCycle() float32 {
 	return 0
 }
 
-func (x *BasestationStatus) GetGeoLocation() *common.GeoLocation {
+func (x *BasestationStatus) GetLocation() *common.Location {
 	if x != nil {
-		return x.GeoLocation
+		return x.Location
 	}
 	return nil
 }
@@ -939,7 +939,7 @@ const file_bs_basestation_proto_rawDesc = "" +
 	"\n" +
 	"dl_rx_stat\x18\b \x01(\v2\x1f.bs.BasestationDownlinkRxStatusH\x00R\bdlRxStat\x128\n" +
 	"\aprp_ack\x18\t \x01(\v2\x1d.bs.BasestationPropagationAckH\x00R\x06prpAckB\t\n" +
-	"\amessage\"\xb5\x02\n" +
+	"\amessage\"\xa7\x02\n" +
 	"\x15BasestationConnection\x12\x18\n" +
 	"\aversion\x18\x03 \x01(\tR\aversion\x12\x12\n" +
 	"\x04bidi\x18\x04 \x01(\bR\x04bidi\x12\x1b\n" +
@@ -947,13 +947,13 @@ const file_bs_basestation_proto_rawDesc = "" +
 	"\x05model\x18\x06 \x01(\tH\x01R\x05model\x88\x01\x01\x12\x17\n" +
 	"\x04name\x18\a \x01(\tH\x02R\x04name\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"sw_version\x18\b \x01(\tH\x03R\tswVersion\x88\x01\x01\x12;\n" +
-	"\fgeo_location\x18\t \x01(\v2\x13.common.GeoLocationH\x04R\vgeoLocation\x88\x01\x01B\t\n" +
+	"sw_version\x18\b \x01(\tH\x03R\tswVersion\x88\x01\x01\x121\n" +
+	"\blocation\x18\t \x01(\v2\x10.common.LocationH\x04R\blocation\x88\x01\x01B\t\n" +
 	"\a_vendorB\b\n" +
 	"\x06_modelB\a\n" +
 	"\x05_nameB\r\n" +
-	"\v_sw_versionB\x0f\n" +
-	"\r_geo_location\"\xa8\x03\n" +
+	"\v_sw_versionB\v\n" +
+	"\t_location\"\x9a\x03\n" +
 	"\x11BasestationStatus\x12\x1f\n" +
 	"\vstatus_code\x18\x02 \x01(\rR\n" +
 	"statusCode\x12\x1d\n" +
@@ -961,15 +961,15 @@ const file_bs_basestation_proto_rawDesc = "" +
 	"status_msg\x18\x03 \x01(\tR\tstatusMsg\x12*\n" +
 	"\x02ts\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x02ts\x12\x1d\n" +
 	"\n" +
-	"duty_cycle\x18\x05 \x01(\x02R\tdutyCycle\x12;\n" +
-	"\fgeo_location\x18\x06 \x01(\v2\x13.common.GeoLocationH\x00R\vgeoLocation\x88\x01\x01\x12\x1b\n" +
+	"duty_cycle\x18\x05 \x01(\x02R\tdutyCycle\x121\n" +
+	"\blocation\x18\x06 \x01(\v2\x10.common.LocationH\x00R\blocation\x88\x01\x01\x12\x1b\n" +
 	"\x06uptime\x18\a \x01(\x04H\x01R\x06uptime\x88\x01\x01\x12\x17\n" +
 	"\x04temp\x18\b \x01(\x01H\x02R\x04temp\x88\x01\x01\x12\x15\n" +
 	"\x03cpu\x18\t \x01(\x01H\x03R\x03cpu\x88\x01\x01\x12\x1b\n" +
 	"\x06memory\x18\n" +
 	" \x01(\x01H\x04R\x06memory\x88\x01\x01\x12\x1d\n" +
-	"\alatency\x18\v \x01(\x03H\x05R\alatency\x88\x01\x01B\x0f\n" +
-	"\r_geo_locationB\t\n" +
+	"\alatency\x18\v \x01(\x03H\x05R\alatency\x88\x01\x01B\v\n" +
+	"\t_locationB\t\n" +
 	"\a_uptimeB\a\n" +
 	"\x05_tempB\x06\n" +
 	"\x04_cpuB\t\n" +
@@ -1038,7 +1038,7 @@ var file_bs_basestation_proto_goTypes = []any{
 	(*BasestationDownlinkRxStatus)(nil),   // 9: bs.BasestationDownlinkRxStatus
 	(*BasestationPropagationAck)(nil),     // 10: bs.BasestationPropagationAck
 	(*timestamppb.Timestamp)(nil),         // 11: google.protobuf.Timestamp
-	(*common.GeoLocation)(nil),            // 12: common.GeoLocation
+	(*common.Location)(nil),               // 12: common.Location
 }
 var file_bs_basestation_proto_depIdxs = []int32{
 	1,  // 0: bs.BasestationState.state:type_name -> bs.BasestationState.ConnectionState
@@ -1049,9 +1049,9 @@ var file_bs_basestation_proto_depIdxs = []int32{
 	8,  // 5: bs.BasestationUplink.dl_res:type_name -> bs.BasestationDownlinkResult
 	9,  // 6: bs.BasestationUplink.dl_rx_stat:type_name -> bs.BasestationDownlinkRxStatus
 	10, // 7: bs.BasestationUplink.prp_ack:type_name -> bs.BasestationPropagationAck
-	12, // 8: bs.BasestationConnection.geo_location:type_name -> common.GeoLocation
+	12, // 8: bs.BasestationConnection.location:type_name -> common.Location
 	11, // 9: bs.BasestationStatus.ts:type_name -> google.protobuf.Timestamp
-	12, // 10: bs.BasestationStatus.geo_location:type_name -> common.GeoLocation
+	12, // 10: bs.BasestationStatus.location:type_name -> common.Location
 	0,  // 11: bs.BasestationDownlinkResult.result:type_name -> bs.DownlinkResultEnum
 	11, // 12: bs.BasestationDownlinkResult.tx_time:type_name -> google.protobuf.Timestamp
 	11, // 13: bs.BasestationDownlinkRxStatus.rx_time:type_name -> google.protobuf.Timestamp

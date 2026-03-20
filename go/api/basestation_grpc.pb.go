@@ -26,6 +26,7 @@ const (
 	BasestationService_UpdateBasestation_FullMethodName                    = "/api.BasestationService/UpdateBasestation"
 	BasestationService_DeleteBasestation_FullMethodName                    = "/api.BasestationService/DeleteBasestation"
 	BasestationService_ListBasestations_FullMethodName                     = "/api.BasestationService/ListBasestations"
+	BasestationService_GetBasestationMap_FullMethodName                    = "/api.BasestationService/GetBasestationMap"
 	BasestationService_GenerateBasestationClientCertificate_FullMethodName = "/api.BasestationService/GenerateBasestationClientCertificate"
 	BasestationService_GetBasestationMetrics_FullMethodName                = "/api.BasestationService/GetBasestationMetrics"
 	BasestationService_StreamBasestationFrames_FullMethodName              = "/api.BasestationService/StreamBasestationFrames"
@@ -47,6 +48,8 @@ type BasestationServiceClient interface {
 	DeleteBasestation(ctx context.Context, in *DeleteBasestationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Get the list of basestations.
 	ListBasestations(ctx context.Context, in *ListBasestationsRequest, opts ...grpc.CallOption) (*ListBasestationsResponse, error)
+	// Get the list of basestations.
+	GetBasestationMap(ctx context.Context, in *GetBasestationsMapRequest, opts ...grpc.CallOption) (*GetBasestationsMapResponse, error)
 	// Generate client-certificate for the gateway.
 	GenerateBasestationClientCertificate(ctx context.Context, in *GenerateBasestationClientCertificateRequest, opts ...grpc.CallOption) (*GenerateBasestationClientCertificateResponse, error)
 	// GetMetrics returns the gateway metrics.
@@ -113,6 +116,16 @@ func (c *basestationServiceClient) ListBasestations(ctx context.Context, in *Lis
 	return out, nil
 }
 
+func (c *basestationServiceClient) GetBasestationMap(ctx context.Context, in *GetBasestationsMapRequest, opts ...grpc.CallOption) (*GetBasestationsMapResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBasestationsMapResponse)
+	err := c.cc.Invoke(ctx, BasestationService_GetBasestationMap_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *basestationServiceClient) GenerateBasestationClientCertificate(ctx context.Context, in *GenerateBasestationClientCertificateRequest, opts ...grpc.CallOption) (*GenerateBasestationClientCertificateResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GenerateBasestationClientCertificateResponse)
@@ -168,6 +181,8 @@ type BasestationServiceServer interface {
 	DeleteBasestation(context.Context, *DeleteBasestationRequest) (*emptypb.Empty, error)
 	// Get the list of basestations.
 	ListBasestations(context.Context, *ListBasestationsRequest) (*ListBasestationsResponse, error)
+	// Get the list of basestations.
+	GetBasestationMap(context.Context, *GetBasestationsMapRequest) (*GetBasestationsMapResponse, error)
 	// Generate client-certificate for the gateway.
 	GenerateBasestationClientCertificate(context.Context, *GenerateBasestationClientCertificateRequest) (*GenerateBasestationClientCertificateResponse, error)
 	// GetMetrics returns the gateway metrics.
@@ -198,6 +213,9 @@ func (UnimplementedBasestationServiceServer) DeleteBasestation(context.Context, 
 }
 func (UnimplementedBasestationServiceServer) ListBasestations(context.Context, *ListBasestationsRequest) (*ListBasestationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListBasestations not implemented")
+}
+func (UnimplementedBasestationServiceServer) GetBasestationMap(context.Context, *GetBasestationsMapRequest) (*GetBasestationsMapResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBasestationMap not implemented")
 }
 func (UnimplementedBasestationServiceServer) GenerateBasestationClientCertificate(context.Context, *GenerateBasestationClientCertificateRequest) (*GenerateBasestationClientCertificateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenerateBasestationClientCertificate not implemented")
@@ -319,6 +337,24 @@ func _BasestationService_ListBasestations_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BasestationService_GetBasestationMap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBasestationsMapRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasestationServiceServer).GetBasestationMap(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BasestationService_GetBasestationMap_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasestationServiceServer).GetBasestationMap(ctx, req.(*GetBasestationsMapRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _BasestationService_GenerateBasestationClientCertificate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GenerateBasestationClientCertificateRequest)
 	if err := dec(in); err != nil {
@@ -392,6 +428,10 @@ var BasestationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListBasestations",
 			Handler:    _BasestationService_ListBasestations_Handler,
+		},
+		{
+			MethodName: "GetBasestationMap",
+			Handler:    _BasestationService_GetBasestationMap_Handler,
 		},
 		{
 			MethodName: "GenerateBasestationClientCertificate",

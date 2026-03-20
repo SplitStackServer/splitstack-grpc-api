@@ -68,7 +68,7 @@ message BasestationConnection {
     // Software version, optional
     optional string sw_version = 8;
     // Geographic location [Latitude, Longitude, Altitude], optional
-    optional common.GeoLocation geo_location = 9;
+    optional common.Location location = 9;
 }
 
 // Status
@@ -82,7 +82,7 @@ message BasestationStatus {
     // Fraction of TX time, sliding window over one hour
     float duty_cycle = 5;
     // Geographic location [Latitude, Longitude, Altitude], optional
-    optional common.GeoLocation geo_location = 6;
+    optional common.Location location = 6;
     // System uptime in seconds, optional
     optional uint64 uptime = 7;
     // System temperature in degree Celsius, optional

@@ -319,7 +319,7 @@ class BasestationConnection extends $pb.GeneratedMessage {
     $core.String? model,
     $core.String? name,
     $core.String? swVersion,
-    $1.GeoLocation? geoLocation,
+    $1.Location? location,
   }) {
     final result = create();
     if (version != null) result.version = version;
@@ -328,7 +328,7 @@ class BasestationConnection extends $pb.GeneratedMessage {
     if (model != null) result.model = model;
     if (name != null) result.name = name;
     if (swVersion != null) result.swVersion = swVersion;
-    if (geoLocation != null) result.geoLocation = geoLocation;
+    if (location != null) result.location = location;
     return result;
   }
 
@@ -351,8 +351,8 @@ class BasestationConnection extends $pb.GeneratedMessage {
     ..aOS(6, _omitFieldNames ? '' : 'model')
     ..aOS(7, _omitFieldNames ? '' : 'name')
     ..aOS(8, _omitFieldNames ? '' : 'swVersion')
-    ..aOM<$1.GeoLocation>(9, _omitFieldNames ? '' : 'geoLocation',
-        subBuilder: $1.GeoLocation.create)
+    ..aOM<$1.Location>(9, _omitFieldNames ? '' : 'location',
+        subBuilder: $1.Location.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -437,15 +437,15 @@ class BasestationConnection extends $pb.GeneratedMessage {
 
   /// Geographic location [Latitude, Longitude, Altitude], optional
   @$pb.TagNumber(9)
-  $1.GeoLocation get geoLocation => $_getN(6);
+  $1.Location get location => $_getN(6);
   @$pb.TagNumber(9)
-  set geoLocation($1.GeoLocation value) => $_setField(9, value);
+  set location($1.Location value) => $_setField(9, value);
   @$pb.TagNumber(9)
-  $core.bool hasGeoLocation() => $_has(6);
+  $core.bool hasLocation() => $_has(6);
   @$pb.TagNumber(9)
-  void clearGeoLocation() => $_clearField(9);
+  void clearLocation() => $_clearField(9);
   @$pb.TagNumber(9)
-  $1.GeoLocation ensureGeoLocation() => $_ensure(6);
+  $1.Location ensureLocation() => $_ensure(6);
 }
 
 /// Status
@@ -455,7 +455,7 @@ class BasestationStatus extends $pb.GeneratedMessage {
     $core.String? statusMsg,
     $0.Timestamp? ts,
     $core.double? dutyCycle,
-    $1.GeoLocation? geoLocation,
+    $1.Location? location,
     $fixnum.Int64? uptime,
     $core.double? temp,
     $core.double? cpu,
@@ -467,7 +467,7 @@ class BasestationStatus extends $pb.GeneratedMessage {
     if (statusMsg != null) result.statusMsg = statusMsg;
     if (ts != null) result.ts = ts;
     if (dutyCycle != null) result.dutyCycle = dutyCycle;
-    if (geoLocation != null) result.geoLocation = geoLocation;
+    if (location != null) result.location = location;
     if (uptime != null) result.uptime = uptime;
     if (temp != null) result.temp = temp;
     if (cpu != null) result.cpu = cpu;
@@ -494,8 +494,8 @@ class BasestationStatus extends $pb.GeneratedMessage {
     ..aOM<$0.Timestamp>(4, _omitFieldNames ? '' : 'ts',
         subBuilder: $0.Timestamp.create)
     ..aD(5, _omitFieldNames ? '' : 'dutyCycle', fieldType: $pb.PbFieldType.OF)
-    ..aOM<$1.GeoLocation>(6, _omitFieldNames ? '' : 'geoLocation',
-        subBuilder: $1.GeoLocation.create)
+    ..aOM<$1.Location>(6, _omitFieldNames ? '' : 'location',
+        subBuilder: $1.Location.create)
     ..a<$fixnum.Int64>(7, _omitFieldNames ? '' : 'uptime', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
     ..aD(8, _omitFieldNames ? '' : 'temp')
@@ -567,15 +567,15 @@ class BasestationStatus extends $pb.GeneratedMessage {
 
   /// Geographic location [Latitude, Longitude, Altitude], optional
   @$pb.TagNumber(6)
-  $1.GeoLocation get geoLocation => $_getN(4);
+  $1.Location get location => $_getN(4);
   @$pb.TagNumber(6)
-  set geoLocation($1.GeoLocation value) => $_setField(6, value);
+  set location($1.Location value) => $_setField(6, value);
   @$pb.TagNumber(6)
-  $core.bool hasGeoLocation() => $_has(4);
+  $core.bool hasLocation() => $_has(4);
   @$pb.TagNumber(6)
-  void clearGeoLocation() => $_clearField(6);
+  void clearLocation() => $_clearField(6);
   @$pb.TagNumber(6)
-  $1.GeoLocation ensureGeoLocation() => $_ensure(4);
+  $1.Location ensureLocation() => $_ensure(4);
 
   /// System uptime in seconds, optional
   @$pb.TagNumber(7)

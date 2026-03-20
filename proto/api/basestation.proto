@@ -58,6 +58,14 @@ service BasestationService {
         };
     }
 
+    // Get the list of basestations.
+    rpc GetBasestationMap(GetBasestationsMapRequest) returns (GetBasestationsMapResponse) {
+        option(google.api.http) = {
+            get: "/api/basestations/map"
+        };
+    }
+
+
     // Generate client-certificate for the gateway.
     rpc GenerateBasestationClientCertificate(GenerateBasestationClientCertificateRequest) returns (GenerateBasestationClientCertificateResponse) {
         option(google.api.http) = {
@@ -111,7 +119,7 @@ message Basestation {
     optional string description = 4;
 
     // Basestation location.
-    optional common.GeoLocation location = 5;
+    optional common.Location location = 5;
 
     // Basestation metadata (set on connection).
     optional BasestationMetadata metadata = 6;
@@ -145,7 +153,7 @@ message BasestationListItem {
     optional string description = 5;
 
     // Location.
-    optional common.GeoLocation location = 6;
+    optional common.Location location = 6;
 
     // Basestation metadata (set on connection).
     optional BasestationMetadata metadata = 7;
@@ -164,6 +172,8 @@ message BasestationListItem {
     // Basestation state.
     BasestationState state = 12;
 }
+
+
 
 message BasestationMetadata {
     // Vendor.
@@ -193,7 +203,7 @@ message CreateBasestationRequest {
     optional string description = 4;
 
     // Location.
-    optional common.GeoLocation location = 5;
+    optional common.Location location = 5;
 
     // Use location data provided by the basestation.
     bool use_gps_location = 6;
@@ -241,7 +251,7 @@ message UpdateBasestationRequest {
     optional string description = 4;
 
     // Location.
-    optional common.GeoLocation location = 5;
+    optional common.Location location = 5;
 
     // Use location data provided by the basestation.
     optional bool use_gps_location = 6;
@@ -305,6 +315,65 @@ message ListBasestationsResponse {
     // Result-set.
     repeated BasestationListItem result = 2;
 }
+
+
+message GetBasestationsMapRequest {
+    // Tenant IDs (UUID) to filter basestations on.
+    // To list all basestations as a global admin user, this field can be left blank.
+    repeated string tenant_id = 1;
+
+    // Boundary of the map viewport. Only basestations within the given bounds will be returned.
+    optional common.LocationBoundary bounds = 2;
+
+    // If set, geohash prefix filter (starts-with match).
+    // This is useful for zoom-dependent map queries.
+    optional string geohash_prefix = 6;
+
+    // Optional state filters. If empty, all states are included.
+    repeated BasestationState state_filter = 7;
+
+    // Optional tags to filter basestations on.
+    optional common.Tags tags = 8;
+
+    // All filters are combined using AND semantics:
+    // bounds AND geohash_prefix AND state_filter AND tags.
+
+}
+
+
+message BasestationLocations {
+    // Tenant ID.
+    string tenant_id = 1;
+    // Basestation locations.
+    repeated BasestationLocation locations = 2;
+}
+
+message BasestationLocation {
+    // Basestation ID (UUID).
+    string basestation_id = 2;
+
+    // Basestation EUI64.
+    string eui = 3;
+
+    // Name.
+    string name = 4;
+
+    // Location.
+    optional common.GeoLocation location = 5;
+
+    // Last seen at timestamp.
+    optional google.protobuf.Timestamp last_seen_at = 6;
+
+    // Basestation state.
+    BasestationState state = 7;
+}
+
+message GetBasestationsMapResponse {
+    // Basestation objects.
+    repeated BasestationLocations locations = 1;
+}
+
+
 
 message GenerateBasestationClientCertificateRequest {
     // Basestation ID (UUID).

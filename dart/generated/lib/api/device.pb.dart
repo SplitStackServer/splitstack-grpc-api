@@ -33,9 +33,10 @@ class Device extends $pb.GeneratedMessage {
     $core.String? deviceProfileId,
     $core.String? name,
     $core.String? description,
-    $3.GeoLocation? location,
+    $3.Location? location,
     $3.Tags? variables,
     $3.Tags? tags,
+    DeviceState? state,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -47,6 +48,7 @@ class Device extends $pb.GeneratedMessage {
     if (location != null) result.location = location;
     if (variables != null) result.variables = variables;
     if (tags != null) result.tags = tags;
+    if (state != null) result.state = state;
     return result;
   }
 
@@ -69,12 +71,14 @@ class Device extends $pb.GeneratedMessage {
     ..aOS(4, _omitFieldNames ? '' : 'deviceProfileId')
     ..aOS(5, _omitFieldNames ? '' : 'name')
     ..aOS(6, _omitFieldNames ? '' : 'description')
-    ..aOM<$3.GeoLocation>(7, _omitFieldNames ? '' : 'location',
-        subBuilder: $3.GeoLocation.create)
+    ..aOM<$3.Location>(7, _omitFieldNames ? '' : 'location',
+        subBuilder: $3.Location.create)
     ..aOM<$3.Tags>(9, _omitFieldNames ? '' : 'variables',
         subBuilder: $3.Tags.create)
     ..aOM<$3.Tags>(10, _omitFieldNames ? '' : 'tags',
         subBuilder: $3.Tags.create)
+    ..aE<DeviceState>(11, _omitFieldNames ? '' : 'state',
+        enumValues: DeviceState.values)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -157,15 +161,15 @@ class Device extends $pb.GeneratedMessage {
 
   /// Location.
   @$pb.TagNumber(7)
-  $3.GeoLocation get location => $_getN(6);
+  $3.Location get location => $_getN(6);
   @$pb.TagNumber(7)
-  set location($3.GeoLocation value) => $_setField(7, value);
+  set location($3.Location value) => $_setField(7, value);
   @$pb.TagNumber(7)
   $core.bool hasLocation() => $_has(6);
   @$pb.TagNumber(7)
   void clearLocation() => $_clearField(7);
   @$pb.TagNumber(7)
-  $3.GeoLocation ensureLocation() => $_ensure(6);
+  $3.Location ensureLocation() => $_ensure(6);
 
   /// Variables (user defined).
   /// These variables can be used together with integrations to store tokens /
@@ -195,6 +199,16 @@ class Device extends $pb.GeneratedMessage {
   void clearTags() => $_clearField(10);
   @$pb.TagNumber(10)
   $3.Tags ensureTags() => $_ensure(8);
+
+  /// Device state.
+  @$pb.TagNumber(11)
+  DeviceState get state => $_getN(9);
+  @$pb.TagNumber(11)
+  set state(DeviceState value) => $_setField(11, value);
+  @$pb.TagNumber(11)
+  $core.bool hasState() => $_has(9);
+  @$pb.TagNumber(11)
+  void clearState() => $_clearField(11);
 }
 
 class DeviceListItem extends $pb.GeneratedMessage {
@@ -416,7 +430,7 @@ class CreateDeviceRequest extends $pb.GeneratedMessage {
     $core.String? deviceProfileId,
     $core.String? name,
     $core.String? description,
-    $3.GeoLocation? location,
+    $3.Location? location,
     $3.Tags? variables,
     $3.Tags? tags,
   }) {
@@ -450,8 +464,8 @@ class CreateDeviceRequest extends $pb.GeneratedMessage {
     ..aOS(4, _omitFieldNames ? '' : 'deviceProfileId')
     ..aOS(5, _omitFieldNames ? '' : 'name')
     ..aOS(6, _omitFieldNames ? '' : 'description')
-    ..aOM<$3.GeoLocation>(7, _omitFieldNames ? '' : 'location',
-        subBuilder: $3.GeoLocation.create)
+    ..aOM<$3.Location>(7, _omitFieldNames ? '' : 'location',
+        subBuilder: $3.Location.create)
     ..aOM<$3.Tags>(9, _omitFieldNames ? '' : 'variables',
         subBuilder: $3.Tags.create)
     ..aOM<$3.Tags>(10, _omitFieldNames ? '' : 'tags',
@@ -529,15 +543,15 @@ class CreateDeviceRequest extends $pb.GeneratedMessage {
 
   /// Location.
   @$pb.TagNumber(7)
-  $3.GeoLocation get location => $_getN(5);
+  $3.Location get location => $_getN(5);
   @$pb.TagNumber(7)
-  set location($3.GeoLocation value) => $_setField(7, value);
+  set location($3.Location value) => $_setField(7, value);
   @$pb.TagNumber(7)
   $core.bool hasLocation() => $_has(5);
   @$pb.TagNumber(7)
   void clearLocation() => $_clearField(7);
   @$pb.TagNumber(7)
-  $3.GeoLocation ensureLocation() => $_ensure(5);
+  $3.Location ensureLocation() => $_ensure(5);
 
   /// Variables (user defined).
   /// These variables can be used together with integrations to store tokens /
@@ -809,7 +823,7 @@ class UpdateDeviceRequest extends $pb.GeneratedMessage {
     $core.String? deviceProfileId,
     $core.String? name,
     $core.String? description,
-    $3.GeoLocation? location,
+    $3.Location? location,
     $3.Tags? variables,
     $3.Tags? tags,
   }) {
@@ -843,8 +857,8 @@ class UpdateDeviceRequest extends $pb.GeneratedMessage {
     ..aOS(4, _omitFieldNames ? '' : 'deviceProfileId')
     ..aOS(5, _omitFieldNames ? '' : 'name')
     ..aOS(6, _omitFieldNames ? '' : 'description')
-    ..aOM<$3.GeoLocation>(7, _omitFieldNames ? '' : 'location',
-        subBuilder: $3.GeoLocation.create)
+    ..aOM<$3.Location>(7, _omitFieldNames ? '' : 'location',
+        subBuilder: $3.Location.create)
     ..aOM<$3.Tags>(9, _omitFieldNames ? '' : 'variables',
         subBuilder: $3.Tags.create)
     ..aOM<$3.Tags>(10, _omitFieldNames ? '' : 'tags',
@@ -922,15 +936,15 @@ class UpdateDeviceRequest extends $pb.GeneratedMessage {
 
   /// Location.
   @$pb.TagNumber(7)
-  $3.GeoLocation get location => $_getN(5);
+  $3.Location get location => $_getN(5);
   @$pb.TagNumber(7)
-  set location($3.GeoLocation value) => $_setField(7, value);
+  set location($3.Location value) => $_setField(7, value);
   @$pb.TagNumber(7)
   $core.bool hasLocation() => $_has(5);
   @$pb.TagNumber(7)
   void clearLocation() => $_clearField(7);
   @$pb.TagNumber(7)
-  $3.GeoLocation ensureLocation() => $_ensure(5);
+  $3.Location ensureLocation() => $_ensure(5);
 
   /// Variables (user defined).
   /// These variables can be used together with integrations to store tokens /
@@ -1325,6 +1339,430 @@ class ListDevicesResponse extends $pb.GeneratedMessage {
   /// Result-set.
   @$pb.TagNumber(2)
   $pb.PbList<DeviceListItem> get result => $_getList(1);
+}
+
+class GetDevicesMapRequest extends $pb.GeneratedMessage {
+  factory GetDevicesMapRequest({
+    $core.Iterable<$core.String>? tenantId,
+    $core.Iterable<$core.String>? applicationId,
+    $3.LocationBoundary? bounds,
+    $core.String? geohashPrefix,
+    $core.Iterable<DeviceState>? stateFilter,
+    $3.Tags? tags,
+  }) {
+    final result = create();
+    if (tenantId != null) result.tenantId.addAll(tenantId);
+    if (applicationId != null) result.applicationId.addAll(applicationId);
+    if (bounds != null) result.bounds = bounds;
+    if (geohashPrefix != null) result.geohashPrefix = geohashPrefix;
+    if (stateFilter != null) result.stateFilter.addAll(stateFilter);
+    if (tags != null) result.tags = tags;
+    return result;
+  }
+
+  GetDevicesMapRequest._();
+
+  factory GetDevicesMapRequest.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory GetDevicesMapRequest.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'GetDevicesMapRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
+      createEmptyInstance: create)
+    ..pPS(1, _omitFieldNames ? '' : 'tenantId')
+    ..pPS(2, _omitFieldNames ? '' : 'applicationId')
+    ..aOM<$3.LocationBoundary>(3, _omitFieldNames ? '' : 'bounds',
+        subBuilder: $3.LocationBoundary.create)
+    ..aOS(4, _omitFieldNames ? '' : 'geohashPrefix')
+    ..pc<DeviceState>(
+        5, _omitFieldNames ? '' : 'stateFilter', $pb.PbFieldType.KE,
+        valueOf: DeviceState.valueOf,
+        enumValues: DeviceState.values,
+        defaultEnumValue: DeviceState.NEVER_SEEN)
+    ..aOM<$3.Tags>(6, _omitFieldNames ? '' : 'tags', subBuilder: $3.Tags.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetDevicesMapRequest clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetDevicesMapRequest copyWith(void Function(GetDevicesMapRequest) updates) =>
+      super.copyWith((message) => updates(message as GetDevicesMapRequest))
+          as GetDevicesMapRequest;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetDevicesMapRequest create() => GetDevicesMapRequest._();
+  @$core.override
+  GetDevicesMapRequest createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static GetDevicesMapRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GetDevicesMapRequest>(create);
+  static GetDevicesMapRequest? _defaultInstance;
+
+  /// Tenant IDs (UUID) to filter devices on.
+  /// To list all devices as a global admin user, this field can be left blank.
+  @$pb.TagNumber(1)
+  $pb.PbList<$core.String> get tenantId => $_getList(0);
+
+  /// Application IDs (UUID) to filter devices on.
+  /// If empty, devices from all applications are included.
+  @$pb.TagNumber(2)
+  $pb.PbList<$core.String> get applicationId => $_getList(1);
+
+  /// Boundary of the map viewport.
+  /// Only devices within the given bounds will be returned.
+  @$pb.TagNumber(3)
+  $3.LocationBoundary get bounds => $_getN(2);
+  @$pb.TagNumber(3)
+  set bounds($3.LocationBoundary value) => $_setField(3, value);
+  @$pb.TagNumber(3)
+  $core.bool hasBounds() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearBounds() => $_clearField(3);
+  @$pb.TagNumber(3)
+  $3.LocationBoundary ensureBounds() => $_ensure(2);
+
+  /// If set, geohash prefix filter (starts-with match).
+  /// This is useful for zoom-dependent map queries.
+  @$pb.TagNumber(4)
+  $core.String get geohashPrefix => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set geohashPrefix($core.String value) => $_setString(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasGeohashPrefix() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearGeohashPrefix() => $_clearField(4);
+
+  /// Optional derived state filters. If empty, all states are included.
+  @$pb.TagNumber(5)
+  $pb.PbList<DeviceState> get stateFilter => $_getList(4);
+
+  /// Optional tags to filter devices on.
+  @$pb.TagNumber(6)
+  $3.Tags get tags => $_getN(5);
+  @$pb.TagNumber(6)
+  set tags($3.Tags value) => $_setField(6, value);
+  @$pb.TagNumber(6)
+  $core.bool hasTags() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearTags() => $_clearField(6);
+  @$pb.TagNumber(6)
+  $3.Tags ensureTags() => $_ensure(5);
+}
+
+class DeviceLocation extends $pb.GeneratedMessage {
+  factory DeviceLocation({
+    $core.String? deviceId,
+    $core.String? eui,
+    $core.String? name,
+    $3.GeoLocation? location,
+    $4.Timestamp? lastSeenAt,
+    DeviceState? state,
+  }) {
+    final result = create();
+    if (deviceId != null) result.deviceId = deviceId;
+    if (eui != null) result.eui = eui;
+    if (name != null) result.name = name;
+    if (location != null) result.location = location;
+    if (lastSeenAt != null) result.lastSeenAt = lastSeenAt;
+    if (state != null) result.state = state;
+    return result;
+  }
+
+  DeviceLocation._();
+
+  factory DeviceLocation.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory DeviceLocation.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'DeviceLocation',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'deviceId')
+    ..aOS(2, _omitFieldNames ? '' : 'eui')
+    ..aOS(3, _omitFieldNames ? '' : 'name')
+    ..aOM<$3.GeoLocation>(4, _omitFieldNames ? '' : 'location',
+        subBuilder: $3.GeoLocation.create)
+    ..aOM<$4.Timestamp>(5, _omitFieldNames ? '' : 'lastSeenAt',
+        subBuilder: $4.Timestamp.create)
+    ..aE<DeviceState>(6, _omitFieldNames ? '' : 'state',
+        enumValues: DeviceState.values)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  DeviceLocation clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  DeviceLocation copyWith(void Function(DeviceLocation) updates) =>
+      super.copyWith((message) => updates(message as DeviceLocation))
+          as DeviceLocation;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static DeviceLocation create() => DeviceLocation._();
+  @$core.override
+  DeviceLocation createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static DeviceLocation getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<DeviceLocation>(create);
+  static DeviceLocation? _defaultInstance;
+
+  /// Device ID (UUID).
+  @$pb.TagNumber(1)
+  $core.String get deviceId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set deviceId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasDeviceId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearDeviceId() => $_clearField(1);
+
+  /// Device EUI (EUI64).
+  @$pb.TagNumber(2)
+  $core.String get eui => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set eui($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasEui() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearEui() => $_clearField(2);
+
+  /// Name.
+  @$pb.TagNumber(3)
+  $core.String get name => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set name($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasName() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearName() => $_clearField(3);
+
+  /// Location.
+  @$pb.TagNumber(4)
+  $3.GeoLocation get location => $_getN(3);
+  @$pb.TagNumber(4)
+  set location($3.GeoLocation value) => $_setField(4, value);
+  @$pb.TagNumber(4)
+  $core.bool hasLocation() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearLocation() => $_clearField(4);
+  @$pb.TagNumber(4)
+  $3.GeoLocation ensureLocation() => $_ensure(3);
+
+  /// Last seen at timestamp.
+  @$pb.TagNumber(5)
+  $4.Timestamp get lastSeenAt => $_getN(4);
+  @$pb.TagNumber(5)
+  set lastSeenAt($4.Timestamp value) => $_setField(5, value);
+  @$pb.TagNumber(5)
+  $core.bool hasLastSeenAt() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearLastSeenAt() => $_clearField(5);
+  @$pb.TagNumber(5)
+  $4.Timestamp ensureLastSeenAt() => $_ensure(4);
+
+  /// State for map filtering.
+  @$pb.TagNumber(6)
+  DeviceState get state => $_getN(5);
+  @$pb.TagNumber(6)
+  set state(DeviceState value) => $_setField(6, value);
+  @$pb.TagNumber(6)
+  $core.bool hasState() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearState() => $_clearField(6);
+}
+
+class DeviceLocationsByApplication extends $pb.GeneratedMessage {
+  factory DeviceLocationsByApplication({
+    $core.String? applicationId,
+    $core.Iterable<DeviceLocation>? locations,
+  }) {
+    final result = create();
+    if (applicationId != null) result.applicationId = applicationId;
+    if (locations != null) result.locations.addAll(locations);
+    return result;
+  }
+
+  DeviceLocationsByApplication._();
+
+  factory DeviceLocationsByApplication.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory DeviceLocationsByApplication.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'DeviceLocationsByApplication',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'applicationId')
+    ..pPM<DeviceLocation>(2, _omitFieldNames ? '' : 'locations',
+        subBuilder: DeviceLocation.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  DeviceLocationsByApplication clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  DeviceLocationsByApplication copyWith(
+          void Function(DeviceLocationsByApplication) updates) =>
+      super.copyWith(
+              (message) => updates(message as DeviceLocationsByApplication))
+          as DeviceLocationsByApplication;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static DeviceLocationsByApplication create() =>
+      DeviceLocationsByApplication._();
+  @$core.override
+  DeviceLocationsByApplication createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static DeviceLocationsByApplication getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<DeviceLocationsByApplication>(create);
+  static DeviceLocationsByApplication? _defaultInstance;
+
+  /// Application ID (UUID).
+  @$pb.TagNumber(1)
+  $core.String get applicationId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set applicationId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasApplicationId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearApplicationId() => $_clearField(1);
+
+  /// Device locations for the application.
+  @$pb.TagNumber(2)
+  $pb.PbList<DeviceLocation> get locations => $_getList(1);
+}
+
+class DeviceLocationsByTenant extends $pb.GeneratedMessage {
+  factory DeviceLocationsByTenant({
+    $core.String? tenantId,
+    $core.Iterable<DeviceLocationsByApplication>? applications,
+  }) {
+    final result = create();
+    if (tenantId != null) result.tenantId = tenantId;
+    if (applications != null) result.applications.addAll(applications);
+    return result;
+  }
+
+  DeviceLocationsByTenant._();
+
+  factory DeviceLocationsByTenant.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory DeviceLocationsByTenant.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'DeviceLocationsByTenant',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'tenantId')
+    ..pPM<DeviceLocationsByApplication>(
+        2, _omitFieldNames ? '' : 'applications',
+        subBuilder: DeviceLocationsByApplication.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  DeviceLocationsByTenant clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  DeviceLocationsByTenant copyWith(
+          void Function(DeviceLocationsByTenant) updates) =>
+      super.copyWith((message) => updates(message as DeviceLocationsByTenant))
+          as DeviceLocationsByTenant;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static DeviceLocationsByTenant create() => DeviceLocationsByTenant._();
+  @$core.override
+  DeviceLocationsByTenant createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static DeviceLocationsByTenant getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<DeviceLocationsByTenant>(create);
+  static DeviceLocationsByTenant? _defaultInstance;
+
+  /// Tenant ID (UUID).
+  @$pb.TagNumber(1)
+  $core.String get tenantId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set tenantId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasTenantId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTenantId() => $_clearField(1);
+
+  /// Grouped device locations by application.
+  @$pb.TagNumber(2)
+  $pb.PbList<DeviceLocationsByApplication> get applications => $_getList(1);
+}
+
+class GetDevicesMapResponse extends $pb.GeneratedMessage {
+  factory GetDevicesMapResponse({
+    $core.Iterable<DeviceLocationsByTenant>? locations,
+  }) {
+    final result = create();
+    if (locations != null) result.locations.addAll(locations);
+    return result;
+  }
+
+  GetDevicesMapResponse._();
+
+  factory GetDevicesMapResponse.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory GetDevicesMapResponse.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'GetDevicesMapResponse',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
+      createEmptyInstance: create)
+    ..pPM<DeviceLocationsByTenant>(1, _omitFieldNames ? '' : 'locations',
+        subBuilder: DeviceLocationsByTenant.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetDevicesMapResponse clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetDevicesMapResponse copyWith(
+          void Function(GetDevicesMapResponse) updates) =>
+      super.copyWith((message) => updates(message as GetDevicesMapResponse))
+          as GetDevicesMapResponse;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetDevicesMapResponse create() => GetDevicesMapResponse._();
+  @$core.override
+  GetDevicesMapResponse createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static GetDevicesMapResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GetDevicesMapResponse>(create);
+  static GetDevicesMapResponse? _defaultInstance;
+
+  /// Grouped device locations by tenant and application.
+  @$pb.TagNumber(1)
+  $pb.PbList<DeviceLocationsByTenant> get locations => $_getList(0);
 }
 
 class GetDeviceMetricsRequest extends $pb.GeneratedMessage {

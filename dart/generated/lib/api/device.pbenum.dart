@@ -14,6 +14,33 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
+class DeviceState extends $pb.ProtobufEnum {
+  /// Device has never been seen.
+  static const DeviceState NEVER_SEEN =
+      DeviceState._(0, _omitEnumNames ? '' : 'NEVER_SEEN');
+
+  /// Device is active.
+  static const DeviceState ACTIVE =
+      DeviceState._(1, _omitEnumNames ? '' : 'ACTIVE');
+
+  /// Device is inactive.
+  static const DeviceState INACTIVE =
+      DeviceState._(2, _omitEnumNames ? '' : 'INACTIVE');
+
+  static const $core.List<DeviceState> values = <DeviceState>[
+    NEVER_SEEN,
+    ACTIVE,
+    INACTIVE,
+  ];
+
+  static final $core.List<DeviceState?> _byValue =
+      $pb.ProtobufEnum.$_initByValueList(values, 2);
+  static DeviceState? valueOf($core.int value) =>
+      value < 0 || value >= _byValue.length ? null : _byValue[value];
+
+  const DeviceState._(super.value, super.name);
+}
+
 class ListDevicesRequest_OrderBy extends $pb.ProtobufEnum {
   static const ListDevicesRequest_OrderBy NAME =
       ListDevicesRequest_OrderBy._(0, _omitEnumNames ? '' : 'NAME');
