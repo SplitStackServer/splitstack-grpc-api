@@ -100,7 +100,7 @@ message Device {
   optional string description = 6;
 
   // Location.
-  optional common.GeoLocation location = 7;
+  optional common.Location location = 7;
 
   // Variables (user defined).
   // These variables can be used together with integrations to store tokens /
@@ -175,7 +175,7 @@ message CreateDeviceRequest {
   optional string description = 6;
 
   // Location.
-  optional common.GeoLocation location = 7;
+  optional common.Location location = 7;
 
   // Variables (user defined).
   // These variables can be used together with integrations to store tokens /
@@ -233,7 +233,7 @@ message UpdateDeviceRequest {
   optional string description = 6;
 
   // Location.
-  optional common.GeoLocation location = 7;
+  optional common.Location location = 7;
 
   // Variables (user defined).
   // These variables can be used together with integrations to store tokens /
