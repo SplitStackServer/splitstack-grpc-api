@@ -318,9 +318,9 @@ message ListBasestationsResponse {
 
 
 message GetBasestationsMapRequest {
-    // Tenant IDs (UUID) to filter basestations on.
+    // Tenant ID (UUID) to filter basestations on.
     // To list all basestations as a global admin user, this field can be left blank.
-    repeated string tenant_id = 1;
+    optional string tenant_id = 1;
 
     // Boundary of the map viewport. Only basestations within the given bounds will be returned.
     optional common.LocationBoundary bounds = 2;
