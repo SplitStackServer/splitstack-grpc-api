@@ -1343,16 +1343,16 @@ class ListDevicesResponse extends $pb.GeneratedMessage {
 
 class GetDevicesMapRequest extends $pb.GeneratedMessage {
   factory GetDevicesMapRequest({
-    $core.Iterable<$core.String>? tenantId,
-    $core.Iterable<$core.String>? applicationId,
+    $core.String? tenantId,
+    $core.String? applicationId,
     $3.LocationBoundary? bounds,
     $core.String? geohashPrefix,
     $core.Iterable<DeviceState>? stateFilter,
     $3.Tags? tags,
   }) {
     final result = create();
-    if (tenantId != null) result.tenantId.addAll(tenantId);
-    if (applicationId != null) result.applicationId.addAll(applicationId);
+    if (tenantId != null) result.tenantId = tenantId;
+    if (applicationId != null) result.applicationId = applicationId;
     if (bounds != null) result.bounds = bounds;
     if (geohashPrefix != null) result.geohashPrefix = geohashPrefix;
     if (stateFilter != null) result.stateFilter.addAll(stateFilter);
@@ -1373,8 +1373,8 @@ class GetDevicesMapRequest extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'GetDevicesMapRequest',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
       createEmptyInstance: create)
-    ..pPS(1, _omitFieldNames ? '' : 'tenantId')
-    ..pPS(2, _omitFieldNames ? '' : 'applicationId')
+    ..aOS(1, _omitFieldNames ? '' : 'tenantId')
+    ..aOS(2, _omitFieldNames ? '' : 'applicationId')
     ..aOM<$3.LocationBoundary>(3, _omitFieldNames ? '' : 'bounds',
         subBuilder: $3.LocationBoundary.create)
     ..aOS(4, _omitFieldNames ? '' : 'geohashPrefix')
@@ -1382,7 +1382,7 @@ class GetDevicesMapRequest extends $pb.GeneratedMessage {
         5, _omitFieldNames ? '' : 'stateFilter', $pb.PbFieldType.KE,
         valueOf: DeviceState.valueOf,
         enumValues: DeviceState.values,
-        defaultEnumValue: DeviceState.NEVER_SEEN)
+        defaultEnumValue: DeviceState.DEV_NEVER_SEEN)
     ..aOM<$3.Tags>(6, _omitFieldNames ? '' : 'tags', subBuilder: $3.Tags.create)
     ..hasRequiredFields = false;
 
@@ -1405,15 +1405,27 @@ class GetDevicesMapRequest extends $pb.GeneratedMessage {
       $pb.GeneratedMessage.$_defaultFor<GetDevicesMapRequest>(create);
   static GetDevicesMapRequest? _defaultInstance;
 
-  /// Tenant IDs (UUID) to filter devices on.
-  /// To list all devices as a global admin user, this field can be left blank.
+  /// Tenant ID (UUID) to filter basestations on.
+  /// To list all basestations as a global admin user, this field can be left blank.
   @$pb.TagNumber(1)
-  $pb.PbList<$core.String> get tenantId => $_getList(0);
+  $core.String get tenantId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set tenantId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasTenantId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTenantId() => $_clearField(1);
 
-  /// Application IDs (UUID) to filter devices on.
-  /// If empty, devices from all applications are included.
+  /// Application ID (UUID) to filter devices on.
+  /// Leave blank to show devices of all applications of the tenant.
   @$pb.TagNumber(2)
-  $pb.PbList<$core.String> get applicationId => $_getList(1);
+  $core.String get applicationId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set applicationId($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasApplicationId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearApplicationId() => $_clearField(2);
 
   /// Boundary of the map viewport.
   /// Only devices within the given bounds will be returned.

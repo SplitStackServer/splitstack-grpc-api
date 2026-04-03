@@ -1360,14 +1360,14 @@ class ListBasestationsResponse extends $pb.GeneratedMessage {
 
 class GetBasestationsMapRequest extends $pb.GeneratedMessage {
   factory GetBasestationsMapRequest({
-    $core.Iterable<$core.String>? tenantId,
+    $core.String? tenantId,
     $3.LocationBoundary? bounds,
     $core.String? geohashPrefix,
     $core.Iterable<BasestationState>? stateFilter,
     $3.Tags? tags,
   }) {
     final result = create();
-    if (tenantId != null) result.tenantId.addAll(tenantId);
+    if (tenantId != null) result.tenantId = tenantId;
     if (bounds != null) result.bounds = bounds;
     if (geohashPrefix != null) result.geohashPrefix = geohashPrefix;
     if (stateFilter != null) result.stateFilter.addAll(stateFilter);
@@ -1388,7 +1388,7 @@ class GetBasestationsMapRequest extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'GetBasestationsMapRequest',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
       createEmptyInstance: create)
-    ..pPS(1, _omitFieldNames ? '' : 'tenantId')
+    ..aOS(1, _omitFieldNames ? '' : 'tenantId')
     ..aOM<$3.LocationBoundary>(2, _omitFieldNames ? '' : 'bounds',
         subBuilder: $3.LocationBoundary.create)
     ..aOS(6, _omitFieldNames ? '' : 'geohashPrefix')
@@ -1396,7 +1396,7 @@ class GetBasestationsMapRequest extends $pb.GeneratedMessage {
         7, _omitFieldNames ? '' : 'stateFilter', $pb.PbFieldType.KE,
         valueOf: BasestationState.valueOf,
         enumValues: BasestationState.values,
-        defaultEnumValue: BasestationState.NEVER_SEEN)
+        defaultEnumValue: BasestationState.BS_NEVER_SEEN)
     ..aOM<$3.Tags>(8, _omitFieldNames ? '' : 'tags', subBuilder: $3.Tags.create)
     ..hasRequiredFields = false;
 
@@ -1420,10 +1420,16 @@ class GetBasestationsMapRequest extends $pb.GeneratedMessage {
       $pb.GeneratedMessage.$_defaultFor<GetBasestationsMapRequest>(create);
   static GetBasestationsMapRequest? _defaultInstance;
 
-  /// Tenant IDs (UUID) to filter basestations on.
+  /// Tenant ID (UUID) to filter basestations on.
   /// To list all basestations as a global admin user, this field can be left blank.
   @$pb.TagNumber(1)
-  $pb.PbList<$core.String> get tenantId => $_getList(0);
+  $core.String get tenantId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set tenantId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasTenantId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTenantId() => $_clearField(1);
 
   /// Boundary of the map viewport. Only basestations within the given bounds will be returned.
   @$pb.TagNumber(2)

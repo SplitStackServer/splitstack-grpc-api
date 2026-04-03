@@ -30,24 +30,24 @@ type DeviceState int32
 
 const (
 	// Device has never been seen.
-	DeviceState_NEVER_SEEN DeviceState = 0
+	DeviceState_DEV_NEVER_SEEN DeviceState = 0
 	// Device is active.
-	DeviceState_ACTIVE DeviceState = 1
+	DeviceState_DEV_ACTIVE DeviceState = 1
 	// Device is inactive.
-	DeviceState_INACTIVE DeviceState = 2
+	DeviceState_DEV_INACTIVE DeviceState = 2
 )
 
 // Enum value maps for DeviceState.
 var (
 	DeviceState_name = map[int32]string{
-		0: "NEVER_SEEN",
-		1: "ACTIVE",
-		2: "INACTIVE",
+		0: "DEV_NEVER_SEEN",
+		1: "DEV_ACTIVE",
+		2: "DEV_INACTIVE",
 	}
 	DeviceState_value = map[string]int32{
-		"NEVER_SEEN": 0,
-		"ACTIVE":     1,
-		"INACTIVE":   2,
+		"DEV_NEVER_SEEN": 0,
+		"DEV_ACTIVE":     1,
+		"DEV_INACTIVE":   2,
 	}
 )
 
@@ -258,7 +258,7 @@ func (x *Device) GetState() DeviceState {
 	if x != nil {
 		return x.State
 	}
-	return DeviceState_NEVER_SEEN
+	return DeviceState_DEV_NEVER_SEEN
 }
 
 type DeviceListItem struct {
@@ -1079,12 +1079,12 @@ func (x *ListDevicesResponse) GetResult() []*DeviceListItem {
 
 type GetDevicesMapRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Tenant IDs (UUID) to filter devices on.
-	// To list all devices as a global admin user, this field can be left blank.
-	TenantId []string `protobuf:"bytes,1,rep,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
-	// Application IDs (UUID) to filter devices on.
-	// If empty, devices from all applications are included.
-	ApplicationId []string `protobuf:"bytes,2,rep,name=application_id,json=applicationId,proto3" json:"application_id,omitempty"`
+	// Tenant ID (UUID) to filter basestations on.
+	// To list all basestations as a global admin user, this field can be left blank.
+	TenantId *string `protobuf:"bytes,1,opt,name=tenant_id,json=tenantId,proto3,oneof" json:"tenant_id,omitempty"`
+	// Application ID (UUID) to filter devices on.
+	// Leave blank to show devices of all applications of the tenant.
+	ApplicationId *string `protobuf:"bytes,2,opt,name=application_id,json=applicationId,proto3,oneof" json:"application_id,omitempty"`
 	// Boundary of the map viewport.
 	// Only devices within the given bounds will be returned.
 	Bounds *common.LocationBoundary `protobuf:"bytes,3,opt,name=bounds,proto3,oneof" json:"bounds,omitempty"`
@@ -1129,18 +1129,18 @@ func (*GetDevicesMapRequest) Descriptor() ([]byte, []int) {
 	return file_api_device_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *GetDevicesMapRequest) GetTenantId() []string {
-	if x != nil {
-		return x.TenantId
+func (x *GetDevicesMapRequest) GetTenantId() string {
+	if x != nil && x.TenantId != nil {
+		return *x.TenantId
 	}
-	return nil
+	return ""
 }
 
-func (x *GetDevicesMapRequest) GetApplicationId() []string {
-	if x != nil {
-		return x.ApplicationId
+func (x *GetDevicesMapRequest) GetApplicationId() string {
+	if x != nil && x.ApplicationId != nil {
+		return *x.ApplicationId
 	}
-	return nil
+	return ""
 }
 
 func (x *GetDevicesMapRequest) GetBounds() *common.LocationBoundary {
@@ -1258,7 +1258,7 @@ func (x *DeviceLocation) GetState() DeviceState {
 	if x != nil {
 		return x.State
 	}
-	return DeviceState_NEVER_SEEN
+	return DeviceState_DEV_NEVER_SEEN
 }
 
 type DeviceLocationsByApplication struct {
@@ -1740,14 +1740,17 @@ const file_api_device_proto_rawDesc = "" +
 	"\n" +
 	"pagination\x18\x01 \x01(\v2\x0f.api.PaginationR\n" +
 	"pagination\x12+\n" +
-	"\x06result\x18\x02 \x03(\v2\x13.api.DeviceListItemR\x06result\"\xc0\x02\n" +
-	"\x14GetDevicesMapRequest\x12\x1b\n" +
-	"\ttenant_id\x18\x01 \x03(\tR\btenantId\x12%\n" +
-	"\x0eapplication_id\x18\x02 \x03(\tR\rapplicationId\x125\n" +
-	"\x06bounds\x18\x03 \x01(\v2\x18.common.LocationBoundaryH\x00R\x06bounds\x88\x01\x01\x12*\n" +
-	"\x0egeohash_prefix\x18\x04 \x01(\tH\x01R\rgeohashPrefix\x88\x01\x01\x123\n" +
+	"\x06result\x18\x02 \x03(\v2\x13.api.DeviceListItemR\x06result\"\xeb\x02\n" +
+	"\x14GetDevicesMapRequest\x12 \n" +
+	"\ttenant_id\x18\x01 \x01(\tH\x00R\btenantId\x88\x01\x01\x12*\n" +
+	"\x0eapplication_id\x18\x02 \x01(\tH\x01R\rapplicationId\x88\x01\x01\x125\n" +
+	"\x06bounds\x18\x03 \x01(\v2\x18.common.LocationBoundaryH\x02R\x06bounds\x88\x01\x01\x12*\n" +
+	"\x0egeohash_prefix\x18\x04 \x01(\tH\x03R\rgeohashPrefix\x88\x01\x01\x123\n" +
 	"\fstate_filter\x18\x05 \x03(\x0e2\x10.api.DeviceStateR\vstateFilter\x12%\n" +
-	"\x04tags\x18\x06 \x01(\v2\f.common.TagsH\x02R\x04tags\x88\x01\x01B\t\n" +
+	"\x04tags\x18\x06 \x01(\v2\f.common.TagsH\x04R\x04tags\x88\x01\x01B\f\n" +
+	"\n" +
+	"_tenant_idB\x11\n" +
+	"\x0f_application_idB\t\n" +
 	"\a_boundsB\x11\n" +
 	"\x0f_geohash_prefixB\a\n" +
 	"\x05_tags\"\x92\x02\n" +
@@ -1783,13 +1786,12 @@ const file_api_device_proto_rawDesc = "" +
 	"rxDuration\x88\x01\x01B\x0e\n" +
 	"\f_rx_duration\"+\n" +
 	"\x19StreamDeviceFramesRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id*7\n" +
-	"\vDeviceState\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id*C\n" +
+	"\vDeviceState\x12\x12\n" +
+	"\x0eDEV_NEVER_SEEN\x10\x00\x12\x0e\n" +
 	"\n" +
-	"NEVER_SEEN\x10\x00\x12\n" +
-	"\n" +
-	"\x06ACTIVE\x10\x01\x12\f\n" +
-	"\bINACTIVE\x10\x022\xa4\x06\n" +
+	"DEV_ACTIVE\x10\x01\x12\x10\n" +
+	"\fDEV_INACTIVE\x10\x022\xa4\x06\n" +
 	"\rDeviceService\x12\\\n" +
 	"\fCreateDevice\x12\x18.api.CreateDeviceRequest\x1a\x19.api.CreateDeviceResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/api/devices\x12U\n" +
 	"\tGetDevice\x12\x15.api.GetDeviceRequest\x1a\x16.api.GetDeviceResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/devices/{id}\x12a\n" +

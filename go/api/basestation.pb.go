@@ -30,28 +30,28 @@ type BasestationState int32
 
 const (
 	// The gateway has never sent any data.
-	BasestationState_NEVER_SEEN BasestationState = 0
+	BasestationState_BS_NEVER_SEEN BasestationState = 0
 	// Online.
-	BasestationState_ONLINE BasestationState = 1
+	BasestationState_BS_ONLINE BasestationState = 1
 	// Offline.
-	BasestationState_OFFLINE BasestationState = 2
+	BasestationState_BS_OFFLINE BasestationState = 2
 	// Inactive.
-	BasestationState_INACTIVE BasestationState = 3
+	BasestationState_BS_INACTIVE BasestationState = 3
 )
 
 // Enum value maps for BasestationState.
 var (
 	BasestationState_name = map[int32]string{
-		0: "NEVER_SEEN",
-		1: "ONLINE",
-		2: "OFFLINE",
-		3: "INACTIVE",
+		0: "BS_NEVER_SEEN",
+		1: "BS_ONLINE",
+		2: "BS_OFFLINE",
+		3: "BS_INACTIVE",
 	}
 	BasestationState_value = map[string]int32{
-		"NEVER_SEEN": 0,
-		"ONLINE":     1,
-		"OFFLINE":    2,
-		"INACTIVE":   3,
+		"BS_NEVER_SEEN": 0,
+		"BS_ONLINE":     1,
+		"BS_OFFLINE":    2,
+		"BS_INACTIVE":   3,
 	}
 )
 
@@ -255,7 +255,7 @@ func (x *Basestation) GetState() BasestationState {
 	if x != nil {
 		return x.State
 	}
-	return BasestationState_NEVER_SEEN
+	return BasestationState_BS_NEVER_SEEN
 }
 
 type BasestationListItem struct {
@@ -398,7 +398,7 @@ func (x *BasestationListItem) GetState() BasestationState {
 	if x != nil {
 		return x.State
 	}
-	return BasestationState_NEVER_SEEN
+	return BasestationState_BS_NEVER_SEEN
 }
 
 type BasestationMetadata struct {
@@ -1088,9 +1088,9 @@ func (x *ListBasestationsResponse) GetResult() []*BasestationListItem {
 
 type GetBasestationsMapRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Tenant IDs (UUID) to filter basestations on.
+	// Tenant ID (UUID) to filter basestations on.
 	// To list all basestations as a global admin user, this field can be left blank.
-	TenantId []string `protobuf:"bytes,1,rep,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
+	TenantId *string `protobuf:"bytes,1,opt,name=tenant_id,json=tenantId,proto3,oneof" json:"tenant_id,omitempty"`
 	// Boundary of the map viewport. Only basestations within the given bounds will be returned.
 	Bounds *common.LocationBoundary `protobuf:"bytes,2,opt,name=bounds,proto3,oneof" json:"bounds,omitempty"`
 	// If set, geohash prefix filter (starts-with match).
@@ -1134,11 +1134,11 @@ func (*GetBasestationsMapRequest) Descriptor() ([]byte, []int) {
 	return file_api_basestation_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *GetBasestationsMapRequest) GetTenantId() []string {
-	if x != nil {
-		return x.TenantId
+func (x *GetBasestationsMapRequest) GetTenantId() string {
+	if x != nil && x.TenantId != nil {
+		return *x.TenantId
 	}
-	return nil
+	return ""
 }
 
 func (x *GetBasestationsMapRequest) GetBounds() *common.LocationBoundary {
@@ -1310,7 +1310,7 @@ func (x *BasestationLocation) GetState() BasestationState {
 	if x != nil {
 		return x.State
 	}
-	return BasestationState_NEVER_SEEN
+	return BasestationState_BS_NEVER_SEEN
 }
 
 type GetBasestationsMapResponse struct {
@@ -1812,13 +1812,15 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\n" +
 	"pagination\x18\x01 \x01(\v2\x0f.api.PaginationR\n" +
 	"pagination\x120\n" +
-	"\x06result\x18\x02 \x03(\v2\x18.api.BasestationListItemR\x06result\"\xa3\x02\n" +
-	"\x19GetBasestationsMapRequest\x12\x1b\n" +
-	"\ttenant_id\x18\x01 \x03(\tR\btenantId\x125\n" +
-	"\x06bounds\x18\x02 \x01(\v2\x18.common.LocationBoundaryH\x00R\x06bounds\x88\x01\x01\x12*\n" +
-	"\x0egeohash_prefix\x18\x06 \x01(\tH\x01R\rgeohashPrefix\x88\x01\x01\x128\n" +
+	"\x06result\x18\x02 \x03(\v2\x18.api.BasestationListItemR\x06result\"\xb6\x02\n" +
+	"\x19GetBasestationsMapRequest\x12 \n" +
+	"\ttenant_id\x18\x01 \x01(\tH\x00R\btenantId\x88\x01\x01\x125\n" +
+	"\x06bounds\x18\x02 \x01(\v2\x18.common.LocationBoundaryH\x01R\x06bounds\x88\x01\x01\x12*\n" +
+	"\x0egeohash_prefix\x18\x06 \x01(\tH\x02R\rgeohashPrefix\x88\x01\x01\x128\n" +
 	"\fstate_filter\x18\a \x03(\x0e2\x15.api.BasestationStateR\vstateFilter\x12%\n" +
-	"\x04tags\x18\b \x01(\v2\f.common.TagsH\x02R\x04tags\x88\x01\x01B\t\n" +
+	"\x04tags\x18\b \x01(\v2\f.common.TagsH\x03R\x04tags\x88\x01\x01B\f\n" +
+	"\n" +
+	"_tenant_idB\t\n" +
 	"\a_boundsB\x11\n" +
 	"\x0f_geohash_prefixB\a\n" +
 	"\x05_tags\"k\n" +
@@ -1860,14 +1862,13 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\brx_count\x18\x06 \x01(\v2\x0e.common.MetricR\arxCount\x12.\n" +
 	"\vrx_vm_count\x18\a \x01(\v2\x0e.common.MetricR\trxVmCount\"0\n" +
 	"\x1eStreamBasestationFramesRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id*I\n" +
-	"\x10BasestationState\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id*U\n" +
+	"\x10BasestationState\x12\x11\n" +
+	"\rBS_NEVER_SEEN\x10\x00\x12\r\n" +
+	"\tBS_ONLINE\x10\x01\x12\x0e\n" +
 	"\n" +
-	"NEVER_SEEN\x10\x00\x12\n" +
-	"\n" +
-	"\x06ONLINE\x10\x01\x12\v\n" +
-	"\aOFFLINE\x10\x02\x12\f\n" +
-	"\bINACTIVE\x10\x032\xfb\b\n" +
+	"BS_OFFLINE\x10\x02\x12\x0f\n" +
+	"\vBS_INACTIVE\x10\x032\xfb\b\n" +
 	"\x12BasestationService\x12p\n" +
 	"\x11CreateBasestation\x12\x1d.api.CreateBasestationRequest\x1a\x1e.api.CreateBasestationResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/api/basestations\x12i\n" +
 	"\x0eGetBasestation\x12\x1a.api.GetBasestationRequest\x1a\x1b.api.GetBasestationResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/api/basestations/{id}\x12u\n" +

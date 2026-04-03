@@ -338,7 +338,7 @@ message GetDevicesMapRequest {
 
     // Application ID (UUID) to filter devices on.
     // Leave blank to show devices of all applications of the tenant.
-    optional string application_id = 3;
+    optional string application_id = 2;
 
     // Boundary of the map viewport.
     // Only devices within the given bounds will be returned.
