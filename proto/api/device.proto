@@ -332,30 +332,30 @@ message ListDevicesResponse {
 }
 
 message GetDevicesMapRequest {
-  // Tenant IDs (UUID) to filter devices on.
-  // To list all devices as a global admin user, this field can be left blank.
-  repeated string tenant_id = 1;
+    // Tenant ID (UUID) to filter basestations on.
+    // To list all basestations as a global admin user, this field can be left blank.
+    optional string tenant_id = 1;
 
-  // Application IDs (UUID) to filter devices on.
-  // If empty, devices from all applications are included.
-  repeated string application_id = 2;
+    // Application ID (UUID) to filter devices on.
+    // Leave blank to show devices of all applications of the tenant.
+    optional string application_id = 3;
 
-  // Boundary of the map viewport.
-  // Only devices within the given bounds will be returned.
-  optional common.LocationBoundary bounds = 3;
+    // Boundary of the map viewport.
+    // Only devices within the given bounds will be returned.
+    optional common.LocationBoundary bounds = 3;
 
-  // If set, geohash prefix filter (starts-with match).
-  // This is useful for zoom-dependent map queries.
-  optional string geohash_prefix = 4;
+    // If set, geohash prefix filter (starts-with match).
+    // This is useful for zoom-dependent map queries.
+    optional string geohash_prefix = 4;
 
-  // Optional derived state filters. If empty, all states are included.
-  repeated DeviceState state_filter = 5;
+    // Optional derived state filters. If empty, all states are included.
+    repeated DeviceState state_filter = 5;
 
-  // Optional tags to filter devices on.
-  optional common.Tags tags = 6;
+    // Optional tags to filter devices on.
+    optional common.Tags tags = 6;
 
-  // All filters are combined using AND semantics:
-  // tenant_id AND application_id AND bounds AND geohash_prefix AND state_filter AND tags.
+    // All filters are combined using AND semantics:
+    // tenant_id AND application_id AND bounds AND geohash_prefix AND state_filter AND tags.
 }
 
 message DeviceLocation {
