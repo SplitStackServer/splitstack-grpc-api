@@ -16,26 +16,26 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 class BasestationState extends $pb.ProtobufEnum {
   /// The gateway has never sent any data.
-  static const BasestationState NEVER_SEEN =
-      BasestationState._(0, _omitEnumNames ? '' : 'NEVER_SEEN');
+  static const BasestationState BS_NEVER_SEEN =
+      BasestationState._(0, _omitEnumNames ? '' : 'BS_NEVER_SEEN');
 
   /// Online.
-  static const BasestationState ONLINE =
-      BasestationState._(1, _omitEnumNames ? '' : 'ONLINE');
+  static const BasestationState BS_ONLINE =
+      BasestationState._(1, _omitEnumNames ? '' : 'BS_ONLINE');
 
   /// Offline.
-  static const BasestationState OFFLINE =
-      BasestationState._(2, _omitEnumNames ? '' : 'OFFLINE');
+  static const BasestationState BS_OFFLINE =
+      BasestationState._(2, _omitEnumNames ? '' : 'BS_OFFLINE');
 
   /// Inactive.
-  static const BasestationState INACTIVE =
-      BasestationState._(3, _omitEnumNames ? '' : 'INACTIVE');
+  static const BasestationState BS_INACTIVE =
+      BasestationState._(3, _omitEnumNames ? '' : 'BS_INACTIVE');
 
   static const $core.List<BasestationState> values = <BasestationState>[
-    NEVER_SEEN,
-    ONLINE,
-    OFFLINE,
-    INACTIVE,
+    BS_NEVER_SEEN,
+    BS_ONLINE,
+    BS_OFFLINE,
+    BS_INACTIVE,
   ];
 
   static final $core.List<BasestationState?> _byValue =

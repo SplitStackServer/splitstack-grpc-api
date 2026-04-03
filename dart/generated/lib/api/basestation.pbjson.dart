@@ -19,17 +19,17 @@ import 'dart:typed_data' as $typed_data;
 const BasestationState$json = {
   '1': 'BasestationState',
   '2': [
-    {'1': 'NEVER_SEEN', '2': 0},
-    {'1': 'ONLINE', '2': 1},
-    {'1': 'OFFLINE', '2': 2},
-    {'1': 'INACTIVE', '2': 3},
+    {'1': 'BS_NEVER_SEEN', '2': 0},
+    {'1': 'BS_ONLINE', '2': 1},
+    {'1': 'BS_OFFLINE', '2': 2},
+    {'1': 'BS_INACTIVE', '2': 3},
   ],
 };
 
 /// Descriptor for `BasestationState`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List basestationStateDescriptor = $convert.base64Decode(
-    'ChBCYXNlc3RhdGlvblN0YXRlEg4KCk5FVkVSX1NFRU4QABIKCgZPTkxJTkUQARILCgdPRkZMSU'
-    '5FEAISDAoISU5BQ1RJVkUQAw==');
+    'ChBCYXNlc3RhdGlvblN0YXRlEhEKDUJTX05FVkVSX1NFRU4QABINCglCU19PTkxJTkUQARIOCg'
+    'pCU19PRkZMSU5FEAISDwoLQlNfSU5BQ1RJVkUQAw==');
 
 @$core.Deprecated('Use basestationDescriptor instead')
 const Basestation$json = {
@@ -621,14 +621,22 @@ final $typed_data.Uint8List listBasestationsResponseDescriptor = $convert.base64
 const GetBasestationsMapRequest$json = {
   '1': 'GetBasestationsMapRequest',
   '2': [
-    {'1': 'tenant_id', '3': 1, '4': 3, '5': 9, '10': 'tenantId'},
+    {
+      '1': 'tenant_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '9': 0,
+      '10': 'tenantId',
+      '17': true
+    },
     {
       '1': 'bounds',
       '3': 2,
       '4': 1,
       '5': 11,
       '6': '.common.LocationBoundary',
-      '9': 0,
+      '9': 1,
       '10': 'bounds',
       '17': true
     },
@@ -637,7 +645,7 @@ const GetBasestationsMapRequest$json = {
       '3': 6,
       '4': 1,
       '5': 9,
-      '9': 1,
+      '9': 2,
       '10': 'geohashPrefix',
       '17': true
     },
@@ -655,12 +663,13 @@ const GetBasestationsMapRequest$json = {
       '4': 1,
       '5': 11,
       '6': '.common.Tags',
-      '9': 2,
+      '9': 3,
       '10': 'tags',
       '17': true
     },
   ],
   '8': [
+    {'1': '_tenant_id'},
     {'1': '_bounds'},
     {'1': '_geohash_prefix'},
     {'1': '_tags'},
@@ -669,12 +678,12 @@ const GetBasestationsMapRequest$json = {
 
 /// Descriptor for `GetBasestationsMapRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getBasestationsMapRequestDescriptor = $convert.base64Decode(
-    'ChlHZXRCYXNlc3RhdGlvbnNNYXBSZXF1ZXN0EhsKCXRlbmFudF9pZBgBIAMoCVIIdGVuYW50SW'
-    'QSNQoGYm91bmRzGAIgASgLMhguY29tbW9uLkxvY2F0aW9uQm91bmRhcnlIAFIGYm91bmRziAEB'
-    'EioKDmdlb2hhc2hfcHJlZml4GAYgASgJSAFSDWdlb2hhc2hQcmVmaXiIAQESOAoMc3RhdGVfZm'
-    'lsdGVyGAcgAygOMhUuYXBpLkJhc2VzdGF0aW9uU3RhdGVSC3N0YXRlRmlsdGVyEiUKBHRhZ3MY'
-    'CCABKAsyDC5jb21tb24uVGFnc0gCUgR0YWdziAEBQgkKB19ib3VuZHNCEQoPX2dlb2hhc2hfcH'
-    'JlZml4QgcKBV90YWdz');
+    'ChlHZXRCYXNlc3RhdGlvbnNNYXBSZXF1ZXN0EiAKCXRlbmFudF9pZBgBIAEoCUgAUgh0ZW5hbn'
+    'RJZIgBARI1CgZib3VuZHMYAiABKAsyGC5jb21tb24uTG9jYXRpb25Cb3VuZGFyeUgBUgZib3Vu'
+    'ZHOIAQESKgoOZ2VvaGFzaF9wcmVmaXgYBiABKAlIAlINZ2VvaGFzaFByZWZpeIgBARI4CgxzdG'
+    'F0ZV9maWx0ZXIYByADKA4yFS5hcGkuQmFzZXN0YXRpb25TdGF0ZVILc3RhdGVGaWx0ZXISJQoE'
+    'dGFncxgIIAEoCzIMLmNvbW1vbi5UYWdzSANSBHRhZ3OIAQFCDAoKX3RlbmFudF9pZEIJCgdfYm'
+    '91bmRzQhEKD19nZW9oYXNoX3ByZWZpeEIHCgVfdGFncw==');
 
 @$core.Deprecated('Use basestationLocationsDescriptor instead')
 const BasestationLocations$json = {

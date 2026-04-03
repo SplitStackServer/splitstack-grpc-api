@@ -19,16 +19,16 @@ import 'dart:typed_data' as $typed_data;
 const DeviceState$json = {
   '1': 'DeviceState',
   '2': [
-    {'1': 'NEVER_SEEN', '2': 0},
-    {'1': 'ACTIVE', '2': 1},
-    {'1': 'INACTIVE', '2': 2},
+    {'1': 'DEV_NEVER_SEEN', '2': 0},
+    {'1': 'DEV_ACTIVE', '2': 1},
+    {'1': 'DEV_INACTIVE', '2': 2},
   ],
 };
 
 /// Descriptor for `DeviceState`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List deviceStateDescriptor = $convert.base64Decode(
-    'CgtEZXZpY2VTdGF0ZRIOCgpORVZFUl9TRUVOEAASCgoGQUNUSVZFEAESDAoISU5BQ1RJVkUQAg'
-    '==');
+    'CgtEZXZpY2VTdGF0ZRISCg5ERVZfTkVWRVJfU0VFThAAEg4KCkRFVl9BQ1RJVkUQARIQCgxERV'
+    'ZfSU5BQ1RJVkUQAg==');
 
 @$core.Deprecated('Use deviceDescriptor instead')
 const Device$json = {
@@ -647,15 +647,31 @@ final $typed_data.Uint8List listDevicesResponseDescriptor = $convert.base64Decod
 const GetDevicesMapRequest$json = {
   '1': 'GetDevicesMapRequest',
   '2': [
-    {'1': 'tenant_id', '3': 1, '4': 3, '5': 9, '10': 'tenantId'},
-    {'1': 'application_id', '3': 2, '4': 3, '5': 9, '10': 'applicationId'},
+    {
+      '1': 'tenant_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '9': 0,
+      '10': 'tenantId',
+      '17': true
+    },
+    {
+      '1': 'application_id',
+      '3': 2,
+      '4': 1,
+      '5': 9,
+      '9': 1,
+      '10': 'applicationId',
+      '17': true
+    },
     {
       '1': 'bounds',
       '3': 3,
       '4': 1,
       '5': 11,
       '6': '.common.LocationBoundary',
-      '9': 0,
+      '9': 2,
       '10': 'bounds',
       '17': true
     },
@@ -664,7 +680,7 @@ const GetDevicesMapRequest$json = {
       '3': 4,
       '4': 1,
       '5': 9,
-      '9': 1,
+      '9': 3,
       '10': 'geohashPrefix',
       '17': true
     },
@@ -682,12 +698,14 @@ const GetDevicesMapRequest$json = {
       '4': 1,
       '5': 11,
       '6': '.common.Tags',
-      '9': 2,
+      '9': 4,
       '10': 'tags',
       '17': true
     },
   ],
   '8': [
+    {'1': '_tenant_id'},
+    {'1': '_application_id'},
     {'1': '_bounds'},
     {'1': '_geohash_prefix'},
     {'1': '_tags'},
@@ -696,12 +714,13 @@ const GetDevicesMapRequest$json = {
 
 /// Descriptor for `GetDevicesMapRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getDevicesMapRequestDescriptor = $convert.base64Decode(
-    'ChRHZXREZXZpY2VzTWFwUmVxdWVzdBIbCgl0ZW5hbnRfaWQYASADKAlSCHRlbmFudElkEiUKDm'
-    'FwcGxpY2F0aW9uX2lkGAIgAygJUg1hcHBsaWNhdGlvbklkEjUKBmJvdW5kcxgDIAEoCzIYLmNv'
-    'bW1vbi5Mb2NhdGlvbkJvdW5kYXJ5SABSBmJvdW5kc4gBARIqCg5nZW9oYXNoX3ByZWZpeBgEIA'
-    'EoCUgBUg1nZW9oYXNoUHJlZml4iAEBEjMKDHN0YXRlX2ZpbHRlchgFIAMoDjIQLmFwaS5EZXZp'
-    'Y2VTdGF0ZVILc3RhdGVGaWx0ZXISJQoEdGFncxgGIAEoCzIMLmNvbW1vbi5UYWdzSAJSBHRhZ3'
-    'OIAQFCCQoHX2JvdW5kc0IRCg9fZ2VvaGFzaF9wcmVmaXhCBwoFX3RhZ3M=');
+    'ChRHZXREZXZpY2VzTWFwUmVxdWVzdBIgCgl0ZW5hbnRfaWQYASABKAlIAFIIdGVuYW50SWSIAQ'
+    'ESKgoOYXBwbGljYXRpb25faWQYAiABKAlIAVINYXBwbGljYXRpb25JZIgBARI1CgZib3VuZHMY'
+    'AyABKAsyGC5jb21tb24uTG9jYXRpb25Cb3VuZGFyeUgCUgZib3VuZHOIAQESKgoOZ2VvaGFzaF'
+    '9wcmVmaXgYBCABKAlIA1INZ2VvaGFzaFByZWZpeIgBARIzCgxzdGF0ZV9maWx0ZXIYBSADKA4y'
+    'EC5hcGkuRGV2aWNlU3RhdGVSC3N0YXRlRmlsdGVyEiUKBHRhZ3MYBiABKAsyDC5jb21tb24uVG'
+    'Fnc0gEUgR0YWdziAEBQgwKCl90ZW5hbnRfaWRCEQoPX2FwcGxpY2F0aW9uX2lkQgkKB19ib3Vu'
+    'ZHNCEQoPX2dlb2hhc2hfcHJlZml4QgcKBV90YWdz');
 
 @$core.Deprecated('Use deviceLocationDescriptor instead')
 const DeviceLocation$json = {

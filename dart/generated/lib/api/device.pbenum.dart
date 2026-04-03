@@ -16,21 +16,21 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 class DeviceState extends $pb.ProtobufEnum {
   /// Device has never been seen.
-  static const DeviceState NEVER_SEEN =
-      DeviceState._(0, _omitEnumNames ? '' : 'NEVER_SEEN');
+  static const DeviceState DEV_NEVER_SEEN =
+      DeviceState._(0, _omitEnumNames ? '' : 'DEV_NEVER_SEEN');
 
   /// Device is active.
-  static const DeviceState ACTIVE =
-      DeviceState._(1, _omitEnumNames ? '' : 'ACTIVE');
+  static const DeviceState DEV_ACTIVE =
+      DeviceState._(1, _omitEnumNames ? '' : 'DEV_ACTIVE');
 
   /// Device is inactive.
-  static const DeviceState INACTIVE =
-      DeviceState._(2, _omitEnumNames ? '' : 'INACTIVE');
+  static const DeviceState DEV_INACTIVE =
+      DeviceState._(2, _omitEnumNames ? '' : 'DEV_INACTIVE');
 
   static const $core.List<DeviceState> values = <DeviceState>[
-    NEVER_SEEN,
-    ACTIVE,
-    INACTIVE,
+    DEV_NEVER_SEEN,
+    DEV_ACTIVE,
+    DEV_INACTIVE,
   ];
 
   static final $core.List<DeviceState?> _byValue =
