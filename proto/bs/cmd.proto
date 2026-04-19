@@ -117,7 +117,7 @@ message AttachPropagate{
     bytes nwk_session_key = 4;
 
     // Packet counter.
-    int32 last_packet_cnt = 5;
+    uint32 last_packet_cnt = 5;
 
     // True if End Point is bidirectional
     bool bidi = 6;
