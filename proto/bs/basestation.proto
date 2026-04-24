@@ -122,9 +122,9 @@ message BasestationDownlinkResult {
     // Result of the downlink
     DownlinkResultEnum result = 4;
     // Unix UTC time of transmission, center of first subpacket, 64 bit, ns resolution, only if result is sent
-    google.protobuf.Timestamp tx_time = 5;
+    optional google.protobuf.Timestamp tx_time = 5;
     // End Point packet counter, only if result is “sent”
-    uint32 ep_packet_cnt = 6;
+    optional uint32 ep_packet_cnt = 6;
 }
 
 message BasestationDownlinkRxStatus {
