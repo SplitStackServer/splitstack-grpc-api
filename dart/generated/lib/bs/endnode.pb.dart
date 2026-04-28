@@ -825,7 +825,7 @@ class EndnodeVariableMacUlDataMessage extends $pb.GeneratedMessage {
     CarrierSpacingEnum? carrSpace,
     TsmaPatternGroupEnum? pattGrp,
     $core.int? pattNum,
-    $fixnum.Int64? crc,
+    $core.int? crc,
   }) {
     final result = create();
     if (data != null) result.data = data;
@@ -860,8 +860,7 @@ class EndnodeVariableMacUlDataMessage extends $pb.GeneratedMessage {
     ..aE<TsmaPatternGroupEnum>(7, _omitFieldNames ? '' : 'pattGrp',
         enumValues: TsmaPatternGroupEnum.values)
     ..aI(8, _omitFieldNames ? '' : 'pattNum', fieldType: $pb.PbFieldType.OU3)
-    ..a<$fixnum.Int64>(9, _omitFieldNames ? '' : 'crc', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aI(9, _omitFieldNames ? '' : 'crc', fieldType: $pb.PbFieldType.OU3)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -949,9 +948,9 @@ class EndnodeVariableMacUlDataMessage extends $pb.GeneratedMessage {
 
   /// Header and payload CRC, crc[0] = header CRC, crc[1] = payload CRC
   @$pb.TagNumber(9)
-  $fixnum.Int64 get crc => $_getI64(6);
+  $core.int get crc => $_getIZ(6);
   @$pb.TagNumber(9)
-  set crc($fixnum.Int64 value) => $_setInt64(6, value);
+  set crc($core.int value) => $_setUnsignedInt32(6, value);
   @$pb.TagNumber(9)
   $core.bool hasCrc() => $_has(6);
   @$pb.TagNumber(9)

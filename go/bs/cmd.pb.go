@@ -695,7 +695,7 @@ type AttachPropagate struct {
 	// 16 Byte End Point network session key
 	NwkSessionKey []byte `protobuf:"bytes,4,opt,name=nwk_session_key,json=nwkSessionKey,proto3" json:"nwk_session_key,omitempty"`
 	// Packet counter.
-	LastPacketCnt int32 `protobuf:"varint,5,opt,name=last_packet_cnt,json=lastPacketCnt,proto3" json:"last_packet_cnt,omitempty"`
+	LastPacketCnt uint32 `protobuf:"varint,5,opt,name=last_packet_cnt,json=lastPacketCnt,proto3" json:"last_packet_cnt,omitempty"`
 	// True if End Point is bidirectional
 	Bidi bool `protobuf:"varint,6,opt,name=bidi,proto3" json:"bidi,omitempty"`
 	// True if End Point uses dual channel mode
@@ -761,7 +761,7 @@ func (x *AttachPropagate) GetNwkSessionKey() []byte {
 	return nil
 }
 
-func (x *AttachPropagate) GetLastPacketCnt() int32 {
+func (x *AttachPropagate) GetLastPacketCnt() uint32 {
 	if x != nil {
 		return x.LastPacketCnt
 	}
@@ -1128,7 +1128,7 @@ const file_bs_cmd_proto_rawDesc = "" +
 	"endnodeEui\x12\x17\n" +
 	"\ash_addr\x18\x03 \x01(\rR\x06shAddr\x12&\n" +
 	"\x0fnwk_session_key\x18\x04 \x01(\fR\rnwkSessionKey\x12&\n" +
-	"\x0flast_packet_cnt\x18\x05 \x01(\x05R\rlastPacketCnt\x12\x12\n" +
+	"\x0flast_packet_cnt\x18\x05 \x01(\rR\rlastPacketCnt\x12\x12\n" +
 	"\x04bidi\x18\x06 \x01(\bR\x04bidi\x12!\n" +
 	"\fdual_channel\x18\a \x01(\bR\vdualChannel\x12\x1e\n" +
 	"\n" +

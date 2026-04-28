@@ -322,7 +322,7 @@ const AttachPropagate$json = {
     {'1': 'endnode_eui', '3': 2, '4': 1, '5': 9, '10': 'endnodeEui'},
     {'1': 'sh_addr', '3': 3, '4': 1, '5': 13, '10': 'shAddr'},
     {'1': 'nwk_session_key', '3': 4, '4': 1, '5': 12, '10': 'nwkSessionKey'},
-    {'1': 'last_packet_cnt', '3': 5, '4': 1, '5': 5, '10': 'lastPacketCnt'},
+    {'1': 'last_packet_cnt', '3': 5, '4': 1, '5': 13, '10': 'lastPacketCnt'},
     {'1': 'bidi', '3': 6, '4': 1, '5': 8, '10': 'bidi'},
     {'1': 'dual_channel', '3': 7, '4': 1, '5': 8, '10': 'dualChannel'},
     {'1': 'repetition', '3': 8, '4': 1, '5': 8, '10': 'repetition'},
@@ -335,7 +335,7 @@ const AttachPropagate$json = {
 final $typed_data.Uint8List attachPropagateDescriptor = $convert.base64Decode(
     'Cg9BdHRhY2hQcm9wYWdhdGUSHwoLZW5kbm9kZV9ldWkYAiABKAlSCmVuZG5vZGVFdWkSFwoHc2'
     'hfYWRkchgDIAEoDVIGc2hBZGRyEiYKD253a19zZXNzaW9uX2tleRgEIAEoDFINbndrU2Vzc2lv'
-    'bktleRImCg9sYXN0X3BhY2tldF9jbnQYBSABKAVSDWxhc3RQYWNrZXRDbnQSEgoEYmlkaRgGIA'
+    'bktleRImCg9sYXN0X3BhY2tldF9jbnQYBSABKA1SDWxhc3RQYWNrZXRDbnQSEgoEYmlkaRgGIA'
     'EoCFIEYmlkaRIhCgxkdWFsX2NoYW5uZWwYByABKAhSC2R1YWxDaGFubmVsEh4KCnJlcGV0aXRp'
     'b24YCCABKAhSCnJlcGV0aXRpb24SIgoNd2lkZV9jYXJyX29mZhgJIAEoCFILd2lkZUNhcnJPZm'
     'YSIgoNbG9uZ19ibGtfZGlzdBgKIAEoCFILbG9uZ0Jsa0Rpc3Q=');
