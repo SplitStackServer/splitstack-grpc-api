@@ -858,7 +858,8 @@ class AttachPropagate extends $pb.GeneratedMessage {
     ..aI(3, _omitFieldNames ? '' : 'shAddr', fieldType: $pb.PbFieldType.OU3)
     ..a<$core.List<$core.int>>(
         4, _omitFieldNames ? '' : 'nwkSessionKey', $pb.PbFieldType.OY)
-    ..aI(5, _omitFieldNames ? '' : 'lastPacketCnt')
+    ..aI(5, _omitFieldNames ? '' : 'lastPacketCnt',
+        fieldType: $pb.PbFieldType.OU3)
     ..aOB(6, _omitFieldNames ? '' : 'bidi')
     ..aOB(7, _omitFieldNames ? '' : 'dualChannel')
     ..aOB(8, _omitFieldNames ? '' : 'repetition')
@@ -919,7 +920,7 @@ class AttachPropagate extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   $core.int get lastPacketCnt => $_getIZ(3);
   @$pb.TagNumber(5)
-  set lastPacketCnt($core.int value) => $_setSignedInt32(3, value);
+  set lastPacketCnt($core.int value) => $_setUnsignedInt32(3, value);
   @$pb.TagNumber(5)
   $core.bool hasLastPacketCnt() => $_has(3);
   @$pb.TagNumber(5)

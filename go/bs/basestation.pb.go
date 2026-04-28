@@ -701,9 +701,9 @@ type BasestationDownlinkResult struct {
 	// Result of the downlink
 	Result DownlinkResultEnum `protobuf:"varint,4,opt,name=result,proto3,enum=bs.DownlinkResultEnum" json:"result,omitempty"`
 	// Unix UTC time of transmission, center of first subpacket, 64 bit, ns resolution, only if result is sent
-	TxTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=tx_time,json=txTime,proto3" json:"tx_time,omitempty"`
+	TxTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=tx_time,json=txTime,proto3,oneof" json:"tx_time,omitempty"`
 	// End Point packet counter, only if result is “sent”
-	EpPacketCnt   uint32 `protobuf:"varint,6,opt,name=ep_packet_cnt,json=epPacketCnt,proto3" json:"ep_packet_cnt,omitempty"`
+	EpPacketCnt   *uint32 `protobuf:"varint,6,opt,name=ep_packet_cnt,json=epPacketCnt,proto3,oneof" json:"ep_packet_cnt,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -767,8 +767,8 @@ func (x *BasestationDownlinkResult) GetTxTime() *timestamppb.Timestamp {
 }
 
 func (x *BasestationDownlinkResult) GetEpPacketCnt() uint32 {
-	if x != nil {
-		return x.EpPacketCnt
+	if x != nil && x.EpPacketCnt != nil {
+		return *x.EpPacketCnt
 	}
 	return 0
 }
@@ -981,13 +981,16 @@ const file_bs_basestation_proto_rawDesc = "" +
 	"\x05error\x18\x02 \x01(\bR\x05error\x12 \n" +
 	"\terror_msg\x18\x03 \x01(\tH\x00R\berrorMsg\x88\x01\x01B\f\n" +
 	"\n" +
-	"_error_msg\"\xd7\x01\n" +
+	"_error_msg\"\xff\x01\n" +
 	"\x19BasestationDownlinkResult\x12\x15\n" +
 	"\x06ep_eui\x18\x01 \x01(\tR\x05epEui\x12\x1a\n" +
 	"\tdl_que_id\x18\x03 \x01(\x04R\adlQueId\x12.\n" +
-	"\x06result\x18\x04 \x01(\x0e2\x16.bs.DownlinkResultEnumR\x06result\x123\n" +
-	"\atx_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x06txTime\x12\"\n" +
-	"\rep_packet_cnt\x18\x06 \x01(\rR\vepPacketCnt\"\xc2\x01\n" +
+	"\x06result\x18\x04 \x01(\x0e2\x16.bs.DownlinkResultEnumR\x06result\x128\n" +
+	"\atx_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\x06txTime\x88\x01\x01\x12'\n" +
+	"\rep_packet_cnt\x18\x06 \x01(\rH\x01R\vepPacketCnt\x88\x01\x01B\n" +
+	"\n" +
+	"\b_tx_timeB\x10\n" +
+	"\x0e_ep_packet_cnt\"\xc2\x01\n" +
 	"\x1bBasestationDownlinkRxStatus\x12\x15\n" +
 	"\x06ep_eui\x18\x01 \x01(\tR\x05epEui\x123\n" +
 	"\arx_time\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x06rxTime\x12\x1d\n" +
@@ -1079,6 +1082,7 @@ func file_bs_basestation_proto_init() {
 	file_bs_basestation_proto_msgTypes[2].OneofWrappers = []any{}
 	file_bs_basestation_proto_msgTypes[3].OneofWrappers = []any{}
 	file_bs_basestation_proto_msgTypes[4].OneofWrappers = []any{}
+	file_bs_basestation_proto_msgTypes[5].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

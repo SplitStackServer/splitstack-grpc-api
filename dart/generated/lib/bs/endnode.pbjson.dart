@@ -299,7 +299,7 @@ const EndnodeVariableMacUlDataMessage$json = {
       '10': 'pattGrp'
     },
     {'1': 'patt_num', '3': 8, '4': 1, '5': 13, '10': 'pattNum'},
-    {'1': 'crc', '3': 9, '4': 1, '5': 4, '10': 'crc'},
+    {'1': 'crc', '3': 9, '4': 1, '5': 13, '10': 'crc'},
   ],
 };
 
@@ -309,4 +309,4 @@ final $typed_data.Uint8List endnodeVariableMacUlDataMessageDescriptor = $convert
     'oIbWFjX3R5cGUYAiABKA1SB21hY1R5cGUSGQoIZnJlcV9vZmYYBSABKAFSB2ZyZXFPZmYSNQoK'
     'Y2Fycl9zcGFjZRgGIAEoDjIWLmJzLkNhcnJpZXJTcGFjaW5nRW51bVIJY2FyclNwYWNlEjMKCH'
     'BhdHRfZ3JwGAcgASgOMhguYnMuVHNtYVBhdHRlcm5Hcm91cEVudW1SB3BhdHRHcnASGQoIcGF0'
-    'dF9udW0YCCABKA1SB3BhdHROdW0SEAoDY3JjGAkgASgEUgNjcmM=');
+    'dF9udW0YCCABKA1SB3BhdHROdW0SEAoDY3JjGAkgASgNUgNjcmM=');

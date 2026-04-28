@@ -742,7 +742,7 @@ type EndnodeVariableMacUlDataMessage struct {
 	// Uplink TSMA Pattern number p
 	PattNum uint32 `protobuf:"varint,8,opt,name=patt_num,json=pattNum,proto3" json:"patt_num,omitempty"`
 	// Header and payload CRC, crc[0] = header CRC, crc[1] = payload CRC
-	Crc           uint64 `protobuf:"varint,9,opt,name=crc,proto3" json:"crc,omitempty"`
+	Crc           uint32 `protobuf:"varint,9,opt,name=crc,proto3" json:"crc,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -819,7 +819,7 @@ func (x *EndnodeVariableMacUlDataMessage) GetPattNum() uint32 {
 	return 0
 }
 
-func (x *EndnodeVariableMacUlDataMessage) GetCrc() uint64 {
+func (x *EndnodeVariableMacUlDataMessage) GetCrc() uint32 {
 	if x != nil {
 		return x.Crc
 	}
@@ -898,7 +898,7 @@ const file_bs_endnode_proto_rawDesc = "" +
 	"carr_space\x18\x06 \x01(\x0e2\x16.bs.CarrierSpacingEnumR\tcarrSpace\x123\n" +
 	"\bpatt_grp\x18\a \x01(\x0e2\x18.bs.TsmaPatternGroupEnumR\apattGrp\x12\x19\n" +
 	"\bpatt_num\x18\b \x01(\rR\apattNum\x12\x10\n" +
-	"\x03crc\x18\t \x01(\x04R\x03crc*8\n" +
+	"\x03crc\x18\t \x01(\rR\x03crc*8\n" +
 	"\x12CarrierSpacingEnum\x12\n" +
 	"\n" +
 	"\x06NARROW\x10\x00\x12\f\n" +

@@ -153,5 +153,5 @@ message EndnodeVariableMacUlDataMessage {
     // Uplink TSMA Pattern number p
     uint32 patt_num = 8;
     // Header and payload CRC, crc[0] = header CRC, crc[1] = payload CRC
-    uint64 crc = 9;
+    uint32 crc = 9;
 }

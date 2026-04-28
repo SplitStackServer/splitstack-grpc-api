@@ -311,9 +311,23 @@ const BasestationDownlinkResult$json = {
       '4': 1,
       '5': 11,
       '6': '.google.protobuf.Timestamp',
-      '10': 'txTime'
+      '9': 0,
+      '10': 'txTime',
+      '17': true
     },
-    {'1': 'ep_packet_cnt', '3': 6, '4': 1, '5': 13, '10': 'epPacketCnt'},
+    {
+      '1': 'ep_packet_cnt',
+      '3': 6,
+      '4': 1,
+      '5': 13,
+      '9': 1,
+      '10': 'epPacketCnt',
+      '17': true
+    },
+  ],
+  '8': [
+    {'1': '_tx_time'},
+    {'1': '_ep_packet_cnt'},
   ],
 };
 
@@ -321,8 +335,9 @@ const BasestationDownlinkResult$json = {
 final $typed_data.Uint8List basestationDownlinkResultDescriptor = $convert.base64Decode(
     'ChlCYXNlc3RhdGlvbkRvd25saW5rUmVzdWx0EhUKBmVwX2V1aRgBIAEoCVIFZXBFdWkSGgoJZG'
     'xfcXVlX2lkGAMgASgEUgdkbFF1ZUlkEi4KBnJlc3VsdBgEIAEoDjIWLmJzLkRvd25saW5rUmVz'
-    'dWx0RW51bVIGcmVzdWx0EjMKB3R4X3RpbWUYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZX'
-    'N0YW1wUgZ0eFRpbWUSIgoNZXBfcGFja2V0X2NudBgGIAEoDVILZXBQYWNrZXRDbnQ=');
+    'dWx0RW51bVIGcmVzdWx0EjgKB3R4X3RpbWUYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZX'
+    'N0YW1wSABSBnR4VGltZYgBARInCg1lcF9wYWNrZXRfY250GAYgASgNSAFSC2VwUGFja2V0Q250'
+    'iAEBQgoKCF90eF90aW1lQhAKDl9lcF9wYWNrZXRfY250');
 
 @$core.Deprecated('Use basestationDownlinkRxStatusDescriptor instead')
 const BasestationDownlinkRxStatus$json = {
