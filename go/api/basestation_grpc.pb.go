@@ -27,10 +27,12 @@ const (
 	BasestationService_DeleteBasestation_FullMethodName                    = "/api.BasestationService/DeleteBasestation"
 	BasestationService_ListBasestations_FullMethodName                     = "/api.BasestationService/ListBasestations"
 	BasestationService_GetBasestationMap_FullMethodName                    = "/api.BasestationService/GetBasestationMap"
-	BasestationService_GenerateBasestationClientCertificate_FullMethodName = "/api.BasestationService/GenerateBasestationClientCertificate"
-	BasestationService_SignBasestationCsr_FullMethodName                   = "/api.BasestationService/SignBasestationCsr"
 	BasestationService_GetBasestationMetrics_FullMethodName                = "/api.BasestationService/GetBasestationMetrics"
 	BasestationService_StreamBasestationFrames_FullMethodName              = "/api.BasestationService/StreamBasestationFrames"
+	BasestationService_GenerateBasestationClientCertificate_FullMethodName = "/api.BasestationService/GenerateBasestationClientCertificate"
+	BasestationService_SignBasestationCsr_FullMethodName                   = "/api.BasestationService/SignBasestationCsr"
+	BasestationService_ListBasestationClientCertificates_FullMethodName    = "/api.BasestationService/ListBasestationClientCertificates"
+	BasestationService_DeleteClientCertificate_FullMethodName              = "/api.BasestationService/DeleteClientCertificate"
 )
 
 // BasestationServiceClient is the client API for BasestationService service.
@@ -51,14 +53,18 @@ type BasestationServiceClient interface {
 	ListBasestations(ctx context.Context, in *ListBasestationsRequest, opts ...grpc.CallOption) (*ListBasestationsResponse, error)
 	// Get the list of basestations.
 	GetBasestationMap(ctx context.Context, in *GetBasestationsMapRequest, opts ...grpc.CallOption) (*GetBasestationsMapResponse, error)
-	// Generate client-certificate for the gateway.
-	GenerateBasestationClientCertificate(ctx context.Context, in *GenerateBasestationClientCertificateRequest, opts ...grpc.CallOption) (*GenerateBasestationClientCertificateResponse, error)
-	// Sign a CSR for the gateway.
-	SignBasestationCsr(ctx context.Context, in *SignBasestationCsrRequest, opts ...grpc.CallOption) (*SignBasestationCsrResponse, error)
 	// GetMetrics returns the gateway metrics.
 	GetBasestationMetrics(ctx context.Context, in *GetBasestationMetricsRequest, opts ...grpc.CallOption) (*GetBasestationMetricsResponse, error)
 	// Returns a stream of frames for the given basestation ID.
 	StreamBasestationFrames(ctx context.Context, in *StreamBasestationFramesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[streaming.FrameLogItem], error)
+	// Generate client-certificate for the gateway.
+	GenerateBasestationClientCertificate(ctx context.Context, in *GenerateBasestationClientCertificateRequest, opts ...grpc.CallOption) (*GenerateBasestationClientCertificateResponse, error)
+	// Sign a CSR for the gateway.
+	SignBasestationCsr(ctx context.Context, in *SignBasestationCsrRequest, opts ...grpc.CallOption) (*SignBasestationCsrResponse, error)
+	// Get the list of basestations.
+	ListBasestationClientCertificates(ctx context.Context, in *ListBasestationClientCertificatesRequest, opts ...grpc.CallOption) (*ListBasestationClientCertificatesResponse, error)
+	// Delete deletes the client certificate matching the given ID.
+	DeleteClientCertificate(ctx context.Context, in *DeleteClientCertificateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type basestationServiceClient struct {
@@ -129,26 +135,6 @@ func (c *basestationServiceClient) GetBasestationMap(ctx context.Context, in *Ge
 	return out, nil
 }
 
-func (c *basestationServiceClient) GenerateBasestationClientCertificate(ctx context.Context, in *GenerateBasestationClientCertificateRequest, opts ...grpc.CallOption) (*GenerateBasestationClientCertificateResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GenerateBasestationClientCertificateResponse)
-	err := c.cc.Invoke(ctx, BasestationService_GenerateBasestationClientCertificate_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *basestationServiceClient) SignBasestationCsr(ctx context.Context, in *SignBasestationCsrRequest, opts ...grpc.CallOption) (*SignBasestationCsrResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SignBasestationCsrResponse)
-	err := c.cc.Invoke(ctx, BasestationService_SignBasestationCsr_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *basestationServiceClient) GetBasestationMetrics(ctx context.Context, in *GetBasestationMetricsRequest, opts ...grpc.CallOption) (*GetBasestationMetricsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetBasestationMetricsResponse)
@@ -178,6 +164,46 @@ func (c *basestationServiceClient) StreamBasestationFrames(ctx context.Context, 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type BasestationService_StreamBasestationFramesClient = grpc.ServerStreamingClient[streaming.FrameLogItem]
 
+func (c *basestationServiceClient) GenerateBasestationClientCertificate(ctx context.Context, in *GenerateBasestationClientCertificateRequest, opts ...grpc.CallOption) (*GenerateBasestationClientCertificateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GenerateBasestationClientCertificateResponse)
+	err := c.cc.Invoke(ctx, BasestationService_GenerateBasestationClientCertificate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *basestationServiceClient) SignBasestationCsr(ctx context.Context, in *SignBasestationCsrRequest, opts ...grpc.CallOption) (*SignBasestationCsrResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SignBasestationCsrResponse)
+	err := c.cc.Invoke(ctx, BasestationService_SignBasestationCsr_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *basestationServiceClient) ListBasestationClientCertificates(ctx context.Context, in *ListBasestationClientCertificatesRequest, opts ...grpc.CallOption) (*ListBasestationClientCertificatesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListBasestationClientCertificatesResponse)
+	err := c.cc.Invoke(ctx, BasestationService_ListBasestationClientCertificates_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *basestationServiceClient) DeleteClientCertificate(ctx context.Context, in *DeleteClientCertificateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, BasestationService_DeleteClientCertificate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BasestationServiceServer is the server API for BasestationService service.
 // All implementations must embed UnimplementedBasestationServiceServer
 // for forward compatibility.
@@ -196,14 +222,18 @@ type BasestationServiceServer interface {
 	ListBasestations(context.Context, *ListBasestationsRequest) (*ListBasestationsResponse, error)
 	// Get the list of basestations.
 	GetBasestationMap(context.Context, *GetBasestationsMapRequest) (*GetBasestationsMapResponse, error)
-	// Generate client-certificate for the gateway.
-	GenerateBasestationClientCertificate(context.Context, *GenerateBasestationClientCertificateRequest) (*GenerateBasestationClientCertificateResponse, error)
-	// Sign a CSR for the gateway.
-	SignBasestationCsr(context.Context, *SignBasestationCsrRequest) (*SignBasestationCsrResponse, error)
 	// GetMetrics returns the gateway metrics.
 	GetBasestationMetrics(context.Context, *GetBasestationMetricsRequest) (*GetBasestationMetricsResponse, error)
 	// Returns a stream of frames for the given basestation ID.
 	StreamBasestationFrames(*StreamBasestationFramesRequest, grpc.ServerStreamingServer[streaming.FrameLogItem]) error
+	// Generate client-certificate for the gateway.
+	GenerateBasestationClientCertificate(context.Context, *GenerateBasestationClientCertificateRequest) (*GenerateBasestationClientCertificateResponse, error)
+	// Sign a CSR for the gateway.
+	SignBasestationCsr(context.Context, *SignBasestationCsrRequest) (*SignBasestationCsrResponse, error)
+	// Get the list of basestations.
+	ListBasestationClientCertificates(context.Context, *ListBasestationClientCertificatesRequest) (*ListBasestationClientCertificatesResponse, error)
+	// Delete deletes the client certificate matching the given ID.
+	DeleteClientCertificate(context.Context, *DeleteClientCertificateRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedBasestationServiceServer()
 }
 
@@ -232,17 +262,23 @@ func (UnimplementedBasestationServiceServer) ListBasestations(context.Context, *
 func (UnimplementedBasestationServiceServer) GetBasestationMap(context.Context, *GetBasestationsMapRequest) (*GetBasestationsMapResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBasestationMap not implemented")
 }
+func (UnimplementedBasestationServiceServer) GetBasestationMetrics(context.Context, *GetBasestationMetricsRequest) (*GetBasestationMetricsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBasestationMetrics not implemented")
+}
+func (UnimplementedBasestationServiceServer) StreamBasestationFrames(*StreamBasestationFramesRequest, grpc.ServerStreamingServer[streaming.FrameLogItem]) error {
+	return status.Errorf(codes.Unimplemented, "method StreamBasestationFrames not implemented")
+}
 func (UnimplementedBasestationServiceServer) GenerateBasestationClientCertificate(context.Context, *GenerateBasestationClientCertificateRequest) (*GenerateBasestationClientCertificateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenerateBasestationClientCertificate not implemented")
 }
 func (UnimplementedBasestationServiceServer) SignBasestationCsr(context.Context, *SignBasestationCsrRequest) (*SignBasestationCsrResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignBasestationCsr not implemented")
 }
-func (UnimplementedBasestationServiceServer) GetBasestationMetrics(context.Context, *GetBasestationMetricsRequest) (*GetBasestationMetricsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBasestationMetrics not implemented")
+func (UnimplementedBasestationServiceServer) ListBasestationClientCertificates(context.Context, *ListBasestationClientCertificatesRequest) (*ListBasestationClientCertificatesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListBasestationClientCertificates not implemented")
 }
-func (UnimplementedBasestationServiceServer) StreamBasestationFrames(*StreamBasestationFramesRequest, grpc.ServerStreamingServer[streaming.FrameLogItem]) error {
-	return status.Errorf(codes.Unimplemented, "method StreamBasestationFrames not implemented")
+func (UnimplementedBasestationServiceServer) DeleteClientCertificate(context.Context, *DeleteClientCertificateRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteClientCertificate not implemented")
 }
 func (UnimplementedBasestationServiceServer) mustEmbedUnimplementedBasestationServiceServer() {}
 func (UnimplementedBasestationServiceServer) testEmbeddedByValue()                            {}
@@ -373,6 +409,35 @@ func _BasestationService_GetBasestationMap_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BasestationService_GetBasestationMetrics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBasestationMetricsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasestationServiceServer).GetBasestationMetrics(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BasestationService_GetBasestationMetrics_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasestationServiceServer).GetBasestationMetrics(ctx, req.(*GetBasestationMetricsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BasestationService_StreamBasestationFrames_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(StreamBasestationFramesRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(BasestationServiceServer).StreamBasestationFrames(m, &grpc.GenericServerStream[StreamBasestationFramesRequest, streaming.FrameLogItem]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type BasestationService_StreamBasestationFramesServer = grpc.ServerStreamingServer[streaming.FrameLogItem]
+
 func _BasestationService_GenerateBasestationClientCertificate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GenerateBasestationClientCertificateRequest)
 	if err := dec(in); err != nil {
@@ -409,34 +474,41 @@ func _BasestationService_SignBasestationCsr_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BasestationService_GetBasestationMetrics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBasestationMetricsRequest)
+func _BasestationService_ListBasestationClientCertificates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListBasestationClientCertificatesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BasestationServiceServer).GetBasestationMetrics(ctx, in)
+		return srv.(BasestationServiceServer).ListBasestationClientCertificates(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: BasestationService_GetBasestationMetrics_FullMethodName,
+		FullMethod: BasestationService_ListBasestationClientCertificates_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BasestationServiceServer).GetBasestationMetrics(ctx, req.(*GetBasestationMetricsRequest))
+		return srv.(BasestationServiceServer).ListBasestationClientCertificates(ctx, req.(*ListBasestationClientCertificatesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BasestationService_StreamBasestationFrames_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(StreamBasestationFramesRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _BasestationService_DeleteClientCertificate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteClientCertificateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(BasestationServiceServer).StreamBasestationFrames(m, &grpc.GenericServerStream[StreamBasestationFramesRequest, streaming.FrameLogItem]{ServerStream: stream})
+	if interceptor == nil {
+		return srv.(BasestationServiceServer).DeleteClientCertificate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BasestationService_DeleteClientCertificate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasestationServiceServer).DeleteClientCertificate(ctx, req.(*DeleteClientCertificateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
-
-// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type BasestationService_StreamBasestationFramesServer = grpc.ServerStreamingServer[streaming.FrameLogItem]
 
 // BasestationService_ServiceDesc is the grpc.ServiceDesc for BasestationService service.
 // It's only intended for direct use with grpc.RegisterService,
@@ -470,6 +542,10 @@ var BasestationService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _BasestationService_GetBasestationMap_Handler,
 		},
 		{
+			MethodName: "GetBasestationMetrics",
+			Handler:    _BasestationService_GetBasestationMetrics_Handler,
+		},
+		{
 			MethodName: "GenerateBasestationClientCertificate",
 			Handler:    _BasestationService_GenerateBasestationClientCertificate_Handler,
 		},
@@ -478,8 +554,12 @@ var BasestationService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _BasestationService_SignBasestationCsr_Handler,
 		},
 		{
-			MethodName: "GetBasestationMetrics",
-			Handler:    _BasestationService_GetBasestationMetrics_Handler,
+			MethodName: "ListBasestationClientCertificates",
+			Handler:    _BasestationService_ListBasestationClientCertificates_Handler,
+		},
+		{
+			MethodName: "DeleteClientCertificate",
+			Handler:    _BasestationService_DeleteClientCertificate_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

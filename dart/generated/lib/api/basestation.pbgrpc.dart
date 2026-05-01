@@ -83,6 +83,24 @@ class BasestationServiceClient extends $grpc.Client {
     return $createUnaryCall(_$getBasestationMap, request, options: options);
   }
 
+  /// GetMetrics returns the gateway metrics.
+  $grpc.ResponseFuture<$0.GetBasestationMetricsResponse> getBasestationMetrics(
+    $0.GetBasestationMetricsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$getBasestationMetrics, request, options: options);
+  }
+
+  /// Returns a stream of frames for the given basestation ID.
+  $grpc.ResponseStream<$2.FrameLogItem> streamBasestationFrames(
+    $0.StreamBasestationFramesRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createStreamingCall(
+        _$streamBasestationFrames, $async.Stream.fromIterable([request]),
+        options: options);
+  }
+
   /// Generate client-certificate for the gateway.
   $grpc.ResponseFuture<$0.GenerateBasestationClientCertificateResponse>
       generateBasestationClientCertificate(
@@ -101,21 +119,22 @@ class BasestationServiceClient extends $grpc.Client {
     return $createUnaryCall(_$signBasestationCsr, request, options: options);
   }
 
-  /// GetMetrics returns the gateway metrics.
-  $grpc.ResponseFuture<$0.GetBasestationMetricsResponse> getBasestationMetrics(
-    $0.GetBasestationMetricsRequest request, {
+  /// Get the list of basestations.
+  $grpc.ResponseFuture<$0.ListBasestationClientCertificatesResponse>
+      listBasestationClientCertificates(
+    $0.ListBasestationClientCertificatesRequest request, {
     $grpc.CallOptions? options,
   }) {
-    return $createUnaryCall(_$getBasestationMetrics, request, options: options);
+    return $createUnaryCall(_$listBasestationClientCertificates, request,
+        options: options);
   }
 
-  /// Returns a stream of frames for the given basestation ID.
-  $grpc.ResponseStream<$2.FrameLogItem> streamBasestationFrames(
-    $0.StreamBasestationFramesRequest request, {
+  /// Delete deletes the client certificate matching the given ID.
+  $grpc.ResponseFuture<$1.Empty> deleteClientCertificate(
+    $0.DeleteClientCertificateRequest request, {
     $grpc.CallOptions? options,
   }) {
-    return $createStreamingCall(
-        _$streamBasestationFrames, $async.Stream.fromIterable([request]),
+    return $createUnaryCall(_$deleteClientCertificate, request,
         options: options);
   }
 
@@ -151,6 +170,16 @@ class BasestationServiceClient extends $grpc.Client {
       '/api.BasestationService/GetBasestationMap',
       ($0.GetBasestationsMapRequest value) => value.writeToBuffer(),
       $0.GetBasestationsMapResponse.fromBuffer);
+  static final _$getBasestationMetrics = $grpc.ClientMethod<
+          $0.GetBasestationMetricsRequest, $0.GetBasestationMetricsResponse>(
+      '/api.BasestationService/GetBasestationMetrics',
+      ($0.GetBasestationMetricsRequest value) => value.writeToBuffer(),
+      $0.GetBasestationMetricsResponse.fromBuffer);
+  static final _$streamBasestationFrames =
+      $grpc.ClientMethod<$0.StreamBasestationFramesRequest, $2.FrameLogItem>(
+          '/api.BasestationService/StreamBasestationFrames',
+          ($0.StreamBasestationFramesRequest value) => value.writeToBuffer(),
+          $2.FrameLogItem.fromBuffer);
   static final _$generateBasestationClientCertificate = $grpc.ClientMethod<
           $0.GenerateBasestationClientCertificateRequest,
           $0.GenerateBasestationClientCertificateResponse>(
@@ -163,16 +192,18 @@ class BasestationServiceClient extends $grpc.Client {
       '/api.BasestationService/SignBasestationCsr',
       ($0.SignBasestationCsrRequest value) => value.writeToBuffer(),
       $0.SignBasestationCsrResponse.fromBuffer);
-  static final _$getBasestationMetrics = $grpc.ClientMethod<
-          $0.GetBasestationMetricsRequest, $0.GetBasestationMetricsResponse>(
-      '/api.BasestationService/GetBasestationMetrics',
-      ($0.GetBasestationMetricsRequest value) => value.writeToBuffer(),
-      $0.GetBasestationMetricsResponse.fromBuffer);
-  static final _$streamBasestationFrames =
-      $grpc.ClientMethod<$0.StreamBasestationFramesRequest, $2.FrameLogItem>(
-          '/api.BasestationService/StreamBasestationFrames',
-          ($0.StreamBasestationFramesRequest value) => value.writeToBuffer(),
-          $2.FrameLogItem.fromBuffer);
+  static final _$listBasestationClientCertificates = $grpc.ClientMethod<
+          $0.ListBasestationClientCertificatesRequest,
+          $0.ListBasestationClientCertificatesResponse>(
+      '/api.BasestationService/ListBasestationClientCertificates',
+      ($0.ListBasestationClientCertificatesRequest value) =>
+          value.writeToBuffer(),
+      $0.ListBasestationClientCertificatesResponse.fromBuffer);
+  static final _$deleteClientCertificate =
+      $grpc.ClientMethod<$0.DeleteClientCertificateRequest, $1.Empty>(
+          '/api.BasestationService/DeleteClientCertificate',
+          ($0.DeleteClientCertificateRequest value) => value.writeToBuffer(),
+          $1.Empty.fromBuffer);
 }
 
 @$pb.GrpcServiceName('api.BasestationService')
@@ -233,6 +264,24 @@ abstract class BasestationServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.GetBasestationsMapRequest.fromBuffer(value),
         ($0.GetBasestationsMapResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.GetBasestationMetricsRequest,
+            $0.GetBasestationMetricsResponse>(
+        'GetBasestationMetrics',
+        getBasestationMetrics_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.GetBasestationMetricsRequest.fromBuffer(value),
+        ($0.GetBasestationMetricsResponse value) => value.writeToBuffer()));
+    $addMethod(
+        $grpc.ServiceMethod<$0.StreamBasestationFramesRequest, $2.FrameLogItem>(
+            'StreamBasestationFrames',
+            streamBasestationFrames_Pre,
+            false,
+            true,
+            ($core.List<$core.int> value) =>
+                $0.StreamBasestationFramesRequest.fromBuffer(value),
+            ($2.FrameLogItem value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<
             $0.GenerateBasestationClientCertificateRequest,
             $0.GenerateBasestationClientCertificateResponse>(
@@ -253,24 +302,24 @@ abstract class BasestationServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.SignBasestationCsrRequest.fromBuffer(value),
         ($0.SignBasestationCsrResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.GetBasestationMetricsRequest,
-            $0.GetBasestationMetricsResponse>(
-        'GetBasestationMetrics',
-        getBasestationMetrics_Pre,
+    $addMethod($grpc.ServiceMethod<$0.ListBasestationClientCertificatesRequest,
+            $0.ListBasestationClientCertificatesResponse>(
+        'ListBasestationClientCertificates',
+        listBasestationClientCertificates_Pre,
         false,
         false,
         ($core.List<$core.int> value) =>
-            $0.GetBasestationMetricsRequest.fromBuffer(value),
-        ($0.GetBasestationMetricsResponse value) => value.writeToBuffer()));
-    $addMethod(
-        $grpc.ServiceMethod<$0.StreamBasestationFramesRequest, $2.FrameLogItem>(
-            'StreamBasestationFrames',
-            streamBasestationFrames_Pre,
-            false,
-            true,
-            ($core.List<$core.int> value) =>
-                $0.StreamBasestationFramesRequest.fromBuffer(value),
-            ($2.FrameLogItem value) => value.writeToBuffer()));
+            $0.ListBasestationClientCertificatesRequest.fromBuffer(value),
+        ($0.ListBasestationClientCertificatesResponse value) =>
+            value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.DeleteClientCertificateRequest, $1.Empty>(
+        'DeleteClientCertificate',
+        deleteClientCertificate_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.DeleteClientCertificateRequest.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.CreateBasestationResponse> createBasestation_Pre(
@@ -326,6 +375,24 @@ abstract class BasestationServiceBase extends $grpc.Service {
   $async.Future<$0.GetBasestationsMapResponse> getBasestationMap(
       $grpc.ServiceCall call, $0.GetBasestationsMapRequest request);
 
+  $async.Future<$0.GetBasestationMetricsResponse> getBasestationMetrics_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.GetBasestationMetricsRequest> $request) async {
+    return getBasestationMetrics($call, await $request);
+  }
+
+  $async.Future<$0.GetBasestationMetricsResponse> getBasestationMetrics(
+      $grpc.ServiceCall call, $0.GetBasestationMetricsRequest request);
+
+  $async.Stream<$2.FrameLogItem> streamBasestationFrames_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.StreamBasestationFramesRequest> $request) async* {
+    yield* streamBasestationFrames($call, await $request);
+  }
+
+  $async.Stream<$2.FrameLogItem> streamBasestationFrames(
+      $grpc.ServiceCall call, $0.StreamBasestationFramesRequest request);
+
   $async.Future<$0.GenerateBasestationClientCertificateResponse>
       generateBasestationClientCertificate_Pre(
           $grpc.ServiceCall $call,
@@ -347,21 +414,23 @@ abstract class BasestationServiceBase extends $grpc.Service {
   $async.Future<$0.SignBasestationCsrResponse> signBasestationCsr(
       $grpc.ServiceCall call, $0.SignBasestationCsrRequest request);
 
-  $async.Future<$0.GetBasestationMetricsResponse> getBasestationMetrics_Pre(
-      $grpc.ServiceCall $call,
-      $async.Future<$0.GetBasestationMetricsRequest> $request) async {
-    return getBasestationMetrics($call, await $request);
+  $async.Future<$0.ListBasestationClientCertificatesResponse>
+      listBasestationClientCertificates_Pre(
+          $grpc.ServiceCall $call,
+          $async.Future<$0.ListBasestationClientCertificatesRequest>
+              $request) async {
+    return listBasestationClientCertificates($call, await $request);
   }
 
-  $async.Future<$0.GetBasestationMetricsResponse> getBasestationMetrics(
-      $grpc.ServiceCall call, $0.GetBasestationMetricsRequest request);
+  $async.Future<$0.ListBasestationClientCertificatesResponse>
+      listBasestationClientCertificates($grpc.ServiceCall call,
+          $0.ListBasestationClientCertificatesRequest request);
 
-  $async.Stream<$2.FrameLogItem> streamBasestationFrames_Pre(
-      $grpc.ServiceCall $call,
-      $async.Future<$0.StreamBasestationFramesRequest> $request) async* {
-    yield* streamBasestationFrames($call, await $request);
+  $async.Future<$1.Empty> deleteClientCertificate_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.DeleteClientCertificateRequest> $request) async {
+    return deleteClientCertificate($call, await $request);
   }
 
-  $async.Stream<$2.FrameLogItem> streamBasestationFrames(
-      $grpc.ServiceCall call, $0.StreamBasestationFramesRequest request);
+  $async.Future<$1.Empty> deleteClientCertificate(
+      $grpc.ServiceCall call, $0.DeleteClientCertificateRequest request);
 }

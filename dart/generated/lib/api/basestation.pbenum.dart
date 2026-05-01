@@ -73,5 +73,30 @@ class ListBasestationsRequest_OrderBy extends $pb.ProtobufEnum {
   const ListBasestationsRequest_OrderBy._(super.value, super.name);
 }
 
+class ListBasestationClientCertificatesRequest_OrderBy
+    extends $pb.ProtobufEnum {
+  static const ListBasestationClientCertificatesRequest_OrderBy EXPIRES_AT =
+      ListBasestationClientCertificatesRequest_OrderBy._(
+          0, _omitEnumNames ? '' : 'EXPIRES_AT');
+  static const ListBasestationClientCertificatesRequest_OrderBy REVOKED =
+      ListBasestationClientCertificatesRequest_OrderBy._(
+          1, _omitEnumNames ? '' : 'REVOKED');
+
+  static const $core.List<ListBasestationClientCertificatesRequest_OrderBy>
+      values = <ListBasestationClientCertificatesRequest_OrderBy>[
+    EXPIRES_AT,
+    REVOKED,
+  ];
+
+  static final $core.List<ListBasestationClientCertificatesRequest_OrderBy?>
+      _byValue = $pb.ProtobufEnum.$_initByValueList(values, 1);
+  static ListBasestationClientCertificatesRequest_OrderBy? valueOf(
+          $core.int value) =>
+      value < 0 || value >= _byValue.length ? null : _byValue[value];
+
+  const ListBasestationClientCertificatesRequest_OrderBy._(
+      super.value, super.name);
+}
+
 const $core.bool _omitEnumNames =
     $core.bool.fromEnvironment('protobuf.omit_enum_names');
