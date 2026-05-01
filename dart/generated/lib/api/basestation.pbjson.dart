@@ -778,107 +778,6 @@ final $typed_data.Uint8List getBasestationsMapResponseDescriptor =
         'ChpHZXRCYXNlc3RhdGlvbnNNYXBSZXNwb25zZRI3Cglsb2NhdGlvbnMYASADKAsyGS5hcGkuQm'
         'FzZXN0YXRpb25Mb2NhdGlvbnNSCWxvY2F0aW9ucw==');
 
-@$core.Deprecated(
-    'Use generateBasestationClientCertificateRequestDescriptor instead')
-const GenerateBasestationClientCertificateRequest$json = {
-  '1': 'GenerateBasestationClientCertificateRequest',
-  '2': [
-    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
-  ],
-};
-
-/// Descriptor for `GenerateBasestationClientCertificateRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List
-    generateBasestationClientCertificateRequestDescriptor =
-    $convert.base64Decode(
-        'CitHZW5lcmF0ZUJhc2VzdGF0aW9uQ2xpZW50Q2VydGlmaWNhdGVSZXF1ZXN0Eg4KAmlkGAEgAS'
-        'gJUgJpZA==');
-
-@$core.Deprecated(
-    'Use generateBasestationClientCertificateResponseDescriptor instead')
-const GenerateBasestationClientCertificateResponse$json = {
-  '1': 'GenerateBasestationClientCertificateResponse',
-  '2': [
-    {'1': 'tls_cert', '3': 1, '4': 1, '5': 9, '10': 'tlsCert'},
-    {'1': 'tls_key', '3': 2, '4': 1, '5': 9, '10': 'tlsKey'},
-    {'1': 'ca_cert', '3': 3, '4': 1, '5': 9, '10': 'caCert'},
-    {
-      '1': 'expires_at',
-      '3': 4,
-      '4': 1,
-      '5': 11,
-      '6': '.google.protobuf.Timestamp',
-      '10': 'expiresAt'
-    },
-    {'1': 'cert_serial', '3': 5, '4': 1, '5': 12, '10': 'certSerial'},
-    {
-      '1': 'cert_fingerprint_sha256',
-      '3': 6,
-      '4': 1,
-      '5': 12,
-      '10': 'certFingerprintSha256'
-    },
-  ],
-};
-
-/// Descriptor for `GenerateBasestationClientCertificateResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List
-    generateBasestationClientCertificateResponseDescriptor =
-    $convert.base64Decode(
-        'CixHZW5lcmF0ZUJhc2VzdGF0aW9uQ2xpZW50Q2VydGlmaWNhdGVSZXNwb25zZRIZCgh0bHNfY2'
-        'VydBgBIAEoCVIHdGxzQ2VydBIXCgd0bHNfa2V5GAIgASgJUgZ0bHNLZXkSFwoHY2FfY2VydBgD'
-        'IAEoCVIGY2FDZXJ0EjkKCmV4cGlyZXNfYXQYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZX'
-        'N0YW1wUglleHBpcmVzQXQSHwoLY2VydF9zZXJpYWwYBSABKAxSCmNlcnRTZXJpYWwSNgoXY2Vy'
-        'dF9maW5nZXJwcmludF9zaGEyNTYYBiABKAxSFWNlcnRGaW5nZXJwcmludFNoYTI1Ng==');
-
-@$core.Deprecated('Use signBasestationCsrRequestDescriptor instead')
-const SignBasestationCsrRequest$json = {
-  '1': 'SignBasestationCsrRequest',
-  '2': [
-    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
-    {'1': 'csr_pem', '3': 2, '4': 1, '5': 9, '10': 'csrPem'},
-  ],
-};
-
-/// Descriptor for `SignBasestationCsrRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List signBasestationCsrRequestDescriptor =
-    $convert.base64Decode(
-        'ChlTaWduQmFzZXN0YXRpb25Dc3JSZXF1ZXN0Eg4KAmlkGAEgASgJUgJpZBIXCgdjc3JfcGVtGA'
-        'IgASgJUgZjc3JQZW0=');
-
-@$core.Deprecated('Use signBasestationCsrResponseDescriptor instead')
-const SignBasestationCsrResponse$json = {
-  '1': 'SignBasestationCsrResponse',
-  '2': [
-    {'1': 'tls_cert', '3': 1, '4': 1, '5': 9, '10': 'tlsCert'},
-    {'1': 'ca_cert', '3': 3, '4': 1, '5': 9, '10': 'caCert'},
-    {
-      '1': 'expires_at',
-      '3': 4,
-      '4': 1,
-      '5': 11,
-      '6': '.google.protobuf.Timestamp',
-      '10': 'expiresAt'
-    },
-    {'1': 'cert_serial', '3': 5, '4': 1, '5': 12, '10': 'certSerial'},
-    {
-      '1': 'cert_fingerprint_sha256',
-      '3': 6,
-      '4': 1,
-      '5': 12,
-      '10': 'certFingerprintSha256'
-    },
-  ],
-};
-
-/// Descriptor for `SignBasestationCsrResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List signBasestationCsrResponseDescriptor = $convert.base64Decode(
-    'ChpTaWduQmFzZXN0YXRpb25Dc3JSZXNwb25zZRIZCgh0bHNfY2VydBgBIAEoCVIHdGxzQ2VydB'
-    'IXCgdjYV9jZXJ0GAMgASgJUgZjYUNlcnQSOQoKZXhwaXJlc19hdBgEIAEoCzIaLmdvb2dsZS5w'
-    'cm90b2J1Zi5UaW1lc3RhbXBSCWV4cGlyZXNBdBIfCgtjZXJ0X3NlcmlhbBgFIAEoDFIKY2VydF'
-    'NlcmlhbBI2ChdjZXJ0X2ZpbmdlcnByaW50X3NoYTI1NhgGIAEoDFIVY2VydEZpbmdlcnByaW50'
-    'U2hhMjU2');
-
 @$core.Deprecated('Use getBasestationMetricsRequestDescriptor instead')
 const GetBasestationMetricsRequest$json = {
   '1': 'GetBasestationMetricsRequest',
@@ -988,3 +887,221 @@ const StreamBasestationFramesRequest$json = {
 final $typed_data.Uint8List streamBasestationFramesRequestDescriptor =
     $convert.base64Decode(
         'Ch5TdHJlYW1CYXNlc3RhdGlvbkZyYW1lc1JlcXVlc3QSDgoCaWQYASABKAlSAmlk');
+
+@$core.Deprecated(
+    'Use generateBasestationClientCertificateRequestDescriptor instead')
+const GenerateBasestationClientCertificateRequest$json = {
+  '1': 'GenerateBasestationClientCertificateRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {'1': 'revoke_existing', '3': 2, '4': 1, '5': 8, '10': 'revokeExisting'},
+  ],
+};
+
+/// Descriptor for `GenerateBasestationClientCertificateRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List
+    generateBasestationClientCertificateRequestDescriptor =
+    $convert.base64Decode(
+        'CitHZW5lcmF0ZUJhc2VzdGF0aW9uQ2xpZW50Q2VydGlmaWNhdGVSZXF1ZXN0Eg4KAmlkGAEgAS'
+        'gJUgJpZBInCg9yZXZva2VfZXhpc3RpbmcYAiABKAhSDnJldm9rZUV4aXN0aW5n');
+
+@$core.Deprecated('Use clientCertificateMetadataDescriptor instead')
+const ClientCertificateMetadata$json = {
+  '1': 'ClientCertificateMetadata',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {'1': 'cert_serial', '3': 2, '4': 1, '5': 12, '10': 'certSerial'},
+    {
+      '1': 'cert_fingerprint_sha256',
+      '3': 3,
+      '4': 1,
+      '5': 12,
+      '10': 'certFingerprintSha256'
+    },
+    {
+      '1': 'expires_at',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.Timestamp',
+      '10': 'expiresAt'
+    },
+    {'1': 'revoked', '3': 5, '4': 1, '5': 8, '10': 'revoked'},
+  ],
+};
+
+/// Descriptor for `ClientCertificateMetadata`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List clientCertificateMetadataDescriptor = $convert.base64Decode(
+    'ChlDbGllbnRDZXJ0aWZpY2F0ZU1ldGFkYXRhEg4KAmlkGAEgASgJUgJpZBIfCgtjZXJ0X3Nlcm'
+    'lhbBgCIAEoDFIKY2VydFNlcmlhbBI2ChdjZXJ0X2ZpbmdlcnByaW50X3NoYTI1NhgDIAEoDFIV'
+    'Y2VydEZpbmdlcnByaW50U2hhMjU2EjkKCmV4cGlyZXNfYXQYBCABKAsyGi5nb29nbGUucHJvdG'
+    '9idWYuVGltZXN0YW1wUglleHBpcmVzQXQSGAoHcmV2b2tlZBgFIAEoCFIHcmV2b2tlZA==');
+
+@$core.Deprecated(
+    'Use generateBasestationClientCertificateResponseDescriptor instead')
+const GenerateBasestationClientCertificateResponse$json = {
+  '1': 'GenerateBasestationClientCertificateResponse',
+  '2': [
+    {'1': 'tls_cert', '3': 1, '4': 1, '5': 9, '10': 'tlsCert'},
+    {'1': 'tls_key', '3': 2, '4': 1, '5': 9, '10': 'tlsKey'},
+    {'1': 'ca_cert', '3': 3, '4': 1, '5': 9, '10': 'caCert'},
+    {
+      '1': 'metadata',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.api.ClientCertificateMetadata',
+      '10': 'metadata'
+    },
+  ],
+};
+
+/// Descriptor for `GenerateBasestationClientCertificateResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List
+    generateBasestationClientCertificateResponseDescriptor =
+    $convert.base64Decode(
+        'CixHZW5lcmF0ZUJhc2VzdGF0aW9uQ2xpZW50Q2VydGlmaWNhdGVSZXNwb25zZRIZCgh0bHNfY2'
+        'VydBgBIAEoCVIHdGxzQ2VydBIXCgd0bHNfa2V5GAIgASgJUgZ0bHNLZXkSFwoHY2FfY2VydBgD'
+        'IAEoCVIGY2FDZXJ0EjoKCG1ldGFkYXRhGAQgASgLMh4uYXBpLkNsaWVudENlcnRpZmljYXRlTW'
+        'V0YWRhdGFSCG1ldGFkYXRh');
+
+@$core.Deprecated('Use signBasestationCsrRequestDescriptor instead')
+const SignBasestationCsrRequest$json = {
+  '1': 'SignBasestationCsrRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {'1': 'csr_pem', '3': 2, '4': 1, '5': 9, '10': 'csrPem'},
+    {'1': 'revoke_existing', '3': 3, '4': 1, '5': 8, '10': 'revokeExisting'},
+  ],
+};
+
+/// Descriptor for `SignBasestationCsrRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List signBasestationCsrRequestDescriptor = $convert.base64Decode(
+    'ChlTaWduQmFzZXN0YXRpb25Dc3JSZXF1ZXN0Eg4KAmlkGAEgASgJUgJpZBIXCgdjc3JfcGVtGA'
+    'IgASgJUgZjc3JQZW0SJwoPcmV2b2tlX2V4aXN0aW5nGAMgASgIUg5yZXZva2VFeGlzdGluZw==');
+
+@$core.Deprecated('Use signBasestationCsrResponseDescriptor instead')
+const SignBasestationCsrResponse$json = {
+  '1': 'SignBasestationCsrResponse',
+  '2': [
+    {'1': 'tls_cert', '3': 1, '4': 1, '5': 9, '10': 'tlsCert'},
+    {'1': 'ca_cert', '3': 3, '4': 1, '5': 9, '10': 'caCert'},
+    {
+      '1': 'metadata',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.api.ClientCertificateMetadata',
+      '10': 'metadata'
+    },
+  ],
+};
+
+/// Descriptor for `SignBasestationCsrResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List signBasestationCsrResponseDescriptor =
+    $convert.base64Decode(
+        'ChpTaWduQmFzZXN0YXRpb25Dc3JSZXNwb25zZRIZCgh0bHNfY2VydBgBIAEoCVIHdGxzQ2VydB'
+        'IXCgdjYV9jZXJ0GAMgASgJUgZjYUNlcnQSOgoIbWV0YWRhdGEYBCABKAsyHi5hcGkuQ2xpZW50'
+        'Q2VydGlmaWNhdGVNZXRhZGF0YVIIbWV0YWRhdGE=');
+
+@$core.Deprecated('Use deleteClientCertificateRequestDescriptor instead')
+const DeleteClientCertificateRequest$json = {
+  '1': 'DeleteClientCertificateRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {'1': 'cert_id', '3': 2, '4': 1, '5': 9, '10': 'certId'},
+    {'1': 'revoke', '3': 3, '4': 1, '5': 8, '9': 0, '10': 'revoke', '17': true},
+  ],
+  '8': [
+    {'1': '_revoke'},
+  ],
+};
+
+/// Descriptor for `DeleteClientCertificateRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List deleteClientCertificateRequestDescriptor =
+    $convert.base64Decode(
+        'Ch5EZWxldGVDbGllbnRDZXJ0aWZpY2F0ZVJlcXVlc3QSDgoCaWQYASABKAlSAmlkEhcKB2Nlcn'
+        'RfaWQYAiABKAlSBmNlcnRJZBIbCgZyZXZva2UYAyABKAhIAFIGcmV2b2tliAEBQgkKB19yZXZv'
+        'a2U=');
+
+@$core.Deprecated(
+    'Use listBasestationClientCertificatesRequestDescriptor instead')
+const ListBasestationClientCertificatesRequest$json = {
+  '1': 'ListBasestationClientCertificatesRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {
+      '1': 'paginator',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.api.Paginator',
+      '10': 'paginator'
+    },
+    {'1': 'active', '3': 4, '4': 1, '5': 8, '9': 0, '10': 'active', '17': true},
+    {
+      '1': 'order_by',
+      '3': 6,
+      '4': 1,
+      '5': 14,
+      '6': '.api.ListBasestationClientCertificatesRequest.OrderBy',
+      '10': 'orderBy'
+    },
+    {'1': 'order_by_desc', '3': 7, '4': 1, '5': 8, '10': 'orderByDesc'},
+  ],
+  '4': [ListBasestationClientCertificatesRequest_OrderBy$json],
+  '8': [
+    {'1': '_active'},
+  ],
+};
+
+@$core.Deprecated(
+    'Use listBasestationClientCertificatesRequestDescriptor instead')
+const ListBasestationClientCertificatesRequest_OrderBy$json = {
+  '1': 'OrderBy',
+  '2': [
+    {'1': 'EXPIRES_AT', '2': 0},
+    {'1': 'REVOKED', '2': 1},
+  ],
+};
+
+/// Descriptor for `ListBasestationClientCertificatesRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List listBasestationClientCertificatesRequestDescriptor =
+    $convert.base64Decode(
+        'CihMaXN0QmFzZXN0YXRpb25DbGllbnRDZXJ0aWZpY2F0ZXNSZXF1ZXN0Eg4KAmlkGAEgASgJUg'
+        'JpZBIsCglwYWdpbmF0b3IYAiABKAsyDi5hcGkuUGFnaW5hdG9yUglwYWdpbmF0b3ISGwoGYWN0'
+        'aXZlGAQgASgISABSBmFjdGl2ZYgBARJQCghvcmRlcl9ieRgGIAEoDjI1LmFwaS5MaXN0QmFzZX'
+        'N0YXRpb25DbGllbnRDZXJ0aWZpY2F0ZXNSZXF1ZXN0Lk9yZGVyQnlSB29yZGVyQnkSIgoNb3Jk'
+        'ZXJfYnlfZGVzYxgHIAEoCFILb3JkZXJCeURlc2MiJgoHT3JkZXJCeRIOCgpFWFBJUkVTX0FUEA'
+        'ASCwoHUkVWT0tFRBABQgkKB19hY3RpdmU=');
+
+@$core.Deprecated(
+    'Use listBasestationClientCertificatesResponseDescriptor instead')
+const ListBasestationClientCertificatesResponse$json = {
+  '1': 'ListBasestationClientCertificatesResponse',
+  '2': [
+    {
+      '1': 'pagination',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.api.Pagination',
+      '10': 'pagination'
+    },
+    {
+      '1': 'result',
+      '3': 2,
+      '4': 3,
+      '5': 11,
+      '6': '.api.ClientCertificateMetadata',
+      '10': 'result'
+    },
+  ],
+};
+
+/// Descriptor for `ListBasestationClientCertificatesResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List
+    listBasestationClientCertificatesResponseDescriptor = $convert.base64Decode(
+        'CilMaXN0QmFzZXN0YXRpb25DbGllbnRDZXJ0aWZpY2F0ZXNSZXNwb25zZRIvCgpwYWdpbmF0aW'
+        '9uGAEgASgLMg8uYXBpLlBhZ2luYXRpb25SCnBhZ2luYXRpb24SNgoGcmVzdWx0GAIgAygLMh4u'
+        'YXBpLkNsaWVudENlcnRpZmljYXRlTWV0YWRhdGFSBnJlc3VsdA==');
