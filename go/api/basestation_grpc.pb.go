@@ -28,6 +28,7 @@ const (
 	BasestationService_ListBasestations_FullMethodName                     = "/api.BasestationService/ListBasestations"
 	BasestationService_GetBasestationMap_FullMethodName                    = "/api.BasestationService/GetBasestationMap"
 	BasestationService_GenerateBasestationClientCertificate_FullMethodName = "/api.BasestationService/GenerateBasestationClientCertificate"
+	BasestationService_SignBasestationCsr_FullMethodName                   = "/api.BasestationService/SignBasestationCsr"
 	BasestationService_GetBasestationMetrics_FullMethodName                = "/api.BasestationService/GetBasestationMetrics"
 	BasestationService_StreamBasestationFrames_FullMethodName              = "/api.BasestationService/StreamBasestationFrames"
 )
@@ -52,6 +53,8 @@ type BasestationServiceClient interface {
 	GetBasestationMap(ctx context.Context, in *GetBasestationsMapRequest, opts ...grpc.CallOption) (*GetBasestationsMapResponse, error)
 	// Generate client-certificate for the gateway.
 	GenerateBasestationClientCertificate(ctx context.Context, in *GenerateBasestationClientCertificateRequest, opts ...grpc.CallOption) (*GenerateBasestationClientCertificateResponse, error)
+	// Sign a CSR for the gateway.
+	SignBasestationCsr(ctx context.Context, in *SignBasestationCsrRequest, opts ...grpc.CallOption) (*SignBasestationCsrResponse, error)
 	// GetMetrics returns the gateway metrics.
 	GetBasestationMetrics(ctx context.Context, in *GetBasestationMetricsRequest, opts ...grpc.CallOption) (*GetBasestationMetricsResponse, error)
 	// Returns a stream of frames for the given basestation ID.
@@ -136,6 +139,16 @@ func (c *basestationServiceClient) GenerateBasestationClientCertificate(ctx cont
 	return out, nil
 }
 
+func (c *basestationServiceClient) SignBasestationCsr(ctx context.Context, in *SignBasestationCsrRequest, opts ...grpc.CallOption) (*SignBasestationCsrResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SignBasestationCsrResponse)
+	err := c.cc.Invoke(ctx, BasestationService_SignBasestationCsr_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *basestationServiceClient) GetBasestationMetrics(ctx context.Context, in *GetBasestationMetricsRequest, opts ...grpc.CallOption) (*GetBasestationMetricsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetBasestationMetricsResponse)
@@ -185,6 +198,8 @@ type BasestationServiceServer interface {
 	GetBasestationMap(context.Context, *GetBasestationsMapRequest) (*GetBasestationsMapResponse, error)
 	// Generate client-certificate for the gateway.
 	GenerateBasestationClientCertificate(context.Context, *GenerateBasestationClientCertificateRequest) (*GenerateBasestationClientCertificateResponse, error)
+	// Sign a CSR for the gateway.
+	SignBasestationCsr(context.Context, *SignBasestationCsrRequest) (*SignBasestationCsrResponse, error)
 	// GetMetrics returns the gateway metrics.
 	GetBasestationMetrics(context.Context, *GetBasestationMetricsRequest) (*GetBasestationMetricsResponse, error)
 	// Returns a stream of frames for the given basestation ID.
@@ -219,6 +234,9 @@ func (UnimplementedBasestationServiceServer) GetBasestationMap(context.Context, 
 }
 func (UnimplementedBasestationServiceServer) GenerateBasestationClientCertificate(context.Context, *GenerateBasestationClientCertificateRequest) (*GenerateBasestationClientCertificateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenerateBasestationClientCertificate not implemented")
+}
+func (UnimplementedBasestationServiceServer) SignBasestationCsr(context.Context, *SignBasestationCsrRequest) (*SignBasestationCsrResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SignBasestationCsr not implemented")
 }
 func (UnimplementedBasestationServiceServer) GetBasestationMetrics(context.Context, *GetBasestationMetricsRequest) (*GetBasestationMetricsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBasestationMetrics not implemented")
@@ -373,6 +391,24 @@ func _BasestationService_GenerateBasestationClientCertificate_Handler(srv interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BasestationService_SignBasestationCsr_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SignBasestationCsrRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasestationServiceServer).SignBasestationCsr(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BasestationService_SignBasestationCsr_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasestationServiceServer).SignBasestationCsr(ctx, req.(*SignBasestationCsrRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _BasestationService_GetBasestationMetrics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetBasestationMetricsRequest)
 	if err := dec(in); err != nil {
@@ -436,6 +472,10 @@ var BasestationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GenerateBasestationClientCertificate",
 			Handler:    _BasestationService_GenerateBasestationClientCertificate_Handler,
+		},
+		{
+			MethodName: "SignBasestationCsr",
+			Handler:    _BasestationService_SignBasestationCsr_Handler,
 		},
 		{
 			MethodName: "GetBasestationMetrics",

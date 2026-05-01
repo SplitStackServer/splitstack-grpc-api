@@ -810,6 +810,14 @@ const GenerateBasestationClientCertificateResponse$json = {
       '6': '.google.protobuf.Timestamp',
       '10': 'expiresAt'
     },
+    {'1': 'cert_serial', '3': 5, '4': 1, '5': 12, '10': 'certSerial'},
+    {
+      '1': 'cert_fingerprint_sha256',
+      '3': 6,
+      '4': 1,
+      '5': 12,
+      '10': 'certFingerprintSha256'
+    },
   ],
 };
 
@@ -820,7 +828,56 @@ final $typed_data.Uint8List
         'CixHZW5lcmF0ZUJhc2VzdGF0aW9uQ2xpZW50Q2VydGlmaWNhdGVSZXNwb25zZRIZCgh0bHNfY2'
         'VydBgBIAEoCVIHdGxzQ2VydBIXCgd0bHNfa2V5GAIgASgJUgZ0bHNLZXkSFwoHY2FfY2VydBgD'
         'IAEoCVIGY2FDZXJ0EjkKCmV4cGlyZXNfYXQYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZX'
-        'N0YW1wUglleHBpcmVzQXQ=');
+        'N0YW1wUglleHBpcmVzQXQSHwoLY2VydF9zZXJpYWwYBSABKAxSCmNlcnRTZXJpYWwSNgoXY2Vy'
+        'dF9maW5nZXJwcmludF9zaGEyNTYYBiABKAxSFWNlcnRGaW5nZXJwcmludFNoYTI1Ng==');
+
+@$core.Deprecated('Use signBasestationCsrRequestDescriptor instead')
+const SignBasestationCsrRequest$json = {
+  '1': 'SignBasestationCsrRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {'1': 'csr_pem', '3': 2, '4': 1, '5': 9, '10': 'csrPem'},
+  ],
+};
+
+/// Descriptor for `SignBasestationCsrRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List signBasestationCsrRequestDescriptor =
+    $convert.base64Decode(
+        'ChlTaWduQmFzZXN0YXRpb25Dc3JSZXF1ZXN0Eg4KAmlkGAEgASgJUgJpZBIXCgdjc3JfcGVtGA'
+        'IgASgJUgZjc3JQZW0=');
+
+@$core.Deprecated('Use signBasestationCsrResponseDescriptor instead')
+const SignBasestationCsrResponse$json = {
+  '1': 'SignBasestationCsrResponse',
+  '2': [
+    {'1': 'tls_cert', '3': 1, '4': 1, '5': 9, '10': 'tlsCert'},
+    {'1': 'ca_cert', '3': 3, '4': 1, '5': 9, '10': 'caCert'},
+    {
+      '1': 'expires_at',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.Timestamp',
+      '10': 'expiresAt'
+    },
+    {'1': 'cert_serial', '3': 5, '4': 1, '5': 12, '10': 'certSerial'},
+    {
+      '1': 'cert_fingerprint_sha256',
+      '3': 6,
+      '4': 1,
+      '5': 12,
+      '10': 'certFingerprintSha256'
+    },
+  ],
+};
+
+/// Descriptor for `SignBasestationCsrResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List signBasestationCsrResponseDescriptor = $convert.base64Decode(
+    'ChpTaWduQmFzZXN0YXRpb25Dc3JSZXNwb25zZRIZCgh0bHNfY2VydBgBIAEoCVIHdGxzQ2VydB'
+    'IXCgdjYV9jZXJ0GAMgASgJUgZjYUNlcnQSOQoKZXhwaXJlc19hdBgEIAEoCzIaLmdvb2dsZS5w'
+    'cm90b2J1Zi5UaW1lc3RhbXBSCWV4cGlyZXNBdBIfCgtjZXJ0X3NlcmlhbBgFIAEoDFIKY2VydF'
+    'NlcmlhbBI2ChdjZXJ0X2ZpbmdlcnByaW50X3NoYTI1NhgGIAEoDFIVY2VydEZpbmdlcnByaW50'
+    'U2hhMjU2');
 
 @$core.Deprecated('Use getBasestationMetricsRequestDescriptor instead')
 const GetBasestationMetricsRequest$json = {
