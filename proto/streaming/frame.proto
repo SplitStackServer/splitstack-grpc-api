@@ -15,7 +15,6 @@ import "common/common.proto";
 import "bs/endnode.proto";
 import "bs/basestation.proto";
 import "bs/cmd.proto";
-import "bs/rsp.proto";
 
 message EndnodeDownlinkResultLog {
     // Basestation EUI, hex string
