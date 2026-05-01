@@ -69,7 +69,14 @@ service BasestationService {
     // Generate client-certificate for the gateway.
     rpc GenerateBasestationClientCertificate(GenerateBasestationClientCertificateRequest) returns (GenerateBasestationClientCertificateResponse) {
         option(google.api.http) = {
-            post: "/api/basestations/{id}/certificate"
+            post: "/api/basestations/{id}/cert/generate"
+        };
+    }
+
+    // Sign a CSR for the gateway.
+    rpc SignBasestationCsr(SignBasestationCsrRequest) returns (SignBasestationCsrResponse) {
+        option(google.api.http) = {
+            post: "/api/basestations/{id}/cert/sign"
         };
     }
 
@@ -392,7 +399,41 @@ message GenerateBasestationClientCertificateResponse {
 
     // Expires at defines the expiration date of the certificate.
     google.protobuf.Timestamp expires_at = 4;
+
+    // Certificate serial number.
+    bytes cert_serial = 5;
+
+    // Certificate SHA-256 fingerprint.
+    bytes cert_fingerprint_sha256 = 6;
 }
+
+message SignBasestationCsrRequest {
+    // Basestation ID (UUID).
+    string id = 1;
+
+    // PKCS#10 CSR in PEM format.
+    string csr_pem = 2;
+}
+
+message SignBasestationCsrResponse {
+    // Signed client certificate (PEM).
+    string tls_cert = 1;
+
+    // CA certificate (PEM).
+    string ca_cert = 3;
+
+    // Expires at defines the expiration date of the certificate.
+    google.protobuf.Timestamp expires_at = 4;
+
+    // Certificate serial number.
+    bytes cert_serial = 5;
+
+    // Certificate SHA-256 fingerprint.
+    bytes cert_fingerprint_sha256 = 6;
+    
+}
+
+
 
 message GetBasestationMetricsRequest {
     // Basestation ID (UUID).

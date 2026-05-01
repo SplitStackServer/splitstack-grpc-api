@@ -93,6 +93,14 @@ class BasestationServiceClient extends $grpc.Client {
         options: options);
   }
 
+  /// Sign a CSR for the gateway.
+  $grpc.ResponseFuture<$0.SignBasestationCsrResponse> signBasestationCsr(
+    $0.SignBasestationCsrRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$signBasestationCsr, request, options: options);
+  }
+
   /// GetMetrics returns the gateway metrics.
   $grpc.ResponseFuture<$0.GetBasestationMetricsResponse> getBasestationMetrics(
     $0.GetBasestationMetricsRequest request, {
@@ -150,6 +158,11 @@ class BasestationServiceClient extends $grpc.Client {
       ($0.GenerateBasestationClientCertificateRequest value) =>
           value.writeToBuffer(),
       $0.GenerateBasestationClientCertificateResponse.fromBuffer);
+  static final _$signBasestationCsr = $grpc.ClientMethod<
+          $0.SignBasestationCsrRequest, $0.SignBasestationCsrResponse>(
+      '/api.BasestationService/SignBasestationCsr',
+      ($0.SignBasestationCsrRequest value) => value.writeToBuffer(),
+      $0.SignBasestationCsrResponse.fromBuffer);
   static final _$getBasestationMetrics = $grpc.ClientMethod<
           $0.GetBasestationMetricsRequest, $0.GetBasestationMetricsResponse>(
       '/api.BasestationService/GetBasestationMetrics',
@@ -231,6 +244,15 @@ abstract class BasestationServiceBase extends $grpc.Service {
             $0.GenerateBasestationClientCertificateRequest.fromBuffer(value),
         ($0.GenerateBasestationClientCertificateResponse value) =>
             value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.SignBasestationCsrRequest,
+            $0.SignBasestationCsrResponse>(
+        'SignBasestationCsr',
+        signBasestationCsr_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.SignBasestationCsrRequest.fromBuffer(value),
+        ($0.SignBasestationCsrResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.GetBasestationMetricsRequest,
             $0.GetBasestationMetricsResponse>(
         'GetBasestationMetrics',
@@ -315,6 +337,15 @@ abstract class BasestationServiceBase extends $grpc.Service {
   $async.Future<$0.GenerateBasestationClientCertificateResponse>
       generateBasestationClientCertificate($grpc.ServiceCall call,
           $0.GenerateBasestationClientCertificateRequest request);
+
+  $async.Future<$0.SignBasestationCsrResponse> signBasestationCsr_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.SignBasestationCsrRequest> $request) async {
+    return signBasestationCsr($call, await $request);
+  }
+
+  $async.Future<$0.SignBasestationCsrResponse> signBasestationCsr(
+      $grpc.ServiceCall call, $0.SignBasestationCsrRequest request);
 
   $async.Future<$0.GetBasestationMetricsResponse> getBasestationMetrics_Pre(
       $grpc.ServiceCall $call,

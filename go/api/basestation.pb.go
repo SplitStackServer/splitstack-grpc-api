@@ -1412,9 +1412,13 @@ type GenerateBasestationClientCertificateResponse struct {
 	// CA certificate.
 	CaCert string `protobuf:"bytes,3,opt,name=ca_cert,json=caCert,proto3" json:"ca_cert,omitempty"`
 	// Expires at defines the expiration date of the certificate.
-	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	ExpiresAt *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	// Certificate serial number.
+	CertSerial []byte `protobuf:"bytes,5,opt,name=cert_serial,json=certSerial,proto3" json:"cert_serial,omitempty"`
+	// Certificate SHA-256 fingerprint.
+	CertFingerprintSha256 []byte `protobuf:"bytes,6,opt,name=cert_fingerprint_sha256,json=certFingerprintSha256,proto3" json:"cert_fingerprint_sha256,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
 func (x *GenerateBasestationClientCertificateResponse) Reset() {
@@ -1475,6 +1479,155 @@ func (x *GenerateBasestationClientCertificateResponse) GetExpiresAt() *timestamp
 	return nil
 }
 
+func (x *GenerateBasestationClientCertificateResponse) GetCertSerial() []byte {
+	if x != nil {
+		return x.CertSerial
+	}
+	return nil
+}
+
+func (x *GenerateBasestationClientCertificateResponse) GetCertFingerprintSha256() []byte {
+	if x != nil {
+		return x.CertFingerprintSha256
+	}
+	return nil
+}
+
+type SignBasestationCsrRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Basestation ID (UUID).
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// PKCS#10 CSR in PEM format.
+	CsrPem        string `protobuf:"bytes,2,opt,name=csr_pem,json=csrPem,proto3" json:"csr_pem,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SignBasestationCsrRequest) Reset() {
+	*x = SignBasestationCsrRequest{}
+	mi := &file_api_basestation_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SignBasestationCsrRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SignBasestationCsrRequest) ProtoMessage() {}
+
+func (x *SignBasestationCsrRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_basestation_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SignBasestationCsrRequest.ProtoReflect.Descriptor instead.
+func (*SignBasestationCsrRequest) Descriptor() ([]byte, []int) {
+	return file_api_basestation_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *SignBasestationCsrRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *SignBasestationCsrRequest) GetCsrPem() string {
+	if x != nil {
+		return x.CsrPem
+	}
+	return ""
+}
+
+type SignBasestationCsrResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Signed client certificate (PEM).
+	TlsCert string `protobuf:"bytes,1,opt,name=tls_cert,json=tlsCert,proto3" json:"tls_cert,omitempty"`
+	// CA certificate (PEM).
+	CaCert string `protobuf:"bytes,3,opt,name=ca_cert,json=caCert,proto3" json:"ca_cert,omitempty"`
+	// Expires at defines the expiration date of the certificate.
+	ExpiresAt *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	// Certificate serial number.
+	CertSerial []byte `protobuf:"bytes,5,opt,name=cert_serial,json=certSerial,proto3" json:"cert_serial,omitempty"`
+	// Certificate SHA-256 fingerprint.
+	CertFingerprintSha256 []byte `protobuf:"bytes,6,opt,name=cert_fingerprint_sha256,json=certFingerprintSha256,proto3" json:"cert_fingerprint_sha256,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
+}
+
+func (x *SignBasestationCsrResponse) Reset() {
+	*x = SignBasestationCsrResponse{}
+	mi := &file_api_basestation_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SignBasestationCsrResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SignBasestationCsrResponse) ProtoMessage() {}
+
+func (x *SignBasestationCsrResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_basestation_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SignBasestationCsrResponse.ProtoReflect.Descriptor instead.
+func (*SignBasestationCsrResponse) Descriptor() ([]byte, []int) {
+	return file_api_basestation_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *SignBasestationCsrResponse) GetTlsCert() string {
+	if x != nil {
+		return x.TlsCert
+	}
+	return ""
+}
+
+func (x *SignBasestationCsrResponse) GetCaCert() string {
+	if x != nil {
+		return x.CaCert
+	}
+	return ""
+}
+
+func (x *SignBasestationCsrResponse) GetExpiresAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.ExpiresAt
+	}
+	return nil
+}
+
+func (x *SignBasestationCsrResponse) GetCertSerial() []byte {
+	if x != nil {
+		return x.CertSerial
+	}
+	return nil
+}
+
+func (x *SignBasestationCsrResponse) GetCertFingerprintSha256() []byte {
+	if x != nil {
+		return x.CertFingerprintSha256
+	}
+	return nil
+}
+
 type GetBasestationMetricsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Basestation ID (UUID).
@@ -1491,7 +1644,7 @@ type GetBasestationMetricsRequest struct {
 
 func (x *GetBasestationMetricsRequest) Reset() {
 	*x = GetBasestationMetricsRequest{}
-	mi := &file_api_basestation_proto_msgTypes[18]
+	mi := &file_api_basestation_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1503,7 +1656,7 @@ func (x *GetBasestationMetricsRequest) String() string {
 func (*GetBasestationMetricsRequest) ProtoMessage() {}
 
 func (x *GetBasestationMetricsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[18]
+	mi := &file_api_basestation_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1516,7 +1669,7 @@ func (x *GetBasestationMetricsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBasestationMetricsRequest.ProtoReflect.Descriptor instead.
 func (*GetBasestationMetricsRequest) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{18}
+	return file_api_basestation_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *GetBasestationMetricsRequest) GetId() string {
@@ -1569,7 +1722,7 @@ type GetBasestationMetricsResponse struct {
 
 func (x *GetBasestationMetricsResponse) Reset() {
 	*x = GetBasestationMetricsResponse{}
-	mi := &file_api_basestation_proto_msgTypes[19]
+	mi := &file_api_basestation_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1581,7 +1734,7 @@ func (x *GetBasestationMetricsResponse) String() string {
 func (*GetBasestationMetricsResponse) ProtoMessage() {}
 
 func (x *GetBasestationMetricsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[19]
+	mi := &file_api_basestation_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1594,7 +1747,7 @@ func (x *GetBasestationMetricsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBasestationMetricsResponse.ProtoReflect.Descriptor instead.
 func (*GetBasestationMetricsResponse) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{19}
+	return file_api_basestation_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *GetBasestationMetricsResponse) GetUptime() *common.Metric {
@@ -1656,7 +1809,7 @@ type StreamBasestationFramesRequest struct {
 
 func (x *StreamBasestationFramesRequest) Reset() {
 	*x = StreamBasestationFramesRequest{}
-	mi := &file_api_basestation_proto_msgTypes[20]
+	mi := &file_api_basestation_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1668,7 +1821,7 @@ func (x *StreamBasestationFramesRequest) String() string {
 func (*StreamBasestationFramesRequest) ProtoMessage() {}
 
 func (x *StreamBasestationFramesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_basestation_proto_msgTypes[20]
+	mi := &file_api_basestation_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1681,7 +1834,7 @@ func (x *StreamBasestationFramesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamBasestationFramesRequest.ProtoReflect.Descriptor instead.
 func (*StreamBasestationFramesRequest) Descriptor() ([]byte, []int) {
-	return file_api_basestation_proto_rawDescGZIP(), []int{20}
+	return file_api_basestation_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *StreamBasestationFramesRequest) GetId() string {
@@ -1840,13 +1993,27 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\x1aGetBasestationsMapResponse\x127\n" +
 	"\tlocations\x18\x01 \x03(\v2\x19.api.BasestationLocationsR\tlocations\"=\n" +
 	"+GenerateBasestationClientCertificateRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\xb6\x01\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x8f\x02\n" +
 	",GenerateBasestationClientCertificateResponse\x12\x19\n" +
 	"\btls_cert\x18\x01 \x01(\tR\atlsCert\x12\x17\n" +
 	"\atls_key\x18\x02 \x01(\tR\x06tlsKey\x12\x17\n" +
 	"\aca_cert\x18\x03 \x01(\tR\x06caCert\x129\n" +
 	"\n" +
-	"expires_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"\xc5\x01\n" +
+	"expires_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\x12\x1f\n" +
+	"\vcert_serial\x18\x05 \x01(\fR\n" +
+	"certSerial\x126\n" +
+	"\x17cert_fingerprint_sha256\x18\x06 \x01(\fR\x15certFingerprintSha256\"D\n" +
+	"\x19SignBasestationCsrRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
+	"\acsr_pem\x18\x02 \x01(\tR\x06csrPem\"\xe4\x01\n" +
+	"\x1aSignBasestationCsrResponse\x12\x19\n" +
+	"\btls_cert\x18\x01 \x01(\tR\atlsCert\x12\x17\n" +
+	"\aca_cert\x18\x03 \x01(\tR\x06caCert\x129\n" +
+	"\n" +
+	"expires_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\x12\x1f\n" +
+	"\vcert_serial\x18\x05 \x01(\fR\n" +
+	"certSerial\x126\n" +
+	"\x17cert_fingerprint_sha256\x18\x06 \x01(\fR\x15certFingerprintSha256\"\xc5\x01\n" +
 	"\x1cGetBasestationMetricsRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x120\n" +
 	"\x05start\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x05start\x12,\n" +
@@ -1868,15 +2035,16 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\tBS_ONLINE\x10\x01\x12\x0e\n" +
 	"\n" +
 	"BS_OFFLINE\x10\x02\x12\x0f\n" +
-	"\vBS_INACTIVE\x10\x032\xfb\b\n" +
+	"\vBS_INACTIVE\x10\x032\xfe\t\n" +
 	"\x12BasestationService\x12p\n" +
 	"\x11CreateBasestation\x12\x1d.api.CreateBasestationRequest\x1a\x1e.api.CreateBasestationResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/api/basestations\x12i\n" +
 	"\x0eGetBasestation\x12\x1a.api.GetBasestationRequest\x1a\x1b.api.GetBasestationResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/api/basestations/{id}\x12u\n" +
 	"\x11UpdateBasestation\x12\x1d.api.UpdateBasestationRequest\x1a\x1e.api.UpdateBasestationResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\x1a\x16/api/basestations/{id}\x12j\n" +
 	"\x11DeleteBasestation\x12\x1d.api.DeleteBasestationRequest\x1a\x16.google.protobuf.Empty\"\x1e\x82\xd3\xe4\x93\x02\x18*\x16/api/basestations/{id}\x12j\n" +
 	"\x10ListBasestations\x12\x1c.api.ListBasestationsRequest\x1a\x1d.api.ListBasestationsResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/basestations\x12s\n" +
-	"\x11GetBasestationMap\x12\x1e.api.GetBasestationsMapRequest\x1a\x1f.api.GetBasestationsMapResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/api/basestations/map\x12\xb7\x01\n" +
-	"$GenerateBasestationClientCertificate\x120.api.GenerateBasestationClientCertificateRequest\x1a1.api.GenerateBasestationClientCertificateResponse\"*\x82\xd3\xe4\x93\x02$\"\"/api/basestations/{id}/certificate\x12\x86\x01\n" +
+	"\x11GetBasestationMap\x12\x1e.api.GetBasestationsMapRequest\x1a\x1f.api.GetBasestationsMapResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/api/basestations/map\x12\xb9\x01\n" +
+	"$GenerateBasestationClientCertificate\x120.api.GenerateBasestationClientCertificateRequest\x1a1.api.GenerateBasestationClientCertificateResponse\",\x82\xd3\xe4\x93\x02&\"$/api/basestations/{id}/cert/generate\x12\x7f\n" +
+	"\x12SignBasestationCsr\x12\x1e.api.SignBasestationCsrRequest\x1a\x1f.api.SignBasestationCsrResponse\"(\x82\xd3\xe4\x93\x02\"\" /api/basestations/{id}/cert/sign\x12\x86\x01\n" +
 	"\x15GetBasestationMetrics\x12!.api.GetBasestationMetricsRequest\x1a\".api.GetBasestationMetricsResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/basestations/{id}/metrics\x12\x80\x01\n" +
 	"\x17StreamBasestationFrames\x12#.api.StreamBasestationFramesRequest\x1a\x17.streaming.FrameLogItem\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/basestations/{id}/frames0\x01B\xb0\x01\n" +
 	"\x11io.splitstack.apiB\x10BasestationProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/go/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
@@ -1894,7 +2062,7 @@ func file_api_basestation_proto_rawDescGZIP() []byte {
 }
 
 var file_api_basestation_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_api_basestation_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
+var file_api_basestation_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
 var file_api_basestation_proto_goTypes = []any{
 	(BasestationState)(0),                                // 0: api.BasestationState
 	(ListBasestationsRequest_OrderBy)(0),                 // 1: api.ListBasestationsRequest.OrderBy
@@ -1916,92 +2084,97 @@ var file_api_basestation_proto_goTypes = []any{
 	(*GetBasestationsMapResponse)(nil),                   // 17: api.GetBasestationsMapResponse
 	(*GenerateBasestationClientCertificateRequest)(nil),  // 18: api.GenerateBasestationClientCertificateRequest
 	(*GenerateBasestationClientCertificateResponse)(nil), // 19: api.GenerateBasestationClientCertificateResponse
-	(*GetBasestationMetricsRequest)(nil),                 // 20: api.GetBasestationMetricsRequest
-	(*GetBasestationMetricsResponse)(nil),                // 21: api.GetBasestationMetricsResponse
-	(*StreamBasestationFramesRequest)(nil),               // 22: api.StreamBasestationFramesRequest
-	(*common.Location)(nil),                              // 23: common.Location
-	(*common.Tags)(nil),                                  // 24: common.Tags
-	(*timestamppb.Timestamp)(nil),                        // 25: google.protobuf.Timestamp
-	(*Paginator)(nil),                                    // 26: api.Paginator
-	(*Pagination)(nil),                                   // 27: api.Pagination
-	(*common.LocationBoundary)(nil),                      // 28: common.LocationBoundary
-	(*common.GeoLocation)(nil),                           // 29: common.GeoLocation
-	(common.Aggregation)(0),                              // 30: common.Aggregation
-	(*common.Metric)(nil),                                // 31: common.Metric
-	(*emptypb.Empty)(nil),                                // 32: google.protobuf.Empty
-	(*streaming.FrameLogItem)(nil),                       // 33: streaming.FrameLogItem
+	(*SignBasestationCsrRequest)(nil),                    // 20: api.SignBasestationCsrRequest
+	(*SignBasestationCsrResponse)(nil),                   // 21: api.SignBasestationCsrResponse
+	(*GetBasestationMetricsRequest)(nil),                 // 22: api.GetBasestationMetricsRequest
+	(*GetBasestationMetricsResponse)(nil),                // 23: api.GetBasestationMetricsResponse
+	(*StreamBasestationFramesRequest)(nil),               // 24: api.StreamBasestationFramesRequest
+	(*common.Location)(nil),                              // 25: common.Location
+	(*common.Tags)(nil),                                  // 26: common.Tags
+	(*timestamppb.Timestamp)(nil),                        // 27: google.protobuf.Timestamp
+	(*Paginator)(nil),                                    // 28: api.Paginator
+	(*Pagination)(nil),                                   // 29: api.Pagination
+	(*common.LocationBoundary)(nil),                      // 30: common.LocationBoundary
+	(*common.GeoLocation)(nil),                           // 31: common.GeoLocation
+	(common.Aggregation)(0),                              // 32: common.Aggregation
+	(*common.Metric)(nil),                                // 33: common.Metric
+	(*emptypb.Empty)(nil),                                // 34: google.protobuf.Empty
+	(*streaming.FrameLogItem)(nil),                       // 35: streaming.FrameLogItem
 }
 var file_api_basestation_proto_depIdxs = []int32{
-	23, // 0: api.Basestation.location:type_name -> common.Location
+	25, // 0: api.Basestation.location:type_name -> common.Location
 	4,  // 1: api.Basestation.metadata:type_name -> api.BasestationMetadata
-	24, // 2: api.Basestation.tags:type_name -> common.Tags
+	26, // 2: api.Basestation.tags:type_name -> common.Tags
 	0,  // 3: api.Basestation.state:type_name -> api.BasestationState
-	23, // 4: api.BasestationListItem.location:type_name -> common.Location
+	25, // 4: api.BasestationListItem.location:type_name -> common.Location
 	4,  // 5: api.BasestationListItem.metadata:type_name -> api.BasestationMetadata
-	25, // 6: api.BasestationListItem.created_at:type_name -> google.protobuf.Timestamp
-	25, // 7: api.BasestationListItem.updated_at:type_name -> google.protobuf.Timestamp
-	25, // 8: api.BasestationListItem.last_seen_at:type_name -> google.protobuf.Timestamp
+	27, // 6: api.BasestationListItem.created_at:type_name -> google.protobuf.Timestamp
+	27, // 7: api.BasestationListItem.updated_at:type_name -> google.protobuf.Timestamp
+	27, // 8: api.BasestationListItem.last_seen_at:type_name -> google.protobuf.Timestamp
 	0,  // 9: api.BasestationListItem.state:type_name -> api.BasestationState
-	23, // 10: api.CreateBasestationRequest.location:type_name -> common.Location
-	24, // 11: api.CreateBasestationRequest.tags:type_name -> common.Tags
+	25, // 10: api.CreateBasestationRequest.location:type_name -> common.Location
+	26, // 11: api.CreateBasestationRequest.tags:type_name -> common.Tags
 	2,  // 12: api.CreateBasestationResponse.basestation:type_name -> api.Basestation
-	25, // 13: api.CreateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
+	27, // 13: api.CreateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
 	2,  // 14: api.GetBasestationResponse.basestation:type_name -> api.Basestation
-	25, // 15: api.GetBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
-	25, // 16: api.GetBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	25, // 17: api.GetBasestationResponse.last_seen_at:type_name -> google.protobuf.Timestamp
-	23, // 18: api.UpdateBasestationRequest.location:type_name -> common.Location
-	24, // 19: api.UpdateBasestationRequest.tags:type_name -> common.Tags
+	27, // 15: api.GetBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
+	27, // 16: api.GetBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	27, // 17: api.GetBasestationResponse.last_seen_at:type_name -> google.protobuf.Timestamp
+	25, // 18: api.UpdateBasestationRequest.location:type_name -> common.Location
+	26, // 19: api.UpdateBasestationRequest.tags:type_name -> common.Tags
 	2,  // 20: api.UpdateBasestationResponse.basestation:type_name -> api.Basestation
-	25, // 21: api.UpdateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
-	25, // 22: api.UpdateBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	26, // 23: api.ListBasestationsRequest.paginator:type_name -> api.Paginator
-	24, // 24: api.ListBasestationsRequest.tags:type_name -> common.Tags
+	27, // 21: api.UpdateBasestationResponse.created_at:type_name -> google.protobuf.Timestamp
+	27, // 22: api.UpdateBasestationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	28, // 23: api.ListBasestationsRequest.paginator:type_name -> api.Paginator
+	26, // 24: api.ListBasestationsRequest.tags:type_name -> common.Tags
 	1,  // 25: api.ListBasestationsRequest.order_by:type_name -> api.ListBasestationsRequest.OrderBy
-	27, // 26: api.ListBasestationsResponse.pagination:type_name -> api.Pagination
+	29, // 26: api.ListBasestationsResponse.pagination:type_name -> api.Pagination
 	3,  // 27: api.ListBasestationsResponse.result:type_name -> api.BasestationListItem
-	28, // 28: api.GetBasestationsMapRequest.bounds:type_name -> common.LocationBoundary
+	30, // 28: api.GetBasestationsMapRequest.bounds:type_name -> common.LocationBoundary
 	0,  // 29: api.GetBasestationsMapRequest.state_filter:type_name -> api.BasestationState
-	24, // 30: api.GetBasestationsMapRequest.tags:type_name -> common.Tags
+	26, // 30: api.GetBasestationsMapRequest.tags:type_name -> common.Tags
 	16, // 31: api.BasestationLocations.locations:type_name -> api.BasestationLocation
-	29, // 32: api.BasestationLocation.location:type_name -> common.GeoLocation
-	25, // 33: api.BasestationLocation.last_seen_at:type_name -> google.protobuf.Timestamp
+	31, // 32: api.BasestationLocation.location:type_name -> common.GeoLocation
+	27, // 33: api.BasestationLocation.last_seen_at:type_name -> google.protobuf.Timestamp
 	0,  // 34: api.BasestationLocation.state:type_name -> api.BasestationState
 	15, // 35: api.GetBasestationsMapResponse.locations:type_name -> api.BasestationLocations
-	25, // 36: api.GenerateBasestationClientCertificateResponse.expires_at:type_name -> google.protobuf.Timestamp
-	25, // 37: api.GetBasestationMetricsRequest.start:type_name -> google.protobuf.Timestamp
-	25, // 38: api.GetBasestationMetricsRequest.end:type_name -> google.protobuf.Timestamp
-	30, // 39: api.GetBasestationMetricsRequest.aggregation:type_name -> common.Aggregation
-	31, // 40: api.GetBasestationMetricsResponse.uptime:type_name -> common.Metric
-	31, // 41: api.GetBasestationMetricsResponse.cpu:type_name -> common.Metric
-	31, // 42: api.GetBasestationMetricsResponse.memory:type_name -> common.Metric
-	31, // 43: api.GetBasestationMetricsResponse.temp:type_name -> common.Metric
-	31, // 44: api.GetBasestationMetricsResponse.duty_cycle:type_name -> common.Metric
-	31, // 45: api.GetBasestationMetricsResponse.rx_count:type_name -> common.Metric
-	31, // 46: api.GetBasestationMetricsResponse.rx_vm_count:type_name -> common.Metric
-	5,  // 47: api.BasestationService.CreateBasestation:input_type -> api.CreateBasestationRequest
-	7,  // 48: api.BasestationService.GetBasestation:input_type -> api.GetBasestationRequest
-	9,  // 49: api.BasestationService.UpdateBasestation:input_type -> api.UpdateBasestationRequest
-	11, // 50: api.BasestationService.DeleteBasestation:input_type -> api.DeleteBasestationRequest
-	12, // 51: api.BasestationService.ListBasestations:input_type -> api.ListBasestationsRequest
-	14, // 52: api.BasestationService.GetBasestationMap:input_type -> api.GetBasestationsMapRequest
-	18, // 53: api.BasestationService.GenerateBasestationClientCertificate:input_type -> api.GenerateBasestationClientCertificateRequest
-	20, // 54: api.BasestationService.GetBasestationMetrics:input_type -> api.GetBasestationMetricsRequest
-	22, // 55: api.BasestationService.StreamBasestationFrames:input_type -> api.StreamBasestationFramesRequest
-	6,  // 56: api.BasestationService.CreateBasestation:output_type -> api.CreateBasestationResponse
-	8,  // 57: api.BasestationService.GetBasestation:output_type -> api.GetBasestationResponse
-	10, // 58: api.BasestationService.UpdateBasestation:output_type -> api.UpdateBasestationResponse
-	32, // 59: api.BasestationService.DeleteBasestation:output_type -> google.protobuf.Empty
-	13, // 60: api.BasestationService.ListBasestations:output_type -> api.ListBasestationsResponse
-	17, // 61: api.BasestationService.GetBasestationMap:output_type -> api.GetBasestationsMapResponse
-	19, // 62: api.BasestationService.GenerateBasestationClientCertificate:output_type -> api.GenerateBasestationClientCertificateResponse
-	21, // 63: api.BasestationService.GetBasestationMetrics:output_type -> api.GetBasestationMetricsResponse
-	33, // 64: api.BasestationService.StreamBasestationFrames:output_type -> streaming.FrameLogItem
-	56, // [56:65] is the sub-list for method output_type
-	47, // [47:56] is the sub-list for method input_type
-	47, // [47:47] is the sub-list for extension type_name
-	47, // [47:47] is the sub-list for extension extendee
-	0,  // [0:47] is the sub-list for field type_name
+	27, // 36: api.GenerateBasestationClientCertificateResponse.expires_at:type_name -> google.protobuf.Timestamp
+	27, // 37: api.SignBasestationCsrResponse.expires_at:type_name -> google.protobuf.Timestamp
+	27, // 38: api.GetBasestationMetricsRequest.start:type_name -> google.protobuf.Timestamp
+	27, // 39: api.GetBasestationMetricsRequest.end:type_name -> google.protobuf.Timestamp
+	32, // 40: api.GetBasestationMetricsRequest.aggregation:type_name -> common.Aggregation
+	33, // 41: api.GetBasestationMetricsResponse.uptime:type_name -> common.Metric
+	33, // 42: api.GetBasestationMetricsResponse.cpu:type_name -> common.Metric
+	33, // 43: api.GetBasestationMetricsResponse.memory:type_name -> common.Metric
+	33, // 44: api.GetBasestationMetricsResponse.temp:type_name -> common.Metric
+	33, // 45: api.GetBasestationMetricsResponse.duty_cycle:type_name -> common.Metric
+	33, // 46: api.GetBasestationMetricsResponse.rx_count:type_name -> common.Metric
+	33, // 47: api.GetBasestationMetricsResponse.rx_vm_count:type_name -> common.Metric
+	5,  // 48: api.BasestationService.CreateBasestation:input_type -> api.CreateBasestationRequest
+	7,  // 49: api.BasestationService.GetBasestation:input_type -> api.GetBasestationRequest
+	9,  // 50: api.BasestationService.UpdateBasestation:input_type -> api.UpdateBasestationRequest
+	11, // 51: api.BasestationService.DeleteBasestation:input_type -> api.DeleteBasestationRequest
+	12, // 52: api.BasestationService.ListBasestations:input_type -> api.ListBasestationsRequest
+	14, // 53: api.BasestationService.GetBasestationMap:input_type -> api.GetBasestationsMapRequest
+	18, // 54: api.BasestationService.GenerateBasestationClientCertificate:input_type -> api.GenerateBasestationClientCertificateRequest
+	20, // 55: api.BasestationService.SignBasestationCsr:input_type -> api.SignBasestationCsrRequest
+	22, // 56: api.BasestationService.GetBasestationMetrics:input_type -> api.GetBasestationMetricsRequest
+	24, // 57: api.BasestationService.StreamBasestationFrames:input_type -> api.StreamBasestationFramesRequest
+	6,  // 58: api.BasestationService.CreateBasestation:output_type -> api.CreateBasestationResponse
+	8,  // 59: api.BasestationService.GetBasestation:output_type -> api.GetBasestationResponse
+	10, // 60: api.BasestationService.UpdateBasestation:output_type -> api.UpdateBasestationResponse
+	34, // 61: api.BasestationService.DeleteBasestation:output_type -> google.protobuf.Empty
+	13, // 62: api.BasestationService.ListBasestations:output_type -> api.ListBasestationsResponse
+	17, // 63: api.BasestationService.GetBasestationMap:output_type -> api.GetBasestationsMapResponse
+	19, // 64: api.BasestationService.GenerateBasestationClientCertificate:output_type -> api.GenerateBasestationClientCertificateResponse
+	21, // 65: api.BasestationService.SignBasestationCsr:output_type -> api.SignBasestationCsrResponse
+	23, // 66: api.BasestationService.GetBasestationMetrics:output_type -> api.GetBasestationMetricsResponse
+	35, // 67: api.BasestationService.StreamBasestationFrames:output_type -> streaming.FrameLogItem
+	58, // [58:68] is the sub-list for method output_type
+	48, // [48:58] is the sub-list for method input_type
+	48, // [48:48] is the sub-list for extension type_name
+	48, // [48:48] is the sub-list for extension extendee
+	0,  // [0:48] is the sub-list for field type_name
 }
 
 func init() { file_api_basestation_proto_init() }
@@ -2025,7 +2198,7 @@ func file_api_basestation_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_basestation_proto_rawDesc), len(file_api_basestation_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   21,
+			NumMessages:   23,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

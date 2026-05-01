@@ -1781,12 +1781,17 @@ class GenerateBasestationClientCertificateResponse
     $core.String? tlsKey,
     $core.String? caCert,
     $4.Timestamp? expiresAt,
+    $core.List<$core.int>? certSerial,
+    $core.List<$core.int>? certFingerprintSha256,
   }) {
     final result = create();
     if (tlsCert != null) result.tlsCert = tlsCert;
     if (tlsKey != null) result.tlsKey = tlsKey;
     if (caCert != null) result.caCert = caCert;
     if (expiresAt != null) result.expiresAt = expiresAt;
+    if (certSerial != null) result.certSerial = certSerial;
+    if (certFingerprintSha256 != null)
+      result.certFingerprintSha256 = certFingerprintSha256;
     return result;
   }
 
@@ -1810,6 +1815,10 @@ class GenerateBasestationClientCertificateResponse
     ..aOS(3, _omitFieldNames ? '' : 'caCert')
     ..aOM<$4.Timestamp>(4, _omitFieldNames ? '' : 'expiresAt',
         subBuilder: $4.Timestamp.create)
+    ..a<$core.List<$core.int>>(
+        5, _omitFieldNames ? '' : 'certSerial', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(
+        6, _omitFieldNames ? '' : 'certFingerprintSha256', $pb.PbFieldType.OY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1878,6 +1887,212 @@ class GenerateBasestationClientCertificateResponse
   void clearExpiresAt() => $_clearField(4);
   @$pb.TagNumber(4)
   $4.Timestamp ensureExpiresAt() => $_ensure(3);
+
+  /// Certificate serial number.
+  @$pb.TagNumber(5)
+  $core.List<$core.int> get certSerial => $_getN(4);
+  @$pb.TagNumber(5)
+  set certSerial($core.List<$core.int> value) => $_setBytes(4, value);
+  @$pb.TagNumber(5)
+  $core.bool hasCertSerial() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearCertSerial() => $_clearField(5);
+
+  /// Certificate SHA-256 fingerprint.
+  @$pb.TagNumber(6)
+  $core.List<$core.int> get certFingerprintSha256 => $_getN(5);
+  @$pb.TagNumber(6)
+  set certFingerprintSha256($core.List<$core.int> value) =>
+      $_setBytes(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasCertFingerprintSha256() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearCertFingerprintSha256() => $_clearField(6);
+}
+
+class SignBasestationCsrRequest extends $pb.GeneratedMessage {
+  factory SignBasestationCsrRequest({
+    $core.String? id,
+    $core.String? csrPem,
+  }) {
+    final result = create();
+    if (id != null) result.id = id;
+    if (csrPem != null) result.csrPem = csrPem;
+    return result;
+  }
+
+  SignBasestationCsrRequest._();
+
+  factory SignBasestationCsrRequest.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory SignBasestationCsrRequest.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'SignBasestationCsrRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..aOS(2, _omitFieldNames ? '' : 'csrPem')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  SignBasestationCsrRequest clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  SignBasestationCsrRequest copyWith(
+          void Function(SignBasestationCsrRequest) updates) =>
+      super.copyWith((message) => updates(message as SignBasestationCsrRequest))
+          as SignBasestationCsrRequest;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static SignBasestationCsrRequest create() => SignBasestationCsrRequest._();
+  @$core.override
+  SignBasestationCsrRequest createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static SignBasestationCsrRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<SignBasestationCsrRequest>(create);
+  static SignBasestationCsrRequest? _defaultInstance;
+
+  /// Basestation ID (UUID).
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set id($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => $_clearField(1);
+
+  /// PKCS#10 CSR in PEM format.
+  @$pb.TagNumber(2)
+  $core.String get csrPem => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set csrPem($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasCsrPem() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCsrPem() => $_clearField(2);
+}
+
+class SignBasestationCsrResponse extends $pb.GeneratedMessage {
+  factory SignBasestationCsrResponse({
+    $core.String? tlsCert,
+    $core.String? caCert,
+    $4.Timestamp? expiresAt,
+    $core.List<$core.int>? certSerial,
+    $core.List<$core.int>? certFingerprintSha256,
+  }) {
+    final result = create();
+    if (tlsCert != null) result.tlsCert = tlsCert;
+    if (caCert != null) result.caCert = caCert;
+    if (expiresAt != null) result.expiresAt = expiresAt;
+    if (certSerial != null) result.certSerial = certSerial;
+    if (certFingerprintSha256 != null)
+      result.certFingerprintSha256 = certFingerprintSha256;
+    return result;
+  }
+
+  SignBasestationCsrResponse._();
+
+  factory SignBasestationCsrResponse.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory SignBasestationCsrResponse.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'SignBasestationCsrResponse',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'api'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'tlsCert')
+    ..aOS(3, _omitFieldNames ? '' : 'caCert')
+    ..aOM<$4.Timestamp>(4, _omitFieldNames ? '' : 'expiresAt',
+        subBuilder: $4.Timestamp.create)
+    ..a<$core.List<$core.int>>(
+        5, _omitFieldNames ? '' : 'certSerial', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(
+        6, _omitFieldNames ? '' : 'certFingerprintSha256', $pb.PbFieldType.OY)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  SignBasestationCsrResponse clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  SignBasestationCsrResponse copyWith(
+          void Function(SignBasestationCsrResponse) updates) =>
+      super.copyWith(
+              (message) => updates(message as SignBasestationCsrResponse))
+          as SignBasestationCsrResponse;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static SignBasestationCsrResponse create() => SignBasestationCsrResponse._();
+  @$core.override
+  SignBasestationCsrResponse createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static SignBasestationCsrResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<SignBasestationCsrResponse>(create);
+  static SignBasestationCsrResponse? _defaultInstance;
+
+  /// Signed client certificate (PEM).
+  @$pb.TagNumber(1)
+  $core.String get tlsCert => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set tlsCert($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasTlsCert() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTlsCert() => $_clearField(1);
+
+  /// CA certificate (PEM).
+  @$pb.TagNumber(3)
+  $core.String get caCert => $_getSZ(1);
+  @$pb.TagNumber(3)
+  set caCert($core.String value) => $_setString(1, value);
+  @$pb.TagNumber(3)
+  $core.bool hasCaCert() => $_has(1);
+  @$pb.TagNumber(3)
+  void clearCaCert() => $_clearField(3);
+
+  /// Expires at defines the expiration date of the certificate.
+  @$pb.TagNumber(4)
+  $4.Timestamp get expiresAt => $_getN(2);
+  @$pb.TagNumber(4)
+  set expiresAt($4.Timestamp value) => $_setField(4, value);
+  @$pb.TagNumber(4)
+  $core.bool hasExpiresAt() => $_has(2);
+  @$pb.TagNumber(4)
+  void clearExpiresAt() => $_clearField(4);
+  @$pb.TagNumber(4)
+  $4.Timestamp ensureExpiresAt() => $_ensure(2);
+
+  /// Certificate serial number.
+  @$pb.TagNumber(5)
+  $core.List<$core.int> get certSerial => $_getN(3);
+  @$pb.TagNumber(5)
+  set certSerial($core.List<$core.int> value) => $_setBytes(3, value);
+  @$pb.TagNumber(5)
+  $core.bool hasCertSerial() => $_has(3);
+  @$pb.TagNumber(5)
+  void clearCertSerial() => $_clearField(5);
+
+  /// Certificate SHA-256 fingerprint.
+  @$pb.TagNumber(6)
+  $core.List<$core.int> get certFingerprintSha256 => $_getN(4);
+  @$pb.TagNumber(6)
+  set certFingerprintSha256($core.List<$core.int> value) =>
+      $_setBytes(4, value);
+  @$pb.TagNumber(6)
+  $core.bool hasCertFingerprintSha256() => $_has(4);
+  @$pb.TagNumber(6)
+  void clearCertFingerprintSha256() => $_clearField(6);
 }
 
 class GetBasestationMetricsRequest extends $pb.GeneratedMessage {
