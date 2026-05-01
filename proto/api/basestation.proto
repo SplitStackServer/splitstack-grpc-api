@@ -527,7 +527,7 @@ message ListBasestationClientCertificatesRequest {
 
     enum OrderBy {
         EXPIRES_AT = 0;
-        REVOKED = 1;
+        STATUS = 1;
     }
 
     // If set, the given value will be used to sort by (optional).
