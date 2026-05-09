@@ -42,8 +42,10 @@ message VariableMacList {
 
 // These are the Variable Mac types that are supported by the API.
 enum VariableMac {
+  // Type 0: MAC/LINK Layer optimized for metering applications (not for future use)
+  WMBUS = 0;
   // Type 1: Wireless M-Bus frame with Frame Format B (FFB)
-  MBUS_FFB = 0;
+  MBUS_FFB = 1;
   // Type 2: M-Bus frame that starts with a wireless M-Bus MAC according to OMS-S Volume 2, Annex Q
   // 
   // Open Metering System Specification (OMS-S), Volume 2, Annex Q, Issue 5.0.1, December 2023.
