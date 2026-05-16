@@ -34,14 +34,15 @@ final $typed_data.Uint8List integrationKindDescriptor = $convert.base64Decode(
 const VariableMac$json = {
   '1': 'VariableMac',
   '2': [
-    {'1': 'MBUS_FFB', '2': 0},
+    {'1': 'WMBUS', '2': 0},
+    {'1': 'MBUS_FFB', '2': 1},
     {'1': 'MBUS_MAC', '2': 2},
   ],
 };
 
 /// Descriptor for `VariableMac`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List variableMacDescriptor = $convert
-    .base64Decode('CgtWYXJpYWJsZU1hYxIMCghNQlVTX0ZGQhAAEgwKCE1CVVNfTUFDEAI=');
+final $typed_data.Uint8List variableMacDescriptor = $convert.base64Decode(
+    'CgtWYXJpYWJsZU1hYxIJCgVXTUJVUxAAEgwKCE1CVVNfRkZCEAESDAoITUJVU19NQUMQAg==');
 
 @$core.Deprecated('Use paginatorDescriptor instead')
 const Paginator$json = {

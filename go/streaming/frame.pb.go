@@ -1073,7 +1073,7 @@ var File_streaming_frame_proto protoreflect.FileDescriptor
 
 const file_streaming_frame_proto_rawDesc = "" +
 	"\n" +
-	"\x15streaming/frame.proto\x12\tstreaming\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x13common/common.proto\x1a\x10bs/endnode.proto\x1a\x14bs/basestation.proto\x1a\fbs/cmd.proto\x1a\fbs/rsp.proto\"g\n" +
+	"\x15streaming/frame.proto\x12\tstreaming\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x13common/common.proto\x1a\x10bs/endnode.proto\x1a\x14bs/basestation.proto\x1a\fbs/cmd.proto\"g\n" +
 	"\x18EndnodeDownlinkResultLog\x12\x15\n" +
 	"\x06bs_eui\x18\x01 \x01(\tR\x05bsEui\x124\n" +
 	"\x06dl_res\x18\x02 \x01(\v2\x1d.bs.BasestationDownlinkResultR\x05dlRes\"r\n" +

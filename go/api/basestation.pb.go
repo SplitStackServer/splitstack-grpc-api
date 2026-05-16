@@ -138,18 +138,18 @@ type ListBasestationClientCertificatesRequest_OrderBy int32
 
 const (
 	ListBasestationClientCertificatesRequest_EXPIRES_AT ListBasestationClientCertificatesRequest_OrderBy = 0
-	ListBasestationClientCertificatesRequest_REVOKED    ListBasestationClientCertificatesRequest_OrderBy = 1
+	ListBasestationClientCertificatesRequest_STATUS     ListBasestationClientCertificatesRequest_OrderBy = 1
 )
 
 // Enum value maps for ListBasestationClientCertificatesRequest_OrderBy.
 var (
 	ListBasestationClientCertificatesRequest_OrderBy_name = map[int32]string{
 		0: "EXPIRES_AT",
-		1: "REVOKED",
+		1: "STATUS",
 	}
 	ListBasestationClientCertificatesRequest_OrderBy_value = map[string]int32{
 		"EXPIRES_AT": 0,
-		"REVOKED":    1,
+		"STATUS":     1,
 	}
 )
 
@@ -2346,17 +2346,18 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\acert_id\x18\x02 \x01(\tR\x06certId\x12\x1b\n" +
 	"\x06revoke\x18\x03 \x01(\bH\x00R\x06revoke\x88\x01\x01B\t\n" +
-	"\a_revoke\"\xae\x02\n" +
+	"\a_revoke\"\xad\x02\n" +
 	"(ListBasestationClientCertificatesRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12,\n" +
 	"\tpaginator\x18\x02 \x01(\v2\x0e.api.PaginatorR\tpaginator\x12\x1b\n" +
 	"\x06active\x18\x04 \x01(\bH\x00R\x06active\x88\x01\x01\x12P\n" +
 	"\border_by\x18\x06 \x01(\x0e25.api.ListBasestationClientCertificatesRequest.OrderByR\aorderBy\x12\"\n" +
-	"\rorder_by_desc\x18\a \x01(\bR\vorderByDesc\"&\n" +
+	"\rorder_by_desc\x18\a \x01(\bR\vorderByDesc\"%\n" +
 	"\aOrderBy\x12\x0e\n" +
 	"\n" +
-	"EXPIRES_AT\x10\x00\x12\v\n" +
-	"\aREVOKED\x10\x01B\t\n" +
+	"EXPIRES_AT\x10\x00\x12\n" +
+	"\n" +
+	"\x06STATUS\x10\x01B\t\n" +
 	"\a_active\"\x94\x01\n" +
 	")ListBasestationClientCertificatesResponse\x12/\n" +
 	"\n" +
@@ -2379,9 +2380,9 @@ const file_api_basestation_proto_rawDesc = "" +
 	"\x15GetBasestationMetrics\x12!.api.GetBasestationMetricsRequest\x1a\".api.GetBasestationMetricsResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/basestations/{id}/metrics\x12\x80\x01\n" +
 	"\x17StreamBasestationFrames\x12#.api.StreamBasestationFramesRequest\x1a\x17.streaming.FrameLogItem\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/api/basestations/{id}/frames0\x01\x12\xba\x01\n" +
 	"$GenerateBasestationClientCertificate\x120.api.GenerateBasestationClientCertificateRequest\x1a1.api.GenerateBasestationClientCertificateResponse\"-\x82\xd3\xe4\x93\x02'\"%/api/basestations/{id}/certs/generate\x12\x80\x01\n" +
-	"\x12SignBasestationCsr\x12\x1e.api.SignBasestationCsrRequest\x1a\x1f.api.SignBasestationCsrResponse\")\x82\xd3\xe4\x93\x02#\"!/api/basestations/{id}/certs/sign\x12\xa8\x01\n" +
-	"!ListBasestationClientCertificates\x12-.api.ListBasestationClientCertificatesRequest\x1a..api.ListBasestationClientCertificatesResponse\"$\x82\xd3\xe4\x93\x02\x1e\x12\x1c/api/basestations/{id}/certs\x12\x86\x01\n" +
-	"\x17DeleteClientCertificate\x12#.api.DeleteClientCertificateRequest\x1a\x16.google.protobuf.Empty\".\x82\xd3\xe4\x93\x02(*&/api/basestations/{id}/certs/{cert_id}B\xb0\x01\n" +
+	"\x12SignBasestationCsr\x12\x1e.api.SignBasestationCsrRequest\x1a\x1f.api.SignBasestationCsrResponse\")\x82\xd3\xe4\x93\x02#\"!/api/basestations/{id}/certs/sign\x12\x86\x01\n" +
+	"\x17DeleteClientCertificate\x12#.api.DeleteClientCertificateRequest\x1a\x16.google.protobuf.Empty\".\x82\xd3\xe4\x93\x02(*&/api/basestations/{id}/certs/{cert_id}\x12\xa8\x01\n" +
+	"!ListBasestationClientCertificates\x12-.api.ListBasestationClientCertificatesRequest\x1a..api.ListBasestationClientCertificatesResponse\"$\x82\xd3\xe4\x93\x02\x1e\x12\x1c/api/basestations/{id}/certsB\xb0\x01\n" +
 	"\x11io.splitstack.apiB\x10BasestationProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/go/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 
 var (
@@ -2505,8 +2506,8 @@ var file_api_basestation_proto_depIdxs = []int32{
 	21, // 60: api.BasestationService.StreamBasestationFrames:input_type -> api.StreamBasestationFramesRequest
 	22, // 61: api.BasestationService.GenerateBasestationClientCertificate:input_type -> api.GenerateBasestationClientCertificateRequest
 	25, // 62: api.BasestationService.SignBasestationCsr:input_type -> api.SignBasestationCsrRequest
-	28, // 63: api.BasestationService.ListBasestationClientCertificates:input_type -> api.ListBasestationClientCertificatesRequest
-	27, // 64: api.BasestationService.DeleteClientCertificate:input_type -> api.DeleteClientCertificateRequest
+	27, // 63: api.BasestationService.DeleteClientCertificate:input_type -> api.DeleteClientCertificateRequest
+	28, // 64: api.BasestationService.ListBasestationClientCertificates:input_type -> api.ListBasestationClientCertificatesRequest
 	7,  // 65: api.BasestationService.CreateBasestation:output_type -> api.CreateBasestationResponse
 	9,  // 66: api.BasestationService.GetBasestation:output_type -> api.GetBasestationResponse
 	11, // 67: api.BasestationService.UpdateBasestation:output_type -> api.UpdateBasestationResponse
@@ -2517,8 +2518,8 @@ var file_api_basestation_proto_depIdxs = []int32{
 	40, // 72: api.BasestationService.StreamBasestationFrames:output_type -> streaming.FrameLogItem
 	24, // 73: api.BasestationService.GenerateBasestationClientCertificate:output_type -> api.GenerateBasestationClientCertificateResponse
 	26, // 74: api.BasestationService.SignBasestationCsr:output_type -> api.SignBasestationCsrResponse
-	29, // 75: api.BasestationService.ListBasestationClientCertificates:output_type -> api.ListBasestationClientCertificatesResponse
-	39, // 76: api.BasestationService.DeleteClientCertificate:output_type -> google.protobuf.Empty
+	39, // 75: api.BasestationService.DeleteClientCertificate:output_type -> google.protobuf.Empty
+	29, // 76: api.BasestationService.ListBasestationClientCertificates:output_type -> api.ListBasestationClientCertificatesResponse
 	65, // [65:77] is the sub-list for method output_type
 	53, // [53:65] is the sub-list for method input_type
 	53, // [53:53] is the sub-list for extension type_name

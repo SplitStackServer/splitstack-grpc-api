@@ -1061,7 +1061,7 @@ const ListBasestationClientCertificatesRequest_OrderBy$json = {
   '1': 'OrderBy',
   '2': [
     {'1': 'EXPIRES_AT', '2': 0},
-    {'1': 'REVOKED', '2': 1},
+    {'1': 'STATUS', '2': 1},
   ],
 };
 
@@ -1072,8 +1072,8 @@ final $typed_data.Uint8List listBasestationClientCertificatesRequestDescriptor =
         'JpZBIsCglwYWdpbmF0b3IYAiABKAsyDi5hcGkuUGFnaW5hdG9yUglwYWdpbmF0b3ISGwoGYWN0'
         'aXZlGAQgASgISABSBmFjdGl2ZYgBARJQCghvcmRlcl9ieRgGIAEoDjI1LmFwaS5MaXN0QmFzZX'
         'N0YXRpb25DbGllbnRDZXJ0aWZpY2F0ZXNSZXF1ZXN0Lk9yZGVyQnlSB29yZGVyQnkSIgoNb3Jk'
-        'ZXJfYnlfZGVzYxgHIAEoCFILb3JkZXJCeURlc2MiJgoHT3JkZXJCeRIOCgpFWFBJUkVTX0FUEA'
-        'ASCwoHUkVWT0tFRBABQgkKB19hY3RpdmU=');
+        'ZXJfYnlfZGVzYxgHIAEoCFILb3JkZXJCeURlc2MiJQoHT3JkZXJCeRIOCgpFWFBJUkVTX0FUEA'
+        'ASCgoGU1RBVFVTEAFCCQoHX2FjdGl2ZQ==');
 
 @$core.Deprecated(
     'Use listBasestationClientCertificatesResponseDescriptor instead')

@@ -31,8 +31,8 @@ const (
 	BasestationService_StreamBasestationFrames_FullMethodName              = "/api.BasestationService/StreamBasestationFrames"
 	BasestationService_GenerateBasestationClientCertificate_FullMethodName = "/api.BasestationService/GenerateBasestationClientCertificate"
 	BasestationService_SignBasestationCsr_FullMethodName                   = "/api.BasestationService/SignBasestationCsr"
-	BasestationService_ListBasestationClientCertificates_FullMethodName    = "/api.BasestationService/ListBasestationClientCertificates"
 	BasestationService_DeleteClientCertificate_FullMethodName              = "/api.BasestationService/DeleteClientCertificate"
+	BasestationService_ListBasestationClientCertificates_FullMethodName    = "/api.BasestationService/ListBasestationClientCertificates"
 )
 
 // BasestationServiceClient is the client API for BasestationService service.
@@ -61,10 +61,10 @@ type BasestationServiceClient interface {
 	GenerateBasestationClientCertificate(ctx context.Context, in *GenerateBasestationClientCertificateRequest, opts ...grpc.CallOption) (*GenerateBasestationClientCertificateResponse, error)
 	// Sign a CSR for the gateway.
 	SignBasestationCsr(ctx context.Context, in *SignBasestationCsrRequest, opts ...grpc.CallOption) (*SignBasestationCsrResponse, error)
-	// Get the list of basestations.
-	ListBasestationClientCertificates(ctx context.Context, in *ListBasestationClientCertificatesRequest, opts ...grpc.CallOption) (*ListBasestationClientCertificatesResponse, error)
 	// Delete deletes the client certificate matching the given ID.
 	DeleteClientCertificate(ctx context.Context, in *DeleteClientCertificateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Get the list of basestations.
+	ListBasestationClientCertificates(ctx context.Context, in *ListBasestationClientCertificatesRequest, opts ...grpc.CallOption) (*ListBasestationClientCertificatesResponse, error)
 }
 
 type basestationServiceClient struct {
@@ -184,20 +184,20 @@ func (c *basestationServiceClient) SignBasestationCsr(ctx context.Context, in *S
 	return out, nil
 }
 
-func (c *basestationServiceClient) ListBasestationClientCertificates(ctx context.Context, in *ListBasestationClientCertificatesRequest, opts ...grpc.CallOption) (*ListBasestationClientCertificatesResponse, error) {
+func (c *basestationServiceClient) DeleteClientCertificate(ctx context.Context, in *DeleteClientCertificateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListBasestationClientCertificatesResponse)
-	err := c.cc.Invoke(ctx, BasestationService_ListBasestationClientCertificates_FullMethodName, in, out, cOpts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, BasestationService_DeleteClientCertificate_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *basestationServiceClient) DeleteClientCertificate(ctx context.Context, in *DeleteClientCertificateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *basestationServiceClient) ListBasestationClientCertificates(ctx context.Context, in *ListBasestationClientCertificatesRequest, opts ...grpc.CallOption) (*ListBasestationClientCertificatesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, BasestationService_DeleteClientCertificate_FullMethodName, in, out, cOpts...)
+	out := new(ListBasestationClientCertificatesResponse)
+	err := c.cc.Invoke(ctx, BasestationService_ListBasestationClientCertificates_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -230,10 +230,10 @@ type BasestationServiceServer interface {
 	GenerateBasestationClientCertificate(context.Context, *GenerateBasestationClientCertificateRequest) (*GenerateBasestationClientCertificateResponse, error)
 	// Sign a CSR for the gateway.
 	SignBasestationCsr(context.Context, *SignBasestationCsrRequest) (*SignBasestationCsrResponse, error)
-	// Get the list of basestations.
-	ListBasestationClientCertificates(context.Context, *ListBasestationClientCertificatesRequest) (*ListBasestationClientCertificatesResponse, error)
 	// Delete deletes the client certificate matching the given ID.
 	DeleteClientCertificate(context.Context, *DeleteClientCertificateRequest) (*emptypb.Empty, error)
+	// Get the list of basestations.
+	ListBasestationClientCertificates(context.Context, *ListBasestationClientCertificatesRequest) (*ListBasestationClientCertificatesResponse, error)
 	mustEmbedUnimplementedBasestationServiceServer()
 }
 
@@ -274,11 +274,11 @@ func (UnimplementedBasestationServiceServer) GenerateBasestationClientCertificat
 func (UnimplementedBasestationServiceServer) SignBasestationCsr(context.Context, *SignBasestationCsrRequest) (*SignBasestationCsrResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignBasestationCsr not implemented")
 }
-func (UnimplementedBasestationServiceServer) ListBasestationClientCertificates(context.Context, *ListBasestationClientCertificatesRequest) (*ListBasestationClientCertificatesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListBasestationClientCertificates not implemented")
-}
 func (UnimplementedBasestationServiceServer) DeleteClientCertificate(context.Context, *DeleteClientCertificateRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteClientCertificate not implemented")
+}
+func (UnimplementedBasestationServiceServer) ListBasestationClientCertificates(context.Context, *ListBasestationClientCertificatesRequest) (*ListBasestationClientCertificatesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListBasestationClientCertificates not implemented")
 }
 func (UnimplementedBasestationServiceServer) mustEmbedUnimplementedBasestationServiceServer() {}
 func (UnimplementedBasestationServiceServer) testEmbeddedByValue()                            {}
@@ -474,24 +474,6 @@ func _BasestationService_SignBasestationCsr_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BasestationService_ListBasestationClientCertificates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListBasestationClientCertificatesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BasestationServiceServer).ListBasestationClientCertificates(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: BasestationService_ListBasestationClientCertificates_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BasestationServiceServer).ListBasestationClientCertificates(ctx, req.(*ListBasestationClientCertificatesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _BasestationService_DeleteClientCertificate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteClientCertificateRequest)
 	if err := dec(in); err != nil {
@@ -506,6 +488,24 @@ func _BasestationService_DeleteClientCertificate_Handler(srv interface{}, ctx co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BasestationServiceServer).DeleteClientCertificate(ctx, req.(*DeleteClientCertificateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BasestationService_ListBasestationClientCertificates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListBasestationClientCertificatesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasestationServiceServer).ListBasestationClientCertificates(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BasestationService_ListBasestationClientCertificates_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasestationServiceServer).ListBasestationClientCertificates(ctx, req.(*ListBasestationClientCertificatesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -554,12 +554,12 @@ var BasestationService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _BasestationService_SignBasestationCsr_Handler,
 		},
 		{
-			MethodName: "ListBasestationClientCertificates",
-			Handler:    _BasestationService_ListBasestationClientCertificates_Handler,
-		},
-		{
 			MethodName: "DeleteClientCertificate",
 			Handler:    _BasestationService_DeleteClientCertificate_Handler,
+		},
+		{
+			MethodName: "ListBasestationClientCertificates",
+			Handler:    _BasestationService_ListBasestationClientCertificates_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

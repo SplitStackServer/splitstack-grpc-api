@@ -78,14 +78,14 @@ class ListBasestationClientCertificatesRequest_OrderBy
   static const ListBasestationClientCertificatesRequest_OrderBy EXPIRES_AT =
       ListBasestationClientCertificatesRequest_OrderBy._(
           0, _omitEnumNames ? '' : 'EXPIRES_AT');
-  static const ListBasestationClientCertificatesRequest_OrderBy REVOKED =
+  static const ListBasestationClientCertificatesRequest_OrderBy STATUS =
       ListBasestationClientCertificatesRequest_OrderBy._(
-          1, _omitEnumNames ? '' : 'REVOKED');
+          1, _omitEnumNames ? '' : 'STATUS');
 
   static const $core.List<ListBasestationClientCertificatesRequest_OrderBy>
       values = <ListBasestationClientCertificatesRequest_OrderBy>[
     EXPIRES_AT,
-    REVOKED,
+    STATUS,
   ];
 
   static final $core.List<ListBasestationClientCertificatesRequest_OrderBy?>

@@ -22,151 +22,32 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Reason for revocation
-type RevocationDetail_RevocationReason int32
-
-const (
-	RevocationDetail_UNSPECIFIED            RevocationDetail_RevocationReason = 0
-	RevocationDetail_KEY_COMPROMISE         RevocationDetail_RevocationReason = 1
-	RevocationDetail_CA_COMPROMISE          RevocationDetail_RevocationReason = 2
-	RevocationDetail_AFFILIATION_CHANGED    RevocationDetail_RevocationReason = 3
-	RevocationDetail_SUPERSEDED             RevocationDetail_RevocationReason = 4
-	RevocationDetail_CESSATION_OF_OPERATION RevocationDetail_RevocationReason = 5
-	RevocationDetail_CERTIFICATE_HOLD       RevocationDetail_RevocationReason = 6
-	RevocationDetail_REMOVE_FROM_CRL        RevocationDetail_RevocationReason = 8 // Un-revocation
-	RevocationDetail_PRIVILEGE_WITHDRAWN    RevocationDetail_RevocationReason = 9
-)
-
-// Enum value maps for RevocationDetail_RevocationReason.
-var (
-	RevocationDetail_RevocationReason_name = map[int32]string{
-		0: "UNSPECIFIED",
-		1: "KEY_COMPROMISE",
-		2: "CA_COMPROMISE",
-		3: "AFFILIATION_CHANGED",
-		4: "SUPERSEDED",
-		5: "CESSATION_OF_OPERATION",
-		6: "CERTIFICATE_HOLD",
-		8: "REMOVE_FROM_CRL",
-		9: "PRIVILEGE_WITHDRAWN",
-	}
-	RevocationDetail_RevocationReason_value = map[string]int32{
-		"UNSPECIFIED":            0,
-		"KEY_COMPROMISE":         1,
-		"CA_COMPROMISE":          2,
-		"AFFILIATION_CHANGED":    3,
-		"SUPERSEDED":             4,
-		"CESSATION_OF_OPERATION": 5,
-		"CERTIFICATE_HOLD":       6,
-		"REMOVE_FROM_CRL":        8,
-		"PRIVILEGE_WITHDRAWN":    9,
-	}
-)
-
-func (x RevocationDetail_RevocationReason) Enum() *RevocationDetail_RevocationReason {
-	p := new(RevocationDetail_RevocationReason)
-	*p = x
-	return p
-}
-
-func (x RevocationDetail_RevocationReason) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (RevocationDetail_RevocationReason) Descriptor() protoreflect.EnumDescriptor {
-	return file_bs_certificate_proto_enumTypes[0].Descriptor()
-}
-
-func (RevocationDetail_RevocationReason) Type() protoreflect.EnumType {
-	return &file_bs_certificate_proto_enumTypes[0]
-}
-
-func (x RevocationDetail_RevocationReason) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use RevocationDetail_RevocationReason.Descriptor instead.
-func (RevocationDetail_RevocationReason) EnumDescriptor() ([]byte, []int) {
-	return file_bs_certificate_proto_rawDescGZIP(), []int{1, 0}
-}
-
-// Action
-type CertificateRevocationUpdate_Action int32
-
-const (
-	CertificateRevocationUpdate_REVOKE   CertificateRevocationUpdate_Action = 0
-	CertificateRevocationUpdate_UNREVOKE CertificateRevocationUpdate_Action = 1 // Remove from revocation list
-)
-
-// Enum value maps for CertificateRevocationUpdate_Action.
-var (
-	CertificateRevocationUpdate_Action_name = map[int32]string{
-		0: "REVOKE",
-		1: "UNREVOKE",
-	}
-	CertificateRevocationUpdate_Action_value = map[string]int32{
-		"REVOKE":   0,
-		"UNREVOKE": 1,
-	}
-)
-
-func (x CertificateRevocationUpdate_Action) Enum() *CertificateRevocationUpdate_Action {
-	p := new(CertificateRevocationUpdate_Action)
-	*p = x
-	return p
-}
-
-func (x CertificateRevocationUpdate_Action) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (CertificateRevocationUpdate_Action) Descriptor() protoreflect.EnumDescriptor {
-	return file_bs_certificate_proto_enumTypes[1].Descriptor()
-}
-
-func (CertificateRevocationUpdate_Action) Type() protoreflect.EnumType {
-	return &file_bs_certificate_proto_enumTypes[1]
-}
-
-func (x CertificateRevocationUpdate_Action) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use CertificateRevocationUpdate_Action.Descriptor instead.
-func (CertificateRevocationUpdate_Action) EnumDescriptor() ([]byte, []int) {
-	return file_bs_certificate_proto_rawDescGZIP(), []int{2, 0}
-}
-
-// Full snapshot of all revoked certificates
-// Published to: cert/status/revocations (retained)
-type CertificateRevocationList struct {
+type CertificateValidationRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Version number (increments on each update)
-	Version int64 `protobuf:"varint,1,opt,name=version,proto3" json:"version,omitempty"`
-	// Timestamp when this list was generated
-	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	// List of revoked certificate serials (hex strings like "1A:2B:3C:...")
-	RevokedSerials []string `protobuf:"bytes,3,rep,name=revoked_serials,json=revokedSerials,proto3" json:"revoked_serials,omitempty"`
-	// Optional: Revocation details
-	Details       map[string]*RevocationDetail `protobuf:"bytes,4,rep,name=details,proto3" json:"details,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	// Certificate serial (hex string)
+	Serial string `protobuf:"bytes,1,opt,name=serial,proto3" json:"serial,omitempty"`
+	// Basestation EUI64 (hex string)
+	BsEui string `protobuf:"bytes,2,opt,name=bs_eui,json=bsEui,proto3" json:"bs_eui,omitempty"`
+	// Timestamp of the validation request
+	Ts            *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=ts,proto3" json:"ts,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CertificateRevocationList) Reset() {
-	*x = CertificateRevocationList{}
+func (x *CertificateValidationRequest) Reset() {
+	*x = CertificateValidationRequest{}
 	mi := &file_bs_certificate_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CertificateRevocationList) String() string {
+func (x *CertificateValidationRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CertificateRevocationList) ProtoMessage() {}
+func (*CertificateValidationRequest) ProtoMessage() {}
 
-func (x *CertificateRevocationList) ProtoReflect() protoreflect.Message {
+func (x *CertificateValidationRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_bs_certificate_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -178,270 +59,65 @@ func (x *CertificateRevocationList) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CertificateRevocationList.ProtoReflect.Descriptor instead.
-func (*CertificateRevocationList) Descriptor() ([]byte, []int) {
+// Deprecated: Use CertificateValidationRequest.ProtoReflect.Descriptor instead.
+func (*CertificateValidationRequest) Descriptor() ([]byte, []int) {
 	return file_bs_certificate_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CertificateRevocationList) GetVersion() int64 {
+func (x *CertificateValidationRequest) GetSerial() string {
 	if x != nil {
-		return x.Version
-	}
-	return 0
-}
-
-func (x *CertificateRevocationList) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
-}
-
-func (x *CertificateRevocationList) GetRevokedSerials() []string {
-	if x != nil {
-		return x.RevokedSerials
-	}
-	return nil
-}
-
-func (x *CertificateRevocationList) GetDetails() map[string]*RevocationDetail {
-	if x != nil {
-		return x.Details
-	}
-	return nil
-}
-
-type RevocationDetail struct {
-	state  protoimpl.MessageState            `protogen:"open.v1"`
-	Reason RevocationDetail_RevocationReason `protobuf:"varint,1,opt,name=reason,proto3,enum=bs.RevocationDetail_RevocationReason" json:"reason,omitempty"`
-	// When was this certificate revoked
-	RevokedAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=revoked_at,json=revokedAt,proto3" json:"revoked_at,omitempty"`
-	// Human-readable comment (e.g., "Security incident #2024-031")
-	Comment       string `protobuf:"bytes,3,opt,name=comment,proto3" json:"comment,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RevocationDetail) Reset() {
-	*x = RevocationDetail{}
-	mi := &file_bs_certificate_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RevocationDetail) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RevocationDetail) ProtoMessage() {}
-
-func (x *RevocationDetail) ProtoReflect() protoreflect.Message {
-	mi := &file_bs_certificate_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RevocationDetail.ProtoReflect.Descriptor instead.
-func (*RevocationDetail) Descriptor() ([]byte, []int) {
-	return file_bs_certificate_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *RevocationDetail) GetReason() RevocationDetail_RevocationReason {
-	if x != nil {
-		return x.Reason
-	}
-	return RevocationDetail_UNSPECIFIED
-}
-
-func (x *RevocationDetail) GetRevokedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.RevokedAt
-	}
-	return nil
-}
-
-func (x *RevocationDetail) GetComment() string {
-	if x != nil {
-		return x.Comment
+		return x.Serial
 	}
 	return ""
+}
+
+func (x *CertificateValidationRequest) GetBsEui() string {
+	if x != nil {
+		return x.BsEui
+	}
+	return ""
+}
+
+func (x *CertificateValidationRequest) GetTs() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Ts
+	}
+	return nil
 }
 
 // Incremental revocation update (single certificate)
 // Published to: cert/status/update
-type CertificateRevocationUpdate struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Certificate serial (hex string)
-	Serial string                             `protobuf:"bytes,1,opt,name=serial,proto3" json:"serial,omitempty"`
-	Action CertificateRevocationUpdate_Action `protobuf:"varint,2,opt,name=action,proto3,enum=bs.CertificateRevocationUpdate_Action" json:"action,omitempty"`
-	// Revocation details
-	Detail *RevocationDetail `protobuf:"bytes,3,opt,name=detail,proto3" json:"detail,omitempty"`
-	// Timestamp of this update
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CertificateRevocationUpdate) Reset() {
-	*x = CertificateRevocationUpdate{}
-	mi := &file_bs_certificate_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CertificateRevocationUpdate) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CertificateRevocationUpdate) ProtoMessage() {}
-
-func (x *CertificateRevocationUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_bs_certificate_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CertificateRevocationUpdate.ProtoReflect.Descriptor instead.
-func (*CertificateRevocationUpdate) Descriptor() ([]byte, []int) {
-	return file_bs_certificate_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *CertificateRevocationUpdate) GetSerial() string {
-	if x != nil {
-		return x.Serial
-	}
-	return ""
-}
-
-func (x *CertificateRevocationUpdate) GetAction() CertificateRevocationUpdate_Action {
-	if x != nil {
-		return x.Action
-	}
-	return CertificateRevocationUpdate_REVOKE
-}
-
-func (x *CertificateRevocationUpdate) GetDetail() *RevocationDetail {
-	if x != nil {
-		return x.Detail
-	}
-	return nil
-}
-
-func (x *CertificateRevocationUpdate) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
-}
-
-// Certificate to EUI64 binding mappings
-// Published to: cert/bindings (retained)
-type CertificateBindingList struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Version number
-	Version int64 `protobuf:"varint,1,opt,name=version,proto3" json:"version,omitempty"`
-	// Timestamp when this list was generated
-	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	// Mappings: certificate serial → gateway EUI64
-	// Serial is hex string like "1A:2B:3C:..."
-	// EUI64 is hex string like "0102030405060708"
-	Bindings      map[string]string `protobuf:"bytes,3,rep,name=bindings,proto3" json:"bindings,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CertificateBindingList) Reset() {
-	*x = CertificateBindingList{}
-	mi := &file_bs_certificate_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CertificateBindingList) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CertificateBindingList) ProtoMessage() {}
-
-func (x *CertificateBindingList) ProtoReflect() protoreflect.Message {
-	mi := &file_bs_certificate_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CertificateBindingList.ProtoReflect.Descriptor instead.
-func (*CertificateBindingList) Descriptor() ([]byte, []int) {
-	return file_bs_certificate_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *CertificateBindingList) GetVersion() int64 {
-	if x != nil {
-		return x.Version
-	}
-	return 0
-}
-
-func (x *CertificateBindingList) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
-}
-
-func (x *CertificateBindingList) GetBindings() map[string]string {
-	if x != nil {
-		return x.Bindings
-	}
-	return nil
-}
-
-// Incremental binding update
-// Published to: cert/bindings/update
-type CertificateBindingUpdate struct {
+type CertificateValidationResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Certificate serial (hex string)
 	Serial string `protobuf:"bytes,1,opt,name=serial,proto3" json:"serial,omitempty"`
-	// Gateway EUI64 (hex string, empty to remove binding)
-	Eui64 string `protobuf:"bytes,2,opt,name=eui64,proto3" json:"eui64,omitempty"`
-	// Timestamp of this update
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	// Basestation EUI64 (hex string)
+	BsEui string `protobuf:"bytes,2,opt,name=bs_eui,json=bsEui,proto3" json:"bs_eui,omitempty"`
+	// True if the certificate is valid, false if revoked
+	Valid bool `protobuf:"varint,3,opt,name=valid,proto3" json:"valid,omitempty"`
+	// Reason for revocation, if applicable
+	Reason *string `protobuf:"bytes,4,opt,name=reason,proto3,oneof" json:"reason,omitempty"`
+	// Timestamp of the validation response
+	Ts            *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=ts,proto3" json:"ts,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CertificateBindingUpdate) Reset() {
-	*x = CertificateBindingUpdate{}
-	mi := &file_bs_certificate_proto_msgTypes[4]
+func (x *CertificateValidationResponse) Reset() {
+	*x = CertificateValidationResponse{}
+	mi := &file_bs_certificate_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CertificateBindingUpdate) String() string {
+func (x *CertificateValidationResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CertificateBindingUpdate) ProtoMessage() {}
+func (*CertificateValidationResponse) ProtoMessage() {}
 
-func (x *CertificateBindingUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_bs_certificate_proto_msgTypes[4]
+func (x *CertificateValidationResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_bs_certificate_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -452,28 +128,42 @@ func (x *CertificateBindingUpdate) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CertificateBindingUpdate.ProtoReflect.Descriptor instead.
-func (*CertificateBindingUpdate) Descriptor() ([]byte, []int) {
-	return file_bs_certificate_proto_rawDescGZIP(), []int{4}
+// Deprecated: Use CertificateValidationResponse.ProtoReflect.Descriptor instead.
+func (*CertificateValidationResponse) Descriptor() ([]byte, []int) {
+	return file_bs_certificate_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CertificateBindingUpdate) GetSerial() string {
+func (x *CertificateValidationResponse) GetSerial() string {
 	if x != nil {
 		return x.Serial
 	}
 	return ""
 }
 
-func (x *CertificateBindingUpdate) GetEui64() string {
+func (x *CertificateValidationResponse) GetBsEui() string {
 	if x != nil {
-		return x.Eui64
+		return x.BsEui
 	}
 	return ""
 }
 
-func (x *CertificateBindingUpdate) GetUpdatedAt() *timestamppb.Timestamp {
+func (x *CertificateValidationResponse) GetValid() bool {
 	if x != nil {
-		return x.UpdatedAt
+		return x.Valid
+	}
+	return false
+}
+
+func (x *CertificateValidationResponse) GetReason() string {
+	if x != nil && x.Reason != nil {
+		return *x.Reason
+	}
+	return ""
+}
+
+func (x *CertificateValidationResponse) GetTs() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Ts
 	}
 	return nil
 }
@@ -482,55 +172,18 @@ var File_bs_certificate_proto protoreflect.FileDescriptor
 
 const file_bs_certificate_proto_rawDesc = "" +
 	"\n" +
-	"\x14bs/certificate.proto\x12\x02bs\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb1\x02\n" +
-	"\x19CertificateRevocationList\x12\x18\n" +
-	"\aversion\x18\x01 \x01(\x03R\aversion\x129\n" +
-	"\n" +
-	"updated_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12'\n" +
-	"\x0frevoked_serials\x18\x03 \x03(\tR\x0erevokedSerials\x12D\n" +
-	"\adetails\x18\x04 \x03(\v2*.bs.CertificateRevocationList.DetailsEntryR\adetails\x1aP\n" +
-	"\fDetailsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12*\n" +
-	"\x05value\x18\x02 \x01(\v2\x14.bs.RevocationDetailR\x05value:\x028\x01\"\xfc\x02\n" +
-	"\x10RevocationDetail\x12=\n" +
-	"\x06reason\x18\x01 \x01(\x0e2%.bs.RevocationDetail.RevocationReasonR\x06reason\x129\n" +
-	"\n" +
-	"revoked_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\trevokedAt\x12\x18\n" +
-	"\acomment\x18\x03 \x01(\tR\acomment\"\xd3\x01\n" +
-	"\x10RevocationReason\x12\x0f\n" +
-	"\vUNSPECIFIED\x10\x00\x12\x12\n" +
-	"\x0eKEY_COMPROMISE\x10\x01\x12\x11\n" +
-	"\rCA_COMPROMISE\x10\x02\x12\x17\n" +
-	"\x13AFFILIATION_CHANGED\x10\x03\x12\x0e\n" +
-	"\n" +
-	"SUPERSEDED\x10\x04\x12\x1a\n" +
-	"\x16CESSATION_OF_OPERATION\x10\x05\x12\x14\n" +
-	"\x10CERTIFICATE_HOLD\x10\x06\x12\x13\n" +
-	"\x0fREMOVE_FROM_CRL\x10\b\x12\x17\n" +
-	"\x13PRIVILEGE_WITHDRAWN\x10\t\"\x82\x02\n" +
-	"\x1bCertificateRevocationUpdate\x12\x16\n" +
-	"\x06serial\x18\x01 \x01(\tR\x06serial\x12>\n" +
-	"\x06action\x18\x02 \x01(\x0e2&.bs.CertificateRevocationUpdate.ActionR\x06action\x12,\n" +
-	"\x06detail\x18\x03 \x01(\v2\x14.bs.RevocationDetailR\x06detail\x129\n" +
-	"\n" +
-	"updated_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\"\n" +
-	"\x06Action\x12\n" +
-	"\n" +
-	"\x06REVOKE\x10\x00\x12\f\n" +
-	"\bUNREVOKE\x10\x01\"\xf0\x01\n" +
-	"\x16CertificateBindingList\x12\x18\n" +
-	"\aversion\x18\x01 \x01(\x03R\aversion\x129\n" +
-	"\n" +
-	"updated_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12D\n" +
-	"\bbindings\x18\x03 \x03(\v2(.bs.CertificateBindingList.BindingsEntryR\bbindings\x1a;\n" +
-	"\rBindingsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x83\x01\n" +
-	"\x18CertificateBindingUpdate\x12\x16\n" +
-	"\x06serial\x18\x01 \x01(\tR\x06serial\x12\x14\n" +
-	"\x05eui64\x18\x02 \x01(\tR\x05eui64\x129\n" +
-	"\n" +
-	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\xca\x01\n" +
+	"\x14bs/certificate.proto\x12\x02bs\x1a\x1fgoogle/protobuf/timestamp.proto\"y\n" +
+	"\x1cCertificateValidationRequest\x12\x16\n" +
+	"\x06serial\x18\x01 \x01(\tR\x06serial\x12\x15\n" +
+	"\x06bs_eui\x18\x02 \x01(\tR\x05bsEui\x12*\n" +
+	"\x02ts\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x02ts\"\xb8\x01\n" +
+	"\x1dCertificateValidationResponse\x12\x16\n" +
+	"\x06serial\x18\x01 \x01(\tR\x06serial\x12\x15\n" +
+	"\x06bs_eui\x18\x02 \x01(\tR\x05bsEui\x12\x14\n" +
+	"\x05valid\x18\x03 \x01(\bR\x05valid\x12\x1b\n" +
+	"\x06reason\x18\x04 \x01(\tH\x00R\x06reason\x88\x01\x01\x12*\n" +
+	"\x02ts\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x02tsB\t\n" +
+	"\a_reasonB\xca\x01\n" +
 	"\x14io.splitstack.api.bsB\x10CertificateProtoP\x01Z5github.com/SplitStackServer/splitstack-grpc-api/go/bs\xaa\x02\x1cSplitStackServer.Basestation\xca\x02\x1cSplitStackServer\\Basestation\xe2\x02(GPBMetadata\\SplitStackServer\\Basestationb\x06proto3"
 
 var (
@@ -545,37 +198,20 @@ func file_bs_certificate_proto_rawDescGZIP() []byte {
 	return file_bs_certificate_proto_rawDescData
 }
 
-var file_bs_certificate_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_bs_certificate_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_bs_certificate_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_bs_certificate_proto_goTypes = []any{
-	(RevocationDetail_RevocationReason)(0),  // 0: bs.RevocationDetail.RevocationReason
-	(CertificateRevocationUpdate_Action)(0), // 1: bs.CertificateRevocationUpdate.Action
-	(*CertificateRevocationList)(nil),       // 2: bs.CertificateRevocationList
-	(*RevocationDetail)(nil),                // 3: bs.RevocationDetail
-	(*CertificateRevocationUpdate)(nil),     // 4: bs.CertificateRevocationUpdate
-	(*CertificateBindingList)(nil),          // 5: bs.CertificateBindingList
-	(*CertificateBindingUpdate)(nil),        // 6: bs.CertificateBindingUpdate
-	nil,                                     // 7: bs.CertificateRevocationList.DetailsEntry
-	nil,                                     // 8: bs.CertificateBindingList.BindingsEntry
-	(*timestamppb.Timestamp)(nil),           // 9: google.protobuf.Timestamp
+	(*CertificateValidationRequest)(nil),  // 0: bs.CertificateValidationRequest
+	(*CertificateValidationResponse)(nil), // 1: bs.CertificateValidationResponse
+	(*timestamppb.Timestamp)(nil),         // 2: google.protobuf.Timestamp
 }
 var file_bs_certificate_proto_depIdxs = []int32{
-	9,  // 0: bs.CertificateRevocationList.updated_at:type_name -> google.protobuf.Timestamp
-	7,  // 1: bs.CertificateRevocationList.details:type_name -> bs.CertificateRevocationList.DetailsEntry
-	0,  // 2: bs.RevocationDetail.reason:type_name -> bs.RevocationDetail.RevocationReason
-	9,  // 3: bs.RevocationDetail.revoked_at:type_name -> google.protobuf.Timestamp
-	1,  // 4: bs.CertificateRevocationUpdate.action:type_name -> bs.CertificateRevocationUpdate.Action
-	3,  // 5: bs.CertificateRevocationUpdate.detail:type_name -> bs.RevocationDetail
-	9,  // 6: bs.CertificateRevocationUpdate.updated_at:type_name -> google.protobuf.Timestamp
-	9,  // 7: bs.CertificateBindingList.updated_at:type_name -> google.protobuf.Timestamp
-	8,  // 8: bs.CertificateBindingList.bindings:type_name -> bs.CertificateBindingList.BindingsEntry
-	9,  // 9: bs.CertificateBindingUpdate.updated_at:type_name -> google.protobuf.Timestamp
-	3,  // 10: bs.CertificateRevocationList.DetailsEntry.value:type_name -> bs.RevocationDetail
-	11, // [11:11] is the sub-list for method output_type
-	11, // [11:11] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	2, // 0: bs.CertificateValidationRequest.ts:type_name -> google.protobuf.Timestamp
+	2, // 1: bs.CertificateValidationResponse.ts:type_name -> google.protobuf.Timestamp
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_bs_certificate_proto_init() }
@@ -583,19 +219,19 @@ func file_bs_certificate_proto_init() {
 	if File_bs_certificate_proto != nil {
 		return
 	}
+	file_bs_certificate_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_bs_certificate_proto_rawDesc), len(file_bs_certificate_proto_rawDesc)),
-			NumEnums:      2,
-			NumMessages:   7,
+			NumEnums:      0,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_bs_certificate_proto_goTypes,
 		DependencyIndexes: file_bs_certificate_proto_depIdxs,
-		EnumInfos:         file_bs_certificate_proto_enumTypes,
 		MessageInfos:      file_bs_certificate_proto_msgTypes,
 	}.Build()
 	File_bs_certificate_proto = out.File

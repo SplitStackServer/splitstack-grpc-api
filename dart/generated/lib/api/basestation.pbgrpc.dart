@@ -119,6 +119,15 @@ class BasestationServiceClient extends $grpc.Client {
     return $createUnaryCall(_$signBasestationCsr, request, options: options);
   }
 
+  /// Delete deletes the client certificate matching the given ID.
+  $grpc.ResponseFuture<$1.Empty> deleteClientCertificate(
+    $0.DeleteClientCertificateRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$deleteClientCertificate, request,
+        options: options);
+  }
+
   /// Get the list of basestations.
   $grpc.ResponseFuture<$0.ListBasestationClientCertificatesResponse>
       listBasestationClientCertificates(
@@ -126,15 +135,6 @@ class BasestationServiceClient extends $grpc.Client {
     $grpc.CallOptions? options,
   }) {
     return $createUnaryCall(_$listBasestationClientCertificates, request,
-        options: options);
-  }
-
-  /// Delete deletes the client certificate matching the given ID.
-  $grpc.ResponseFuture<$1.Empty> deleteClientCertificate(
-    $0.DeleteClientCertificateRequest request, {
-    $grpc.CallOptions? options,
-  }) {
-    return $createUnaryCall(_$deleteClientCertificate, request,
         options: options);
   }
 
@@ -192,6 +192,11 @@ class BasestationServiceClient extends $grpc.Client {
       '/api.BasestationService/SignBasestationCsr',
       ($0.SignBasestationCsrRequest value) => value.writeToBuffer(),
       $0.SignBasestationCsrResponse.fromBuffer);
+  static final _$deleteClientCertificate =
+      $grpc.ClientMethod<$0.DeleteClientCertificateRequest, $1.Empty>(
+          '/api.BasestationService/DeleteClientCertificate',
+          ($0.DeleteClientCertificateRequest value) => value.writeToBuffer(),
+          $1.Empty.fromBuffer);
   static final _$listBasestationClientCertificates = $grpc.ClientMethod<
           $0.ListBasestationClientCertificatesRequest,
           $0.ListBasestationClientCertificatesResponse>(
@@ -199,11 +204,6 @@ class BasestationServiceClient extends $grpc.Client {
       ($0.ListBasestationClientCertificatesRequest value) =>
           value.writeToBuffer(),
       $0.ListBasestationClientCertificatesResponse.fromBuffer);
-  static final _$deleteClientCertificate =
-      $grpc.ClientMethod<$0.DeleteClientCertificateRequest, $1.Empty>(
-          '/api.BasestationService/DeleteClientCertificate',
-          ($0.DeleteClientCertificateRequest value) => value.writeToBuffer(),
-          $1.Empty.fromBuffer);
 }
 
 @$pb.GrpcServiceName('api.BasestationService')
@@ -302,6 +302,14 @@ abstract class BasestationServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.SignBasestationCsrRequest.fromBuffer(value),
         ($0.SignBasestationCsrResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.DeleteClientCertificateRequest, $1.Empty>(
+        'DeleteClientCertificate',
+        deleteClientCertificate_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.DeleteClientCertificateRequest.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.ListBasestationClientCertificatesRequest,
             $0.ListBasestationClientCertificatesResponse>(
         'ListBasestationClientCertificates',
@@ -312,14 +320,6 @@ abstract class BasestationServiceBase extends $grpc.Service {
             $0.ListBasestationClientCertificatesRequest.fromBuffer(value),
         ($0.ListBasestationClientCertificatesResponse value) =>
             value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.DeleteClientCertificateRequest, $1.Empty>(
-        'DeleteClientCertificate',
-        deleteClientCertificate_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) =>
-            $0.DeleteClientCertificateRequest.fromBuffer(value),
-        ($1.Empty value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.CreateBasestationResponse> createBasestation_Pre(
@@ -414,6 +414,14 @@ abstract class BasestationServiceBase extends $grpc.Service {
   $async.Future<$0.SignBasestationCsrResponse> signBasestationCsr(
       $grpc.ServiceCall call, $0.SignBasestationCsrRequest request);
 
+  $async.Future<$1.Empty> deleteClientCertificate_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.DeleteClientCertificateRequest> $request) async {
+    return deleteClientCertificate($call, await $request);
+  }
+
+  $async.Future<$1.Empty> deleteClientCertificate(
+      $grpc.ServiceCall call, $0.DeleteClientCertificateRequest request);
+
   $async.Future<$0.ListBasestationClientCertificatesResponse>
       listBasestationClientCertificates_Pre(
           $grpc.ServiceCall $call,
@@ -425,12 +433,4 @@ abstract class BasestationServiceBase extends $grpc.Service {
   $async.Future<$0.ListBasestationClientCertificatesResponse>
       listBasestationClientCertificates($grpc.ServiceCall call,
           $0.ListBasestationClientCertificatesRequest request);
-
-  $async.Future<$1.Empty> deleteClientCertificate_Pre($grpc.ServiceCall $call,
-      $async.Future<$0.DeleteClientCertificateRequest> $request) async {
-    return deleteClientCertificate($call, await $request);
-  }
-
-  $async.Future<$1.Empty> deleteClientCertificate(
-      $grpc.ServiceCall call, $0.DeleteClientCertificateRequest request);
 }

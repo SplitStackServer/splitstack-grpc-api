@@ -74,8 +74,10 @@ func (IntegrationKind) EnumDescriptor() ([]byte, []int) {
 type VariableMac int32
 
 const (
+	// Type 0: MAC/LINK Layer optimized for metering applications (not for future use)
+	VariableMac_WMBUS VariableMac = 0
 	// Type 1: Wireless M-Bus frame with Frame Format B (FFB)
-	VariableMac_MBUS_FFB VariableMac = 0
+	VariableMac_MBUS_FFB VariableMac = 1
 	// Type 2: M-Bus frame that starts with a wireless M-Bus MAC according to OMS-S Volume 2, Annex Q
 	//
 	// Open Metering System Specification (OMS-S), Volume 2, Annex Q, Issue 5.0.1, December 2023.
@@ -85,11 +87,13 @@ const (
 // Enum value maps for VariableMac.
 var (
 	VariableMac_name = map[int32]string{
-		0: "MBUS_FFB",
+		0: "WMBUS",
+		1: "MBUS_FFB",
 		2: "MBUS_MAC",
 	}
 	VariableMac_value = map[string]int32{
-		"MBUS_FFB": 0,
+		"WMBUS":    0,
+		"MBUS_FFB": 1,
 		"MBUS_MAC": 2,
 	}
 )
@@ -719,9 +723,10 @@ const file_api_common_proto_rawDesc = "" +
 	"\x0fIntegrationKind\x12\r\n" +
 	"\tHTTP_PUSH\x10\x00\x12\r\n" +
 	"\tINFLUX_DB\x10\x01\x12\x10\n" +
-	"\fTHINGS_BOARD\x10\x02*)\n" +
-	"\vVariableMac\x12\f\n" +
-	"\bMBUS_FFB\x10\x00\x12\f\n" +
+	"\fTHINGS_BOARD\x10\x02*4\n" +
+	"\vVariableMac\x12\t\n" +
+	"\x05WMBUS\x10\x00\x12\f\n" +
+	"\bMBUS_FFB\x10\x01\x12\f\n" +
 	"\bMBUS_MAC\x10\x02B\xab\x01\n" +
 	"\x11io.splitstack.apiB\vCommonProtoP\x01Z6github.com/SplitStackServer/splitstack-grpc-api/go/api\xaa\x02\x14SplitStackServer.Api\xca\x02\x14SplitStackServer\\Api\xe2\x02 GPBMetadata\\SplitStackServer\\Apib\x06proto3"
 

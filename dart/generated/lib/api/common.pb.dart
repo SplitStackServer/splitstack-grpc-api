@@ -189,7 +189,7 @@ class VariableMacList extends $pb.GeneratedMessage {
     ..pc<VariableMac>(1, _omitFieldNames ? '' : 'vm', $pb.PbFieldType.KE,
         valueOf: VariableMac.valueOf,
         enumValues: VariableMac.values,
-        defaultEnumValue: VariableMac.MBUS_FFB)
+        defaultEnumValue: VariableMac.WMBUS)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
